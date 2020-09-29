@@ -12,10 +12,11 @@ const RoundedInput = (
     type,
     required = false,
     bottomLabel,
-    styles
+    styles,
+    isValid,
+    setIsValid
   }
 ) => {
-  const [isValid, setIsValid] = useState(true)
   const [touched, setTouched] = useState(false)
 
   const validateValue = useCallback(() => {
@@ -34,7 +35,7 @@ const RoundedInput = (
 
   return (
     <div className={styles}>
-      <label className={labelClasses} for={label}>
+      <label className={labelClasses} htmlFor={label}>
         {label} {!required ? '(optional)' : null}
       </label>
       <input

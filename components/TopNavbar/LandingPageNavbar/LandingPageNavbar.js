@@ -7,8 +7,8 @@ const LandingPageNavbar = () => {
 
   return (
     <div className='px-32 pt-12 justify-center bg-white w-full grid grid-cols-2 grid rows-1'>
-      <div className='flex items-center text-xl text-darkGrey font-medium'>
-        <img className='w-64' src='Logo.svg' alt='logo' />
+      <div className='flex items-center text-lg text-darkGrey font-medium'>
+        <img onClick={() => router.push('/')} className='cursor-pointer w-64' src='Logo.svg' alt='logo' />
         <p style={{ cursor: 'pointer' }} className='ml-10'>
           Home
         </p>
@@ -20,7 +20,7 @@ const LandingPageNavbar = () => {
         </p>
       </div>
       <div className='justify-self-end'>
-        <SecondaryButton label='Get Started' clickHandler={() => router.push('/onboarding')} />
+        <SecondaryButton label='Get Started' clickHandler={() => router.push('/login')} />
       </div>
     </div>
   )

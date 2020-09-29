@@ -3,13 +3,25 @@ import RoundedInput from '../../../components/Inputs/RoundedInput'
 import { PrimaryButton } from '../../../components/Buttons/Index'
 import LoginSocialIcon from '../../../components/Misc/LoginSocialIcon'
 import { LandingContainer } from '../../../containers'
+import { useRouter } from 'next/router'
 
 const HorizontalLine = () => (
   <div className='border-t-2 border-lightGrey w-3/12 h-0 p-0'></div>
 )
 
 const Index = () => {
+  const router = useRouter()
+
   const [email, setEmail] = useState('')
+  const [isValid, setIsValid] = useState(true)
+
+  const handleContinue = () => {
+    if (!email || !isValid) {
+      return null
+    }
+
+    router.push('/otp')
+  }
 
   return (
     <LandingContainer width='6/12'>
@@ -24,8 +36,12 @@ const Index = () => {
         changeHandler={(val) => setEmail(val)}
         type='email'
         required
+        isValid={isValid}
+        setIsValid={setIsValid}
       />
       <PrimaryButton
+        disabled={!isValid}
+        clickHandler={handleContinue}
         label='Send OTP'
         styles={'sm:w-12/12 md:w-11/12 lg:w-10/12 xl:w-9/12 m-auto mt-4'}
       />

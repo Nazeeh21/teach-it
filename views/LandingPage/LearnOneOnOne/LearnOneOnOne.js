@@ -21,7 +21,7 @@ const LearnOneOnOne = () => {
         </div>
         <div className='text-xl text-darkGrey my-8'>{subHeading1}</div>
         <div className='text-xl text-darkGrey my-8'>{subHeading2}</div>
-        <button onClick={() => router.push('/onboarding')} className='bg-secondary p-3 w-5/12 my-8 rounded-md text-white text-xl font-medium'>
+        <button onClick={() => router.push('/login')} className='bg-secondary p-3 w-5/12 my-8 rounded-md text-white text-xl font-medium'>
           Get Started
         </button>
       </div>
