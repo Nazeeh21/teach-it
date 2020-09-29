@@ -18,8 +18,8 @@ module.exports = {
     colors: {
       primary: '#0D0B22',
       secondary: '#4968FF',
-      provider: '#1FB7FF',
-      seeker: '#E63F77',
+      expert: '#1FB7FF',
+      learner: '#E63F77',
       darkGrey: '#6F6E7B',
       accent: '#BF8CEE',
       red: '#FF7575',

@@ -12,7 +12,7 @@ const Text = () => (
       {heading}
     </p>
     <button className='bg-expert p-3 w-5/12 my-10 rounded-md text-white text-xl font-medium'>
-      Become a expert
+      Become an expert
     </button>
   </div>
 )
