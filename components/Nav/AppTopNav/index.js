@@ -3,7 +3,7 @@ import { Icon } from '../../Images/Icon'
 import NavSwitch from '../../NavSwitch'
 import ProfileSwitch from '../../ProfileSwitch'
 
-export default () => {
+const Index = () => {
   return (
     <div className='bg-white w-full grid grid-cols-2 gap-4 px-16 py-2 items-center'>
       <img src='logos/blue.svg' alt='Videowork' className='cursor-pointer justify-self-start' />
@@ -22,4 +22,6 @@ export default () => {
       </div> */}
     </div>
   )
-}
+};
+
+export default Index;

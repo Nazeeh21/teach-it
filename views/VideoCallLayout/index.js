@@ -1,7 +1,7 @@
 import React from 'react'
 import { DoubleSection } from '../../layout'
 
-export default ({ children }) => {
+const Index = ({ children }) => {
   return (
     <React.Fragment>
       <AppTopNav />
@@ -15,4 +15,6 @@ export default ({ children }) => {
       </div>
     </React.Fragment>
   )
-}
+};
+
+export default Index;

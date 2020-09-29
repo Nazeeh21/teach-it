@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default ({ label, active = false }) => {
+const NavItem = ({ label, active = false }) => {
   return (
     <div
       className={`bg-${
@@ -10,4 +10,6 @@ export default ({ label, active = false }) => {
       <p>{label}</p>
     </div>
   )
-}
+};
+
+export default NavItem;

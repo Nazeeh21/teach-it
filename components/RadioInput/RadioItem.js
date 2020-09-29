@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default ({ label, value, formName }) => {
+const RadioItem = ({ label, value, formName }) => {
   return (
     <div style={{ display: 'table-cell', verticalAlign: 'middle' }} className='p-2 flex flex-row block border-b-2 border-lightGrey mb-2'>
       <input
@@ -17,4 +17,6 @@ export default ({ label, value, formName }) => {
 
     </div>
   )
-}
+};
+
+export default RadioItem;

@@ -14,7 +14,7 @@ const VidThumbnail = ({ thumbSrc }) => (
   </React.Fragment>
 )
 
-export default () => {
+const Index = () => {
   return (
     <div className='w-full bg-white border-2 border-darkGrey rounded-sm flex flex-col p-6'>
       <Profile
@@ -45,4 +45,6 @@ export default () => {
       </div>
     </div>
   )
-}
+};
+
+export default Index;

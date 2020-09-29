@@ -1,7 +1,7 @@
 import React from 'react'
 import NavSwitch from '../NavSwitch'
 
-export default ({}) => {
+const Index = ({}) => {
   return (
     <div className='p-2 w-full bg-white flex flex-row items-center justify-center'>
       <h1 className='text-xl font-bold w-2/12'>Videowork</h1>
@@ -15,4 +15,6 @@ export default ({}) => {
       </div>
     </div>
   )
-}
+};
+
+export default Index;

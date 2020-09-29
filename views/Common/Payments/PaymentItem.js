@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default ({ label, pending = false, amount, days }) => {
+const PaymentItem = ({ label, pending = false, amount, days }) => {
   return (
     <div className='w-full pb-6 pt-6 border-b-2 border-highlight grid grid-cols-2 gap-4'>
       <div className='flex flex-row'>
@@ -20,4 +20,6 @@ export default ({ label, pending = false, amount, days }) => {
       </div>
     </div>
   )
-}
+};
+
+export default PaymentItem;

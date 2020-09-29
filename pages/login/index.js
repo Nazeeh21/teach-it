@@ -2,10 +2,12 @@ import React from 'react'
 import LandingLayout from '../../views/LandingLayout'
 import Login from '../../views/Onboarding/OnboardingLogin'
 
-export default () => {
+const Index = () => {
   return (
     <LandingLayout>
       <Login />
     </LandingLayout>
   )
-}
+};
+
+export default Index;

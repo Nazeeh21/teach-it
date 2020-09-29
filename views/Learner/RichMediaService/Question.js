@@ -1,7 +1,7 @@
 import React from 'react'
 import { PrimaryButton } from '../../../components/Buttons/Index'
 
-export default ({ question, time, date }) => {
+const Question = ({ question, time, date }) => {
   return (
     <React.Fragment>
       <div className='flex rounded-lg border-highlight border-2 bg-white w-full p-6'>
@@ -15,4 +15,6 @@ export default ({ question, time, date }) => {
       </div>
     </React.Fragment>
   )
-}
+};
+
+export default Question;

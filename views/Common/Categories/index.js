@@ -5,7 +5,7 @@ const Card = () => (
   <CardFilledWithImage title='Yoga' subTitle='234 learners' src='yoga.jpg' />
 )
 
-export default () => {
+const Index = () => {
   return (
     <div className='w-full'>
       <h3 className='text-2xl text-primary p-2 font-semibold'>Categories</h3>
@@ -23,4 +23,6 @@ export default () => {
       </div>
     </div>
   )
-}
+};
+
+export default Index;

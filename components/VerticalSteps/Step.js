@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default ({ index, label, done = false, active = false }) => {
+const Step = ({ index, label, done = false, active = false }) => {
 
   return (
     <div className='flex items-center w-full mb-10'>
@@ -16,4 +16,6 @@ export default ({ index, label, done = false, active = false }) => {
       <p className='ml-2 text-lg'>{label}</p>
     </div>
   )
-}
+};
+
+export default Step;

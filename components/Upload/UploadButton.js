@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-export default ({ text, footerText }) => {
+const UploadButton = ({ text, footerText }) => {
   const [file, setFile] = useState()
 
   const handleClick = () => {
@@ -28,4 +28,6 @@ export default ({ text, footerText }) => {
       />
     </React.Fragment>
   )
-}
+};
+
+export default UploadButton;

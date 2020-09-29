@@ -2,7 +2,7 @@ import React from 'react'
 import { SecondaryButton } from '../../Buttons/Index'
 import { useRouter } from 'next/router'
 
-export default () => {
+const LandingPageNavbar = () => {
   const router = useRouter()
 
   return (
@@ -24,4 +24,6 @@ export default () => {
       </div>
     </div>
   )
-}
+};
+
+export default LandingPageNavbar;

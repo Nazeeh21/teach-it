@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-export default ({ label, children }) => {
+const Index = ({ label, children }) => {
   const [open, toggleOpen] = useState(true)
 
   const toggleHandler = () => toggleOpen((open) => !open)
@@ -21,4 +21,6 @@ export default ({ label, children }) => {
       {open && children}
     </React.Fragment>
   )
-}
+};
+
+export default Index;

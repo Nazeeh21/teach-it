@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default () => {
+const InviteCard = () => {
   return (
     <div className='h-auto w-full flex flex-col'>
       <div
@@ -22,4 +22,6 @@ export default () => {
       </div>
     </div>
   )
-}
+};
+
+export default InviteCard;

@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default ({ value, changeHandler }) => {
+const SearchBar = ({ value, changeHandler }) => {
   return (
     <input
       style={{outline: 'none'}}
@@ -9,4 +9,6 @@ export default ({ value, changeHandler }) => {
       className='rounded-full bg-white pt-2 pb-2 pl-4 pr-4 w-full-'
     />
   )
-}
+};
+
+export default SearchBar;

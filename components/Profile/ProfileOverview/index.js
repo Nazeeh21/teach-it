@@ -15,7 +15,7 @@ const OutlineBtn = ({ label, color }) => (
   </button>
 )
 
-export default ({}) => {
+const Index = ({}) => {
   return (
     <div className='w-full bg-white rounded-lg shadow pl-4 pr-4 pt-3 pb-3 flex flex-col'>
       <Stat number={58} label='Services' />
@@ -31,4 +31,6 @@ export default ({}) => {
       <PrimaryButton label='Message Nazeeh' textSize='md' />
     </div>
   )
-}
+};
+
+export default Index;

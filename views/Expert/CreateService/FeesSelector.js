@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default () => {
+const FeesSelector = () => {
   return (
     <div className='w-full'>
       <p className='mt-2 text-lg'>How much will you charge for this service?</p>
@@ -26,4 +26,6 @@ export default () => {
       </div>
     </div>
   )
-}
+};
+
+export default FeesSelector;

@@ -3,7 +3,7 @@ import TextInput from '../../../components/Inputs/TextInput'
 import { PrimaryButton, SecondaryButton } from '../../../components/Buttons/Index'
 import { LandingContainer } from '../../../containers'
 
-export default () => {
+const Index = () => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [age, setAge] = useState()
@@ -35,4 +35,6 @@ export default () => {
       </div>
     </LandingContainer>
   )
-}
+};
+
+export default Index;

@@ -8,7 +8,7 @@ const HorizontalLine = () => (
   <div className='border-t-2 border-lightGrey w-3/12 h-0 p-0'></div>
 )
 
-export default () => {
+const Index = () => {
   const [email, setEmail] = useState('')
 
   return (
@@ -43,4 +43,6 @@ export default () => {
       </div>
     </LandingContainer>
   )
-}
+};
+
+export default Index;

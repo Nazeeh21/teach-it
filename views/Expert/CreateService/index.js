@@ -12,7 +12,7 @@ const SectionTitle = ({ children }) => (
   <h3 className='text-lg text-primary mb-2'>{children}</h3>
 )
 
-export default () => {
+const Index = () => {
   const [serviceType, setServiceType] = useState(null)
 
   return (
@@ -68,4 +68,6 @@ export default () => {
       </div>
     </div>
   )
-}
+};
+
+export default Index;

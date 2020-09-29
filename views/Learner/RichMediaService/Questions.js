@@ -3,7 +3,7 @@ import { Icon } from '../../../components/Images/Icon'
 import loremIpsum from '../../../utility/loremIpsum'
 import Question from './Question'
 
-export default () => {
+const Questions = () => {
   return (
     <div className='w-full'>
       <div className='grid grid-cols-2 items-center'>
@@ -19,4 +19,6 @@ export default () => {
       </div>
     </div>
   )
-}
+};
+
+export default Questions;

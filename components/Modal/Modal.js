@@ -2,7 +2,7 @@ import React from 'react'
 
 import './Modal.css'
 
-export default ({ children, triggerOnClose, open, toggleOpen }) => {
+const Modal = ({ children, triggerOnClose, open, toggleOpen }) => {
   const closeModal = () => {
     triggerOnClose()
     toggleOpen(false)
@@ -25,4 +25,6 @@ export default ({ children, triggerOnClose, open, toggleOpen }) => {
       </div>
     </div>
   )
-}
+};
+
+export default Modal;

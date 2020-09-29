@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Pill } from '../Buttons/Index'
 
-export default ({ color1, color2, label1, label2 }) => {
+const Index = ({ color1, color2, label1, label2 }) => {
   const [activeId, setActiveId] = useState(0)
 
   return (
@@ -26,4 +26,6 @@ export default ({ color1, color2, label1, label2 }) => {
       />
     </div>
   )
-}
+};
+
+export default Index;

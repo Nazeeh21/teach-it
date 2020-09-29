@@ -1,7 +1,7 @@
 import React from 'react'
 import Step from './Step'
 
-export default ({ items, activeStep }) => {
+const Index = ({ items, activeStep }) => {
   return (
     <div className='bg-white rounded-lg p-4 shadow-sm flex flex-col'>
       {items.map((item, index) => (
@@ -14,4 +14,6 @@ export default ({ items, activeStep }) => {
       ))}
     </div>
   )
-}
+};
+
+export default Index;

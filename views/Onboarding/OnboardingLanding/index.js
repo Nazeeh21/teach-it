@@ -16,7 +16,7 @@ const Button = ({ color, label }) => (
   </button>
 )
 
-export default () => {
+const Index = () => {
   return (
     <LandingContainer>
       <h1 className='text-5xl font-semibold text-center mb-4 mx-auto'>
@@ -87,4 +87,6 @@ export default () => {
       </div>
     </LandingContainer>
   )
-}
+};
+
+export default Index;

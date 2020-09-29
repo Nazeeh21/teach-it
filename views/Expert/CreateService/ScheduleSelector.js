@@ -8,7 +8,7 @@ import TimeSelector from './LiveServiceFormComponents/TimeSelector/TimeSelector'
 import DurationSelector from './LiveServiceFormComponents/DurationSelector/DurationSelector'
 import CustomizeAndMilestoneContainer from './LiveServiceFormComponents/CustomizeAndMilestoneContainer'
 
-export default ({ type }) => {
+const ScheduleSelector = ({ type }) => {
 
   if (type === 0) {
     return (
@@ -72,4 +72,6 @@ export default ({ type }) => {
   }
 
   return null
-}
+};
+
+export default ScheduleSelector;

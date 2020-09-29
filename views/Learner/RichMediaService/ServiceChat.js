@@ -2,7 +2,7 @@ import React from 'react'
 import InnerNav from '../../../components/Nav/InnerNav'
 import Chat from '../../Chat/Chat'
 
-export default () => {
+const ServiceChat = () => {
   return (
     <Chat
       label='Stock Market'
@@ -13,4 +13,6 @@ export default () => {
       }}
     />
   )
-}
+};
+
+export default ServiceChat;

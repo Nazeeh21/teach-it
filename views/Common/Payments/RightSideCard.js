@@ -1,7 +1,7 @@
 import React from 'react'
 import { PrimaryButton } from '../../../components/Buttons/Index'
 
-export default () => {
+const RightSideCard = () => {
   return (
     <div className='bg-white rounded-lg pl-4 pr-4 pt-4 pb-4'>
       <p>Total earnings</p>
@@ -9,4 +9,6 @@ export default () => {
       <PrimaryButton label='Withdraw' />
     </div>
   )
-}
+};
+
+export default RightSideCard;

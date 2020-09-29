@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Checkbox from './Checkbox/Checkbox'
 
-export default ({label}) => {
+const Container = ({label}) => {
   const [active, setActive] = useState(true)
 
   const checkboxClickHandler = () => (
@@ -14,4 +14,6 @@ export default ({label}) => {
     <div id='checkbox' className='w-1/12' ><Checkbox active={active} clicked={checkboxClickHandler} /></div>
     <div className='w-11/12 mt-1'>{label}</div>
   </div>)
-}
+};
+
+export default Container;

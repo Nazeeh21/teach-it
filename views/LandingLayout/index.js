@@ -3,7 +3,7 @@ import LandingPageNavbar from '../../components/TopNavbar/LandingPageNavbar/Land
 import BottomNavbar from '../LandingPage/BottomNavbar/BottomNavbar'
 import Footer from '../LandingPage/Footer'
 
-export default ({ children }) => {
+const Index = ({ children }) => {
   return (
     <React.Fragment>
       <LandingPageNavbar />
@@ -12,4 +12,6 @@ export default ({ children }) => {
       <Footer />
     </React.Fragment>
   )
-}
+};
+
+export default Index;

@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default () => {
+const AudienceSelector = () => {
   return (
     <div className='w-full'>
       <p className='mt-2 text-lg'>Age groups allowed</p>
@@ -10,4 +10,6 @@ export default () => {
       </p>
     </div>
   )
-}
+};
+
+export default AudienceSelector;

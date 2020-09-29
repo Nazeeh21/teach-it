@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default () => {
+const EarningsCard = () => {
   return (
     <div className='flex flex-row bg-white rounded-lg w-full items-center shadow p-6 gap-6'>
       <div className='flex flex-col w-1/2'>
@@ -14,4 +14,6 @@ export default () => {
       </div>
     </div>
   )
-}
+};
+
+export default EarningsCard;

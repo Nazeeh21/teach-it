@@ -5,7 +5,7 @@ import InviteCard from '../../../components/Misc/InviteCard'
 import AppTopNav from '../../../components/Nav/AppTopNav'
 import Messages from '../../Expert/Messages'
 
-export default ({ children, rightContent, alternate = false }) => {
+const Index = ({ children, rightContent, alternate = false }) => {
   if (alternate) {
     return (
       <React.Fragment>
@@ -55,4 +55,6 @@ export default ({ children, rightContent, alternate = false }) => {
       </div>
     </React.Fragment>
   )
-}
+};
+
+export default Index;

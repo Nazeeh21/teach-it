@@ -25,7 +25,7 @@ const UploadImageAndVideo = (
   </div>
 )
 
-export default ({ type }) => {
+const UpperForm = ({ type }) => {
   const [liveServiceType, setServiceType] = useState(null)
 
   return (
@@ -77,4 +77,6 @@ export default ({ type }) => {
       </div>
     </div>
   )
-}
+};
+
+export default UpperForm;

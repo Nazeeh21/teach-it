@@ -2,14 +2,16 @@ import React from 'react'
 import { Icon } from '../../../components/Images/Icon'
 import loremIpsum from '../../../utility/loremIpsum'
 
-export default ({
-  noIcon,
-  iconSrc = 'live.svg',
-  label,
-  desc = loremIpsum,
-  active,
-  clickHandler,
-}) => {
+const ServiceTypeCard = (
+  {
+    noIcon,
+    iconSrc = 'live.svg',
+    label,
+    desc = loremIpsum,
+    active,
+    clickHandler,
+  }
+) => {
   return (
     <div
       onClick={clickHandler}
@@ -24,4 +26,6 @@ export default ({
       <p className='text-sm text-darkGrey'>{desc}</p>
     </div>
   )
-}
+};
+
+export default ServiceTypeCard;

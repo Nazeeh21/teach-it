@@ -13,7 +13,7 @@ const Item = ({ title, titleColor, description }) => (
   </div>
 )
 
-export default () => {
+const CreateServiceCard = () => {
   return (
     <div className='rounded-lg bg-white flex flex-col shadow mt-6'>
       <div className='rounded-tl-lg rounded-tr-lg p-6'>
@@ -24,4 +24,6 @@ export default () => {
       <Item title='Rich media' titleColor='green' description={loremIpsum} />
     </div>
   )
-}
+};
+
+export default CreateServiceCard;

@@ -3,16 +3,18 @@ import { validate } from '../../utility/validation'
 
 const labelClasses = 'block text-textBoxTitle p-1 text-darkGrey'
 
-export default ({
-  label,
-  placeholder,
-  value,
-  changeHandler,
-  type,
-  required = false,
-  bottomLabel,
-  styles
-}) => {
+const RoundedInput = (
+  {
+    label,
+    placeholder,
+    value,
+    changeHandler,
+    type,
+    required = false,
+    bottomLabel,
+    styles
+  }
+) => {
   const [isValid, setIsValid] = useState(true)
   const [touched, setTouched] = useState(false)
 
@@ -57,4 +59,6 @@ export default ({
       <p className={labelClasses}>{bottomLabel}</p>
     </div>
   )
-}
+};
+
+export default RoundedInput;

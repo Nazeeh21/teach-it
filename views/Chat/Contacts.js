@@ -41,7 +41,7 @@ const ChatWindowData = [
   },
 ]
 
-export default () => {
+const Contacts = () => {
   return (
     <div className='w-full'>
       <div id='contacts' className='shadow-lg bg-white rounded-lg'>
@@ -70,4 +70,6 @@ export default () => {
       </div>
     </div>
   )
-}
+};
+
+export default Contacts;

@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default ({ value, changeHandler, isIncorrect }) => {
+const OtpInput = ({ value, changeHandler, isIncorrect }) => {
   const baseStyles = 'bg-highlight rounded-full w-2/12 pl-3 pr-3 p-3 text-center text-xl m-2 mt-6'
 
   return (
@@ -13,4 +13,6 @@ export default ({ value, changeHandler, isIncorrect }) => {
       onChange={e => changeHandler(e.target.value)}
     />
   )
-}
+};
+
+export default OtpInput;

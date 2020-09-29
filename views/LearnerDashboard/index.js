@@ -4,7 +4,7 @@ import SearchBar from '../../components/Inputs/SearchBar'
 import { CardFilledWithImage } from '../../components/Cards/Cards'
 import { ViewMoreButton } from '../../components/Buttons/Index'
 
-export default () => {
+const Index = () => {
   const [query, setQuery] = useState('')
 
   return (
@@ -48,4 +48,6 @@ export default () => {
       </div>
     </React.Fragment>
   )
-}
+};
+
+export default Index;

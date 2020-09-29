@@ -6,7 +6,7 @@ import NavItems from '../../../components/Nav/NavItems'
 import { CenterSection, ThreeCols } from '../../../layout'
 import Messages from '../Messages'
 
-export default ({ children, rightContent, alternate = false }) => {
+const Index = ({ children, rightContent, alternate = false }) => {
   if (alternate) {
     return (
       <React.Fragment>
@@ -58,4 +58,6 @@ export default ({ children, rightContent, alternate = false }) => {
     </div>
     </React.Fragment>
   )
-}
+};
+
+export default Index;

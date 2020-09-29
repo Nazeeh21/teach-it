@@ -4,7 +4,7 @@ import OtpInput from './OtpInput'
 import { PrimaryButton } from '../../components/Buttons/Index'
 import { ModalTitle } from '../../typography/misc'
 
-export default ({}) => {
+const Index = ({}) => {
   const [isOpen, toggleOpen] = useState(true)
   const [otp, setOtp] = useState([null, null, null, null])
   const [canContinue, setCanContinue] = useState(false)
@@ -84,4 +84,6 @@ export default ({}) => {
       </Modal>
     </div>
   )
-}
+};
+
+export default Index;

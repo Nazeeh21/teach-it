@@ -3,7 +3,7 @@ import React from 'react'
 
 import { Player} from 'video-react';
 
-export default () => {
+const Index = () => {
   return (
     <Player
     fluid={false}
@@ -18,3 +18,5 @@ export default () => {
       />
   );
 };
+
+export default Index;

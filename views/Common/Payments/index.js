@@ -2,7 +2,7 @@ import React from 'react'
 import { ViewMoreButton } from '../../../components/Buttons/Index'
 import PaymentItem from './PaymentItem'
 
-export default () => {
+const Index = () => {
   return (
     <div className='w-full'>
       <h3 className='text-2xl mb-6'>Payments</h3>
@@ -20,4 +20,6 @@ export default () => {
       </div>
     </div>
   )  
-}
+};
+
+export default Index;
