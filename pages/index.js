@@ -1,6 +1,11 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import LandingPage from '../views/LandingPage/LandingPage'
+import CreateService from '../pages/create-service/index'
+import ExpertLayout from '../views/Expert/ExpertLayout'
+import CompactServiceCard from '../views/Chat/CompactServiceCard/CompactServiceCard'
+import SearchResult from '../views/SearchResult'
+import TypeOfService from '../views/TypeOfService'
 
 export default function Home() {
   return (
@@ -16,7 +21,10 @@ export default function Home() {
       </Head>
 
       <main>
-        <LandingPage />
+        {/* <LandingPage /> */}
+        <ExpertLayout rightContent={<TypeOfService />}>
+          <SearchResult />
+        </ExpertLayout>
       </main>
     </div>
   )
