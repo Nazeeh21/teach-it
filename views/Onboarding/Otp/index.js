@@ -45,7 +45,7 @@ const Index = ({}) => {
     setShowStatus(true)
     
     if (isCorrect) {
-      router.push('/create-profile')
+      router.push('/onboarding')
     }
   }
 

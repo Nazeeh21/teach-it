@@ -1,4 +1,5 @@
 import React from 'react'
+import { useRouter } from 'next/router'
 import TextContainer from './TextContainer/TextContainer'
 
 const heading = 'What makes Videowork such an amazing platform'
@@ -34,14 +35,17 @@ const textContainerData = [
   },
 ]
 
-const WhatMakesVideoWork = () => (
+const WhatMakesVideoWork = () => {
+  const router = useRouter()
+  
+  return(
   <div className='bg-white flex justify-center py-20'>
     <div className='w-4/12 mx-10 my-20 py-12'>
       <p style={{ color: '#1d2d50', lineHeight: '120%' }}
         className='text-5xl text-left font-bold'>
         {heading}
       </p>
-      <button className='bg-secondary text-white text-xl rounded-md my-10 p-3 px-10' >
+      <button onClick={() => router.push('/login')} className='bg-secondary text-white text-xl rounded-md my-10 p-3 px-10' >
         Get Started
       </button>
     </div>
@@ -50,6 +54,6 @@ const WhatMakesVideoWork = () => (
     
     </div>
   </div>
-)
+)}
 
 export default WhatMakesVideoWork

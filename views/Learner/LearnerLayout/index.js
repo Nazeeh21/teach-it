@@ -12,10 +12,8 @@ const Index = ({ children, rightContent, alternate = false }) => {
         <AppTopNav />
         <div className='h-auto bg-lightGrey w-full flex flex-row'>
           <ThreeCols side='left'>
-            <div className='w-full p-4 bg-white rounded-lg shadow-md'>
-              <NavItems />
-              <Messages />
-            </div>
+            <NavItems />
+            <Messages />
           </ThreeCols>
           <ThreeCols side='center'>
             {rightContent ? (
@@ -37,10 +35,8 @@ const Index = ({ children, rightContent, alternate = false }) => {
       <AppTopNav />
       <div className='h-auto bg-lightGrey w-full flex flex-row'>
         <ThreeCols side='left'>
-          <div className='w-full p-4 bg-white rounded-lg shadow-md'>
-            <NavItems />
-            <Messages />
-          </div>
+          <NavItems />
+          <Messages />
         </ThreeCols>
         <CenterSection>{children}</CenterSection>
         <ThreeCols side='right'>
@@ -55,6 +51,6 @@ const Index = ({ children, rightContent, alternate = false }) => {
       </div>
     </React.Fragment>
   )
-};
+}
 
-export default Index;
+export default Index

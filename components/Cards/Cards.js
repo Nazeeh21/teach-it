@@ -1,7 +1,8 @@
 import React from 'react'
 
-export const CardFilledWithImage = ({ src, title, subTitle }) => (
+export const CardFilledWithImage = ({ clickHandler, src, title, subTitle }) => (
   <div
+    onClick={clickHandler}
     style={{ backgroundImage: `url('${src}')`, backgroundSize: 'cover' }}
     className='cursor-pointer rounded-lg w-full h-56 m-2'
   >

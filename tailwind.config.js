@@ -25,12 +25,14 @@ module.exports = {
       red: '#FF7575',
       highlight: '#F9F8FD',
       lightGrey: '#F3F4F8',
-
+      
       transparent: 'transparent',
+      lightCyan: '#EBF8FF',
       current: 'currentColor',
 
       black: '#000',
       white: '#fff',
+      accentedWhite: '#F8F8F8',
 
       gray: {
         100: '#f7fafc',

@@ -87,8 +87,7 @@ const Chat = ({ label = 'Chat', disabled, expertDetails }) => (
         />
       </div>
       <div
-        style={{ background: '#e8e8e8' }}
-        className=' rounded-bl-md rounded-br-md flex justify-center'
+        className='bg-accentedWhite rounded-bl-md rounded-br-md flex justify-center'
         id='typebox'
       >
         <button className='m-auto w-8 flex justify-center items-center'>
@@ -113,8 +112,8 @@ const Chat = ({ label = 'Chat', disabled, expertDetails }) => (
           </div>
         ) : (
           <input
-            style={{ border: '1px solid #a6a6a4', outline: 'none' }}
-            className='w-8/12 h-10 mx-2 my-2 rounded px-2 py-4'
+            style={{ outline: 'none' }}
+            className='border-highlight border-2 w-8/12 h-10 mx-2 my-2 rounded px-2 py-4'
             type='text'
             onChange={(e) => e.target.value}
             disabled={disabled}
