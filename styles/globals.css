@@ -1,3 +1,5 @@
+/* @import 'react-day-picker/lib/style.css'; */
+
 html,
 body {
   padding: 0;
@@ -72,3 +74,12 @@ input, button {
     left: 50%;
   }
 } */
+
+.DayPickerInput input {
+  background-color: #f3f4f8;
+  border-radius: 0.125rem;
+  width: max-content;
+  padding: 0.5rem;
+  margin: 0 0.5rem;
+  width: 100%;
+}

@@ -10,6 +10,7 @@
   "dependencies": {
     "next": "9.5.3",
     "react": "16.13.1",
+    "react-day-picker": "^7.4.8",
     "react-dom": "16.13.1",
     "stars-rating": "^1.1.0",
     "video-react": "^0.14.1"

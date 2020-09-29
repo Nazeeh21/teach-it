@@ -14,9 +14,10 @@ const TextInput = (
     required = false,
     bottomLabel = null,
     styles = null,
+    isValid,
+    setIsValid
   }
 ) => {
-  const [isValid, setIsValid] = useState(true)
   const [touched, setTouched] = useState(false)
 
   const validateValue = useCallback(() => {

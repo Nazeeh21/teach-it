@@ -1,5 +1,6 @@
 import React from 'react'
 import { LandingContainer } from '../../../containers'
+import { useRouter } from 'next/router'
 
 const GridItem = ({ imgSrc, text }) => (
   <div className='flex gap-6 justify-center items-center'>
@@ -10,13 +11,15 @@ const GridItem = ({ imgSrc, text }) => (
   </div>
 )
 
-const Button = ({ color, label }) => (
-  <button className={`bg-${color} text-white w-full p-4 rounded text-lg`}>
+const Button = ({ color, label, clickHandler }) => (
+  <button onClick={clickHandler} className={`bg-${color} text-white w-full p-4 rounded text-lg`}>
     {label}
   </button>
 )
 
 const Index = () => {
+  const router = useRouter()
+    
   return (
     <LandingContainer>
       <h1 className='text-5xl font-semibold text-center mb-4 mx-auto'>
@@ -82,8 +85,8 @@ const Index = () => {
       <div
         className='flex gap-8 w-10/12 m-auto mb-8'
       >
-        <Button color='learner' label='Take a service' />
-        <Button color='expert' label='Provide a service' />
+        <Button clickHandler={() => router.push('/dashboard')} color='learner' label='Take a service' />
+        <Button clickHandler={() => router.push('/dashboard')} color='expert' label='Provide a service' />
       </div>
     </LandingContainer>
   )

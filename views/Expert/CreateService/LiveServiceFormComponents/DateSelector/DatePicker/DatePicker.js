@@ -1,7 +1,7 @@
 import React from 'react';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
-import 'react-day-picker/lib/style.css';
-import classes from './DatePicker.css'
+// import 'react-day-picker/lib/style.css';
+// import classes from './DatePicker.css'
 
 export default class Example extends React.Component {
   constructor(props) {
