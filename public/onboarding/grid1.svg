@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="220px" height="40px" viewBox="0 0 220 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>75A9F849-1827-4DCD-B672-C15D19D02685</title>
+    <g id="Website" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Onboarding" transform="translate(-397.000000, -1662.000000)">
+            <g id="Group-3" transform="translate(292.000000, 174.000000)">
+                <g id="Group" transform="translate(82.000000, 1466.000000)">
+                    <g id="Group" transform="translate(23.000000, 22.000000)">
+                        <g id="Rounded-tabs-2">
+                            <rect id="Rectangle" fill="#F9F8FD" x="0" y="0" width="180" height="40" rx="20"></rect>
+                            <rect id="Rectangle" fill="#F3F5FD" x="0" y="0" width="220" height="40" rx="20"></rect>
+                            <g id="Group-2" transform="translate(106.956522, 10.000000)" fill="#0D0B22" font-family="Inter-Regular, Inter" font-size="15" font-weight="normal" letter-spacing="-0.375">
+                                <text id="Learner">
+                                    <tspan x="30.7004385" y="15">Learner</tspan>
+                                </text>
+                            </g>
+                        </g>
+                        <rect id="Rectangle" fill="#1FB7FF" x="6" y="5" width="100" height="30" rx="15"></rect>
+                        <text id="Expert" font-family="Inter_Semi-Bold, Inter" font-size="16" font-weight="500" letter-spacing="-0.4" fill="#FFFFFF">
+                            <tspan x="31.6505199" y="25">Expert</tspan>
+                        </text>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

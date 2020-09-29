@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>A93BC761-6577-44F7-A5AF-54F056D4F4FD</title>
+    <defs>
+        <filter id="filter-1">
+            <feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 0.995188 0 0 0 0 0.195302 0 0 0 0 0.195302 0 0 0 1.000000 0"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="south-east.4" filter="url(#filter-1)">
+            <g transform="translate(9.000000, 9.000000) rotate(-90.000000) translate(-9.000000, -9.000000) ">
+                <path d="M17.5,18 L4.5,18 C4.224,18 4,17.776 4,17.5 C4,17.224 4.224,17 4.5,17 L17,17 L17,4.5 C17,4.224 17.224,4 17.5,4 C17.776,4 18,4.224 18,4.5 L18,17.5 C18,17.776 17.776,18 17.5,18 Z" id="Path" fill="#000000" fill-rule="nonzero"></path>
+                <path d="M17.5,18 C17.372,18 17.244,17.951 17.146,17.854 L0.146,0.854 C-0.049,0.659 -0.049,0.342 0.146,0.147 C0.341,-0.048 0.658,-0.048 0.853,0.147 L17.853,17.147 C18.048,17.342 18.048,17.659 17.853,17.854 C17.756,17.951 17.628,18 17.5,18 Z" id="Path" fill="#000000" fill-rule="nonzero"></path>
+            </g>
+        </g>
+    </g>
+</svg>
