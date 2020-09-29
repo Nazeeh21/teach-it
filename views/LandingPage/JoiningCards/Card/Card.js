@@ -1,7 +1,11 @@
 import React from 'react'
+import { useRouter } from 'next/router'
 // import classes from './Card.css'
 
-const Cards = ({data}) => (
+const Cards = ({data}) => {
+  const router = useRouter()
+
+  return(
   <div className='bg-white rounded-lg  p-12'>
     <img className='w-2/12 p-3' src={`join-${data.name}.png`} alt={`join-${data.name}`} />
     <p
@@ -12,7 +16,7 @@ const Cards = ({data}) => (
     <div className='text-darkGrey my-8 text-xl font-medium'>
       {data.description}
     </div>
-    <button className={`bg-${data.buttonColor} p-3 w-7/12 my-10 rounded-md text-white text-xl font-medium`}>
+    <button onClick={() => router.push('/login')} className={`bg-${data.buttonColor} p-3 w-7/12 my-10 rounded-md text-white text-xl font-medium`}>
       {`I want to ${data.buttonText}`}
       <span className='mx-2'>
         <span className='arrow right' />
@@ -20,6 +24,6 @@ const Cards = ({data}) => (
       </span>
     </button>
   </div>
-)
+)}
 
 export default Cards
