@@ -1,7 +1,7 @@
 import React from 'react'
 import Avatar from '../Images/Avatar'
 
-export default ({ type, author, content, status = 'delivered', time }) => {
+const Index = ({ type, author, content, status = 'delivered', time }) => {
   let message
 
   switch (type) {
@@ -71,3 +71,5 @@ export default ({ type, author, content, status = 'delivered', time }) => {
 
   return message
 }
+
+export default Index

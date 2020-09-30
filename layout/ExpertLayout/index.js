@@ -1,9 +1,10 @@
 import React from 'react'
-import NavItems from '../../../components/Nav/NavItems'
-import { CenterSection, ThreeCols } from '../../../layout'
-import InviteCard from '../../../components/Misc/InviteCard'
-import AppTopNav from '../../../components/Nav/AppTopNav'
-import Messages from '../../Expert/Messages'
+import CreateServiceCard from '../../components/Misc/CreateServiceCard'
+import EarningsCard from '../../components/Misc/EarningsCard'
+import AppTopNav from '../../components/Nav/AppTopNav'
+import NavItems from '../../components/Nav/NavItems'
+import { CenterSection, ThreeCols } from '..'
+import Messages from '../../views/Expert/Messages'
 
 const Index = ({ children, rightContent, alternate = false }) => {
   if (alternate) {
@@ -20,7 +21,8 @@ const Index = ({ children, rightContent, alternate = false }) => {
               rightContent
             ) : (
               <React.Fragment>
-                <InviteCard />
+                <EarningsCard />
+                <CreateServiceCard />
               </React.Fragment>
             )}
           </ThreeCols>
@@ -44,7 +46,8 @@ const Index = ({ children, rightContent, alternate = false }) => {
             rightContent
           ) : (
             <React.Fragment>
-              <InviteCard />
+              <EarningsCard />
+              <CreateServiceCard />
             </React.Fragment>
           )}
         </ThreeCols>
