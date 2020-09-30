@@ -15,7 +15,7 @@ const Index = () => <div className='w-full rounded-lg bg-white px-3 py-2'>
   <Pills2 width='full' color='white' label1='Live' label2='Rich media' />
   
   <p className='text-lg font-medium mt-6'>Maximum Cost</p>
-  <input className='mt-2 w-full bg-lightGrey rounded-md h-10' type='number' /> 
+  <input className='mt-2 w-full bg-lightGrey rounded-md h-10 p-2' type='number' /> 
   
   <p className='text-lg font-medium mt-6'>Duration</p>
   <select className='h-10 mt-2 pl-2 w-full rounded-md text-sm bg-lightGrey'>
