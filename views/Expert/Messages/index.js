@@ -1,5 +1,6 @@
 import React from 'react'
 import { ChatWindowContact } from '../../../components/Chat/ChatWindowContact'
+import { useRouter } from 'next/router'
 
 const ChatWindowData = [
   {
@@ -40,35 +41,43 @@ const ChatWindowData = [
   },
 ]
 
-const Index = () => (
-  <div style={{backgroundColor: '#E8ECFF'}} className='rounded-lg w-full mt-8'>
-    <div className='mt-1 pt-2 pb-1 grid grid-rows-1 grid-cols-2'>
-      <p className='text-xl font-medium pt-1 pb-2 pl-4'>Messages</p>
-      <div className=''>
-        <select className='mt-1 pb-1 pt-1 pl-2 pr-4 rounded-lg w-full mr-6'>
-          <option value='all'>All</option>
-        </select>
-      </div>
-    </div>
-    {ChatWindowData.map((data) => (
-      <div className='bg-white'>
-        <ChatWindowContact
-          src={data.src}
-          name={data.name}
-          text={data.text}
-          active={data.active}
-          time={data.time}
-          current={data.current}
-        />
-      </div>
-    ))}
+const Index = () => {
+  const router = useRouter()
+
+  return (
     <div
-      style={{ color: '#4968FF' }}
-      className='bg-white text-center py-3 text-sm font-md rounded-b-lg'
+      style={{ backgroundColor: '#E8ECFF' }}
+      className='rounded-lg w-full mt-8'
     >
-      View all messages
+      <div className='mt-1 pt-2 pb-1 grid grid-rows-1 grid-cols-2'>
+        <p className='text-xl font-medium pt-1 pb-2 pl-4'>Messages</p>
+        <div className=''>
+          <select className='mt-1 pb-1 pt-1 pl-2 pr-4 rounded-lg w-full mr-6'>
+            <option value='all'>All</option>
+          </select>
+        </div>
+      </div>
+      {ChatWindowData.map((data) => (
+        <div className='bg-white'>
+          <ChatWindowContact
+            src={data.src}
+            name={data.name}
+            text={data.text}
+            active={data.active}
+            time={data.time}
+            current={data.current}
+          />
+        </div>
+      ))}
+      <div
+        style={{ color: '#4968FF' }}
+        className='cursor-pointer bg-white text-center py-3 text-sm font-md rounded-b-lg'
+        onClick={() => router.push('/messages')}
+      >
+        View all messages
+      </div>
     </div>
-  </div>
-)
+  )
+}
 
 export default Index

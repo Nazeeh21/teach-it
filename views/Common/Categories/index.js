@@ -15,7 +15,7 @@ const Index = () => {
   const router = useRouter()
 
   const handleRedirect = () => {
-    router.push('/services')
+    router.push('/search')
   }
 
   return (

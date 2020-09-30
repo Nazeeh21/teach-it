@@ -1,10 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Pills from '../../../components/Misc/3Pills/3Pills'
 import CompactServiceCard from '../../Chat/CompactServiceCard/CompactServiceCard'
-import Notifications from '../../../components/Notifications'
 import { useRouter } from 'next/router'
+import SearchBar from '../../../components/Inputs/SearchBar'
 
 const MyServices = () => {
+  const [showSearchbar, toggleShowSearchBar] = useState(false)
+  const [query, setQuery] = useState('')
+
   const router = useRouter()
 
   const handleRedirect = () => router.push('/view-service')
@@ -13,9 +16,16 @@ const MyServices = () => {
     <div>
       <div className='grid grid-cols-2 grid-rows-1'>
         <p className='text-2xl font-medium'>Active Services</p>
-        <button className='w-5 justify-self-end'>
-          <img src='search.png' alt='search-img' />
-        </button>
+        {showSearchbar ? (
+          <SearchBar value={query} changeHandler={setQuery} />
+        ) : (
+          <button
+            onClick={() => toggleShowSearchBar(true)}
+            className='w-5 justify-self-end'
+          >
+            <img src='search.png' alt='search-img' />
+          </button>
+        )}
       </div>
       <Pills
         width='5/12'
