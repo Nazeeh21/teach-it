@@ -21,7 +21,7 @@ const CompactServiceCard = ({ descriptionText }) => {
       <div className='p-3 w-10/12 flex flex-col'>
         <p>
           {loremIpsum.length > 100
-            ? loremIpsum.substring(1, 50) + '...'
+            ? loremIpsum.substring(0, 50) + '...'
             : loremIpsum}
         </p>
         <div className='flex flex-row mt-6'>
