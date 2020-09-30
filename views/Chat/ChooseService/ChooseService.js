@@ -47,11 +47,11 @@ const ChooseService = ({ show = true, clickHandler }) => {
             X
           </button>
           <div className='my-5'>
-            <div className='my-3 flex items-center'>
+            <div className='my-3 flex items-center grid grid-cols-2 grid-rows-1'>
               <p className=' mx-3 text-2xl font-medium'>Choose a service</p>
-              <button className='h-auto w-8'>
+              <button className='justify-self-end h-auto w-8'>
                 <img
-                  className='w-10/12 ml-64 h-auto'
+                  className=' w-10/12 h-auto'
                   src='search.png'
                   alt='search-icon'
                 />
