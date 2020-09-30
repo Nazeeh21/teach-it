@@ -1,7 +1,7 @@
 import React from 'react'
 import Avatar from '../Images/Avatar'
 
-export default ({ type, author, content, status, time }) => {
+export default ({ type, author, content, status = 'delivered', time }) => {
   let message
 
   switch (type) {

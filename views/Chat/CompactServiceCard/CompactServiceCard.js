@@ -13,6 +13,7 @@ const CompactServiceCard = ({
   butttonText,
   buttonDisabled = false,
   media,
+  buttonClickHandler
 }) => {
   const router = useRouter()
 
@@ -44,11 +45,12 @@ const CompactServiceCard = ({
             <p>17 weeks</p>
           </p>
         </div>
-        <div className='flex flex-row'>
+        <div className='flex flex-row items-center'>
           <div
             style={{ color: `${media.color}` }}
-            className='font-medium flex flex-col w-1/2 mt-4'
+            className='font-medium flex flex-row w-1/2 mt-4'
           >
+            <img className='mr-1' src={media.src} alt={media.text} />
             {media.text}
           </div>
           <div className='w-4/12 flex items-center'>
@@ -59,7 +61,8 @@ const CompactServiceCard = ({
             </div>
             <div className='w-9/12 mx-2'>
               <CardButton
-                clickHandler={() => router.push('/view-service')}
+                // clickHandler={() => router.push('/view-service')}
+                clickHandler={buttonClickHandler}
                 label={butttonText}
                 disabled={buttonDisabled}
               />

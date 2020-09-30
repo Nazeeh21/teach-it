@@ -1,6 +1,7 @@
 import React from 'react'
 import Pills from '../../../components/Misc/3Pills/3Pills'
 import CompactServiceCard from '../../Chat/CompactServiceCard/CompactServiceCard'
+import Notifications from '../../../components/Notifications';
 
 const MyServices = () => <div>
   <div className='grid grid-cols-2 grid-rows-1'>
