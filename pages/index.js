@@ -6,6 +6,10 @@ import ExpertLayout from '../views/Expert/ExpertLayout'
 import CompactServiceCard from '../views/Chat/CompactServiceCard/CompactServiceCard'
 import SearchResult from '../views/SearchResult'
 import TypeOfService from '../views/TypeOfService'
+import LearnerLayout from '../views/Learner/LearnerLayout/index'
+import Contacts from '../views/Chat/Contacts'
+import Chat from '../views/Chat/Chat'
+import MyServices from '../views/Common/MyServices/MyServices'
 
 export default function Home() {
   return (
@@ -22,9 +26,15 @@ export default function Home() {
 
       <main>
         {/* <LandingPage /> */}
-        <ExpertLayout rightContent={<TypeOfService />}>
+        {/* <ExpertLayout rightContent={<TypeOfService />}>
           <SearchResult />
-        </ExpertLayout>
+        </ExpertLayout> */}
+        {/* <LearnerLayout alternate rightContent={<Contacts />}>
+          <Chat />
+        </LearnerLayout> */}
+        <LearnerLayout>
+          <MyServices />
+        </LearnerLayout>
       </main>
     </div>
   )

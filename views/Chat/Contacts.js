@@ -1,5 +1,6 @@
 import React from 'react'
 import { ChatWindowContact } from '../../components/Chat/ChatWindowContact'
+import ChooseService from './ChooseService/ChooseService';
 
 
 const ChatWindowData = [
@@ -42,18 +43,30 @@ const ChatWindowData = [
 ]
 
 const Contacts = () => {
+  
   return (
     <div className='w-full'>
+     
       <div id='contacts' className='shadow-lg bg-white rounded-lg'>
-        <div className='flex grid-cols-1 p-3 my-2'>
+        <div className='grid grid-cols-2 grid-rows-1 py-3 px-3 my-2'>
           <p className='text-darkGrey font-medium text-2xl '>Contacts</p>
-          <button className='h-auto w-1/12 ml-40'>
-            <img
-              className='w-10/12 h-auto'
-              src='search.png'
-              alt='search-icon'
-            />
-          </button>
+          <div className='justify-end flex'>
+            <input className='bg-lightGrey rounded-lg w-11/12 ' type='text' />
+            <button className='h-auto w-1/12 ml-1'>
+              <img
+                className='w-full h-auto'
+                src='search.png'
+                alt='search-icon'
+              />
+            </button>
+          </div>
+        </div>
+        <div className='flex w-full justify-center px-3'>
+          <select style={{outline: 'none'}} className='h-10 w-full text-lg rounded-md border-2 border-lightGrey'>
+            <option label='Sonia' value='sonia' />
+            <option label='John' value='john' />
+            <option label='Arun' value='arun' />
+          </select>
         </div>
         {ChatWindowData.map((data) => (
           <div className=''>

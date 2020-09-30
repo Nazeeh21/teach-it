@@ -13,6 +13,7 @@ const CompactServiceCard = ({
   butttonText,
   buttonDisabled = false,
   media,
+  buttonClickHandler
 }) => {
   const router = useRouter()
 
@@ -60,7 +61,8 @@ const CompactServiceCard = ({
             </div>
             <div className='w-9/12 mx-2'>
               <CardButton
-                clickHandler={() => router.push('/view-service')}
+                // clickHandler={() => router.push('/view-service')}
+                clickHandler={buttonClickHandler}
                 label={butttonText}
                 disabled={buttonDisabled}
               />
