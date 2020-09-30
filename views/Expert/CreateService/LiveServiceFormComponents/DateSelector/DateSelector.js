@@ -1,8 +1,8 @@
 import React from 'react'
 import DatePicker from './DatePicker/DatePicker'
 
-const DateSelector = () => <div className='w-full flex text-lg font-medium'>
-  <div className='w-6/12'>
+const DateSelector = ({width = '6/12'}) => <div className='w-full flex text-lg font-medium'>
+  <div className={`w-${width}`}>
     <p className='mb-2'>Start date</p>
     <div className='-ml-2'><DatePicker /></div>
   </div>

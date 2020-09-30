@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import CompactServiceCard from './CompactServiceCard/CompactServiceCard'
 import { ChatWindowContact } from '../../components/Chat/ChatWindowContact'
 import Message from '../../components/Chat/Message'
@@ -6,8 +6,19 @@ import NavItems from '../../components/Nav/NavItems'
 import ChooseService from './ChooseService/ChooseService'
 import Avatar from '../../components/Images/Avatar'
 
-const Chat = ({ label = 'Chat', disabled, expertDetails }) => (
-  <div className='w-full'>
+const Chat = ({ label = 'Chat', disabled, expertDetails }) => {
+  const [showChooseService, setShowChooseService] = useState(false)
+
+  const chooseServiceCloseHandler = () => (
+    setShowChooseService(false)
+  )
+  
+  const chooseServiceOpenHandler = () => (
+    setShowChooseService(true)
+  )
+
+  return (<div className='w-full'>
+     <ChooseService show={showChooseService} clickHandler={chooseServiceCloseHandler} />
     <div id='chat-and-typebox'>
       <div className='grid grid-cols-2 mb-2'>
         <p className='text-2xl font-medium mr-4'>{label}</p>
@@ -63,7 +74,7 @@ const Chat = ({ label = 'Chat', disabled, expertDetails }) => (
             <CompactServiceCard
               hrefText='Edit'
               butttonText='Accept'
-              media={{ text: 'Live', color: '#ff414d' }}
+              media={{src: 'Live.svg', text: 'Live', color: '#ff414d' }}
             />
           }
           time='4:35pm'
@@ -80,7 +91,7 @@ const Chat = ({ label = 'Chat', disabled, expertDetails }) => (
               hrefText=''
               butttonText='Pending'
               buttonDisabled='true'
-              media={{ text: 'Live', color: '#ff414d' }}
+              media={{src: 'Live.svg', text: 'Live', color: '#ff414d' }}
             />
           }
           time='4:35pm'
@@ -90,7 +101,7 @@ const Chat = ({ label = 'Chat', disabled, expertDetails }) => (
         className='bg-accentedWhite rounded-bl-md rounded-br-md flex justify-center'
         id='typebox'
       >
-        <button className='m-auto w-8 flex justify-center items-center'>
+        <button className='m-auto w-8 flex justify-center items-center' onClick={chooseServiceOpenHandler}>
           <img src='camera.svg' alt='camera' />
         </button>
         <button className='m-auto w-8 flex justify-center items-center'>
@@ -121,9 +132,9 @@ const Chat = ({ label = 'Chat', disabled, expertDetails }) => (
         )}
       </div>
     </div>
-  </div>
+  </div>)
 
   // </div>
-)
+}
 
 export default Chat

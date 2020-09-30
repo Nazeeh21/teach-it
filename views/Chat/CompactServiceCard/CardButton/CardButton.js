@@ -12,7 +12,7 @@ const CardButton = ({ label, clickHandler, disabled = false }) => {
           ? disabledClass
           : `shadow bg-primary text-white text-sm rounded-md my-2 w-full px-3 p-1`
       }
-      onClick={(e) => clickHandler(e.target.value)}
+      onClick={clickHandler}
       disabled={disabled}
     >
       {label}
