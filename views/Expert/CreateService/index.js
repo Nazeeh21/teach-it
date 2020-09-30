@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import Accordion from '../../../components/Accordion'
 import ServiceTypeCard from './ServiceTypeCard'
 import ScheduleSelector from './ScheduleSelector'
@@ -7,12 +7,32 @@ import AudienceSelector from './AudienceSelector'
 import UpperForm from './UpperForm'
 import AllowRecording from './LiveServiceFormComponents/Recording&LearnerName/AllowRecording'
 import ShowFullName from './LiveServiceFormComponents/Recording&LearnerName/ShowFullName'
+import { useSelector } from 'react-redux'
+import { useRouter } from 'next/router'
+import { EXPERT } from '../../../constants'
 
 const SectionTitle = ({ children }) => (
   <h3 className='text-lg text-primary mb-2'>{children}</h3>
 )
 
 const Index = () => {
+  const router = useRouter()
+  const userType = useSelector(state => state.userType)
+
+  const verifyUserType = useCallback(() => {
+    if (userType === EXPERT) {
+      return true
+    } else {
+      return false
+    }
+  }, [userType])
+
+  useEffect(() => {
+    if (!verifyUserType()) {
+      router.push('/dashboard')
+    }
+  }, [verifyUserType])
+
   const [serviceType, setServiceType] = useState(null)
 
   return (

@@ -1,7 +1,7 @@
 import React from 'react'
 import LandingPageNavbar from '../../components/TopNavbar/LandingPageNavbar/LandingPageNavbar'
-import BottomNavbar from '../LandingPage/BottomNavbar/BottomNavbar'
-import Footer from '../LandingPage/Footer'
+import BottomNavbar from '../../views/LandingPage/BottomNavbar/BottomNavbar'
+import Footer from '../../views/LandingPage/Footer'
 
 const Index = ({ children }) => {
   return (
