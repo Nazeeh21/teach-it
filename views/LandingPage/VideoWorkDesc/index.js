@@ -7,7 +7,7 @@ const Container = ({ heading, subHeading }) => (
   </div>
 )
 
-const Index = () => <div className='border-2 border-solid border-gray-300 text-darkGrey grid grid-flow-rows grid-cols-2 grid-rows-2 gap-6 pt-6 pb-10 pl-32'>
+const Index = () => <div className='w-full pl-2 border-2 border-solid border-gray-300 text-darkGrey grid lg:grid-flow-rows lg:grid-cols-2 lg:rid-rows-2 gap-6 pt-6 pb-10 lg:pl-32'>
   <Container heading='What is Videowork?' subHeading='Video work is an easy way of sharing knowledge. With the videowork app,
       you can learn anywhere you are and any time you want. All the Videowork
       features you love are enabled in the mobile app.' />

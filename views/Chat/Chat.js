@@ -14,20 +14,21 @@ const Chat = ({ label = 'Chat', disabled, expertDetails }) => {
 
   return (
     <div className='w-full'>
-      <ChooseService
-        show={showChooseService}
-        clickHandler={chooseServiceCloseHandler}
-      />
+      
+        <ChooseService
+          show={showChooseService}
+          clickHandler={chooseServiceCloseHandler}
+        />
       <div id='chat-and-typebox'>
         <div className='grid grid-cols-2 mb-2'>
           <p className='text-2xl font-medium mr-4'>{label}</p>
-          <button className='h-auto w-6 justify-self-end'>
+          <div className='cursor-pointer h-auto w-6 justify-self-end'>
             <img
               className='w-10/12 h-auto'
               src='search.png'
               alt='search-icon'
             />
-          </button>
+          </div>
         </div>
         <div className='flex-col rounded-tl-lg rounded-tr-lg bg-white p-4'>
           {expertDetails && (
@@ -114,13 +115,13 @@ const Chat = ({ label = 'Chat', disabled, expertDetails }) => {
             className='m-auto w-8 flex justify-center items-center'
             onClick={chooseServiceOpenHandler}
           >
-            <img src='camera.svg' alt='camera' />
+            <img src='drawer.svg' alt='drawer' />
           </button>
           <button className='m-auto w-8 flex justify-center items-center'>
             <img src='camera.svg' alt='camera' />
           </button>
           <button className='m-auto w-8 flex justify-center items-center'>
-            <img src='camera.svg' alt='camera' />
+            <img src='gallery.svg' alt='gallery' />
           </button>
           {disabled ? (
             <div className='bg-lightGrey w-8/12 h-10 mx-2 my-2 rounded p-4 pb-10 text-center text-sm'>

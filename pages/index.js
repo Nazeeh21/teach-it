@@ -17,6 +17,15 @@ export default function Home() {
 
       <main>
         <LandingPage />
+        {/* <ExpertLayout rightContent={<TypeOfService />}>
+          <SearchResult />
+        </ExpertLayout> */}
+        {/* <LearnerLayout alternate rightContent={<Contacts />}>
+          <Chat />
+        </LearnerLayout> */}
+        {/* <LearnerLayout>
+          <MyServices />
+        </LearnerLayout> */}
       </main>
     </div>
   )

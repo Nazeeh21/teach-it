@@ -31,13 +31,13 @@ const Index = () => {
             label2='Learner'
             color2='learner'
           />
-          <button onClick={notificationOpenHandler}>
+          <div className='w-full' onClick={notificationOpenHandler}>
             <Icon
               src='misc/notifications.svg'
               alt='Notifications'
               onClick={notificationOpenHandler}
             />
-          </button>
+          </div>
           
           <ProfileSwitch />
         </div>

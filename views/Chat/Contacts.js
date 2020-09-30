@@ -52,13 +52,13 @@ const Contacts = () => {
               className='bg-lightGrey rounded-lg w-11/12 p-2 '
               type='text'
             />
-            <button className='h-auto w-1/12 ml-1'>
+            <div className='h-auto w-1/12 ml-1'>
               <img
                 className='w-full h-auto'
                 src='search.png'
                 alt='search-icon'
               />
-            </button>
+            </div>
           </div>
         </div>
         <div className='flex w-full justify-center px-3'>

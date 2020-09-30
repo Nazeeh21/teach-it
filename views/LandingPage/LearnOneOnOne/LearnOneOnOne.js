@@ -13,19 +13,19 @@ const LearnOneOnOne = () => {
   const router = useRouter()
 
   return (
-    <div className='bg-white'>
-    <div className='m-24 pt-32 flex justify-center '>
-      <div className='w-5/12 m-10'>
-        <div style={{ color: '#1d2d50' }} className='text-5xl mt-12 font-bold'>
+    <div className='mt-20 bg-white'>
+    <div className='pt-16 px-5 lg:m-24 lg:pt-32 lg:px-0 flex justify-center '>
+      <div className='md:w-5/12 md:m-10'>
+        <div style={{ color: '#1d2d50' }} className='text-4xl lg:text-5xl lg:mt-12 font-bold'>
           {heading}
         </div>
         <div className='text-xl text-darkGrey my-8'>{subHeading1}</div>
         <div className='text-xl text-darkGrey my-8'>{subHeading2}</div>
-        <button onClick={() => router.push('/login')} className='bg-secondary p-3 w-5/12 my-8 rounded-md text-white text-xl font-medium'>
+        <button onClick={() => router.push('/login')} className='w-7/12 mt-3 mb-16 bg-secondary p-3 md:w-7/12 lg:w-5/12 lg:mt-8 lg:mb-8 rounded-md text-white text-xl font-medium'>
           Get Started
         </button>
       </div>
-      <div className='w-7/12'>
+      <div className='hidden md:w-7/12 md:block'>
         <div className='flex items-center'>
           <div className='w-4/12 text-right	'>
             <img
