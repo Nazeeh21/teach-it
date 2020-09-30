@@ -2,9 +2,9 @@ import React from 'react'
 import Card from './Card/Card'
 
 const LiveAndRichMedia = () => (
-  <div className='mt-16 px-3 lg:mt-32'>
-    <div className='flex justify-center flex-col lg:flex-row'>
-      <div className='mb-6 lg:w-4/12 lg:m-3 lg:p-8  bg-white '>
+  <div className='mt-16 px-3 md:px-5 lg:mt-32'>
+    <div className='flex justify-center flex-col md:flex-row'>
+      <div className='mb-6 md:w-6/12 md:m-3 xl:w-4/12 lg:m-3 lg:p-8  bg-white '>
       <Card
         src='live-logo.png'
         alt='live-logo'
@@ -17,7 +17,7 @@ const LiveAndRichMedia = () => (
         ]}
       />
       </div>
-      <div className='lg:w-4/12 lg:m-3 lg:p-8  bg-white '>
+      <div className='md:w-6/12 md:m-3 xl:w-4/12 xl:m-3 xl:p-8  bg-white '>
         <Card
           src='rich-media.png'
           alt='rich-media'

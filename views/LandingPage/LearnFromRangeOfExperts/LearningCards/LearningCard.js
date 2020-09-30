@@ -4,7 +4,7 @@ import Rating from '../../../../components/Rating/Rating'
 const LearningCard = ({ imgSrc, label, provider, numSeekers }) => (
   <div
     style={{ color: '#303C45' }}
-    className='w-screen lg:w-full bg-white rounded-lg font-semibold px-8 pb-6'
+    className='w-screen md:w-full lg:w-full bg-white rounded-lg font-semibold px-8 pb-6'
   >
     <div style={{zIndex:'500', position: 'relative', bottom: '3rem' }}>
       <img className='m-auto' src={imgSrc} alt={provider} />
