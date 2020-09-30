@@ -4,6 +4,7 @@ import NavSwitch from '../../NavSwitch'
 import ProfileSwitch from '../../ProfileSwitch'
 import { useRouter } from 'next/router'
 import Notifications from '../../Notifications'
+import MobileBottomNav from '../MobileBottomNav'
 
 const Index = () => {
   const router = useRouter()
@@ -45,6 +46,7 @@ const Index = () => {
         
       </div> */}
       </div>
+      <MobileBottomNav />
     </div>
   )
 }
