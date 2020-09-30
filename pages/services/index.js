@@ -1,12 +1,12 @@
 import React from 'react'
-import ExpertLayout from '../../views/Expert/ExpertLayout'
+import LayoutProvider from '../../layout/LayoutProvider'
 import MyServices from '../../views/Common/MyServices/MyServices'
 
 const Index = () => {
   return (
-    <ExpertLayout>
+    <LayoutProvider>
       <MyServices />
-    </ExpertLayout>
+    </LayoutProvider>
   )
 };
 

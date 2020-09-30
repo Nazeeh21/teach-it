@@ -1,13 +1,13 @@
 import React from 'react'
-import ExpertLayout from '../../views/Expert/ExpertLayout'
+import LayoutProvider from '../../layout/LayoutProvider'
 import Categories from '../../views/Common/Categories'
 
 const Index = () => {
   return (
-    <ExpertLayout>
+    <LayoutProvider>
       <Categories />
-    </ExpertLayout>
+    </LayoutProvider>
   )
-};
+}
 
-export default Index;
+export default Index
