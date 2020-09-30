@@ -51,18 +51,18 @@ const Contacts = () => {
         <div className='grid grid-cols-2 grid-rows-1 py-3 px-3 my-2'>
           <p className='text-darkGrey font-medium text-2xl '>Contacts</p>
           <div className='justify-end flex'>
-            <input className='bg-lightGrey rounded-lg w-11/12 ' type='text' />
-            <button className='h-auto w-1/12 ml-1'>
+            <input className='bg-lightGrey rounded-lg w-11/12 pl-3' type='text' />
+            <div className='cursor-pointer h-auto w-2/12 ml-1 px-1 flex items-center'>
               <img
                 className='w-full h-auto'
                 src='search.png'
                 alt='search-icon'
               />
-            </button>
+            </div>
           </div>
         </div>
-        <div className='flex w-full justify-center px-3'>
-          <select style={{outline: 'none'}} className='h-10 w-full text-lg rounded-md border-2 border-lightGrey'>
+        <div className='flex w-full text-xl justify-center px-3'>
+          <select style={{outline: 'none'}} className='pl-2 py-2 h-12 font-medium w-full rounded-md border-2 border-lightGrey'>
             <option label='Sonia' value='sonia' />
             <option label='John' value='john' />
             <option label='Arun' value='arun' />

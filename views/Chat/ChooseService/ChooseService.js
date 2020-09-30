@@ -16,7 +16,7 @@ const ChooseService = ({ show = true, clickHandler }) => {
   )
 
   return (
-    <div>
+    <div style={{display: !show && 'none'}}>
       <BackDrop show={show} clicked={() => {
         clickHandler()
         sendOfferCloseHandler()

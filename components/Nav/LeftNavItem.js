@@ -2,6 +2,7 @@ import React from 'react'
 import { Icon } from '../Images/Icon'
 
 const LeftNavItem = ({ icon, label, clickHandler }) => {
+  
   return (
     <div onClick={clickHandler} className='flex flex-row items-center m-2'>
       <Icon src={icon} alt={label} />
