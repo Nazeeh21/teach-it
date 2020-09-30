@@ -39,20 +39,22 @@ const WhatMakesVideoWork = () => {
   const router = useRouter()
   
   return(
-  <div className='bg-white flex justify-center py-20'>
-    <div className='w-4/12 mx-10 my-20 py-12'>
+  <div className='bg-white flex flex-col lg:flex-row justify-center lg:py-20'>
+    <div className='w-full mx-4 mt-2 lg:mt-0 lg:w-4/12 lg:mx-10 lg:my-20 lg:py-12'>
       <p style={{ color: '#1d2d50', lineHeight: '120%' }}
         className='text-5xl text-left font-bold'>
         {heading}
       </p>
-      <button onClick={() => router.push('/login')} className='bg-secondary text-white text-xl rounded-md my-10 p-3 px-10' >
+      <button onClick={() => router.push('/login')} className='hidden bg-secondary text-white text-xl rounded-md my-10 p-3 px-10 lg:block' >
         Get Started
       </button>
     </div>
-    <div className='w-6/12 grid grid-rows-2 grid-cols-2 '>
+    <div className='w-full mt-5 lg:w-6/12 grid-rows-4 grid lg:mt-0 lg:grid-rows-2 lg:grid-cols-2 '>
       {textContainerData.map(data => <TextContainer data={data} />)}
-    
     </div>
+    <button onClick={() => router.push('/login')} className='w-6/12 ml-5 mb-16 bg-secondary text-white text-xl rounded-md py-3 px-3 lg:hidden ' >
+        Get Started
+      </button>
   </div>
 )}
 

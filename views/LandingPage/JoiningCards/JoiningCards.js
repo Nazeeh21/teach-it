@@ -16,10 +16,10 @@ const cardData = [
   },
 ]
 const JoiningCards = () => (
-  <div className='my-32'>
-    <div className='flex justify-center'>
+  <div className='my-10 lg:my-32'>
+    <div className='flex flex-col lg:flex-row justify-center'>
       {cardData.map((data) => (
-        <div className='w-4/12 m-6'>
+        <div className='w-11/12 lg:w-4/12 m-6'>
           <Card data={data} />
         </div>
       ))}

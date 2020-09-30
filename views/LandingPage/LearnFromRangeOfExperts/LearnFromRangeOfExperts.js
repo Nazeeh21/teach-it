@@ -18,17 +18,17 @@ const cardData = [
 
 const LearnFromRangeOfExperts = () => (
   <div className='text-center my-24'>
-    <p style={{ color: '#1d2d50' }} className='text-5xl font-bold'>
-      Learn from range of experts and content creators
+    <p style={{ color: '#1d2d50' }} className='text-4xl lg:text-5xl font-bold'>
+      Learn from range of experts & content creators
     </p>
-    <div className='flex mt-32 mb-24 '>
-      <div className='w-3/12 ml-32'>
+    <div className='flex flex-row w-full overflow-auto mt-32 mb-24 '>
+      <div className='w-11/12 ml-5 mr-10 lg:w-3/12 lg:ml-32 lg:mr-0'>
         <LearningCard imgSrc='learn-guitar.svg' label='Learn guitar in 7 days' provider='Ravi Sharma' numSeekers='253' />
       </div>
-      <div className='w-3/12 ml-32'>
+      <div className='w-11/12 ml-5 mr-10 lg:w-3/12 lg:ml-32'>
         <LearningCard imgSrc='learn-guitar.svg' label='Learn guitar in 7 days' provider='Ravi Sharma' numSeekers='253' />
       </div>
-      <div className='w-3/12 ml-32'>
+      <div className='w-11/12 ml-5 mr-10 lg:w-3/12 lg:ml-32'>
         <LearningCard imgSrc='learn-guitar.svg' label='Learn guitar in 7 days' provider='Ravi Sharma' numSeekers='253' />
       </div>
       {/* <div className='w-3/12 ml-32'>
@@ -36,7 +36,7 @@ const LearnFromRangeOfExperts = () => (
       </div> */}
     </div>
    
-    <div className='m-auto w-8/12'>
+    <div className='flex overflow-auto w-full lg:m-auto lg:w-8/12 lg:flex-none'>
       {cardData.map(data => <Card cardData={data} />)}
     </div>
     
