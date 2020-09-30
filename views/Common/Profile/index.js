@@ -16,7 +16,7 @@ const VidThumbnail = ({ thumbSrc }) => (
 
 const Index = () => {
   return (
-    <div className='w-full bg-white border-2 border-darkGrey rounded-sm flex flex-col p-6'>
+    <div className='w-full bg-white border-2 border-highlight rounded-sm flex flex-col p-6'>
       <Profile
         country='India'
         languages={['English', 'Gujarati', 'Hindi']}
