@@ -9,8 +9,8 @@ const MyServices = () => <div>
     <button className='w-5 justify-self-end'><img src='search.png' alt='search-img' /></button>
   </div>
   <Pills width='5/12' color='white' label1='All' label2='Live video' label3='Rich media' />
-  <CompactServiceCard butttonText='View' media={{text: 'Rich Media', color: 'green'}} />
-  <CompactServiceCard butttonText='View' media={{text: 'Rich Media', color: 'green'}} />
+  <CompactServiceCard butttonText='View' media={{src:'rich-media.svg', text: 'Rich Media', color: 'green'}} />
+  <CompactServiceCard butttonText='View' media={{src:'rich-media.svg', text: 'Rich Media', color: 'green'}} />
 </div>;
 
 export default MyServices;
