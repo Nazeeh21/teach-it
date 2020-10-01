@@ -1,19 +1,26 @@
 import React from 'react'
-import {  PrimaryButton } from '../../../components/Buttons/Index'
+import { PrimaryButton } from '../../../components/Buttons/Index'
 import Rating from '../../../components/Rating/Rating'
 import loremIpsum from '../../../utility/loremIpsum'
 import Milestone from './Milestone/Milestone'
 
 const ViewService = () => (
   <div className='bg-lightGrey'>
-    <div style={{backgroundImage: `url("guitar.png")`, height: '18rem'}} className='grid grid-cols-1 grid-rows-2 p-5 text-right'>
+    <div
+      style={{ backgroundImage: `url("guitar.png")`, height: '18rem' }}
+      className='grid grid-cols-1 grid-rows-2 p-5 text-right'
+    >
       <p className='justify-self-end text-white text-3xl'>4.5</p>
-      <Rating className='justify-self-end' size='20'/>
+      <div className='justify-self-end -mt-20'>
+        <Rating size='20' />
+      </div>
     </div>
     <div className='bg-lightGrey grid grid-cols-2 gap-4 p-4 h-16 w-full'>
       <p className='text-xl text-darkGrey'>MUSIC</p>
       <div className='justify-self-end'>
-        <p style={{color: '#0D0B22'}} className='text-xl'>Live</p>
+        <p style={{ color: '#0D0B22' }} className='text-xl'>
+          Live
+        </p>
       </div>
     </div>
     <div>
@@ -23,7 +30,14 @@ const ViewService = () => (
             <p className='text-2xl font-medium'>Learn guitar in 7 days</p>
             <p className='text-darkGrey text-lg my-2'>{loremIpsum}</p>
           </div>
-          <div style={{color: '#6F6E7B', background: '#F9F8FD', lineHeight: '190%'}} className='w-5/12 p-5 text-sm font-medium'>
+          <div
+            style={{
+              color: '#6F6E7B',
+              background: '#F9F8FD',
+              lineHeight: '190%',
+            }}
+            className='w-5/12 p-5 text-sm font-medium'
+          >
             <div className='flex'>
               <img src='Combined-Shape.svg' alt='CombinedShape' />
               <p className='mx-2'>English</p>
@@ -46,7 +60,9 @@ const ViewService = () => (
           <Milestone />
           <Milestone />
         </div>
-        <div className='w-6/12'><PrimaryButton label='Subscribe' /></div>
+        <div className='w-6/12'>
+          <PrimaryButton label='Subscribe' />
+        </div>
       </div>
     </div>
   </div>

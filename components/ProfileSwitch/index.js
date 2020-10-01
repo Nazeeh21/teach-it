@@ -1,9 +1,12 @@
 import React from 'react'
+import { useRouter } from 'next/router'
 
 const Index = () => {
+  const router = useRouter()
+
   return (
     <div className='flex items-center w-full'>
-      <div className='flex flex-col w-full items-center'>
+      <div onClick={() => router.push('/profile')} className='flex flex-col w-full items-center'>
         <img
           src='avis/ana.png'
           alt='Switch profile'
