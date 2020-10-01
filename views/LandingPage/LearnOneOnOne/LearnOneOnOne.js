@@ -14,14 +14,14 @@ const LearnOneOnOne = () => {
 
   return (
     <div className='mt-20 bg-white'>
-    <div className='pt-16 px-5 lg:m-24 lg:pt-32 lg:px-0 flex justify-center '>
+    <div className='pt-16 px-5 xl:m-24 xl:pt-32 xl:px-0 flex justify-center '>
       <div className='md:w-5/12 md:m-10'>
-        <div style={{ color: '#1d2d50' }} className='text-4xl lg:text-5xl lg:mt-12 font-bold'>
+        <div style={{ color: '#1d2d50' }} className='text-4xl lg:mt-8 xl:text-5xl xl:mt-12 font-bold'>
           {heading}
         </div>
         <div className='text-xl text-darkGrey my-8'>{subHeading1}</div>
         <div className='text-xl text-darkGrey my-8'>{subHeading2}</div>
-        <button onClick={() => router.push('/login')} className='w-7/12 mt-3 mb-16 bg-secondary p-3 md:w-7/12 lg:w-5/12 lg:mt-8 lg:mb-8 rounded-md text-white text-xl font-medium'>
+        <button onClick={() => router.push('/login')} className='w-7/12 mt-3 mb-16 bg-secondary p-3 md:w-7/12 xl:w-5/12 xl:mt-8 xl:mb-8 rounded-md text-white text-xl font-medium'>
           Get Started
         </button>
       </div>
