@@ -16,7 +16,7 @@ const PendingText = () => <div style={{color: '#FF7575'}} className='text-md'>Pe
 const GeneralSetting = () => (
   <div className='w-full'>
     <p className='text-2xl font-medium'>General settings</p>
-    <div className='w-full h-auto mt-5 pt-6 px-5 bg-white rounded-lg'>
+    <div className='w-full h-auto mt-5 pt-6 px-5 pb-8 bg-white rounded-lg'>
       <p className='text-lg font-medium'>Blocked users</p>
       <div className='w-full bg-lightGrey mt-6 pb-4'>
         <User src='nazeeh_profile.jpg' name='Arun P' text={<Unblock />} />
@@ -28,7 +28,7 @@ const GeneralSetting = () => (
         <User src='nazeeh_profile.jpg' name='Arun P' text={<Unblock />} />
         <ShowAllButton />
       </div>
-      <div className='w-full mt-6 grid grid-rows-1 grid-cols-2 items-center'>
+      <div className='w-full mt-6 grid grid-rows-2 grid-cols-1 md:grid-rows-1 md:grid-cols-2 items-center'>
         <p className='text-lg font-medium'>Invitations</p>
         <div>
           <Pills3 width='full' color='white' label1='All' label2='Accepted' label3='Pending' />
@@ -46,13 +46,13 @@ const GeneralSetting = () => (
       </div>
       <p className='text-lg font-medium mt-8'>Preferred Language</p>
       <div className='w-full mt-3'>
-        <select className='bg-lightGrey w-5/12 py-2 pl-1'>
+        <select className='bg-lightGrey w-10/12 md:w-5/12 py-2 pl-1'>
           <option value='english' label='English' />
           <option value='hindi' label='Hindi' />
           <option value='german' label='German' />
         </select>
       </div>
-      <div className='mt-8 w-4/12'><PrimaryButton label='Save' /></div>
+      <div className='mt-8 w-10/12 md:w-4/12'><PrimaryButton label='Save' /></div>
     </div>
   </div>
 )

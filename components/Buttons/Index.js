@@ -2,7 +2,7 @@ import React from 'react'
 import { dropShadow } from '../../assets/constants'
 
 const disabledClass =
-  'bg-highlight text-opacity-25 text-darkGrey border-0 text-innerTitle rounded-md m-2 w-full p-3 cursor-not-allowed'
+  'bg-highlight text-opacity-25 text-darkGrey border-0 text-innerTitle rounded-md  w-full p-3 cursor-not-allowed'
 
 export const PrimaryButton = ({
   label,
