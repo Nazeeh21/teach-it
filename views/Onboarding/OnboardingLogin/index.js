@@ -29,16 +29,22 @@ const Index = () => {
       <h3 className='m-auto w-8/12'>
         Please enter your email and then we will send an OTP to verify you.
       </h3>
-      <RoundedInput
-        styles='mt-4 m-auto w-12/12 sm:w-12/12 md:w-11/12 lg:w-10/12 xl:w-9/12'
-        placeholder='your@youremail.com'
-        value={email}
-        changeHandler={(val) => setEmail(val)}
-        type='email'
-        required
-        isValid={isValid}
-        setIsValid={setIsValid}
-      />
+      <div onKeyUp={(e) => {
+        if (e.key === 'Enter') {
+          handleContinue()
+        }
+      }}>
+        <RoundedInput
+          styles='mt-4 m-auto w-12/12 sm:w-12/12 md:w-11/12 lg:w-10/12 xl:w-9/12'
+          placeholder='your@youremail.com'
+          value={email}
+          changeHandler={(val) => setEmail(val)}
+          type='email'
+          required
+          isValid={isValid}
+          setIsValid={setIsValid}
+        />
+      </div>
       <PrimaryButton
         disabled={!isValid}
         clickHandler={handleContinue}

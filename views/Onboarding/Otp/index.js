@@ -38,7 +38,7 @@ const Index = ({}) => {
     newOtp[index] = val
     setOtp(newOtp)
 
-    if (index >= 0 && index <= 2) {
+    if (val && index >= 0 && index <= 2) {
       document.getElementById(`otp-${index+1}`).focus()
     }
 
