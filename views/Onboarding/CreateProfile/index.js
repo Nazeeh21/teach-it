@@ -30,6 +30,9 @@ const Index = () => {
       <h1 className='text-5xl font-semibold text-center mb-10 mx-auto'>
         Let's create a profile
       </h1>
+      {/* <div className='grid grid-cols-2 grid-flow-row gap-4'>
+
+      </div> */}
       <form className='bg-highlight rounded-lg pl-4 pr-4 pt-8 pb-4 mb-6 sm:w-12/12 md:w-10/12 lg:w-9/12 xl:w-8/12 w-12/12 m-auto'>
         <TextInput
           label='Name'

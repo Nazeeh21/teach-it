@@ -28,7 +28,7 @@ const MyServices = () => {
         )}
       </div>
       <Pills
-        width='5/12'
+        width='w-10/12 sm:w-10/12 md:w-5/12'
         color='white'
         label1='All'
         label2='Live video'
@@ -37,12 +37,12 @@ const MyServices = () => {
       <CompactServiceCard
         buttonClickHandler={handleRedirect}
         butttonText='View'
-        media={{ text: 'Rich Media', color: 'green' }}
+        media={{ text: 'Rich Media', color: 'green', src: 'rich-media.svg' }}
       />
       <CompactServiceCard
         buttonClickHandler={handleRedirect}
         butttonText='View'
-        media={{ text: 'Rich Media', color: 'green' }}
+        media={{ text: 'Rich Media', color: 'green', src: 'rich-media.svg' }}
       />
     </div>
   )

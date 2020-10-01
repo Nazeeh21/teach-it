@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { SecondaryButton } from '../../Buttons/Index'
 import { useRouter } from 'next/router';
-import {NavLink} from 'react-router-dom'
 import SideDrawer from './SideDrawer';
 
 const LandingPageNavbar = () => {
