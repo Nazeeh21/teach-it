@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import { Pill } from './Pill'
 
-export default ({ color, label1, label2, label3, width = '2/12' }) => {
+export default ({ color, label1, label2, label3, width = 'w-2/12' }) => {
   const [activeId, setActiveId] = useState(0)
 
   return (
-    <div style={{background: '#F3F5FD'}} className={`flex items-stretch w-${width} rounded-full`}>
+    <div style={{background: '#F3F5FD'}} className={`flex items-stretch ${width} rounded-full`}>
       <Pill
         inactive={activeId !== 0}
         label={label1}

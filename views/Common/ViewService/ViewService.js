@@ -25,8 +25,8 @@ const ViewService = () => (
     </div>
     <div>
       <div className='bg-white border-gray-300 p-5'>
-        <div className='flex mb-3'>
-          <div className='w-7/12'>
+        <div className='flex flex-col sm:flex-col lg:flex-row mb-3'>
+          <div className='w-full sm:w-full lg:w-7/12'>
             <p className='text-2xl font-medium'>Learn guitar in 7 days</p>
             <p className='text-darkGrey text-lg my-2'>{loremIpsum}</p>
           </div>
@@ -36,7 +36,7 @@ const ViewService = () => (
               background: '#F9F8FD',
               lineHeight: '190%',
             }}
-            className='w-5/12 p-5 text-sm font-medium'
+            className='w-full sm:w-full lg:w-5/12 p-5 text-sm font-medium'
           >
             <div className='flex'>
               <img src='Combined-Shape.svg' alt='CombinedShape' />

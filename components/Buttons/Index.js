@@ -139,7 +139,7 @@ export const Pill = ({
   textColor,
 }) => {
   const inactiveClass =
-    'bg-none text-md border-none inline w-full px-8 py-0'
+    'bg-none text-md border-none inline w-full px-8 py-2'
 
   return (
     <button
@@ -147,7 +147,7 @@ export const Pill = ({
       className={
         inactive
           ? inactiveClass
-          : `bg-${color} text-${textColor} text-md rounded-full inline w-full px-8 py-0`
+          : `bg-${color} text-${textColor} text-md rounded-full inline w-full px-8 py-2`
       }
       onClick={(e) => clickHandler(e.target.value)}
     >
