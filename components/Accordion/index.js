@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const Index = ({ label, children }) => {
+const Index = ({ label, children, id }) => {
   const [open, toggleOpen] = useState(true)
 
   const toggleHandler = () => toggleOpen((open) => !open)
@@ -8,6 +8,7 @@ const Index = ({ label, children }) => {
   return (
     <React.Fragment>
       <div
+        id={id}
         onClick={toggleHandler}
         className='mt-5 cursor-pointer rounded border-2 border-lightGrey py-2 px-4 grid grid-cols-2 bg-highlight items-center mb-4'
       >

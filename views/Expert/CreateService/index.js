@@ -39,7 +39,7 @@ const Index = () => {
     <div className='w-full'>
       <h3 className='text-2xl text-primary mb-4'>Create new service</h3>
       <div className='border-2 border-highlight bg-white rounded-sm p-6'>
-        <Accordion label='Service details'>
+        <Accordion id='details' label='Service details'>
           {/* TODO: Language selection */}
 
           <SectionTitle>Service type</SectionTitle>
@@ -58,7 +58,7 @@ const Index = () => {
           <UpperForm type={serviceType === 0 ? 'live' : 'media'} />
         </Accordion>
 
-        <Accordion label='Service schedule'>
+        <Accordion id='schedule' label='Service schedule'>
           <ScheduleSelector type={serviceType} />
         </Accordion>
 
@@ -73,11 +73,11 @@ const Index = () => {
           </div> */}
         {/* </Accordion> */}
 
-        <Accordion label='Fees'>
+        <Accordion id='fees' label='Fees'>
           <FeesSelector />
         </Accordion>
 
-        <Accordion label='Audience'>
+        <Accordion id='audience' label='Audience'>
           <AudienceSelector />
         </Accordion>
 
