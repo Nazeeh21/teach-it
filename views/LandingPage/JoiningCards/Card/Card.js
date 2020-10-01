@@ -7,7 +7,7 @@ const Cards = ({data}) => {
 
   return(
   <div className='bg-white rounded-lg p-12'>
-    <img className='w-auto lg:w-2/12 p-3' src={`join-${data.name}.png`} alt={`join-${data.name}`} />
+    <img className='w-auto md:w-4/12 xl:w-2/12 p-3' src={`join-${data.name}.png`} alt={`join-${data.name}`} />
     <p
       style={{ color: '#1d2d50', lineHeight: '120%' }}
       className='text-5xl font-bold'>
