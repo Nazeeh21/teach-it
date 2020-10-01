@@ -57,7 +57,7 @@ const UpperForm = ({ type }) => {
       </div>
       <div className='my-10'>
         <p className='text-lg my-2'>Description</p>
-        <input className='rounded w-full p-2 text-sm bg-lightGrey h-32' />
+        <textarea className='rounded w-full p-2 text-sm bg-lightGrey h-32' />
         {/* <p className='rounded w-full p-2 text-sm bg-lightGrey'>{loremIpsum}</p> */}
       </div>
       <div className='my-10'>

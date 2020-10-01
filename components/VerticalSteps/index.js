@@ -10,6 +10,7 @@ const Index = ({ items, activeStep }) => {
           index={index + 1}
           active={index === activeStep - 1}
           done={index < activeStep - 1}
+          id={item.toLowerCase()}
         />
       ))}
     </div>
