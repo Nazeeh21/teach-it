@@ -24,7 +24,7 @@ a {
   padding: 3px;
 }
 
-input, button {
+input, button, textarea {
   outline: none !important;
 }
 
