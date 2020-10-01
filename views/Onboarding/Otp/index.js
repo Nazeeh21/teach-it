@@ -38,6 +38,10 @@ const Index = ({}) => {
     newOtp[index] = val
     setOtp(newOtp)
 
+    if (index >= 0 && index <= 2) {
+      document.getElementById(`otp-${index+1}`).focus()
+    }
+
     setShowStatus(false)
   }
 
@@ -61,28 +65,36 @@ const Index = ({}) => {
       </h3>
       <div>
         <OtpInput
+          index={0}
           value={otp[0]}
           changeHandler={(val) => otpChangeHandler(0, val)}
           isIncorrect={!isCorrect}
           showStatus={showStatus}
+          handleSubmit={handleContinue}
         />
         <OtpInput
+          index={1}
           value={otp[1]}
           changeHandler={(val) => otpChangeHandler(1, val)}
           isIncorrect={!isCorrect}
           showStatus={showStatus}
+          handleSubmit={handleContinue}
         />
         <OtpInput
+          index={2}
           value={otp[2]}
           changeHandler={(val) => otpChangeHandler(2, val)}
           isIncorrect={!isCorrect}
           showStatus={showStatus}
+          handleSubmit={handleContinue}
         />
         <OtpInput
+          index={3}
           value={otp[3]}
           changeHandler={(val) => otpChangeHandler(3, val)}
           isIncorrect={!isCorrect}
           showStatus={showStatus}
+          handleSubmit={handleContinue}
         />
       </div>
       <PrimaryButton
