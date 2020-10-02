@@ -27,27 +27,42 @@ const ShowQuestions = ({show, clickHandler}) => (
           <Avatar src='arun-kumar.png' alt='arun-kumar' purpose='isForChat' />
           <p className='ml-2 text-lg font-medium'>Arun Kumar Pattnaik</p>
         </div>
-        <div style={{marginLeft: '18rem'}} className='w-6/12'>
-          <Message width='w-full' type='text' author={{isSelf: 'true'}} time='4:35pm' content='Should I buy some TATA shares today or should I wait?' />
+        <div className='grid grid-cols-1 gird-rows-2 md:grid-rows-1 md:grid-cols-2'>
+          <div />
+          <div className='w-full'>
+            <Message width='w-full' type='text' author={{isSelf: 'true'}} time='4:35pm' content='Should I buy some TATA shares today or should I wait?' />
+          </div>
         </div>
         <div
           style={{position: 'absolute', bottom: '0'}}
-          className='w-full bg-accentedWhite rounded-bl-md rounded-br-md flex justify-center'
+          className='mb-5 w-10/12 md:w-full bg-accentedWhite rounded-bl-md rounded-br-md flex flex-col md:flex-row justify-center'
           id='typebox'
         >
+          <div className='flex md:hidden'>
+            <button
+              className='m-auto w-8 flex justify-center items-center'>
+              <img src='drawer.svg' alt='drawer' />
+            </button>
+            <button className='m-auto w-8 flex justify-center items-center'>
+              <img src='camera.svg' alt='camera' />
+            </button>
+            <button className='m-auto w-8 flex justify-center items-center'>
+              <img src='gallery.svg' alt='gallery' />
+            </button>
+          </div>
           <button
-            className='m-auto w-8 flex justify-center items-center'>
+            className='hidden m-auto w-8 md:flex justify-center items-center'>
             <img src='drawer.svg' alt='drawer' />
           </button>
-          <button className='m-auto w-8 flex justify-center items-center'>
+          <button className='hidden m-auto w-8 md:flex justify-center items-center'>
             <img src='camera.svg' alt='camera' />
           </button>
-          <button className='m-auto w-8 flex justify-center items-center'>
+          <button className='hidden m-auto w-8 md:flex justify-center items-center'>
             <img src='gallery.svg' alt='gallery' />
           </button>
             <input
               style={{ outline: 'none' }}
-              className='border-highlight border-2 w-8/12 h-10 mx-2 my-2 rounded px-2 py-4'
+              className='border-highlight border-2 w-11/12 md:w-8/12 h-10 mx-2 my-2 rounded px-2 py-4'
               type='text'
               onChange={(e) => e.target.value}
             />

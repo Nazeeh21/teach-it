@@ -31,8 +31,8 @@ const Questions = () => {
         <Question question={loremIpsum} clickHandler={ShowQuestionsOpenHandler} />
         <Question question={loremIpsum} clickHandler={ShowQuestionsOpenHandler} />
       </div>
-      <div className='grid grid-cols-2 grid-rows-1 items-center mt-5'>
-        <div className='w-11/12'>
+      <div className='mb-20 md:mb-0 grid grid-cols-1 grid-rows-2 md:grid-cols-2 md:grid-rows-1 items-center mt-5'>
+        <div className='w-full md:w-11/12'>
           <PrimaryButton 
             label='Ask a question' 
             clickHandler={AskQuestionOpenHandler} 

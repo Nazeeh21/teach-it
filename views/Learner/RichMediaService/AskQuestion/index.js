@@ -29,8 +29,8 @@ const AskQuestion = ({ show, clickHandler }) => (
           <p className='ml-2 text-lg font-medium'>Arun Kumar Pattnaik</p>
         </div>
         <p className='text-lg font-medium mt-5'>Your question</p>
-        <div className='mt-3 py-3 px-2 text-sm bg-lightGrey rounded'>{loremIpsum}</div>
-        <div className='w-4/12 mt-8'>
+        <textarea rows='3' className='w-full mt-3 py-3 px-2 text-sm bg-lightGrey rounded' type='text' placeholder={loremIpsum} />
+        <div className='w-7/12 md:w-4/12 mt-8'>
           <PrimaryButton label='Send' />
         </div>
       </div>
