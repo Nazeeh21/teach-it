@@ -1,13 +1,28 @@
-import React from 'react'
-import LayoutProvider from '../../layout/LayoutProvider'
-import ExpertDashboard from '../../views/ExpertDashboard'
+import React from "react";
+import { useSelector } from "react-redux";
+import { EXPERT, LEARNER } from "../../constants";
+import LayoutProvider from "../../layout/LayoutProvider";
+import ExpertDashboard from "../../views/ExpertDashboard";
+import LearnerDashboard from "../../views/LearnerDashboard";
 
 const Index = () => {
-  return (
-    <LayoutProvider>
-      <ExpertDashboard />
-    </LayoutProvider>
-  )
-}
+  let userType = useSelector((state) => state.userType);
 
-export default Index
+  if (userType === LEARNER) {
+    return (
+      <LayoutProvider>
+        <LearnerDashboard />
+      </LayoutProvider>
+    );
+  }
+
+  if (userType === EXPERT) {
+    return (
+      <LayoutProvider>
+        <ExpertDashboard />
+      </LayoutProvider>
+    );
+  }
+};
+
+export default Index;

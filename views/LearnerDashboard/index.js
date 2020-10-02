@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import CompactServiceCard from '../../components/Cards/CompactServiceCard/CompactServiceCard'
+import CompactServiceCard from '../Chat/CompactServiceCard/CompactServiceCard'
 import SearchBar from '../../components/Inputs/SearchBar'
 import { CardFilledWithImage } from '../../components/Cards/Cards'
 import { ViewMoreButton } from '../../components/Buttons/Index'
@@ -22,8 +22,16 @@ const Index = () => {
           <SearchBar value={query} changeHandler={(val) => setQuery(val)} />
         </div>
       </div>
-      <CompactServiceCard />
-      <CompactServiceCard />
+      <CompactServiceCard
+        buttonClickHandler={() => router.push('/view-service')}
+        butttonText='View'
+        media={{ text: 'Rich Media', color: 'green', src: 'rich-media.svg' }}
+      />
+      <CompactServiceCard
+        buttonClickHandler={() => router.push('/view-service')}
+        butttonText='View'
+        media={{ text: 'Rich Media', color: 'green', src: 'rich-media.svg' }}
+      />
       <div className='m-auto w-2/12'>
         <ViewMoreButton clickHandler={() => router.push('/services')} />
       </div>
