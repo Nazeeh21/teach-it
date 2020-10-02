@@ -143,8 +143,4 @@ const Index = () => {
   );
 };
 
-<<<<<<< HEAD
 export default Index;
-=======
-export default Index;
->>>>>>> f482d4740c02a1064ce7f468d9a00cbb47c20218
