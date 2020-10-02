@@ -1,18 +1,19 @@
 import React from 'react'
 import { PrimaryButton } from '../../../components/Buttons/Index'
 
-const Question = ({ question, time, date }) => {
+const Question = ({ question, time, date, clickHandler }) => {
   return (
     <React.Fragment>
       <div className='flex rounded-lg border-highlight border-2 bg-white w-full p-6'>
         <p className='w-3/4 font-semibold'>{question}?</p>
         <div className='w-1/4 ml-4'>
-          <PrimaryButton label='View' />
+          <PrimaryButton label='View' clickHandler={clickHandler} />
         </div>
       </div>
       <div className='grid grid-cols-1 -mt-5 font-semibold'>
         <p className='justify-self-end text-darkGrey text-sm'>4.35pm, 26 September</p>
       </div>
+      
     </React.Fragment>
   )
 };
