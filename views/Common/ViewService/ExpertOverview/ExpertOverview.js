@@ -25,7 +25,7 @@ const ExpertOverview = () => {
         <div className='flex'>
           <div className='w-6/12 p-2'>
             <Avatar
-              src='nazeeh_profile.jpg'
+              src='stock/girl2.jpg'
               alt='profile'
               purpose='isForProfile'
             />

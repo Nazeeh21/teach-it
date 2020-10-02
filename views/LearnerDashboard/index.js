@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import CompactServiceCard from '../../components/Cards/CompactServiceCard/CompactServiceCard'
+import CompactServiceCard from '../Chat/CompactServiceCard/CompactServiceCard'
 import SearchBar from '../../components/Inputs/SearchBar'
 import { CardFilledWithImage } from '../../components/Cards/Cards'
 import { ViewMoreButton } from '../../components/Buttons/Index'
@@ -22,8 +22,18 @@ const Index = () => {
           <SearchBar value={query} changeHandler={(val) => setQuery(val)} />
         </div>
       </div>
-      <CompactServiceCard />
-      <CompactServiceCard />
+      <CompactServiceCard
+        buttonClickHandler={() => router.push('/view-service')}
+        butttonText='View'
+        imgSrc='stock/guitar.jpg'
+        media={{ text: 'Live', color: 'red', src: 'live.svg' }}
+      />
+      <CompactServiceCard
+        buttonClickHandler={() => router.push('/view-service')}
+        butttonText='View'
+        imgSrc='stock/market.jpg'
+        media={{ text: 'Rich Media', color: 'green', src: 'rich-media.svg' }}
+      />
       <div className='m-auto w-2/12'>
         <ViewMoreButton clickHandler={() => router.push('/services')} />
       </div>
@@ -31,27 +41,27 @@ const Index = () => {
       <div className='grid grid-flow-row grid-cols-2 w-full gap-6 mb-6'>
         <CardFilledWithImage
           clickHandler={handleCategoriesRedirect}
-          src='nazeeh_profile.jpg'
+          src='stock/music.jpg'
           title='Music'
           subTitle='234 learners'
         />
         <CardFilledWithImage
           clickHandler={handleCategoriesRedirect}
-          src='nazeeh_profile.jpg'
-          title='Music'
-          subTitle='234 learners'
+          src='stock/dance.jpg'
+          title='Dance'
+          subTitle='658 learners'
         />
         <CardFilledWithImage
           clickHandler={handleCategoriesRedirect}
-          src='nazeeh_profile.jpg'
-          title='Music'
-          subTitle='234 learners'
+          src='stock/coding.jpg'
+          title='Coding'
+          subTitle='461 learners'
         />
         <CardFilledWithImage
           clickHandler={handleCategoriesRedirect}
-          src='nazeeh_profile.jpg'
-          title='Music'
-          subTitle='234 learners'
+          src='stock/photography.jpg'
+          title='Photography'
+          subTitle='137 learners'
         />
       </div>
       <div className='m-auto w-2/12'>

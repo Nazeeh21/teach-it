@@ -9,7 +9,7 @@ const ServiceChat = () => {
       disabled
       expertDetails={{
         name: 'Nazeeh Vahora',
-        avatarSrc: 'nazeeh_profile.jpg',
+        avatarSrc: 'stock/girl2.jpg',
       }}
     />
   )

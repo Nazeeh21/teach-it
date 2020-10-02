@@ -69,7 +69,7 @@ const Index = () => {
         <div className="grid grid-cols-2">
           <div className="flex gap-6 items-center">
             <img
-              src="nazeeh_profile.jpg"
+              src="stock/girl2.jpg"
               alt="Profile Picture"
               className="rounded-full w-24"
             />

@@ -23,7 +23,7 @@ const Profile = ({
 
       <Avatar
         purpose='isForProfile'
-        src='nazeeh_profile.jpg'
+        src='stock/girl2.jpg'
         alt='profile_img'
       />
 

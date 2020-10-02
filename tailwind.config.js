@@ -25,7 +25,7 @@ module.exports = {
       red: '#FF7575',
       highlight: '#F9F8FD',
       lightGrey: '#F3F4F8',
-      
+      medGrey: '#F3F3F4',
       transparent: 'transparent',
       lightCyan: '#EBF8FF',
       current: 'currentColor',

@@ -18,13 +18,13 @@ const GeneralSetting = () => (
     <div className='w-full h-auto mt-5 pt-6 px-5 pb-8 bg-white rounded-lg'>
       <p className='text-lg font-medium'>Blocked users</p>
       <div className='w-full bg-lightGrey mt-6 pb-4'>
-        <User src='nazeeh_profile.jpg' name='Arun P' text={<Unblock />} />
+        <User src='stock/girl2.jpg' name='Arun P' text={<Unblock />} />
         <GreyLine />
-        <User src='nazeeh_profile.jpg' name='Arun P' text={<Unblock />} />
+        <User src='stock/girl2.jpg' name='Arun P' text={<Unblock />} />
         <GreyLine />
-        <User src='nazeeh_profile.jpg' name='Arun P' text={<Unblock />} />
+        <User src='stock/girl2.jpg' name='Arun P' text={<Unblock />} />
         <GreyLine />
-        <User src='nazeeh_profile.jpg' name='Arun P' text={<Unblock />} />
+        <User src='stock/girl2.jpg' name='Arun P' text={<Unblock />} />
         <ShowAllButton />
       </div>
       <div className='w-full mt-6 grid grid-rows-2 grid-cols-1 md:grid-rows-1 md:grid-cols-2 items-center'>
@@ -34,13 +34,13 @@ const GeneralSetting = () => (
         </div>
       </div>
       <div className='w-full bg-lightGrey mt-4 pb-4'>
-        <User src='nazeeh_profile.jpg' name='Arun P' text={<AcceptedText />} />
+        <User src='stock/girl2.jpg' name='Arun P' text={<AcceptedText />} />
         <GreyLine />
-        <User src='nazeeh_profile.jpg' name='Arun P' text={<AcceptedText />} />
+        <User src='stock/girl2.jpg' name='Arun P' text={<AcceptedText />} />
         <GreyLine />
-        <User src='nazeeh_profile.jpg' name='Arun P' text={<PendingText />} />
+        <User src='stock/girl2.jpg' name='Arun P' text={<PendingText />} />
         <GreyLine />
-        <User src='nazeeh_profile.jpg' name='Arun P' text={<AcceptedText />} />
+        <User src='stock/girl2.jpg' name='Arun P' text={<AcceptedText />} />
         <ShowAllButton />
       </div>
       <p className='text-lg font-medium mt-8'>Preferred Language</p>

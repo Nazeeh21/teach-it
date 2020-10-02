@@ -5,7 +5,7 @@ const InviteCard = () => {
     <div className='h-auto w-full flex flex-col'>
       <div
         style={{
-          backgroundImage: 'url("nazeeh_profile.jpg")',
+          backgroundImage: 'url("stock/girl.jpeg")',
           backgroundSize: 'cover',
         }}
         className='cursor-pointer rounded-tl-lg rounded-tr-lg w-full h-40'

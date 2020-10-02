@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { CHANGE_USER_TYPE } from '../../store/actions'
 import { EXPERT, LEARNER } from '../../constants'
 
-const Index = ({ color1, color2, label1, label2 }) => {
+const Index = ({ color1, color2, label1, label2, textColor = 'white' }) => {
   const dispatch = useDispatch()
 
   const activeId = useSelector((state) => state.userType)
@@ -19,7 +19,7 @@ const Index = ({ color1, color2, label1, label2 }) => {
         inactive={activeId !== 0}
         label={label1}
         color={color1}
-        textColor='white'
+        textColor={textColor}
         clickHandler={() => {
           setActiveId(EXPERT)
         }}
@@ -28,7 +28,7 @@ const Index = ({ color1, color2, label1, label2 }) => {
         inactive={activeId !== 1}
         label={label2}
         color={color2}
-        textColor='white'
+        textColor={textColor}
         clickHandler={() => {
           setActiveId(LEARNER)
         }}

@@ -15,7 +15,7 @@ const LayoutProvider = ({ children, alternate, rightContent }) => {
     )
   }
 
-  if (userType == EXPERT) {
+  if (userType === EXPERT) {
     return (
       <ExpertLayout alternate={alternate} rightContent={rightContent}>
         {children}
