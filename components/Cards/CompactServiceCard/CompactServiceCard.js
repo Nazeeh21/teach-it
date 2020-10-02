@@ -28,12 +28,12 @@ const CompactServiceCard = ({ descriptionText }) => {
           <p className='w-1/2'>SPORTS & FITNESS</p>
           <p className='text-darkGrey w-1/2'>English, Marathi & Gujarati</p>
         </div>
-        <div className='flex flex-row'>
+        <div className='grid grid-cols-2 items-center'>
           <div className='flex flex-col w-1/2 mt-4'>
             <p className='text-darkGrey'>Date: 5 Aug, 2020</p>
             <p className='text-darkGrey'>Payments: Weekly</p>
           </div>
-          <div className='w-2/12'>
+          <div className='sm:w-4/12 md:w-2/12'>
             <CardButton clickHandler={() => router.push('/view-service')} label='View' />
           </div>
         </div>

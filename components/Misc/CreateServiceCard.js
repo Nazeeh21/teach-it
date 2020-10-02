@@ -9,7 +9,7 @@ const Item = ({ iconSrc, title, titleColor, description, clickHandler }) => (
       <h3 className={`text-xl text-${titleColor}`}>{title}</h3>
     </div>
     <p className='leading-5 text-darkGrey text-sm'>{description}</p>
-    <div className='w-6/12'>
+    <div className='sm:w-full xl:w-6/12'>
       <button onClick={clickHandler} className='w-full mt-6 border-secondary border-2 text-secondary text-lg bg-white text-secondary pt-1 pb-1 pl-4 pr-4 rounded-lg'>
         Create
       </button>
