@@ -23,7 +23,7 @@ const Index = () => {
         </div>
       </div>
       <CompactServiceCard imgSrc='stock/music.jpg' />
-      <CompactServiceCard imgSrc='stock/dance.jpg' />
+      <CompactServiceCard imgSrc='stock/photography.jpg' />
       <div className="m-auto w-2/12">
         <ViewMoreButton clickHandler={() => router.push("/services")} />
       </div>
@@ -43,9 +43,9 @@ const Index = () => {
         />
         <CardFilledWithImage
           clickHandler={handleCategoriesRedirect}
-          src="stock/coding.jpg"
-          title="Coding"
-          subTitle="461 learners"
+          src='yoga.jpg'
+          title='Yoga'
+          subTitle='461 learners'
         />
         <CardFilledWithImage
           clickHandler={handleCategoriesRedirect}

@@ -10,7 +10,7 @@ const MyServices = () => {
 
   const router = useRouter()
 
-  const handleRedirect = () => router.push('/view-service')
+  const handleRedirect = () => router.push('/rich-media-service')
 
   return (
     <div>

@@ -30,7 +30,7 @@ const Chat = ({ label = 'Chat', disabled, expertDetails }) => {
             />
           </div>
         </div>
-        <div className='flex-col rounded-tl-lg rounded-tr-lg bg-white p-4'>
+        <div style={{ maxHeight: '70vh'}} className='flex-col rounded-tl-lg rounded-tr-lg bg-white p-4 overflow-y-scroll'>
           {expertDetails && (
             <div className='w-10/12 mx-auto mb-16 bg-highlight border-2 rounded-lg px-1 py-2 border-lightGrey flex flex-row items-center font-semibold'>
               <Avatar
@@ -42,7 +42,7 @@ const Chat = ({ label = 'Chat', disabled, expertDetails }) => {
             </div>
           )}
           <Message
-            className='justify-right'
+            className='justify-self-end'
             type='text'
             author={{ isSelf: 'true' }}
             content='How are you doing? Will you be in Mumbai next week?'
