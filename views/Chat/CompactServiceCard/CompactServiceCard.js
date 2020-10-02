@@ -8,6 +8,7 @@ const Image = ({ src, alt }) => (
 )
 
 const CompactServiceCard = ({
+  imgSrc = 'stock/girl2.jpg',
   descriptionText,
   hrefText = '',
   butttonText,
@@ -20,7 +21,7 @@ const CompactServiceCard = ({
   return (
     <div className='flex flex-row w-auto p-2 bg-white shadow-md rounded-lg my-3'>
       <div className='p-3 w-2/12 flex flex-col'>
-        <Image src='nazeeh_profile.jpg' alt='Nazeeh' />
+        <Image src={imgSrc} alt='Nazeeh' />
         <p className='text-3xl font-bold text-accent m-auto'>13</p>
       </div>
 

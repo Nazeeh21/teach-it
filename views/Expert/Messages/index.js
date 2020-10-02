@@ -4,14 +4,14 @@ import { useRouter } from 'next/router'
 
 const ChatWindowData = [
   {
-    src: 'nazeeh_profile.jpg',
+    src: 'stock/girl2.jpg',
     name: 'Arun',
     active: 'false',
     time: '5',
     text: 'See you soon',
   },
   {
-    src: 'nazeeh_profile.jpg',
+    src: 'stock/girl2.jpg',
     name: 'Deepak Kumar',
     active: 'false',
     time: '5',
@@ -19,21 +19,21 @@ const ChatWindowData = [
     current: 'false',
   },
   {
-    src: 'nazeeh_profile.jpg',
+    src: 'stock/girl2.jpg',
     name: 'John Doe',
     active: 'false',
     time: '5',
     text: 'See you soon',
   },
   {
-    src: 'nazeeh_profile.jpg',
+    src: 'stock/girl2.jpg',
     name: 'Nisha Sharma',
     active: 'false',
     time: '5',
     text: 'See you soon',
   },
   {
-    src: 'nazeeh_profile.jpg',
+    src: 'stock/girl2.jpg',
     name: 'Nisha Sharma',
     active: 'false',
     time: '5',

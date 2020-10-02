@@ -37,13 +37,13 @@ const ProfileSetting = () => (
       </div>
       </div>
       <div className='w-full bg-lightGrey mt-4 pb-4'>
-        <User src='nazeeh_profile.jpg' name='Arun P' text='₹ 3500' />
+        <User src='stock/girl2.jpg' name='Arun P' text='₹ 3500' />
         <GreyLine />
-        <User src='nazeeh_profile.jpg' name='Arun P' text='₹ 3600' />
+        <User src='stock/girl2.jpg' name='Arun P' text='₹ 3600' />
         <GreyLine />
-        <User src='nazeeh_profile.jpg' name='Arun P' text='₹ 3800' />
+        <User src='stock/girl2.jpg' name='Arun P' text='₹ 3800' />
         <GreyLine />
-        <User src='nazeeh_profile.jpg' name='Arun P' text='₹ 4000' />
+        <User src='stock/girl2.jpg' name='Arun P' text='₹ 4000' />
         <ShowAllButton />
       </div>
       <div className='w-full flex flex-col md:flex-row mt-10'>

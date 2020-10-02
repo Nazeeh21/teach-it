@@ -61,13 +61,13 @@ const Service = () => {
         </div>
 
         <div className="w-full bg-lightGrey mt-4 pb-4 mb-6">
-          <User src="nazeeh_profile.jpg" name="Arun P" text={<PaymentText />} />
+          <User src="stock/girl2.jpg" name="Arun P" text={<PaymentText />} />
           <GreyLine />
-          <User src="nazeeh_profile.jpg" name="Arun P" text={<PaymentText />} />
+          <User src="stock/girl2.jpg" name="Arun P" text={<PaymentText />} />
           <GreyLine />
-          <User src="nazeeh_profile.jpg" name="Arun P" text={<PaymentText />} />
+          <User src="stock/girl2.jpg" name="Arun P" text={<PaymentText />} />
           <GreyLine />
-          <User src="nazeeh_profile.jpg" name="Arun P" text={<PaymentText />} />
+          <User src="stock/girl2.jpg" name="Arun P" text={<PaymentText />} />
           <ShowAllButton />
         </div>
 
@@ -89,13 +89,13 @@ const Service = () => {
         </div>
 
         <div className="w-full bg-lightGrey mt-4 pb-4 mb-6">
-          <User src="nazeeh_profile.jpg" name="Arun P" text={<RoleText />} />
+          <User src="stock/girl2.jpg" name="Arun P" text={<RoleText />} />
           <GreyLine />
-          <User src="nazeeh_profile.jpg" name="Arun P" text={<RoleText />} />
+          <User src="stock/girl2.jpg" name="Arun P" text={<RoleText />} />
           <GreyLine />
-          <User src="nazeeh_profile.jpg" name="Arun P" text={<RoleText />} />
+          <User src="stock/girl2.jpg" name="Arun P" text={<RoleText />} />
           <GreyLine />
-          <User src="nazeeh_profile.jpg" name="Arun P" text={<RoleText />} />
+          <User src="stock/girl2.jpg" name="Arun P" text={<RoleText />} />
           <ShowAllButton />
         </div>
 

@@ -85,6 +85,7 @@ const Chat = ({ label = 'Chat', disabled, expertDetails }) => {
                 hrefText='Edit'
                 butttonText='Accept'
                 media={{ src: 'Live.svg', text: 'Live', color: '#ff414d' }}
+                imgSrc='stock/guitar.jpg'
               />
             }
             time='4:35pm'
@@ -102,6 +103,7 @@ const Chat = ({ label = 'Chat', disabled, expertDetails }) => {
                 butttonText='Pending'
                 buttonDisabled='true'
                 media={{ src: 'Live.svg', text: 'Live', color: '#ff414d' }}
+                imgSrc='stock/music.jpg'
               />
             }
             time='4:35pm'

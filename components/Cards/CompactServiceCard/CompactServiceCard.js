@@ -8,13 +8,13 @@ const Image = ({ src, alt }) => (
   <img className='w-full rounded-lg h-auto ' src={src} alt={alt} />
 )
 
-const CompactServiceCard = ({ descriptionText }) => {
+const CompactServiceCard = ({ descriptionText, imgSrc = 'stock/girl2.jpg' }) => {
   const router = useRouter()
 
   return (
     <div className='flex flex-row w-full p-2 bg-white shadow-md rounded-lg mb-6'>
       <div className='p-3 w-2/12 flex flex-col'>
-        <Image src='nazeeh_profile.jpg' alt='Nazeeh' />
+        <Image src={imgSrc} alt='Nazeeh' />
         {/* <p className='text-3xl font-bold text-accent m-auto'>13</p> */}
       </div>
 
