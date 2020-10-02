@@ -25,7 +25,7 @@ const Index = () => {
       <CompactServiceCard />
       <CompactServiceCard />
       <div className='m-auto w-2/12'>
-        <ViewMoreButton />
+        <ViewMoreButton clickHandler={() => router.push('/services')} />
       </div>
       <h3 className='text-2xl mb-6'>Trending services</h3>
       <div className='grid grid-flow-row grid-cols-2 w-full gap-6 mb-6'>
@@ -55,7 +55,7 @@ const Index = () => {
         />
       </div>
       <div className='m-auto w-2/12'>
-        <ViewMoreButton />
+        <ViewMoreButton clickHandler={() => router.push('/services')} />
       </div>
     </React.Fragment>
   )

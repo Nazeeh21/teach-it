@@ -23,21 +23,24 @@ const Index = () => {
           clickHandler={notificationCloseHandler}
         />
       )}
-      <div className='bg-white w-full grid sm:grid-cols-1 lg:grid-cols-2 gap-4 px-2 xs:px-2 sm:px-4 md:px-8 lg:px-12 xl:px-16 py-2 items-center'>
+      <div className='justify-items-center bg-white w-full grid sm:grid-cols-1 lg:grid-cols-2 gap-4 px-2 xs:px-2 sm:px-4 md:px-8 lg:px-12 xl:px-16 py-2 items-center'>
         <img
           onClick={() => router.push('/dashboard')}
           src='logos/blue.svg'
           alt='Videowork'
           className='hidden sm:hidden lg:block cursor-pointer justify-self-start'
         />
-        <div className='sm:justify-self-start lg:justify-self-end flex gap-2 items-center'>
+        <div className='lg:justify-self-end flex items-center'>
+          <div className='md:mr-24'>
           <NavSwitch
             label1='Expert'
             color1='expert'
             label2='Learner'
             color2='learner'
           />
-          <div className='w-full' onClick={notificationOpenHandler}>
+          </div>
+          
+          <div className='w-full md:mr-12' onClick={notificationOpenHandler}>
             <Icon
               src='misc/notifications.svg'
               alt='Notifications'

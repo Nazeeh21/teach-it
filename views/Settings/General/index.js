@@ -1,5 +1,4 @@
 import React from 'react'
-import { shallowEqual } from 'react-redux'
 import { PrimaryButton } from '../../../components/Buttons/Index'
 import Pills3 from '../../../components/Misc/3Pills/3Pills'
 import ShowAllButton from '../ShowAllButton'

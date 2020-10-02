@@ -13,49 +13,49 @@ const NavItems = () => {
     <div className='w-full p-4 bg-white rounded-lg shadow-md'>
       <LeftNavItem
         clickHandler={() => router.push('/dashboard')}
-        icon={`${basePath}home.svg`}
+        icon={`${basePath}home`}
         label='Home'
         userType={userType}
         isActive={router.pathname === '/dashboard'}
       />
       <LeftNavItem
         clickHandler={() => router.push('/categories')}
-        icon={`${basePath}categories.svg`}
+        icon={`${basePath}categories`}
         label='Categories'
         userType={userType}
         isActive={router.pathname === '/categories'}
       />
       <LeftNavItem
         clickHandler={() => router.push('/messages')}
-        icon={`${basePath}messages.svg`}
+        icon={`${basePath}messages`}
         label='Messages'
         userType={userType}
         isActive={router.pathname === '/messages'}
       />
       <LeftNavItem
         clickHandler={() => router.push('/services')}
-        icon={`${basePath}services.svg`}
+        icon={`${basePath}services`}
         label='Services'
         userType={userType}
         isActive={router.pathname === '/services'}
       />
       <LeftNavItem
         clickHandler={() => router.push('/payments')}
-        icon={`${basePath}payments.svg`}
+        icon={`${basePath}payments`}
         label='Payments'
         userType={userType}
         isActive={router.pathname === '/payments'}
       />
       <LeftNavItem
         clickHandler={() => router.push('/support')}
-        icon={`${basePath}support.svg`}
+        icon={`${basePath}support`}
         label='Support'
         userType={userType}
         isActive={router.pathname === '/support'}
       />
       <LeftNavItem
         clickHandler={() => router.push('/settings')}
-        icon={`${basePath}settings.svg`}
+        icon={`${basePath}settings`}
         label='Settings'
         userType={userType}
         isActive={router.pathname === '/settings'}
