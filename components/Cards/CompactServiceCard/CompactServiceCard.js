@@ -33,7 +33,7 @@ const CompactServiceCard = ({ descriptionText, imgSrc = 'stock/girl2.jpg' }) => 
             <p className='text-darkGrey'>Date: 5 Aug, 2020</p>
             <p className='text-darkGrey'>Payments: Weekly</p>
           </div>
-          <div className='sm:w-4/12 md:w-2/12'>
+          <div className='mr-10 sm:w-4/12 md:w-2/12 lg:w-3/12 justify-self-end md:mr-40 lg:mr-12 xl:mr-24'>
             <CardButton clickHandler={() => router.push('/view-service')} label='View' />
           </div>
         </div>
