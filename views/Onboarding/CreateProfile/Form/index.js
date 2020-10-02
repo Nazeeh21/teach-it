@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import TextInput from "../../../../components/Inputs/TextInput"
+import IconPicker from './IconPicker'
 
 const Form = () => {
   const [name, setName] = useState("")
@@ -36,6 +37,7 @@ const Form = () => {
         isValid={isAgeValid}
         setIsValid={setIsAgeValid}
       />
+      <IconPicker />
     </form>
   )
 }

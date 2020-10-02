@@ -53,8 +53,8 @@ const Index = () => {
         />
         <CardFilledWithImage
           clickHandler={handleCategoriesRedirect}
-          src='stock/coding.jpg'
-          title='Coding'
+          src='yoga.jpg'
+          title='Yoga'
           subTitle='461 learners'
         />
         <CardFilledWithImage
