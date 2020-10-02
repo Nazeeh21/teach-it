@@ -1,7 +1,7 @@
 import React from 'react'
 import Avatar from '../Images/Avatar'
 
-const Index = ({ type, author, content, status = 'delivered', time }) => {
+const Index = ({ type, author, content, status = 'delivered', time, width = 'w-6/12' }) => {
   let message
 
   switch (type) {
@@ -13,7 +13,7 @@ const Index = ({ type, author, content, status = 'delivered', time }) => {
               <Avatar isForChat src={author.profilePic} alt={author.name} />
             ) : null}
           </div>
-          <div className='flex flex-col w-6/12'>
+          <div className={`flex flex-col ${width}`}>
             <div className='bg-highlight rounded-lg p-2'>{content}</div>
             <div className='text-darkGrey text-sm text-bold m-1 text-right'>
               {author.isSelf && `${status} ,`} {time}
