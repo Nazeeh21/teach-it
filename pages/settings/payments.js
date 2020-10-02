@@ -1,12 +1,12 @@
 import React from 'react'
 import LayoutProvider from '../../layout/LayoutProvider'
 import InnerNav from '../../components/Nav/InnerNav'
-import General from '../../views/Settings/General'
+import Payments from '../../views/Settings/Payments'
 
 const Settings = () => {
   return (
     <LayoutProvider alternate rightContent={<InnerNav />}>
-      <General />
+      <Payments />
     </LayoutProvider>
   )
 }
