@@ -35,7 +35,7 @@ const ChatWindowData = [
   },
   {
     src: "stock/girl2.jpg",
-    name: "Nisha Sharma",
+    name: "Sonia",
     active: "false",
     time: "5",
     text: "See you soon",
@@ -45,6 +45,10 @@ const ChatWindowData = [
 const Contacts = () => {
   const [searchBarOpen, toggleSearch] = useState(false);
   const [query, setQuery] = useState('')
+
+  const [currentContact, setCurrentContact] = useState('')
+
+  const ChatWindowContactClickHandler = (name) => setCurrentContact(name)
 
   return (
     <div className="w-full">
@@ -82,12 +86,15 @@ const Contacts = () => {
         {ChatWindowData.map((data) => (
           <div className="">
             <ChatWindowContact
+              clickHandler={ChatWindowContactClickHandler}
               src={data.src}
               name={data.name}
               text={data.text}
-              active={data.active}
+              active={true}
+              // active={activeContact === data.name ? true : false}
               time={data.time}
-              current={data.current}
+              current={currentContact === data.name}
+              // current='false'
             />
           </div>
         ))}
