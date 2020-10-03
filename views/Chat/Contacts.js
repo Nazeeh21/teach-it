@@ -7,14 +7,14 @@ const ChatWindowData = [
   {
     src: "stock/girl2.jpg",
     name: "Arun",
-    active: "false",
+    active: false,
     time: "5",
     text: "See you soon",
   },
   {
     src: "stock/girl2.jpg",
     name: "Deepak Kumar",
-    active: "true",
+    active: true,
     time: "5",
     text: "See you soon",
     current: "true",
@@ -22,21 +22,21 @@ const ChatWindowData = [
   {
     src: "stock/girl2.jpg",
     name: "John Doe",
-    active: "false",
+    active: false,
     time: "5",
     text: "See you soon",
   },
   {
     src: "stock/girl2.jpg",
     name: "Nisha Sharma",
-    active: "false",
+    active: false,
     time: "5",
     text: "See you soon",
   },
   {
     src: "stock/girl2.jpg",
     name: "Sonia",
-    active: "false",
+    active: true,
     time: "5",
     text: "See you soon",
   },
@@ -90,7 +90,7 @@ const Contacts = () => {
               src={data.src}
               name={data.name}
               text={data.text}
-              active={true}
+              active={data.active}
               // active={activeContact === data.name ? true : false}
               time={data.time}
               current={currentContact === data.name}
