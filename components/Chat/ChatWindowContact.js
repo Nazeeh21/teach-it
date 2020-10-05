@@ -17,6 +17,6 @@ export const ChatWindowContact = ({src, name, text, active = false, time, curren
         <p className='text-lg text-darkGrey justify-start lg:mr-4'>{text}</p>
         <p className='justify-self-end italic text-lightGrey text-xs justify-end'>{time} min ago</p>
       </div>
-    </div>
+    </div> 
   </div>
 )
