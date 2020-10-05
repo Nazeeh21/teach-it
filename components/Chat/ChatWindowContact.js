@@ -14,7 +14,7 @@ export const ChatWindowContact = ({src, name, text, active = false, time, curren
     <div>
       <p className={`${current ? 'font-bold' : 'font-normal'} text-xl`}>{name}</p>
       <div className='grid grid-cols-2 items-center w-full'>
-        <p className='text-lg text-darkGrey justify-start lg:mr-4'>{text}</p>
+        <p className='col-span-2 text-lg text-darkGrey justify-start xl:col-span-1 lg:mr-4'>{text}</p>
         <p className='justify-self-end italic text-lightGrey text-xs justify-end'>{time} min ago</p>
       </div>
     </div> 
