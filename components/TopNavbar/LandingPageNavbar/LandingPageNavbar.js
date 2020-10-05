@@ -19,7 +19,7 @@ const LandingPageNavbar = () => {
         <a href='/' style={{ cursor: 'pointer' }} className='hidden md:ml-4 md:w-auto lg:ml-10 md:block'>
           Home
         </a>
-        <a href='/' style={{ cursor: 'pointer' }} className='hidden md:ml-4 md:w-auto lg:ml-10 md:block'>
+        <a href='/coming-soon' style={{ cursor: 'pointer' }} className='hidden md:ml-4 md:w-auto lg:ml-10 md:block'>
           Features
         </a>
         <a href='/contact-us' style={{ cursor: 'pointer' }} className='hidden md:ml-4 md:w-auto lg:ml-10 md:block'>

@@ -16,16 +16,16 @@ const ContactUs = () => (
         <form>
           <div className='mt-6 '>
             <p className='font-medium text-lg mb-2'>Name</p>
-            <input className='bg-highlight py-1  rounded w-full' type='text' width='full' />
+            <input className='bg-highlight p-2  rounded w-full' type='text' width='full' />
           </div>
           <div className='mt-6 '>
             <p className='font-medium text-lg mb-2'>Email</p>
-            <input className='bg-highlight py-1  rounded w-full' type='email' width='full' />
+            <input className='bg-highlight p-2  rounded w-full' type='email' width='full' />
           </div>
           <div className='mt-6 '>
             <p className='font-medium text-lg mb-2'>Message</p>
             <textarea
-              className='bg-highlight py-1  rounded w-full'
+              className='bg-highlight p-2  rounded w-full'
               width='full'
               rows='3'
               cols='25'
