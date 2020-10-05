@@ -7,7 +7,7 @@ import Footer from '../LandingPage/Footer/index'
 const ContactUs = () => (
   <div>
     <LandingPageNavbar />
-    <div className='grid grid-cols-1 lg:grid-cols-2 lg:grid-rows-1'>
+    <div className='grid grid-cols-1 xl:grid-cols-2 xl:grid-rows-1'>
       <div className='w-full justify-self-center m-auto px-32 py-32 pr-48'>
         <p className='text-5xl font-semibold'>Contact us</p>
         <p className='font-semibold text-lg text-darkGrey my-3'>
@@ -34,7 +34,7 @@ const ContactUs = () => (
           <button className='bg-secondary text-white text-xl font-medium py-2 rounded-md w-6/12 mt-8'>Send</button>
         </form>
       </div>
-      <div style={{zIndex: '-100'}} className='hidden lg:block absolute top-0 right-0 w-6/12 '>
+      <div style={{zIndex: '-100'}} className='hidden xl:block absolute top-0 right-0 w-6/12 '>
         <img src='/contact-us.jpg' alt='contact-us' />
       </div>
     </div>
