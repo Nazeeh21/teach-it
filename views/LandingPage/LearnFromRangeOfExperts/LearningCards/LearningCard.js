@@ -30,8 +30,8 @@ const LearningCard = ({ imgSrc, label, provider, numSeekers }) => (
       </div>
       <p className='ml-3'>{numSeekers} Seekers</p>
     </div>
-    <div className=' grid grid-cols-2 grid-rows-1 mt-12 items-center'>
-      <div>
+    <div className=' grid grid-cols-1 grid-rows-2 xl:grid-cols-2 xl:grid-rows-1 mt-12 items-center'>
+      <div className='justify-self-center'>
         <Rating />
       </div>
       <div className='bg-lightGrey text-darkGrey text-lg rounded py-1'>
