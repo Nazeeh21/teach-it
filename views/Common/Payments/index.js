@@ -9,7 +9,7 @@ const Index = () => {
       <div className='w-full bg-white border-2 border-highlight p-6 flex flex-col'>
         <h4 className='text-2xl'>₹ 73,265</h4>
         <p className='text-darkGrey text-sm'>Total revenue</p>
-        <img alt='Graph' className='w-full mb-10' src='graph.jpg' />
+        <img alt='Graph' className='w-full mb-10' src='/graph.jpg' />
         <h4 className='text-lg'>Transactions</h4>
         <PaymentItem label='Paid for rich media service' days={7} amount={2,331} />
         <PaymentItem label='Paid for live service' days={5} amount={700} />

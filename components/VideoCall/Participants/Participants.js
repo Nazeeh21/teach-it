@@ -9,11 +9,11 @@ const Image = ({src, alt}) => (
 
 const Partipants = () => (
   <div className='w-6/12 m-2 '>
-    <Image src='videocall.png' alt='Participant-img' />
-    <Image src='videocall.png' alt='Participant-img' />
-    <Image src='videocall.png' alt='Participant-img' />
-    <Image src='videocall.png' alt='Participant-img' />
-    <Image src='videocall.png' alt='Participant-img' />
+    <Image src='/videocall.png' alt='Participant-img' />
+    <Image src='/videocall.png' alt='Participant-img' />
+    <Image src='/videocall.png' alt='Participant-img' />
+    <Image src='/videocall.png' alt='Participant-img' />
+    <Image src='/videocall.png' alt='Participant-img' />
   </div>
 )
 

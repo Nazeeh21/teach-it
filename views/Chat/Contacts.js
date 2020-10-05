@@ -66,7 +66,7 @@ const Contacts = () => {
               <div onClick={() => toggleSearch(true)} className="cursor-pointer h-auto w-1/12 ml-1">
                 <img
                   className="w-full h-auto"
-                  src="search.png"
+                  src="/search.png"
                   alt="search-icon"
                 />
               </div>

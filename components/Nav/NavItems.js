@@ -3,7 +3,7 @@ import LeftNavItem from './LeftNavItem'
 import { useRouter } from 'next/router'
 import { useSelector } from 'react-redux'
 
-const basePath = 'nav_icons/'
+const basePath = '/nav_icons/'
 
 const NavItems = () => {
   const router = useRouter()

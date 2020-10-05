@@ -14,13 +14,13 @@ const Index = () => {
       </p>
       <div className='flex gap-6'>
         <div onClick={() => setSelection(0)}>
-        <Icon imgSrc='avis/ana.png' active={selection === 0} />
+        <Icon imgSrc='/avis/ana.png' active={selection === 0} />
         </div>
         <div onClick={() => setSelection(1)}>
-        <Icon imgSrc='avis/ana.png' active={selection === 1} />
+        <Icon imgSrc='/avis/ana.png' active={selection === 1} />
         </div>
         <div onClick={() => setSelection(2)}>
-        <Icon imgSrc='avis/ana.png' active={selection === 2} />
+        <Icon imgSrc='/avis/ana.png' active={selection === 2} />
         </div>
       </div>
     </div>

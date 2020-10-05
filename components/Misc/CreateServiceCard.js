@@ -29,9 +29,9 @@ const CreateServiceCard = () => {
       <div className='rounded-tl-lg rounded-tr-lg p-6'>
         <h3 className='text-2xl text-primary'>Create a service</h3>
       </div>
-      <img className='w-full h-auto' src='yoga.jpg' alt='Create a service' />
-      <Item clickHandler={handleRedirect} iconSrc='Live-logo.png' title='Live' titleColor='red' description={loremIpsum} />
-      <Item clickHandler={handleRedirect} iconSrc='rich-media.png' title='Rich media' titleColor='green' description={loremIpsum} />
+      <img className='w-full h-auto' src='/yoga.jpg' alt='Create a service' />
+      <Item clickHandler={handleRedirect} iconSrc='/Live-logo.png' title='Live' titleColor='red' description={loremIpsum} />
+      <Item clickHandler={handleRedirect} iconSrc='/rich-media.png' title='Rich media' titleColor='green' description={loremIpsum} />
     </div>
   )
 }

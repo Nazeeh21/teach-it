@@ -7,7 +7,7 @@ const PaymentItem = ({ label = 'Payment done', pending = false, amount = '480', 
         <div className="bg-highlight rounded-lg w-2/12 p-4">
           <img
             alt="Payment"
-            src="payment_icons/outwards.svg"
+            src="/payment_icons/outwards.svg"
             className="w-full"
           />
         </div>

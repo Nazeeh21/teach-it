@@ -19,7 +19,7 @@ const SearchBar = ({ value, changeHandler, bgColor = 'white' }) => {
         className={`rounded-full bg-${bgColor} pt-2 pb-2 pl-4 pr-10 w-full`}
       />
       <div onClick={() => router.push('/search')} className='-ml-12'>
-        <Icon src='search.png' />
+        <Icon src='/search.png' />
       </div>
     </div>
   )

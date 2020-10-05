@@ -10,7 +10,7 @@ const AppSettings = () => (
   <div>
     <p className='text-2xl font-medium'>App settings</p>
     <div style={{background: '#FFE7E7'}} className='mt-5 w-full flex text-md text-darkGrey rounded py-2 pl-3'>
-      <img className='mr-2' src='warning-icon.svg' alt='warning-icon' />
+      <img className='mr-2' src='/warning-icon.svg' alt='warning-icon' />
       <div>The following changes will affect all profiles in your account</div>
     </div>
     <div className='w-full h-auto mt-5 pt-6 px-5 pb-8 bg-white rounded-lg'>

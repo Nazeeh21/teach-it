@@ -6,7 +6,7 @@ const Index = () => <div className='w-full rounded-lg'>
       <div className='flex items-center'>
         <img
           className='mr-3 w-5 justify-items-start'
-          src='hamBurger.png'
+          src='/hamBurger.png'
           alt='hamBurger' />
         <div className=' '>
           <p className='font-bold'>Quarterly Review</p>
@@ -14,11 +14,11 @@ const Index = () => <div className='w-full rounded-lg'>
         </div>
       </div>
       <div className='items-end flex flex-row justify-self-end items-center'>
-        <button className='mr-6'><img className='w-6 m-auto' src='setting.png' alt='setting' /></button>
-        <button className='bg-darkGrey rounded-full w-16 h-16'><img className='w-8 m-auto' src='add-user.png' alt='add-user' /></button>
+        <button className='mr-6'><img className='w-6 m-auto' src='/setting.png' alt='setting' /></button>
+        <button className='bg-darkGrey rounded-full w-16 h-16'><img className='w-8 m-auto' src='/add-user.png' alt='add-user' /></button>
       </div>
     </div>
-    <img className='w-full h-auto' src='videocall.png' alt='video-call' />
+    <img className='w-full h-auto' src='/videocall.png' alt='video-call' />
   </div>
 </div>;
 

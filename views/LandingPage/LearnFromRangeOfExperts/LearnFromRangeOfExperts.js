@@ -23,16 +23,16 @@ const LearnFromRangeOfExperts = () => (
     </p>
     <div className='flex flex-row w-full overflow-auto mt-32 mb-24 '>
       <div className='w-11/12 ml-5 mr-10 md:w-8/12 lg:w-3/12 lg:ml-32 lg:mr-0'>
-        <LearningCard imgSrc='learn-guitar.svg' label='Learn guitar in 7 days' provider='Ravi Sharma' numSeekers='253' />
+        <LearningCard imgsrc='/learn-guitar.svg' label='Learn guitar in 7 days' provider='Ravi Sharma' numSeekers='253' />
       </div>
       <div className='w-11/12 ml-5 mr-10 md:w-8/12 lg:w-3/12 lg:ml-32'>
-        <LearningCard imgSrc='learn-guitar.svg' label='Learn guitar in 7 days' provider='Ravi Sharma' numSeekers='253' />
+        <LearningCard imgsrc='/learn-guitar.svg' label='Learn guitar in 7 days' provider='Ravi Sharma' numSeekers='253' />
       </div>
       <div className='w-11/12 ml-5 mr-10 md:w-8/12 lg:w-3/12 lg:ml-32'>
-        <LearningCard imgSrc='learn-guitar.svg' label='Learn guitar in 7 days' provider='Ravi Sharma' numSeekers='253' />
+        <LearningCard imgsrc='/learn-guitar.svg' label='Learn guitar in 7 days' provider='Ravi Sharma' numSeekers='253' />
       </div>
       {/* <div className='w-3/12 ml-32'>
-        <LearningCard imgSrc='learn-guitar.svg' label='Learn guitar in 7 days' provider='Ravi Sharma' numSeekers='253' />
+        <LearningCard imgsrc='/learn-guitar.svg' label='Learn guitar in 7 days' provider='Ravi Sharma' numSeekers='253' />
       </div> */}
     </div>
    

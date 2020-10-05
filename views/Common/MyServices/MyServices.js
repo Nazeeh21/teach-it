@@ -23,7 +23,7 @@ const MyServices = () => {
             onClick={() => toggleShowSearchBar(true)}
             className='w-5 justify-self-end'
           >
-            <img src='search.png' alt='search-img' />
+            <img src='/search.png' alt='search-img' />
           </button>
         )}
       </div>

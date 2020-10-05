@@ -25,7 +25,7 @@ const AskQuestion = ({ show, clickHandler }) => (
         <p className='text-2xl font-medium mt-5'>Ask a question</p>
         <p className='text-darkGrey text-sm mt-3'>Question costs ₹300. Experts generally take 48-72 hours to reply.</p>
         <div className='w-full rounded mt-4 bg-lightGrey border-2 border-gray-300 flex items-center py-3 pl-2'>
-          <Avatar src='arun-kumar.png' alt='arun-kumar' purpose='isForChat' />
+          <Avatar src='/arun-kumar.png' alt='arun-kumar' purpose='isForChat' />
           <p className='ml-2 text-lg font-medium'>Arun Kumar Pattnaik</p>
         </div>
         <p className='text-lg font-medium mt-5'>Your question</p>

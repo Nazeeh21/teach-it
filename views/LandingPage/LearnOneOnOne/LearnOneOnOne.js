@@ -30,13 +30,13 @@ const LearnOneOnOne = () => {
           <div className='w-4/12 text-right	'>
             <img
               className='w-10/12 m-2 h-auto'
-              src='arrow-1.png'
+              src='/arrow-1.png'
               alt='arrow-1'
             />
           </div>
           <img
             className='w-8/12 h-auto rounded-lg m-3'
-            src='learn-one-on-one-1.png'
+            src='/learn-one-on-one-1.png'
             alt='learn-one-on-one-1'
           />
         </div>
@@ -44,13 +44,13 @@ const LearnOneOnOne = () => {
           <div className='w-4/12'>
             <img
               className='w-full m-2 h-auto'
-              src='arrow-2.png'
+              src='/arrow-2.png'
               alt='arrow-2'
             />
           </div>
           <img
             className='w-8/12 h-auto rounded-lg m-3'
-            src='learn-one-on-one-2.png'
+            src='/learn-one-on-one-2.png'
             alt='learn-one-on-one-2'
           />
         </div>
