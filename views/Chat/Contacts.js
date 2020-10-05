@@ -29,7 +29,7 @@ const ChatWindowData = [
   {
     src: "stock/girl2.jpg",
     name: "Nisha Sharma",
-    active: false,
+    active: true,
     time: "5",
     text: "See you soon",
   },
