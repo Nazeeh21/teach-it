@@ -3,7 +3,7 @@ import LeftNavItem from './NavItem'
 import { useRouter } from 'next/router'
 import { useSelector } from 'react-redux'
 
-const basePath = 'nav_icons/'
+const basePath = '/nav_icons/'
 
 const NavItems = () => {
   const router = useRouter()
@@ -16,28 +16,28 @@ const NavItems = () => {
     >
       <LeftNavItem
         clickHandler={() => router.push('/dashboard')}
-        icon={`${basePath}home.svg`}
+        icon={`${basePath}home_grey.svg`}
         label='Home'
         userType={userType}
         isActive={router.pathname === '/dashboard'}
       />
       <LeftNavItem
         clickHandler={() => router.push('/categories')}
-        icon={`${basePath}categories.svg`}
+        icon={`${basePath}categories_grey.svg`}
         label='Categories'
         userType={userType}
         isActive={router.pathname === '/categories'}
       />
       <LeftNavItem
         clickHandler={() => router.push('/messages')}
-        icon={`${basePath}messages.svg`}
+        icon={`${basePath}messages_grey.svg`}
         label='Messages'
         userType={userType}
         isActive={router.pathname === '/messages'}
       />
       <LeftNavItem
         clickHandler={() => router.push('/services')}
-        icon={`${basePath}services.svg`}
+        icon={`${basePath}services_grey.svg`}
         label='Services'
         userType={userType}
         isActive={router.pathname === '/services'}

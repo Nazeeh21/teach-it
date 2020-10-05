@@ -39,15 +39,15 @@ const ViewService = () => (
             className='w-full sm:w-full lg:w-5/12 p-5 text-sm font-medium'
           >
             <div className='flex'>
-              <img src='Combined-Shape.svg' alt='CombinedShape' />
+              <img src='/Combined-Shape.svg' alt='CombinedShape' />
               <p className='mx-2'>English</p>
             </div>
             <div className='flex'>
-              <img src='clock.svg' alt='clock-img' />
+              <img src='/clock.svg' alt='clock-img' />
               <p className='mx-2'>5pm, 2 hours</p>
             </div>
             <div className='flex'>
-              <img src='calender.svg' alt='calender' />
+              <img src='/calender.svg' alt='calender' />
               <p className='mx-2'>Tue, Thurs, Fri & Sun</p>
             </div>
             <p className='ml-6'>Start date: 5th Aug 2020</p>

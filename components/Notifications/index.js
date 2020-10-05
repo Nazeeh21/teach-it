@@ -36,7 +36,7 @@ const Index = ({ show, clickHandler }) => {
             <button className='justify-end ml-6 mr-4'>
               <img
                 className='w-full'
-                src='nav_icons/settings.svg'
+                src='/nav_icons/settings_grey.svg'
                 alt='setting'
               />
             </button>
@@ -45,7 +45,7 @@ const Index = ({ show, clickHandler }) => {
 
         <div className='items-start grid grid-cols-3 grid-rows-1 mt-10'>
           <div className='justify-self-start flex col-span-2'>
-            <img src='nav_icons/services.svg' alt='services' />
+            <img src='/nav_icons/services_grey.svg' alt='services' />
             <div className='ml-2 w-full'>
               <p>
                 <span className='font-medium'>Ravi</span> has subscribed to{' '}
@@ -55,26 +55,26 @@ const Index = ({ show, clickHandler }) => {
             </div>
           </div>
           <button className='justify-self-end w-6 mx-2'>
-            <img src='dustbin.svg' alt='delete' />
+            <img src='/dustbin.svg' alt='delete' />
           </button>
         </div>
 
         <div className='items-start grid grid-cols-3 grid-rows-1 mt-10'>
           <div className='justify-self-start flex col-span-2'>
-            <img src='nav_icons/payments.svg' alt='payments' />
+            <img src='/nav_icons/payments_grey.svg' alt='payments' />
             <div className='ml-2 w-full'>
               <p>Your withdrawl of ₹5500 is complete.</p>
               <p className='text-sm text-darkGrey'>2 mins</p>
             </div>
           </div>
           <button className='justify-self-end w-6 mx-2'>
-            <img src='dustbin.svg' alt='delete' />
+            <img src='/dustbin.svg' alt='delete' />
           </button>
         </div>
 
         <div className='items-start grid grid-cols-3 grid-rows-1 mt-10'>
           <div className='justify-self-start flex col-span-2'>
-            <img src='nav_icons/payments.svg' alt='payments' />
+            <img src='/nav_icons/payments_grey.svg' alt='payments' />
             <div className='ml-2 w-full'>
               <p>
                 <span className='font-medium'>Manisha Mehta</span> has changed
@@ -88,7 +88,7 @@ const Index = ({ show, clickHandler }) => {
             </div>
           </div>
           <button className='justify-self-end w-6 mx-2'>
-            <img src='dustbin.svg' alt='delete' />
+            <img src='/dustbin.svg' alt='delete' />
           </button>
         </div>
 

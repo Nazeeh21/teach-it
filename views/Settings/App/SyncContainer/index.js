@@ -15,7 +15,7 @@ const SyncContainer = ({ text }) => {
         {active ? (
           <div className='flex items-center'>
             <div className='mr-1'>
-              <img src='sync-icon.svg' alt='sync-icon' />
+              <img src='/sync-icon.svg' alt='sync-icon' />
             </div>
             <p className='text-darkGrey text-sm'>Synced</p>
           </div>

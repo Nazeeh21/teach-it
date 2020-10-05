@@ -25,7 +25,7 @@ const Chat = ({ label = 'Chat', disabled, expertDetails }) => {
           <div className='cursor-pointer h-auto w-6 justify-self-end'>
             <img
               className='w-10/12 h-auto'
-              src='search.png'
+              src='/search.png'
               alt='search-icon'
             />
           </div>
@@ -85,7 +85,7 @@ const Chat = ({ label = 'Chat', disabled, expertDetails }) => {
                 hrefText='Edit'
                 butttonText='Accept'
                 media={{ src: 'Live.svg', text: 'Live', color: '#ff414d' }}
-                imgSrc='stock/guitar.jpg'
+                imgsrc='/stock/guitar.jpg'
               />
             }
             time='4:35pm'
@@ -103,7 +103,7 @@ const Chat = ({ label = 'Chat', disabled, expertDetails }) => {
                 butttonText='Pending'
                 buttonDisabled='true'
                 media={{ src: 'Live.svg', text: 'Live', color: '#ff414d' }}
-                imgSrc='stock/music.jpg'
+                imgsrc='/stock/music.jpg'
               />
             }
             time='4:35pm'
@@ -117,13 +117,13 @@ const Chat = ({ label = 'Chat', disabled, expertDetails }) => {
             className='m-auto w-8 flex justify-center items-center'
             onClick={chooseServiceOpenHandler}
           >
-            <img src='drawer.svg' alt='drawer' />
+            <img src='/drawer.svg' alt='drawer' />
           </button>
           <button className='m-auto w-8 flex justify-center items-center'>
-            <img src='camera.svg' alt='camera' />
+            <img src='/camera.svg' alt='camera' />
           </button>
           <button className='m-auto w-8 flex justify-center items-center'>
-            <img src='gallery.svg' alt='gallery' />
+            <img src='/gallery.svg' alt='gallery' />
           </button>
           {disabled ? (
             <div className='bg-lightGrey w-8/12 h-10 mx-2 my-2 rounded p-4 pb-10 text-center text-sm'>

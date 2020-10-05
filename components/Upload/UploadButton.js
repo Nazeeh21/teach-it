@@ -11,7 +11,7 @@ const UploadButton = ({ text, footerText }) => {
     <React.Fragment>
       <img
         onClick={handleClick}
-        src='plus.png'
+        src='/plus.png'
         alt='Upload button'
         className='cursor-pointer border-secondary border-2 border-dashed rounded-md p-6 m-2 w-24'
       />

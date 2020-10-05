@@ -52,7 +52,7 @@ const ChooseService = ({ show = true, clickHandler }) => {
               <button className='justify-self-end h-auto w-8'>
                 <img
                   className=' w-10/12 h-auto'
-                  src='search.png'
+                  src='/search.png'
                   alt='search-icon'
                 />
               </button>

@@ -8,14 +8,14 @@ const Index = () => {
     <div className='flex items-center w-full'>
       <div onClick={() => router.push('/profile')} className='flex flex-col w-full items-center'>
         <img
-          src='avis/ana.png'
+          src='/avis/ana.png'
           alt='Switch profile'
           className='w-8 h-auto cursor-pointer rounded-full'
         />
         <p className='text-xs'>Anastasia</p>
       </div>
       <img
-        src='arrows/down.svg'
+        src='/arrows/down.svg'
         alt='Switch profile'
         className='cursor-pointer'
       />

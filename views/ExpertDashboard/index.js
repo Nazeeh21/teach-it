@@ -22,8 +22,8 @@ const Index = () => {
           <SearchBar value={query} changeHandler={(val) => setQuery(val)} />
         </div>
       </div>
-      <CompactServiceCard imgSrc='stock/music.jpg' />
-      <CompactServiceCard imgSrc='stock/photography.jpg' />
+      <CompactServiceCard imgsrc='/stock/music.jpg' />
+      <CompactServiceCard imgsrc='/stock/photography.jpg' />
       <div className="m-auto w-2/12">
         <ViewMoreButton clickHandler={() => router.push("/services")} />
       </div>
@@ -31,25 +31,25 @@ const Index = () => {
       <div className="grid grid-flow-row grid-cols-2 w-full gap-6 mb-6">
         <CardFilledWithImage
           clickHandler={handleCategoriesRedirect}
-          src="stock/music.jpg"
+          src="/stock/music.jpg"
           title="Music"
           subTitle="234 learners"
         />
         <CardFilledWithImage
           clickHandler={handleCategoriesRedirect}
-          src="stock/dance.jpg"
+          src="/stock/dance.jpg"
           title="Dance"
           subTitle="658 learners"
         />
         <CardFilledWithImage
           clickHandler={handleCategoriesRedirect}
-          src='yoga.jpg'
+          src='/yoga.jpg'
           title='Yoga'
           subTitle='461 learners'
         />
         <CardFilledWithImage
           clickHandler={handleCategoriesRedirect}
-          src="stock/photography.jpg"
+          src="/stock/photography.jpg"
           title="Photography"
           subTitle="137 learners"
         />

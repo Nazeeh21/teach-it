@@ -42,7 +42,7 @@ const IntroScreen = () => {
         <div className='hidden md:mt-16 md:text-xl text-darkGrey m-auto md:flex md:items-center font-medium lg:mt-40'>
           <img
             className='m-3 w-5/12 h-auto'
-            src='users-online.png'
+            src='/users-online.png'
             alt='users-online'
           />
           127 new users this week
@@ -52,7 +52,7 @@ const IntroScreen = () => {
         <div className='md:w-7/12 h-auto rounded-lg'>
           <IntroVideo />
         </div>
-        {/* <img className='w-7/12 h-auto rounded-lg' src='mobile-call.jpg' alt='mobile-call' /> */}
+        {/* <img className='w-7/12 h-auto rounded-lg' src='/mobile-call.jpg' alt='mobile-call' /> */}
         <div className=' md:w-5/12 md:m-5 xl:m-8 lg:mt-40 md:inline-block align-middle text-darkGrey text-xl font-medium'>
           <span className='text-learner block text-5xl'>"</span>I learned to
           cook asian food from a chef in Japan.

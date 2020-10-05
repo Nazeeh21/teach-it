@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 //     clickHandler={clickHandler}
 //     title="Yoga"
 //     subTitle="234 learners"
-//     src="yoga.jpg"
+//     src="/yoga.jpg"
 //   />
 // );
 
@@ -25,37 +25,37 @@ const Index = () => {
         <Card
           title="Yoga"
           subTitle="234 learners"
-          src="yoga.jpg"
+          src="/yoga.jpg"
           clickHandler={handleRedirect}
         />
         <Card
           title="Music"
           subTitle="5673 learners"
-          src="stock/music.jpg"
+          src="/stock/music.jpg"
           clickHandler={handleRedirect}
         />
         <Card
           title="Dance"
           subTitle="1687 learners"
-          src="stock/dance.jpg"
+          src="/stock/dance.jpg"
           clickHandler={handleRedirect}
         />
         <Card
           title="Stock Market"
           subTitle="13463 learners"
-          src="stock/market.jpg"
+          src="/stock/market.jpg"
           clickHandler={handleRedirect}
         />
         <Card
           title="Guitar"
           subTitle="1657 learners"
-          src="stock/guitar.jpg"
+          src="/stock/guitar.jpg"
           clickHandler={handleRedirect}
         />
         <Card
           title="Photography"
           subTitle="1355 learners"
-          src="stock/photography.jpg"
+          src="/stock/photography.jpg"
           clickHandler={handleRedirect}
         />
       </div>

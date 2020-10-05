@@ -23,7 +23,7 @@ const Questions = () => {
       <div className='grid grid-cols-2 items-center'>
         <h3 className='justify-self-start text-2xl'>Stock Market Ideas</h3>
         <div className='justify-self-end'>
-          <Icon src='search.png' />
+          <Icon src='/search.png' />
         </div>
       </div>
       <div className='grid grid-flow-row grid-cols-1 gap-6'>

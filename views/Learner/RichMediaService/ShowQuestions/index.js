@@ -24,7 +24,7 @@ const ShowQuestions = ({show, clickHandler}) => (
           <p className='justify-self-end cursor-pointer text-red text-sm'>Delete question</p>
         </div>
         <div className='w-full rounded mt-4 bg-lightGrey border-2 border-gray-300 flex items-center py-3 pl-2'>
-          <Avatar src='arun-kumar.png' alt='arun-kumar' purpose='isForChat' />
+          <Avatar src='/arun-kumar.png' alt='arun-kumar' purpose='isForChat' />
           <p className='ml-2 text-lg font-medium'>Arun Kumar Pattnaik</p>
         </div>
         <div className='grid grid-cols-1 gird-rows-2 md:grid-rows-1 md:grid-cols-2'>
@@ -41,24 +41,24 @@ const ShowQuestions = ({show, clickHandler}) => (
           <div className='flex md:hidden'>
             <button
               className='m-auto w-8 flex justify-center items-center'>
-              <img src='drawer.svg' alt='drawer' />
+              <img src='/drawer.svg' alt='drawer' />
             </button>
             <button className='m-auto w-8 flex justify-center items-center'>
-              <img src='camera.svg' alt='camera' />
+              <img src='/camera.svg' alt='camera' />
             </button>
             <button className='m-auto w-8 flex justify-center items-center'>
-              <img src='gallery.svg' alt='gallery' />
+              <img src='/gallery.svg' alt='gallery' />
             </button>
           </div>
           <button
             className='hidden m-auto w-8 md:flex justify-center items-center'>
-            <img src='drawer.svg' alt='drawer' />
+            <img src='/drawer.svg' alt='drawer' />
           </button>
           <button className='hidden m-auto w-8 md:flex justify-center items-center'>
-            <img src='camera.svg' alt='camera' />
+            <img src='/camera.svg' alt='camera' />
           </button>
           <button className='hidden m-auto w-8 md:flex justify-center items-center'>
-            <img src='gallery.svg' alt='gallery' />
+            <img src='/gallery.svg' alt='gallery' />
           </button>
             <input
               style={{ outline: 'none' }}

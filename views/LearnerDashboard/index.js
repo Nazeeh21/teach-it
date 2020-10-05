@@ -25,13 +25,13 @@ const Index = () => {
       <CompactServiceCard
         buttonClickHandler={() => router.push('/view-service')}
         butttonText='View'
-        imgSrc='stock/guitar.jpg'
+        imgsrc='/stock/guitar.jpg'
         media={{ text: 'Live', color: 'red', src: 'live.svg' }}
       />
       <CompactServiceCard
         buttonClickHandler={() => router.push('/view-service')}
         butttonText='View'
-        imgSrc='stock/market.jpg'
+        imgsrc='/stock/market.jpg'
         media={{ text: 'Rich Media', color: 'green', src: 'rich-media.svg' }}
       />
       <div className='m-auto w-2/12'>
@@ -41,25 +41,25 @@ const Index = () => {
       <div className='grid grid-flow-row grid-cols-2 w-full gap-6 mb-6'>
         <CardFilledWithImage
           clickHandler={handleCategoriesRedirect}
-          src='stock/music.jpg'
+          src='/stock/music.jpg'
           title='Music'
           subTitle='234 learners'
         />
         <CardFilledWithImage
           clickHandler={handleCategoriesRedirect}
-          src='stock/dance.jpg'
+          src='/stock/dance.jpg'
           title='Dance'
           subTitle='658 learners'
         />
         <CardFilledWithImage
           clickHandler={handleCategoriesRedirect}
-          src='yoga.jpg'
+          src='/yoga.jpg'
           title='Yoga'
           subTitle='461 learners'
         />
         <CardFilledWithImage
           clickHandler={handleCategoriesRedirect}
-          src='stock/photography.jpg'
+          src='/stock/photography.jpg'
           title='Photography'
           subTitle='137 learners'
         />

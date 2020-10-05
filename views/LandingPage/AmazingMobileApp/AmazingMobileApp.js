@@ -39,7 +39,7 @@ const AmazingMobileApp = () => (
       <div className='w-full -mx-5 mt-10 md:hidden'>
           <img
             className='w-10/12 m-auto rounded-lg shadow-2xl border-solid border-8 border-black'
-            src='mobile-screen.png'
+            src='/mobile-screen.png'
             alt='mobile-screen' />
         </div>
       <div className='flex flex-col md:flex-row items-center my-20'>
@@ -49,7 +49,7 @@ const AmazingMobileApp = () => (
         <div className='hidden md:w-5/12 xl:w-4/12 xl:mx-12 md:block'>
           <img
             className='rounded-lg shadow-2xl border-solid border-8 border-black'
-            src='mobile-screen.png'
+            src='/mobile-screen.png'
             alt='mobile-screen' />
         </div>
         <div className='w-full md:w-5/12 xl:w-4/12 grid grid-flow-col grid-cols-1 grid-rows-2 gap-10'>
