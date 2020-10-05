@@ -47,7 +47,7 @@ const NavItems = () => {
         isActive={router.pathname === '/payments'}
       />
       <LeftNavItem
-        clickHandler={() => router.push('/support')}
+        clickHandler={() => router.push('/coming-soon')}
         icon={`${basePath}support`}
         label='Support'
         userType={userType}
