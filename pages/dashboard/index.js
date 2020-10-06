@@ -6,7 +6,7 @@ import ExpertDashboard from "../../views/ExpertDashboard";
 import LearnerDashboard from "../../views/LearnerDashboard";
 
 const Index = () => {
-  let userType = useSelector((state) => state.userType);
+  let userType = useSelector((state) => state.app.userType);
 
   if (userType === LEARNER) {
     return (

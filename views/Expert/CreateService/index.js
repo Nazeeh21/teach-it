@@ -17,7 +17,7 @@ const SectionTitle = ({ children }) => (
 
 const Index = () => {
   const router = useRouter()
-  const userType = useSelector(state => state.userType)
+  const userType = useSelector(state => state.app.userType)
 
   const verifyUserType = useCallback(() => {
     if (userType === EXPERT) {

@@ -5,7 +5,7 @@ import { EXPERT, LEARNER } from '../../constants'
 import { useSelector } from 'react-redux'
 
 const LayoutProvider = ({ children, alternate, rightContent }) => {
-  const userType = useSelector((state) => state.userType)
+  const userType = useSelector((state) => state.app.userType)
 
   if (userType === LEARNER) {
     return (

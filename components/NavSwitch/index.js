@@ -1,16 +1,17 @@
 import React from 'react'
 import { Pill } from '../Buttons/Index'
 import { useDispatch, useSelector } from 'react-redux'
-import { CHANGE_USER_TYPE } from '../../store/actions'
+import { CHANGE_USER_TYPE } from '../../store/actionTypes'
 import { EXPERT, LEARNER } from '../../constants'
+import { changeUserType } from '../../store/actions/appActions'
 
 const Index = ({ color1, color2, label1, label2, textColor = 'white' }) => {
   const dispatch = useDispatch()
 
-  const activeId = useSelector((state) => state.userType)
+  const activeId = useSelector((state) => state.app.userType)
 
   const setActiveId = (index) => {
-    dispatch({ type: CHANGE_USER_TYPE, newType: index })
+    dispatch(changeUserType(index))
   }
 
   return (
