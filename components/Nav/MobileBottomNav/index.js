@@ -7,7 +7,7 @@ const basePath = '/nav_icons/'
 
 const NavItems = () => {
   const router = useRouter()
-  const userType = useSelector((state) => state.userType)
+  const userType = useSelector((state) => state.app.userType)
 
   return (
     <div
