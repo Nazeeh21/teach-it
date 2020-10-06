@@ -3,9 +3,14 @@ import OtpInput from './OtpInput'
 import { PrimaryButton } from '../../../components/Buttons/Index'
 import { LandingContainer } from '../../../containers'
 import { useRouter } from 'next/router'
+import { useDispatch, useSelector } from 'react-redux'
+import { resetAuth } from '../../../store/actions/authActions'
 
 const Index = ({}) => {
   const router = useRouter()
+  const dispatch = useDispatch()
+
+  const id = useSelector(state => state.auth.data.id)
 
   const [otp, setOtp] = useState([null, null, null, null])
   const [canContinue, setCanContinue] = useState(false)
@@ -29,6 +34,9 @@ const Index = ({}) => {
   }, [otp])
 
   useEffect(() => {
+    if (!id) {
+      goBack()
+    }
     verifyOtpLength()
     verifyOtpValue()
   }, [verifyOtpLength])
@@ -53,6 +61,11 @@ const Index = ({}) => {
     }
   }
 
+  const goBack = () => {
+    dispatch(resetAuth())
+    router.push('/login')
+  }
+
   return (
     <LandingContainer width='6/12'>
       <h1 className='text-5xl font-semibold text-center mb-10 mx-auto'>
@@ -60,8 +73,8 @@ const Index = ({}) => {
       </h1>
       <h3 className='w-9/12 m-auto'>
         Please enter the OTP sent to <br />{' '}
-        <span className='text-accent text-lg'>8160516219</span>
-        <span className='text-secondary text-xs'>&nbsp;&nbsp;Not you?</span>
+        <span className='text-accent text-lg'>{id}</span>
+        <span onClick={goBack} className='text-secondary text-xs'>&nbsp;&nbsp;Not you?</span>
       </h3>
       <div>
         <OtpInput
