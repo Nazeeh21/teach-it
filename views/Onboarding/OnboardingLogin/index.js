@@ -4,6 +4,8 @@ import { PrimaryButton } from '../../../components/Buttons/Index'
 import LoginSocialIcon from '../../../components/Misc/LoginSocialIcon'
 import { LandingContainer } from '../../../containers'
 import { useRouter } from 'next/router'
+import { useDispatch } from 'react-redux'
+import { auth } from '../../../store/actions/authActions'
 
 const HorizontalLine = () => (
   <div className='border-t-2 border-lightGrey w-3/12 h-0 p-0'></div>
@@ -11,6 +13,7 @@ const HorizontalLine = () => (
 
 const Index = () => {
   const router = useRouter()
+  const dispatch = useDispatch()
 
   const [email, setEmail] = useState('')
   const [isValid, setIsValid] = useState(true)
@@ -20,6 +23,7 @@ const Index = () => {
       return null
     }
 
+    dispatch(auth({ id: email }, 'email'))
     router.push('/otp')
   }
 

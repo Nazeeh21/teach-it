@@ -1,6 +1,7 @@
-import appReducer from './appReducer'
-const { combineReducers } = require('redux')
+import appReducer from "./appReducer";
+import authReducer from "./authReducer";
+const { combineReducers } = require("redux");
 
-const rootReducer = combineReducers({app: appReducer})
+const rootReducer = combineReducers({ app: appReducer, auth: authReducer });
 
-export default rootReducer
+export default rootReducer;
