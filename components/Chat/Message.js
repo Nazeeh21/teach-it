@@ -10,7 +10,7 @@ const Index = ({ type, author, content, status = 'delivered', time, width = 'w-6
         <div className='flex flex-row rounded-lg m-2 my-4'>
           <div>
             {!author.isSelf ? (
-              <Avatar isForChat src={author.profilePic} alt={author.name} />
+              <Avatar purpose='isForChat' src={author.profilePic} alt={author.name} />
             ) : null}
           </div>
           <div className={`flex flex-col ${width}`}>
@@ -28,7 +28,7 @@ const Index = ({ type, author, content, status = 'delivered', time, width = 'w-6
         <div className='flex flex-row rounded-lg m-2 my-4'>
           <div>
             {!author.isSelf ? (
-              <Avatar isForChat src={author.profilePic} alt={author.name} />
+              <Avatar purpose='isForChat' src={author.profilePic} alt={author.name} />
             ) : null}
           </div>
           <div className='flex flex-col w-6/12'>
@@ -46,13 +46,11 @@ const Index = ({ type, author, content, status = 'delivered', time, width = 'w-6
       break
       case 'service':
         message=(
-          <div className='flex flex-row rounded-lg m-2 my-4'>
-            <div>
-              {!author.isSelf ? (
-                <Avatar isForChat src={author.profilePic} alt={author.name} />
-              ) : null}
-            </div>
-            <div className='flex flex-col w-full'>
+          <div className='flex flex-row rounded-lg m-2 my-4 '>
+              {!author.isSelf && (
+                <Avatar purpose='isForChat' src={author.profilePic} alt={author.name} />
+              )}
+            <div className='flex flex-col w-full '>
               <div className='bg-highlight rounded-lg p-2'>
                 {content}
               </div>
