@@ -5,6 +5,7 @@ import { LandingContainer } from '../../../containers'
 import { useRouter } from 'next/router'
 import { useDispatch, useSelector } from 'react-redux'
 import { resetAuth, verifyOtp } from '../../../store/actions/authActions'
+import api from '../../../api'
 
 const Index = ({}) => {
   const router = useRouter()
@@ -61,6 +62,7 @@ const Index = ({}) => {
   }
 
   const handleContinue = () => {
+    // const eit = api.post('/auth/mobile/')
     if (authStatus === 'success') {
       setIsCorrect(true)
       router.push('/create-profile')

@@ -7,9 +7,12 @@ import {
 import { LandingContainer } from "../../../containers";
 import { useRouter } from "next/router";
 import Form from "./Form";
+import { useDispatch } from "react-redux";
+import {continueHandler} from '../../../store/actions/profileActions'
 
 const Index = () => {
   const router = useRouter();
+  const dispatch = useDispatch()
   const [arr, setArr] = useState([0]);
   const [formData, setFormData] = useState([
     {
@@ -24,7 +27,8 @@ const Index = () => {
     //   return null
     // }
 
-    return router.push("/onboarding");
+    dispatch(continueHandler(formData))
+    // return router.push("/onboarding");
   };
 
   const addProfile = () => {
