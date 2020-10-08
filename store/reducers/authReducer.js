@@ -1,3 +1,4 @@
+import api from '../../api'
 const { VERIFY_OTP, AUTH_START, AUTH_RESET, SAVE_OTP } = require('../actionTypes')
 
 const initialState = {
@@ -30,21 +31,12 @@ const saveOtp = (state, otp) => {
   }
 }
 
-const verifyOtp = (state, input) => {
+const verifyOtp = (state, status) => {
   console.log('verifyOtp in authReducer')
 
-  if (input === state.otp) {
-    console.log('True')
-    return {
-      ...state,
-      status: 'success'
-    }
-  } else {
-    console.log('False')
-    return {
-      ...state,
-      status: 'failure'
-    }
+  return {
+    ...state,
+    status
   }
 }
 
@@ -55,7 +47,7 @@ const reducer = ( state = initialState, action ) => {
     case AUTH_RESET:
       return reset()
     case VERIFY_OTP:
-      return verifyOtp(state, action.input)
+      return verifyOtp(state, action.status)
     case SAVE_OTP:
       return saveOtp(state, action.otp)
     default:
