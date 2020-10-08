@@ -19,7 +19,7 @@ export const PrimaryButton = ({
             ? disabledClass
             : `bg-primary text-white text-${textSize} rounded-md w-full p-3`
         }
-        onClick={(e) => clickHandler(e.target.value)}
+        onClick={clickHandler}
         disabled={disabled}
       >
         {label}
