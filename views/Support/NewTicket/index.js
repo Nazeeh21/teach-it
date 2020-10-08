@@ -55,8 +55,9 @@ const NewTicket = () => (
                 imgsrc='/stock/music.jpg'
               />} /></div>
         <div className='justify-self-end '><Message width='w-full' type='text' time='4:35pm, 21 June' author={{isSelf: true, profilePic: '/stock/girl2.jpg', name: 'John'}} content='This service is not letting me enter' /></div>
-        <div
-          className='bg-accentedWhite rounded-bl-md rounded-br-md flex justify-center'
+      </div>
+      <div
+          className='mt-5 bg-accentedWhite rounded-bl-md rounded-br-md flex justify-center'
           id='typebox'
         >
           <button
@@ -79,7 +80,6 @@ const NewTicket = () => (
             />
           
         </div>
-      </div>
     </div>
   </div>
 )
