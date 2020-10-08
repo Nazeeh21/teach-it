@@ -1,4 +1,3 @@
-import api from '../../api'
 const { VERIFY_OTP, AUTH_START, AUTH_RESET, SAVE_OTP } = require('../actionTypes')
 
 const initialState = {
@@ -32,7 +31,7 @@ const saveOtp = (state, otp) => {
 }
 
 const verifyOtp = (state, status) => {
-  console.log('verifyOtp in authReducer')
+  console.log('verifyOtp in authReducer', status)
 
   return {
     ...state,

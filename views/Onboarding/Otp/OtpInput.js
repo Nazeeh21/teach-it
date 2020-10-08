@@ -4,7 +4,7 @@ import React from 'react'
 const OtpInput = ({ index, value, changeHandler, isIncorrect, showStatus, handleSubmit }) => {
   // const router = useRouter()
 
-  const baseStyles = 'bg-highlight rounded-full w-2/12 pl-3 pr-3 p-3 text-center text-xl m-2 mt-6'
+  const baseStyles = 'bg-highlight rounded-full w-1/12 pl-3 pr-3 p-3 text-center text-xl m-2 mt-6'
 
   return (
     <input
