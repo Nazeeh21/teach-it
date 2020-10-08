@@ -1,10 +1,11 @@
-const { AUTH_START, AUTH_SUCCESS, AUTH_FAILURE, AUTH_RESET } = require('../actionTypes')
+const { VERIFY_OTP, AUTH_START, AUTH_RESET, SAVE_OTP } = require('../actionTypes')
 
 const initialState = {
   authMedium: '',
   // ongoing, failure, success
   status: '',
-  data: {}
+  data: {},
+  otp: ''
 }
 
 const startAuth = (state, medium, data) => {
@@ -20,18 +21,43 @@ const startAuth = (state, medium, data) => {
 
 const reset = () => {
   return {...initialState}
-} 
+}
+
+const saveOtp = (state, otp) => {
+  return {
+    ...state,
+    otp
+  }
+}
+
+const verifyOtp = (state, input) => {
+  console.log('verifyOtp in authReducer')
+
+  if (input === state.otp) {
+    console.log('True')
+    return {
+      ...state,
+      status: 'success'
+    }
+  } else {
+    console.log('False')
+    return {
+      ...state,
+      status: 'failure'
+    }
+  }
+}
 
 const reducer = ( state = initialState, action ) => {
   switch (action.type) {
     case AUTH_START:
       return startAuth(state, action.medium, action.data)
-    case AUTH_SUCCESS:
-      return setStatus(state, 'success')
-    case AUTH_FAILURE:
-      return setStatus(state, 'failure')
     case AUTH_RESET:
       return reset()
+    case VERIFY_OTP:
+      return verifyOtp(state, action.input)
+    case SAVE_OTP:
+      return saveOtp(state, action.otp)
     default:
      return state
   }
