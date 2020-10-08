@@ -9,7 +9,7 @@ export const continueHandler = (formData) => {
       try {
         const res = await api.put(
           '/user/',
-          { ...formData[0], primary_type: 'seeker' },
+          { ...data, primary_type: 'seeker' },
           {
             headers: {
               Authorization: `Token ${localStorage.getItem('token')}`,
