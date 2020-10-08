@@ -1,4 +1,3 @@
-import api from '../../api'
 const { VERIFY_OTP, AUTH_START, AUTH_RESET, SAVE_OTP } = require('../actionTypes')
 
 const initialState = {
