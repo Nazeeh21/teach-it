@@ -1,7 +1,7 @@
 import React from 'react'
 import NavItem from './NavItem'
 import { useRouter } from 'next/router'
-
+ 
 const Index = ({ navItems, destructiveAction = 'Unsubscribe' }) => {
   const router = useRouter()
   
