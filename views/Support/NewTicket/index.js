@@ -35,10 +35,25 @@ const NewTicket = () => (
         </div>
     </div>
     <div className='bg-white rounded-lg p-8'>
-      <div className='bg-lightGrey'>
-        <div className='grid grid-cols-2 grid-rows-1 p-4 items-center mb-8'>
+      <div className='bg-lightGrey p-4 mb-8'>
+        <div className='grid grid-cols-2 grid-rows-1 items-center mb-4'>
           <p className='font-medium text-md'>[No Subject yet]</p>
           <div className='justify-self-end'><Option /></div>
+        </div>
+        <div className='mb-2  grid grid-cols-3 grid-rows-1 text-darkGrey items-center'>
+          <div className='flex items-center'>
+            <div><img src='/nav_icons/payments_grey.svg' alt='payment' /></div>
+            <div className='ml-2'>Payments</div>
+          </div>
+          <div className='flex items-center'>
+            <div><img src='/calender.svg' alt='calender' /></div>
+            <div className='ml-2'>3 days</div>
+          </div>
+          
+          <div className='flex items-center justify-end'>
+            <div><img src='/nav_icons/support_grey.svg' alt='support' /></div>
+            <div className='ml-2'>37FJ3324</div>
+          </div>
         </div>
       </div>
       <div style={{ maxHeight: '70vh'}} className='grid grid-flow-row overflow-y-scroll'>
