@@ -24,10 +24,25 @@ export const startAuth = (data, medium) => {
   }
 }
 
-export const verifyOtp = (input) => {
-  return {
-    type: VERIFY_OTP,
-    input
+export const verifyOtp = (input, medium) => {
+  return async () => {
+    const res = await api.post(`auth/${medium}/verify/`, {
+      otp: input
+    })
+  
+    if (res.status !== 200) {
+      return {
+        type: VERIFY_OTP,
+        status: 'failure'
+      }
+    } else {
+      localStorage.setItem('token', res.data.token)
+  
+      return {
+        type: VERIFY_OTP,
+        status: 'success'
+      }
+    }
   }
 }
 

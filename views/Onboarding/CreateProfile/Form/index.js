@@ -2,10 +2,7 @@ import React, { useState } from "react"
 import TextInput from "../../../../components/Inputs/TextInput"
 import IconPicker from './IconPicker'
 
-const Form = () => {
-  const [name, setName] = useState("")
-  const [email, setEmail] = useState("")
-  const [age, setAge] = useState()
+const Form = ({ name, setName, email, setEmail, age, setAge, index }) => {
   const [isNameValid, setIsNameValid] = useState(true)
   const [isEmailValid, setIsEmailValid] = useState(true)
   const [isAgeValid, setIsAgeValid] = useState(true)

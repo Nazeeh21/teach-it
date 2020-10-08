@@ -12,6 +12,7 @@ const Index = ({}) => {
 
   const id = useSelector(state => state.auth.data.id)
   const authStatus = useSelector(state => state.auth.status)
+  const medium = useSelector(state => state.auth.authMedium)
 
   const [otp, setOtp] = useState([null, null, null, null, null, null])
   const [canContinue, setCanContinue] = useState(false)
@@ -20,9 +21,12 @@ const Index = ({}) => {
 
   const verifyOtpValue = useCallback(() => {
     const extractedOtp = `${otp[0]}${otp[1]}${otp[2]}${otp[3]}${otp[4]}${otp[5]}`
-    
-    dispatch(verifyOtp(extractedOtp))
 
+    if (extractedOtp.length === 6) {
+      console.log('Calling verifyOtp action')
+      dispatch(verifyOtp(extractedOtp, medium))
+    }
+    
     console.log('Status', authStatus)
   }, [otp])
 
