@@ -62,17 +62,17 @@ const Index = ({}) => {
   }
 
   const handleContinue = () => {
-    const eit = api.post('/auth/mobile/')
-    // if (authStatus === 'success') {
-    //   setIsCorrect(true)
-    //   router.push('/create-profile')
-    // }
+    // const eit = api.post('/auth/mobile/')
+    if (authStatus === 'success') {
+      setIsCorrect(true)
+      router.push('/create-profile')
+    }
 
-    // if (authStatus === 'failure') {
-    //   setIsCorrect(false)
-    // }
+    if (authStatus === 'failure') {
+      setIsCorrect(false)
+    }
 
-    // setShowStatus(true)
+    setShowStatus(true)
   }
 
   const goBack = () => {
