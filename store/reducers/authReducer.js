@@ -31,7 +31,7 @@ const saveOtp = (state, otp) => {
 }
 
 const verifyOtp = (state, status) => {
-  console.log('verifyOtp in authReducer')
+  console.log('verifyOtp in authReducer', status)
 
   return {
     ...state,
