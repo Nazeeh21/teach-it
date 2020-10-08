@@ -4,23 +4,26 @@ import { PrimaryButton } from '../../../components/Buttons/Index'
 import { LandingContainer } from '../../../containers'
 import { useRouter } from 'next/router'
 import { useDispatch, useSelector } from 'react-redux'
-import { resetAuth } from '../../../store/actions/authActions'
+import { resetAuth, verifyOtp } from '../../../store/actions/authActions'
 
 const Index = ({}) => {
   const router = useRouter()
   const dispatch = useDispatch()
 
   const id = useSelector(state => state.auth.data.id)
+  const authStatus = useSelector(state => state.auth.status)
 
-  const [otp, setOtp] = useState([null, null, null, null])
+  const [otp, setOtp] = useState([null, null, null, null, null, null])
   const [canContinue, setCanContinue] = useState(false)
   const [isCorrect, setIsCorrect] = useState(true)
   const [showStatus, setShowStatus] = useState(false)
 
   const verifyOtpValue = useCallback(() => {
-    const extractedOtp = `${otp[0]}${otp[1]}${otp[2]}${otp[3]}`
+    const extractedOtp = `${otp[0]}${otp[1]}${otp[2]}${otp[3]}${otp[4]}${otp[5]}`
+    
+    dispatch(verifyOtp(extractedOtp))
 
-    extractedOtp === '1234' ? setIsCorrect(true) : setIsCorrect(false)
+    console.log('Status', authStatus)
   }, [otp])
 
   const verifyOtpLength = useCallback(() => {
@@ -46,7 +49,7 @@ const Index = ({}) => {
     newOtp[index] = val
     setOtp(newOtp)
 
-    if (val && index >= 0 && index <= 2) {
+    if (val && index >= 0 && index <= 4) {
       document.getElementById(`otp-${index+1}`).focus()
     }
 
@@ -54,11 +57,16 @@ const Index = ({}) => {
   }
 
   const handleContinue = () => {
-    setShowStatus(true)
-    
-    if (isCorrect) {
+    if (authStatus === 'success') {
+      setIsCorrect(true)
       router.push('/create-profile')
     }
+
+    if (authStatus === 'failure') {
+      setIsCorrect(false)
+    }
+
+    setShowStatus(true)
   }
 
   const goBack = () => {
@@ -105,6 +113,22 @@ const Index = ({}) => {
           index={3}
           value={otp[3]}
           changeHandler={(val) => otpChangeHandler(3, val)}
+          isIncorrect={!isCorrect}
+          showStatus={showStatus}
+          handleSubmit={handleContinue}
+        />
+        <OtpInput
+          index={4}
+          value={otp[4]}
+          changeHandler={(val) => otpChangeHandler(4, val)}
+          isIncorrect={!isCorrect}
+          showStatus={showStatus}
+          handleSubmit={handleContinue}
+        />
+        <OtpInput
+          index={5}
+          value={otp[5]}
+          changeHandler={(val) => otpChangeHandler(5, val)}
           isIncorrect={!isCorrect}
           showStatus={showStatus}
           handleSubmit={handleContinue}

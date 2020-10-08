@@ -1,9 +1,14 @@
 import React from 'react'
 
-const PhoneInput = () => {
+const PhoneInput = ({ output,  }) => {
   return (
-    <div>
-      
+    <div className='flex rounded-full w-full'>
+      <div className=''>
+        +91
+      </div>
+      <div className=''>
+        <input src />
+      </div>
     </div>
   )
 };
