@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import UploadButton from '../../../components/Upload/UploadButton'
 import ServiceTypeCard from './ServiceTypeCard'
+import { updateDescription, updateTitle } from '../../../store/actions/createServiceAction'
+import { useSelector, useDispatch } from 'react-redux'
 
 const CrossButton = (
   <div
@@ -27,6 +29,11 @@ const UploadImageAndVideo = (
 
 const UpperForm = ({ type }) => {
   const [liveServiceType, setServiceType] = useState(null)
+  const dispatch = useDispatch()
+  const title = useSelector(state => state.createService.title)
+  const description = useSelector(state => state.createService.description)
+  // const [title, setTile] = useState('')
+  // const [description, setDescription] = useState('')
 
   return (
     <div className='w-full font-medium'>
@@ -53,11 +60,11 @@ const UpperForm = ({ type }) => {
       )}
       <div className='my-10'>
         <p className='text-lg my-2'>Title</p>
-        <input className='rounded w-full p-2 text-sm bg-lightGrey' />
+        <input value={title} className='rounded w-full p-2 text-sm bg-lightGrey' onChange={e => dispatch(updateTitle(e.target.value))} />
       </div>
       <div className='my-10'>
         <p className='text-lg my-2'>Description</p>
-        <textarea className='rounded w-full p-2 text-sm bg-lightGrey h-32' />
+        <textarea value={description} className='rounded w-full p-2 text-sm bg-lightGrey h-32' onChange={e => dispatch(updateDescription(e.target.value))} />
         {/* <p className='rounded w-full p-2 text-sm bg-lightGrey'>{loremIpsum}</p> */}
       </div>
       <div className='my-10'>

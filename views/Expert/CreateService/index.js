@@ -10,6 +10,7 @@ import ShowFullName from './LiveServiceFormComponents/Recording&LearnerName/Show
 import { useSelector } from 'react-redux'
 import { useRouter } from 'next/router'
 import { EXPERT } from '../../../constants'
+import { PrimaryButton } from '../../../components/Buttons/Index'
 
 const SectionTitle = ({ children }) => (
   <h3 className='text-lg text-primary mb-2'>{children}</h3>
@@ -34,6 +35,7 @@ const Index = () => {
   }, [verifyUserType])
 
   const [serviceType, setServiceType] = useState(null)
+  
 
   return (
     <div className='w-full'>
@@ -85,6 +87,7 @@ const Index = () => {
           <AllowRecording />
           <ShowFullName />
         </div>
+        <div className='w-4/12 mt-10'><PrimaryButton label='Continue' /></div>
       </div>
     </div>
   )
