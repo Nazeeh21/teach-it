@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useRouter } from 'next/router'
 import { EXPERT } from '../../../constants'
 import { PrimaryButton } from '../../../components/Buttons/Index'
-// import { setMediaType } from '../../../store/actions/createServiceAction'
+import { createService } from '../../../store/actions/createServiceAction'
 
 const SectionTitle = ({ children }) => (
   <h3 className='text-lg text-primary mb-2'>{children}</h3>
@@ -31,7 +31,7 @@ const Index = () => {
 
   const router = useRouter()
   const userType = useSelector((state) => state.app.userType)
-  // const dispatch = useDispatch()
+  const dispatch = useDispatch()
 
   const verifyUserType = useCallback(() => {
     if (userType === EXPERT) {
@@ -48,6 +48,34 @@ const Index = () => {
   }, [verifyUserType])
 
   const [serviceType, setServiceType] = useState(null)
+
+  const continueClickedHandler = () => {
+    const formData = {
+      title: title,
+      description: description,
+      category: null,
+      languages: 'english',
+      type: type,
+      is_group: false,
+      is_private: false,
+      live_type: liveType,
+      cost: fees,
+      session_type: 'weekly',
+      payment_type: 'weekly',
+      allow_questions: false,
+      question_fee: '5656',
+      allow_subscribe: false,
+      allow_recording: false,
+      allow_visible_user_names: false,
+      // start_at: `10/16/2020 ${startTimeHour} ' : ' ${startTimeMin} ' ' ${startTimeStamp}`,
+      // end_at: `12/16/2020 ${startTimeHour} ' : ' ${startTimeMin} ' ' ${startTimeStamp}`,
+      start_at: '2020-10-16T02:08:00Z',
+      end_at: '2020-10-24T02:08:00Z',
+      age_group: '10-18'
+    }
+
+    dispatch(createService(formData))
+  }
 
   return (
     <div className='w-full'>
@@ -125,7 +153,7 @@ const Index = () => {
           <ShowFullName />
         </div>
         <div className='w-4/12 mt-10'>
-          <PrimaryButton label='Continue' />
+          <PrimaryButton label='Continue' clickHandler={continueClickedHandler} />
         </div>
       </div>
     </div>

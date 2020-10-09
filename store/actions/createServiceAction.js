@@ -1,4 +1,16 @@
-import { SET_AUDIO_ONLY, SET_VIDEO_AND_AUDIO, UPDATE_TITLE, UPDATE_DESCRIPTION, SET_SERVICE_FREQUENCY, SET_WEEK_DAYS, START_HOUR, START_MIN, SET_DURATION, SET_FEES, SET_MEDIA_TYPE, SET_START_TIME_STAMP } from "../actionTypes"
+import api from "../../api"
+import { CREATE_SERVICE, SET_AUDIO_ONLY, SET_VIDEO_AND_AUDIO, UPDATE_TITLE, UPDATE_DESCRIPTION, SET_SERVICE_FREQUENCY, SET_WEEK_DAYS, START_HOUR, START_MIN, SET_DURATION, SET_FEES, SET_MEDIA_TYPE, SET_START_TIME_STAMP } from "../actionTypes"
+
+export const createService = (createServiceData) => {
+  return async dispatch => {
+    const res = await api.post('service/', createServiceData,
+    {
+      headers: {
+        Authorization: `Token ${localStorage.getItem('token')}`,
+      }})
+    console.log(res)
+  }
+}
 
 export const updateTitle = title => {
   return {
