@@ -7,18 +7,31 @@ import AudienceSelector from './AudienceSelector'
 import UpperForm from './UpperForm'
 import AllowRecording from './LiveServiceFormComponents/Recording&LearnerName/AllowRecording'
 import ShowFullName from './LiveServiceFormComponents/Recording&LearnerName/ShowFullName'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useRouter } from 'next/router'
 import { EXPERT } from '../../../constants'
 import { PrimaryButton } from '../../../components/Buttons/Index'
+// import { setMediaType } from '../../../store/actions/createServiceAction'
 
 const SectionTitle = ({ children }) => (
   <h3 className='text-lg text-primary mb-2'>{children}</h3>
 )
 
 const Index = () => {
+  const [type, setType] = useState(null)
+  const [liveType, setLiveType] = useState(null)
+  const [title, setTitle] = useState('')
+  const [description, setDescription] = useState('')
+  const [weekDays, setWeekDays] = useState('null')
+  const [startTimeHour, setStartTimeHour] = useState('')
+  const [startTimeMin, setStartTimeMin] = useState('')
+  const [startTimeStamp, setStartTimeStamp] = useState(null)
+  const [duration, setDuration] = useState('')
+  const [fees, setFees] = useState('')
+
   const router = useRouter()
-  const userType = useSelector(state => state.app.userType)
+  const userType = useSelector((state) => state.app.userType)
+  // const dispatch = useDispatch()
 
   const verifyUserType = useCallback(() => {
     if (userType === EXPERT) {
@@ -35,7 +48,6 @@ const Index = () => {
   }, [verifyUserType])
 
   const [serviceType, setServiceType] = useState(null)
-  
 
   return (
     <div className='w-full'>
@@ -49,23 +61,48 @@ const Index = () => {
             <ServiceTypeCard
               label='Live'
               active={serviceType === 0}
-              clickHandler={() => setServiceType(0)}
+              clickHandler={() => {
+                setType('live')
+                // dispatch(setMediaType('live'))
+                setServiceType(0)
+              }}
             />
             <ServiceTypeCard
               label='Rich media'
               active={serviceType === 1}
-              clickHandler={() => setServiceType(1)}
+              clickHandler={() => {
+                setType('rich')
+                // dispatch(setMediaType('rich'))
+                setServiceType(1)
+              }}
             />
           </div>
-          <UpperForm type={serviceType === 0 ? 'live' : 'media'} />
+          <UpperForm
+            title={title}
+            titleChangedHandler={(value) => setTitle(value)}
+            typeChangedHandler={(type) => setLiveType(type)}
+            description={description}
+            descriptionChangedHandler={(value) => setDescription(value)}
+            type={serviceType === 0 ? 'live' : 'media'}
+          />
         </Accordion>
 
         <Accordion id='schedule' label='Service schedule'>
-          <ScheduleSelector type={serviceType} />
+          <ScheduleSelector
+            hour={startTimeHour}
+            min={startTimeMin}
+            hourChangedHandler={(value) => setStartTimeHour(value)}
+            minChangedHandler={(value) => setStartTimeMin(value)}
+            timeStampChangedHandler={(value) => setStartTimeStamp(value)}
+            weekDaysChangedHandler={(value) => setWeekDays(value)}
+            duration={duration}
+            durationChangedHandler={value => setDuration(value)}
+            type={serviceType}
+          />
         </Accordion>
 
         {/* <Accordion label='AUDIENCE'> */}
-          {/* <div className='flex mt-6'>
+        {/* <div className='flex mt-6'>
             <div className='w-6/12'>
               <AllowRecording />
             </div>
@@ -76,7 +113,7 @@ const Index = () => {
         {/* </Accordion> */}
 
         <Accordion id='fees' label='Fees'>
-          <FeesSelector />
+          <FeesSelector fees={fees} feesChangedHandler={value => setFees(value)} />
         </Accordion>
 
         <Accordion id='audience' label='Audience'>
@@ -87,10 +124,12 @@ const Index = () => {
           <AllowRecording />
           <ShowFullName />
         </div>
-        <div className='w-4/12 mt-10'><PrimaryButton label='Continue' /></div>
+        <div className='w-4/12 mt-10'>
+          <PrimaryButton label='Continue' />
+        </div>
       </div>
     </div>
   )
-};
+}
 
-export default Index;
+export default Index

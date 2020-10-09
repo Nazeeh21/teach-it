@@ -17,7 +17,7 @@ export const Pill = ({
           ? inactiveClass
           : `text-xs flex-1 bg-${color} text-${textColor} rounded-full  m-1  p-2`
       }
-      onClick={(e) => clickHandler(e.target.value)}
+      onClick={() => clickHandler()}
     >
       {label}
     </button>

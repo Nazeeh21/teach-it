@@ -3,7 +3,7 @@ import Pills from '../../../../../components/Misc/3Pills/3Pills'
 
 const ServiceFreeqSel = () => <React.Fragment>
   <div className='w-full'>
-    <p className='my-2 text-lg font-medium'>Service freequency</p>
+    <p className='my-2 text-lg font-medium'>Service frequency</p>
     
     <Pills
       width='6/12'

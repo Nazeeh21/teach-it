@@ -1,7 +1,12 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import UploadButton from '../../../components/Upload/UploadButton'
 import ServiceTypeCard from './ServiceTypeCard'
-import { updateDescription, updateTitle } from '../../../store/actions/createServiceAction'
+// import {
+//   setAudioOnly,
+//   setVideoAndAudio,
+//   updateDescription,
+//   updateTitle,
+// } from '../../../store/actions/createServiceAction'
 import { useSelector, useDispatch } from 'react-redux'
 
 const CrossButton = (
@@ -27,13 +32,16 @@ const UploadImageAndVideo = (
   </div>
 )
 
-const UpperForm = ({ type }) => {
+const UpperForm = ({ type, typeChangedHandler, title, description, titleChangedHandler, descriptionChangedHandler }) => {
   const [liveServiceType, setServiceType] = useState(null)
-  const dispatch = useDispatch()
-  const title = useSelector(state => state.createService.title)
-  const description = useSelector(state => state.createService.description)
+  // const dispatch = useDispatch()
+  // const title = useSelector((state) => state.createService.title)
+  // const description = useSelector((state) => state.createService.description)
   // const [title, setTile] = useState('')
   // const [description, setDescription] = useState('')
+  // useEffect(() =>{
+
+  // }, [liveServiceType])
 
   return (
     <div className='w-full font-medium'>
@@ -45,14 +53,22 @@ const UpperForm = ({ type }) => {
               label='Video and audio'
               desc='learners can see and hear you'
               active={liveServiceType === 0}
-              clickHandler={() => setServiceType(0)}
+              clickHandler={() => {
+                typeChangedHandler('video')
+                // dispatch(setVideoAndAudio())
+                setServiceType(0)
+              }}
               noIcon
             />
             <ServiceTypeCard
               label='Audio only'
               desc='learners can only hear your voice'
               active={liveServiceType === 1}
-              clickHandler={() => setServiceType(1)}
+              clickHandler={() => {
+                typeChangedHandler('audio')
+                // dispatch(setAudioOnly())
+                setServiceType(1)
+              }}
               noIcon
             />
           </div>
@@ -60,11 +76,25 @@ const UpperForm = ({ type }) => {
       )}
       <div className='my-10'>
         <p className='text-lg my-2'>Title</p>
-        <input value={title} className='rounded w-full p-2 text-sm bg-lightGrey' onChange={e => dispatch(updateTitle(e.target.value))} />
+        <input
+          value={title}
+          className='rounded w-full p-2 text-sm bg-lightGrey'
+          onChange={(e) => {
+            titleChangedHandler(e.target.value)
+            // dispatch(updateTitle(e.target.value))
+          }}
+        />
       </div>
       <div className='my-10'>
         <p className='text-lg my-2'>Description</p>
-        <textarea value={description} className='rounded w-full p-2 text-sm bg-lightGrey h-32' onChange={e => dispatch(updateDescription(e.target.value))} />
+        <textarea
+          value={description}
+          className='rounded w-full p-2 text-sm bg-lightGrey h-32'
+          onChange={(e) => {
+            descriptionChangedHandler(e.target.value)
+            // dispatch(updateDescription(e.target.value))
+          }}
+        />
         {/* <p className='rounded w-full p-2 text-sm bg-lightGrey'>{loremIpsum}</p> */}
       </div>
       <div className='my-10'>
@@ -84,6 +114,6 @@ const UpperForm = ({ type }) => {
       </div>
     </div>
   )
-};
+}
 
-export default UpperForm;
+export default UpperForm

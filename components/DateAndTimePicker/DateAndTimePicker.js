@@ -16,7 +16,7 @@ const timeStamp = ['AM', 'PM']
 const DateAndTimePicker = () => (
   <div>
     <div className='m-4'>
-      <p className='m-2 p-0.5 text-lg'>Service Freequency</p>
+      <p className='m-2 p-0.5 text-lg'>Service Frequency</p>
       <Pills
         color='white'
         label1='Per day'

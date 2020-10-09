@@ -1,6 +1,11 @@
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+// import { setFees } from '../../../store/actions/createServiceAction'
 
-const FeesSelector = () => {
+const FeesSelector = ({ fees, feesChangedHandler }) => {
+  // const dispatch = useDispatch()
+  // const fees = useSelector(state => state.createService.fees)
+
   return (
     <div className='w-full'>
       <p className='mt-2 text-lg'>How much will you charge for this service?</p>
@@ -10,7 +15,15 @@ const FeesSelector = () => {
       </p>
       <div className='grid grid-rows-1 grid-cols-2 text-sm font-medium my-5'>
         <div className='flex w-6/12'>
-        <input className='rounded bg-lightGrey w-6/12 p-2' />
+          <input
+            value={fees}
+            type='number'
+            className='rounded bg-lightGrey w-6/12 p-2'
+            onChange={(e) => {
+              feesChangedHandler(e.target.value)
+              // dispatch(setFees(e.target.value))
+            }}
+          />
           {/* <p className='rounded bg-lightGrey w-6/12 p-2'>₹6000</p> */}
           <p className='w-8/12 p-2'>per week</p>
         </div>
@@ -26,6 +39,6 @@ const FeesSelector = () => {
       </div>
     </div>
   )
-};
+}
 
-export default FeesSelector;
+export default FeesSelector
