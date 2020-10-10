@@ -7,7 +7,7 @@ import DateSelector from './LiveServiceFormComponents/DateSelector/DateSelector'
 import TimeSelector from './LiveServiceFormComponents/TimeSelector/TimeSelector'
 import DurationSelector from './LiveServiceFormComponents/DurationSelector/DurationSelector'
 import CustomizeAndMilestoneContainer from './LiveServiceFormComponents/CustomizeAndMilestoneContainer'
-import { useDispatch, useSelector } from 'react-redux'
+// import { useDispatch, useSelector } from 'react-redux'
 // import {
 //   setDuration,
 //   setStartHour,
@@ -26,7 +26,11 @@ const ScheduleSelector = ({
   minChangedHandler,
   timeStampChangedHandler,
   duration,
-  durationChangedHandler
+  durationChangedHandler,
+  startDate,
+  startDateChangeHandler,
+  endDate,
+  endDateChangeHandler,
 }) => {
   // const dispatch = useDispatch()
   // const hour = useSelector(state => state.createService.startHour)
@@ -105,14 +109,14 @@ const ScheduleSelector = ({
           <div className='w-6/12'>
             <div className='text-lg mb-2'>Start date</div>
             <div className='-ml-2'>
-              <DatePicker />
+              <DatePicker value={startDate} changeHandler={value => startDateChangeHandler(value)} />
             </div>
           </div>
 
           <div className='w-6/12 mx-3'>
             <div className='text-lg mb-2'>End date</div>
             <div className='-ml-2'>
-              <DatePicker />
+              <DatePicker value={endDate} changeHandler={value =>  endDateChangeHandler(value)} />
             </div>
           </div>
         </div>

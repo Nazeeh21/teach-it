@@ -29,6 +29,8 @@ const Index = () => {
   const [duration, setDuration] = useState('')
   const [fees, setFees] = useState('')
   const [activeAgeGroup, setActiveAgeGroup] = useState(null)
+  const [startDate, setStartDate] = useState(null)
+  const [endDate, setEndDate] = useState(null)
 
   const router = useRouter()
   const userType = useSelector((state) => state.app.userType)
@@ -120,6 +122,10 @@ const Index = () => {
 
         <Accordion id='schedule' label='Service schedule'>
           <ScheduleSelector
+            startDate={startDate}
+            startDateChangeHandler={(value) => setStartDate(value)}
+            endDate={endDate}
+            endDateChangeHandler={(value) => setEndDate(value)}
             hour={startTimeHour}
             min={startTimeMin}
             hourChangedHandler={(value) => setStartTimeHour(value)}
