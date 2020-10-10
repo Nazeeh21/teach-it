@@ -43,7 +43,7 @@ const CompactServiceCard = ({
           </div>
           <p className='text-darkGrey text-xs font-medium w-1/2'>
             English, Marathi & Gujarati
-            <p>17 weeks</p>
+            17 weeks
           </p>
         </div>
         <div className='flex flex-row items-center'>
