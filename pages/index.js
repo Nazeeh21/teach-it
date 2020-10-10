@@ -1,8 +1,18 @@
+import React, { useEffect } from 'react'
 import Head from 'next/head'
-import styles from '../styles/Home.module.css'
 import LandingPage from '../views/LandingPage/LandingPage'
+import { useRouter } from 'next/router'
 
 export default function Home() {
+  const router = useRouter()
+
+  useEffect(() => {
+    const token = window.localStorage.getItem('token')
+    if (token) {
+      router.push('/dashboard')
+    }
+  }, [])
+
   return (
     <div>
       <Head>

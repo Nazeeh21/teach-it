@@ -1,12 +1,12 @@
-import { LEARNER } from '../../constants'
+import { EXPERT } from '../../constants'
 
 const { CHANGE_USER_TYPE } = require('../actionTypes')
 
 const initialState = {
-  userType: LEARNER
+  userType: EXPERT
 }
 
-const reducer = ( state = initialState, action ) => {
+const reducer = (state = initialState, action) => {
   switch (action.type) {
     case CHANGE_USER_TYPE:
       return {
@@ -14,7 +14,7 @@ const reducer = ( state = initialState, action ) => {
         userType: action.newType
       }
     default:
-     return state
+      return state
   }
 }
 
