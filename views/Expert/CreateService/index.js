@@ -28,6 +28,7 @@ const Index = () => {
   const [startTimeStamp, setStartTimeStamp] = useState(null)
   const [duration, setDuration] = useState('')
   const [fees, setFees] = useState('')
+  const [activeAgeGroup, setActiveAgeGroup] = useState(null)
 
   const router = useRouter()
   const userType = useSelector((state) => state.app.userType)
@@ -48,6 +49,8 @@ const Index = () => {
   }, [verifyUserType])
 
   const [serviceType, setServiceType] = useState(null)
+
+  const activeGroupChangeHandler = (ageGroup) => setActiveAgeGroup(ageGroup)
 
   const continueClickedHandler = () => {
     const formData = {
@@ -71,7 +74,7 @@ const Index = () => {
       // end_at: `12/16/2020 ${startTimeHour} ' : ' ${startTimeMin} ' ' ${startTimeStamp}`,
       start_at: '2020-10-16T02:08:00Z',
       end_at: '2020-10-24T02:08:00Z',
-      age_group: '10-18'
+      age_group: {activeAgeGroup}
     }
 
     dispatch(createService(formData))
@@ -145,7 +148,7 @@ const Index = () => {
         </Accordion>
 
         <Accordion id='audience' label='Audience'>
-          <AudienceSelector />
+          <AudienceSelector activeAgeGroup={activeAgeGroup} ageGroupChangeHandler={activeGroupChangeHandler} />
         </Accordion>
 
         <div className='flex gap-4'>

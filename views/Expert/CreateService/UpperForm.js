@@ -42,7 +42,7 @@ const UpperForm = ({ type, typeChangedHandler, title, description, titleChangedH
   // useEffect(() =>{
 
   // }, [liveServiceType])
-
+ 
   return (
     <div className='w-full font-medium'>
       {type === 'live' && (
