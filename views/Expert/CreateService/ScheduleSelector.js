@@ -108,14 +108,14 @@ const ScheduleSelector = ({
         <div className='my-4 flex'>
           <div className='w-6/12'>
             <div className='text-lg mb-2'>Start date</div>
-            <div className='-ml-2'>
+            <div>
               <DatePicker value={startDate} changeHandler={value => startDateChangeHandler(value)} />
             </div>
           </div>
 
           <div className='w-6/12 mx-3'>
             <div className='text-lg mb-2'>End date</div>
-            <div className='-ml-2'>
+            <div>
               <DatePicker value={endDate} changeHandler={value =>  endDateChangeHandler(value)} />
             </div>
           </div>
