@@ -1,18 +1,26 @@
-import React, { useState } from "react";
-import CompactServiceCard from "../../components/Cards/CompactServiceCard/CompactServiceCard";
-import SearchBar from "../../components/Inputs/SearchBar";
-import { CardFilledWithImage } from "../../components/Cards/Cards";
-import { ViewMoreButton } from "../../components/Buttons/Index";
-import { useRouter } from "next/router";
+import React, { useState, useEffect } from "react"
+import CompactServiceCard from "../../components/Cards/CompactServiceCard/CompactServiceCard"
+import SearchBar from "../../components/Inputs/SearchBar"
+import { CardFilledWithImage } from "../../components/Cards/Cards"
+import { ViewMoreButton } from "../../components/Buttons/Index"
+import { useRouter } from "next/router"
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchServices } from '../../store/actions/appActions'
 
 const Index = () => {
-  const router = useRouter();
+  const router = useRouter()
+  const dispatch = useDispatch()
+  const [query, setQuery] = useState('')
 
-  const [query, setQuery] = useState("");
+  const services = useSelector(state => state.app.services)
 
   const handleCategoriesRedirect = () => {
-    router.push("/search");
-  };
+    router.push("/search")
+  }
+
+  useEffect(() => {
+    dispatch(fetchServices())
+  }, [])
 
   return (
     <React.Fragment>
@@ -22,8 +30,21 @@ const Index = () => {
           <SearchBar value={query} changeHandler={(val) => setQuery(val)} />
         </div>
       </div>
-      <CompactServiceCard imgsrc='/stock/music.jpg' />
-      <CompactServiceCard imgsrc='/stock/photography.jpg' />
+
+      {
+        services.map(service => (
+          <CompactServiceCard
+            key={service.pk}
+            category={service.category}
+            languages={service.languages}
+            descriptionText={service.description}
+            paymentType={service.payment_type}
+          />
+        ))
+      }
+
+      {/* <CompactServiceCard imgSrc='/stock/music.jpg' />
+      <CompactServiceCard imgSrc='/stock/photography.jpg' /> */}
       <div className="m-auto w-2/12">
         <ViewMoreButton clickHandler={() => router.push("/services")} />
       </div>
@@ -58,7 +79,7 @@ const Index = () => {
         <ViewMoreButton clickHandler={() => router.push("/services")} />
       </div>
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default Index;
+export default Index

@@ -30,7 +30,7 @@ const TimeSelector = ({ hourValue, minValue, hourChanged, minChanged, timeStampC
         />
         <select id='time-stamp' className='bg-lightGrey ml-4 py-1 px-2' onChange={e => timeStampChanged(e.target.value)}>
           {timeStamp.map((time) => (
-            <option key={uuid}>{time}</option>
+            <option key={() => uuid()}>{time}</option>
           ))}
         </select>
       </div>

@@ -1,18 +1,25 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import CompactServiceCard from '../Chat/CompactServiceCard/CompactServiceCard'
 import SearchBar from '../../components/Inputs/SearchBar'
 import { CardFilledWithImage } from '../../components/Cards/Cards'
 import { ViewMoreButton } from '../../components/Buttons/Index'
 import { useRouter } from 'next/router'
+import { fetchServices } from '../../store/actions/appActions'
+import { useDispatch, useSelector } from 'react-redux'
 
 const Index = () => {
   const router = useRouter()
-
+  const dispatch = useDispatch()
   const [query, setQuery] = useState('')
+  const services = useSelector(state => state.app.services)
 
   const handleCategoriesRedirect = () => {
     router.push('/search')
   }
+
+  useEffect(() => {
+    dispatch(fetchServices())
+  }, [])
 
   return (
     <React.Fragment>
@@ -22,7 +29,20 @@ const Index = () => {
           <SearchBar value={query} changeHandler={(val) => setQuery(val)} />
         </div>
       </div>
-      <CompactServiceCard
+      {
+        services.map(service => (
+          <CompactServiceCard
+            buttonClickHandler={() => router.push('/view-service')}
+            category={service.category}
+            languages={service.languages}
+            serviceType={service.type}
+            descriptionText={service.description}
+            cost={service.cost}
+            startDate={service.start_at}
+          />
+        ))
+      }
+      {/* <CompactServiceCard
         buttonClickHandler={() => router.push('/view-service')}
         butttonText='View'
         imgsrc='/stock/guitar.jpg'
@@ -33,7 +53,7 @@ const Index = () => {
         butttonText='View'
         imgsrc='/stock/market.jpg'
         media={{ text: 'Rich Media', color: 'green', src: 'rich-media.svg' }}
-      />
+      /> */}
       <div className='m-auto w-2/12'>
         <ViewMoreButton clickHandler={() => router.push('/services')} />
       </div>
@@ -69,6 +89,6 @@ const Index = () => {
       </div>
     </React.Fragment>
   )
-};
+}
 
-export default Index;
+export default Index

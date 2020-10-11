@@ -1,7 +1,7 @@
 import React from 'react'
 import DatePicker from './DatePicker/DatePicker'
 import Pills from '../Misc/3Pills/3Pills'
-import {v4 as uuid} from 'uuid'
+import { v4 as uuid } from 'uuid'
 
 const WeekDays = [
   'Sunday',
@@ -33,7 +33,7 @@ const DateAndTimePicker = () => (
       >
         <select className='bg-lightGrey w-full '>
           {WeekDays.map((day) => (
-            <option key={uuid} className='m-1 p-3'>{day}</option>
+            <option key={() => uuid()} className='m-1 p-3'>{day}</option>
           ))}
         </select>
       </div>
@@ -88,7 +88,7 @@ const DateAndTimePicker = () => (
           >
             <select className='bg-lightGrey w-full '>
               {timeStamp.map((time) => (
-                <option key={uuid} className=''>{time}</option>
+                <option key={() => uuid()} className=''>{time}</option>
               ))}
             </select>
           </div>

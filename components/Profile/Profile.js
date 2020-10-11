@@ -32,7 +32,7 @@ const Profile = ({
       <div className=" mt-6 text-center">
         <p className="text-xl">{country}</p>
         {languages.map((language) => (
-          <span key={uuid} className="text-xs pt-0 text-darkGrey">{language + " "}</span>
+          <span key={() => uuid()} className="text-xs pt-0 text-darkGrey">{language + " "}</span>
         ))}
       </div>
     </div>

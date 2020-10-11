@@ -51,7 +51,7 @@ const WhatMakesVideoWork = () => {
       </button>
     </div>
     <div className='w-full mt-5 md:w-6/12 m:mt-0 xl:w-6/12 grid-rows-4 grid lg:mt-0 md:grid-rows-2 md:grid-cols-2 '>
-      {textContainerData.map(data => <TextContainer key={uuid} data={data} />)}
+      {textContainerData.map(data => <TextContainer key={() => uuid()} data={data} />)}
     </div>
     <button onClick={() => router.push('/login')} className='w-6/12 ml-5 mb-16 bg-secondary text-white text-xl rounded-md py-3 px-3 md:hidden ' >
         Get Started

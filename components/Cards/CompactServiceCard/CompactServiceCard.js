@@ -8,7 +8,7 @@ const Image = ({ src, alt }) => (
   <img className='w-full rounded-lg h-auto ' src={src} alt={alt} />
 )
 
-const CompactServiceCard = ({ descriptionText, imgSrc = 'stock/girl2.jpg' }) => {
+const CompactServiceCard = ({ descriptionText = loremIpsum, imgSrc = 'stock/girl2.jpg', category, languages, paymentType }) => {
   const router = useRouter()
 
   return (
@@ -20,18 +20,18 @@ const CompactServiceCard = ({ descriptionText, imgSrc = 'stock/girl2.jpg' }) => 
 
       <div className='p-3 w-10/12 flex flex-col'>
         <p>
-          {loremIpsum.length > 100
-            ? loremIpsum.substring(0, 50) + '...'
-            : loremIpsum}
+          {descriptionText.length > 100
+            ? descriptionText.substring(0, 50) + '...'
+            : descriptionText}
         </p>
         <div className='flex flex-row mt-6'>
-          <p className='w-1/2'>SPORTS & FITNESS</p>
-          <p className='text-darkGrey w-1/2'>English, Marathi & Gujarati</p>
+          <p className='w-1/2'>{category}</p>
+          <p className='text-darkGrey w-1/2'>{languages}</p>
         </div>
         <div className='grid grid-cols-2 items-center'>
           <div className='flex flex-col w-1/2 mt-4'>
             <p className='text-darkGrey'>Date: 5 Aug, 2020</p>
-            <p className='text-darkGrey'>Payments: Weekly</p>
+            <p className='text-darkGrey'>Payments: {paymentType}</p>
           </div>
           <div className='mr-10 sm:w-4/12 md:w-2/12 lg:w-3/12 justify-self-end md:mr-40 lg:mr-12 xl:mr-24'>
             <CardButton clickHandler={() => router.push('/view-service')} label='View' />

@@ -38,10 +38,10 @@ const LearnFromRangeOfExperts = () => (
     </div>
    
     <div className='flex overflow-auto w-full md:hidden'>
-      {cardData.map(data => <Card key={uuid} cardData={data} />)}
+      {cardData.map(data => <Card key={() => uuid()} cardData={data} />)}
     </div>
     <div className='hidden md:m-auto md:w-8/12 md:block'>
-      {cardData.map(data => <Card key={uuid} cardData={data} />)}
+      {cardData.map(data => <Card key={() => uuid()} cardData={data} />)}
     </div>
     
   </div>

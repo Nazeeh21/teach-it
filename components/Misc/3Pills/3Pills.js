@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Pill } from './Pill'
 
 const Index = ({ color, label1, label2, label3, width = 'w-2/12' }) => {

@@ -1,7 +1,7 @@
 import React from 'react'
 import CardButton from './CardButton/CardButton'
 import loremIpsum from '../../../utility/loremIpsum'
-import { useRouter } from 'next/router'
+// import { useRouter } from 'next/router'
 
 const Image = ({ src, alt }) => (
   <img className='w-full rounded-lg h-auto ' src={src} alt={alt} />
@@ -9,14 +9,18 @@ const Image = ({ src, alt }) => (
 
 const CompactServiceCard = ({
   imgSrc = 'stock/girl2.jpg',
-  descriptionText,
+  descriptionText = loremIpsum,
   hrefText = '',
-  butttonText,
+  butttonText = 'View',
   buttonDisabled = false,
-  media,
-  buttonClickHandler
+  buttonClickHandler,
+  category,
+  cost,
+  languages,
+  startDate,
+  serviceType
 }) => {
-  const router = useRouter()
+  // const router = useRouter()
 
   return (
     <div className='flex flex-row w-auto p-2 bg-white shadow-md rounded-lg my-3'>
@@ -27,32 +31,32 @@ const CompactServiceCard = ({
 
       <div className='p-1 w-10/12 flex flex-col'>
         <p className='text-sm font-medium'>
-          {loremIpsum.length > 100
-            ? loremIpsum.substring(0, 50) + '...'
-            : loremIpsum}
+          {descriptionText.length > 100
+            ? descriptionText.substring(0, 50) + '...'
+            : descriptionText}
         </p>
         <div className='flex flex-row mt-6'>
           <div className='w-1/2 text-sm'>
-            SPORTS & FITNESS
+            {category}
             <div style={{ lineHeight: '130%' }} className='text-darkGrey'>
-              <p>15000000/week</p>
+              <p>{cost}/week</p>
               <p>5:30 pm</p>
               <p style={{ opacity: '80%' }}>Mon, Tue, Wed, Thurs, Sat</p>
-              <p style={{ opacity: '80%' }}>Start date: 5th Aug 2020</p>
+              <p style={{ opacity: '80%' }}>Start date: {startDate}</p>
             </div>
           </div>
           <p className='text-darkGrey text-xs font-medium w-1/2'>
-            English, Marathi & Gujarati
-            <p>17 weeks</p>
+            {languages}
+            17 weeks
           </p>
         </div>
         <div className='flex flex-row items-center'>
           <div
-            style={{ color: `${media.color}` }}
+            style={{ color: `${serviceType === 'rich' ? 'green' : 'red'}` }}
             className='font-medium flex flex-row w-1/2 mt-4'
           >
-            <img className='mr-1' src={media.src} alt={media.text} />
-            {media.text}
+            <img className='mr-1' src={`${serviceType}.svg`} alt={serviceType} />
+            {serviceType}
           </div>
           <div className='w-4/12 flex items-center'>
             <div className='w-3/12 mx-2'>

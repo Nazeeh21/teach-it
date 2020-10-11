@@ -85,7 +85,7 @@ const Contacts = () => {
           </select>
         </div>
         {ChatWindowData.map((data) => (
-          <div key={uuid} className="">
+          <div key={() => uuid()} className="">
             <ChatWindowContact
               clickHandler={ChatWindowContactClickHandler}
               src={data.src}
