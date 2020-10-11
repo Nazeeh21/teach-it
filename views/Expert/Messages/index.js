@@ -1,6 +1,7 @@
 import React from 'react'
 import { ChatWindowContact } from '../../../components/Chat/ChatWindowContact'
 import { useRouter } from 'next/router'
+import {v4 as uuid} from 'uuid'
 
 const ChatWindowData = [
   {
@@ -58,7 +59,7 @@ const Index = () => {
         </div>
       </div>
       {ChatWindowData.map((data) => (
-        <div className='bg-white'>
+        <div key={uuid} className='bg-white'>
           <ChatWindowContact
             src={data.src}
             name={data.name}

@@ -1,5 +1,6 @@
 import React from 'react'
 import CheckboxContainer from './CheckboxContainer'
+import {v4 as uuid} from 'uuid'
 
 const notificationFrequency = ['Daily', 'Weekly', 'Monthly', 'Never']
 
@@ -8,7 +9,7 @@ const NotificationContainer = ({notificationMethod}) => (
     <p className='mb-3 md:mb-0 text-black text-lg font-medium'>{notificationMethod}</p>
     <div className='flex flex-col md:flex-row md:justify-self-end md:col-span-2'>
       {notificationFrequency.map(frequency => (
-        <div key={frequency} className='mb-5 md:mb-0 mr-6'>
+        <div key={uuid} className='mb-5 md:mb-0 mr-6'>
           <CheckboxContainer label={frequency} />
         </div>
       ))}

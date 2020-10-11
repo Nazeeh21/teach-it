@@ -1,6 +1,7 @@
 import React from 'react'
 import Card from './Card/Card'
 import LearningCard from './LearningCards/LearningCard'
+import {v4 as uuid} from 'uuid'
 
 const cardData = [
   { text: 'Stock trading', color: 'purple', bgColor: '#c3aed6' },
@@ -37,10 +38,10 @@ const LearnFromRangeOfExperts = () => (
     </div>
    
     <div className='flex overflow-auto w-full md:hidden'>
-      {cardData.map(data => <Card cardData={data} />)}
+      {cardData.map(data => <Card key={uuid} cardData={data} />)}
     </div>
     <div className='hidden md:m-auto md:w-8/12 md:block'>
-      {cardData.map(data => <Card cardData={data} />)}
+      {cardData.map(data => <Card key={uuid} cardData={data} />)}
     </div>
     
   </div>

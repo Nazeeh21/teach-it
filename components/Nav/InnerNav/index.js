@@ -1,6 +1,7 @@
 import React from 'react'
 import NavItem from './NavItem'
 import { useRouter } from 'next/router'
+import {v4 as uuid} from 'uuid'
  
 const Index = ({ navItems, destructiveAction = 'Unsubscribe' }) => {
   const router = useRouter()
@@ -17,7 +18,7 @@ const Index = ({ navItems, destructiveAction = 'Unsubscribe' }) => {
   return (
     <div className='bg-white rounded-lg pt-4 pb-4'>
       {
-        navItems.map(item => <NavItem link={item.link} label={item.label} active={router.pathname === item.link} />)
+        navItems.map(item => <NavItem key={uuid} link={item.link} label={item.label} active={router.pathname === item.link} />)
       }
       <p className='text-red text-sm cursor-pointer text-right pr-12 pb-2 pt-2'>{destructiveAction}</p>
     </div>

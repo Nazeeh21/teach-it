@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { ChatWindowContact } from "../../components/Chat/ChatWindowContact";
 import SearchBar from "../../components/Inputs/SearchBar";
 import ChooseService from "./ChooseService/ChooseService";
+import {v4 as uuid} from 'uuid'
 
 const ChatWindowData = [
   {
@@ -84,7 +85,7 @@ const Contacts = () => {
           </select>
         </div>
         {ChatWindowData.map((data) => (
-          <div className="">
+          <div key={uuid} className="">
             <ChatWindowContact
               clickHandler={ChatWindowContactClickHandler}
               src={data.src}

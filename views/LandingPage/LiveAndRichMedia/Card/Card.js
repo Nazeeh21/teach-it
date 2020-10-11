@@ -1,4 +1,5 @@
 import React from 'react'
+import {v4 as uuid} from 'uuid'
 
 const Card = ({src, alt, heading, description, features}) => (
   <div className='w-full'>
@@ -10,7 +11,7 @@ const Card = ({src, alt, heading, description, features}) => (
       <div className='mt-8 lg:m-6'>
       {
         features.map(feature => (
-          <div className='flex  items-center'>
+          <div key={uuid} className='flex  items-center'>
             <div style={{backgroundColor: 'lightGrey',}} className='lg:m-2 w-5 h-5  rounded-full flex'>
               <div style={{backgroundColor: `${feature.color}`}} className='m-auto self-center w-3 h-3 rounded-full'/>
             </div>

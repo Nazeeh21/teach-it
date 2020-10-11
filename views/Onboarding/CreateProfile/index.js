@@ -9,6 +9,7 @@ import { useRouter } from "next/router";
 import Form from "./Form";
 import { useDispatch } from "react-redux";
 import {continueHandler} from '../../../store/actions/profileActions'
+import {v4 as uuid} from 'uuid'
 
 const Index = () => {
   const router = useRouter();
@@ -67,7 +68,7 @@ const Index = () => {
       >
         {arr.map((val, index) => (
           <Form
-            index={index}
+            key={uuid}
             name={formData[index]["name"]}
             email={formData[index]["email"]}
             age={formData[index]["age"]}

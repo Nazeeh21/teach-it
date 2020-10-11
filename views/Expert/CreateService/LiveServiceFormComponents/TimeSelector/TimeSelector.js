@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React from 'react'
+import {v4 as uuid} from 'uuid'
 
 const timeStamp = ['AM', 'PM']
 
@@ -29,7 +30,7 @@ const TimeSelector = ({ hourValue, minValue, hourChanged, minChanged, timeStampC
         />
         <select id='time-stamp' className='bg-lightGrey ml-4 py-1 px-2' onChange={e => timeStampChanged(e.target.value)}>
           {timeStamp.map((time) => (
-            <option>{time}</option>
+            <option key={uuid}>{time}</option>
           ))}
         </select>
       </div>
