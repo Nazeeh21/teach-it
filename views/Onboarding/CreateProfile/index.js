@@ -1,26 +1,26 @@
-import React, { useState } from "react";
-import TextInput from "../../../components/Inputs/TextInput";
+import React, { useState } from "react"
+import TextInput from "../../../components/Inputs/TextInput"
 import {
   PrimaryButton,
   SecondaryButton,
-} from "../../../components/Buttons/Index";
-import { LandingContainer } from "../../../containers";
-import { useRouter } from "next/router";
-import Form from "./Form";
-import { useDispatch } from "react-redux";
-import {continueHandler} from '../../../store/actions/profileActions'
+} from "../../../components/Buttons/Index"
+import { LandingContainer } from "../../../containers"
+import { useRouter } from "next/router"
+import Form from "./Form"
+import { useDispatch } from "react-redux"
+import { continueHandler } from '../../../store/actions/profileActions'
 
 const Index = () => {
-  const router = useRouter();
+  const router = useRouter()
   const dispatch = useDispatch()
-  const [arr, setArr] = useState([0]);
+  const [arr, setArr] = useState([0])
   const [formData, setFormData] = useState([
     {
       name: "",
       email: "",
       age: "",
     },
-  ]);
+  ])
 
   const handleContinue = () => {
     // if (!isAgeValid || !isEmailValid || !isNameValid) {
@@ -28,32 +28,35 @@ const Index = () => {
     // }
 
     dispatch(continueHandler(formData))
-    // return router.push("/onboarding");
-  };
+
+    // TODO: Error handling
+
+    return router.push("/onboarding")
+  }
 
   const addProfile = () => {
-    const newArr = [...arr];
-    newArr.push(0);
+    const newArr = [...arr]
+    newArr.push(0)
 
-    const newFormData = [...formData];
+    const newFormData = [...formData]
 
     newFormData.push({
       name: "",
       email: "",
       age: "",
-    });
+    })
 
-    setFormData(newFormData);
-    setArr(newArr);
-  };
+    setFormData(newFormData)
+    setArr(newArr)
+  }
 
   const handleChange = (index, field, val) => {
-    const newFormData = [...formData];
+    const newFormData = [...formData]
 
-    newFormData[index][field] = val;
+    newFormData[index][field] = val
 
-    setFormData(newFormData);
-  };
+    setFormData(newFormData)
+  }
 
   return (
     <LandingContainer width="6/12">
@@ -61,9 +64,8 @@ const Index = () => {
         Let's create a profile
       </h1>
       <div
-        className={`grid sm:grid-cols-1 lg:grid-cols-${
-          arr.length === 1 ? 1 : 2
-        } grid-flow-row gap-1 justify-center items-center`}
+        className={`grid sm:grid-cols-1 lg:grid-cols-${arr.length === 1 ? 1 : 2
+          } grid-flow-row gap-1 justify-center items-center`}
       >
         {arr.map((val, index) => (
           <Form
@@ -86,7 +88,7 @@ const Index = () => {
         <PrimaryButton clickHandler={handleContinue} label="Continue" />
       </div>
     </LandingContainer>
-  );
-};
+  )
+}
 
-export default Index;
+export default Index

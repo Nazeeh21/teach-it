@@ -12,7 +12,7 @@ const Index = () => {
           alt='Switch profile'
           className='w-8 h-auto cursor-pointer rounded-full'
         />
-        <p className='text-xs'>Anastasia</p>
+        <p className='text-xs cursor-pointer'>Anastasia</p>
       </div>
       <img
         src='/arrows/down.svg'
@@ -21,6 +21,6 @@ const Index = () => {
       />
     </div>
   )
-};
+}
 
-export default Index;
+export default Index

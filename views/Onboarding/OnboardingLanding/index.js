@@ -1,6 +1,9 @@
 import React from 'react'
 import { LandingContainer } from '../../../containers'
 import { useRouter } from 'next/router'
+import { useDispatch } from 'react-redux'
+import { changeUserType } from '../../../store/actions/appActions'
+import { LEARNER, EXPERT } from '../../../constants'
 
 const GridItem = ({ imgSrc, text }) => (
   <div className='flex gap-6 justify-center items-center'>
@@ -19,7 +22,8 @@ const Button = ({ color, label, clickHandler }) => (
 
 const Index = () => {
   const router = useRouter()
-    
+  const dispatch = useDispatch()
+
   return (
     <LandingContainer>
       <h1 className='text-5xl font-semibold text-center mb-4 mx-auto'>
@@ -85,11 +89,17 @@ const Index = () => {
       <div
         className='flex gap-8 w-10/12 m-auto mb-8'
       >
-        <Button clickHandler={() => router.push('/dashboard')} color='learner' label='Take a service' />
-        <Button clickHandler={() => router.push('/dashboard')} color='expert' label='Provide a service' />
+        <Button clickHandler={() => {
+          router.push('/dashboard')
+          dispatch(changeUserType(LEARNER))
+        }} color='learner' label='Take a service' />
+        <Button clickHandler={() => {
+          router.push('/dashboard')
+          dispatch(changeUserType(EXPERT))
+        }} color='expert' label='Provide a service' />
       </div>
     </LandingContainer>
   )
-};
+}
 
-export default Index;
+export default Index

@@ -4,10 +4,10 @@ import { PrimaryButton } from '../../../components/Buttons/Index'
 import { LandingContainer } from '../../../containers'
 import { useRouter } from 'next/router'
 import { useDispatch, useSelector } from 'react-redux'
-import { resetAuth, verifyOtp } from '../../../store/actions/authActions'
+import { auth, resetAuth, verifyOtp } from '../../../store/actions/authActions'
 import api from '../../../api'
 
-const Index = ({}) => {
+const Index = ({ }) => {
   const router = useRouter()
   const dispatch = useDispatch()
 
@@ -27,7 +27,7 @@ const Index = ({}) => {
       console.log('Calling verifyOtp action')
       dispatch(verifyOtp(extractedOtp, medium))
     }
-    
+
     console.log('Status', authStatus)
   }, [otp])
 
@@ -54,9 +54,13 @@ const Index = ({}) => {
     newOtp[index] = val
     setOtp(newOtp)
 
-    if (val && index >= 0 && index <= 4) {
-      document.getElementById(`otp-${index+1}`).focus()
-    }
+    // if (val && index >= 0 && index <= 4) {
+    //   document.getElementById(`otp-${index + 1}`).focus()
+    // }
+
+    // if (!val && index >= 0) {
+    //   document.getElementById(`otp-${index - 1}`).focus()
+    // }
 
     setShowStatus(false)
   }
@@ -80,6 +84,10 @@ const Index = ({}) => {
     router.push('/login')
   }
 
+  const handleTryAgain = () => {
+    return dispatch(auth({ id }, 'email'))
+  }
+
   return (
     <LandingContainer width='6/12'>
       <h1 className='text-5xl font-semibold text-center mb-10 mx-auto'>
@@ -88,7 +96,7 @@ const Index = ({}) => {
       <h3 className='w-9/12 m-auto'>
         Please enter the OTP sent to <br />{' '}
         <span className='text-accent text-lg'>{id}</span>
-        <span onClick={goBack} className='text-secondary text-xs'>&nbsp;&nbsp;Not you?</span>
+        <span onClick={goBack} className='text-secondary text-xs cursor-pointer'>&nbsp;&nbsp;Not you?</span>
       </h3>
       <div>
         <OtpInput
@@ -148,7 +156,7 @@ const Index = ({}) => {
       />
       <p className='mt-6 m-auto text-darkGrey text-sm'>
         Didn't get the OTP?{' '}
-        <span className='text-secondary cursor-pointer'>Try again</span>
+        <span onClick={handleTryAgain} className='text-secondary cursor-pointer'>Try again</span>
       </p>
     </LandingContainer>
   )

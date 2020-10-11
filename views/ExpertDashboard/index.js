@@ -1,18 +1,23 @@
-import React, { useState } from "react";
-import CompactServiceCard from "../../components/Cards/CompactServiceCard/CompactServiceCard";
-import SearchBar from "../../components/Inputs/SearchBar";
-import { CardFilledWithImage } from "../../components/Cards/Cards";
-import { ViewMoreButton } from "../../components/Buttons/Index";
-import { useRouter } from "next/router";
+import React, { useState } from "react"
+import CompactServiceCard from "../../components/Cards/CompactServiceCard/CompactServiceCard"
+import SearchBar from "../../components/Inputs/SearchBar"
+import { CardFilledWithImage } from "../../components/Cards/Cards"
+import { ViewMoreButton } from "../../components/Buttons/Index"
+import { useRouter } from "next/router"
+import { useDispatch } from 'react-redux'
 
 const Index = () => {
-  const router = useRouter();
-
-  const [query, setQuery] = useState("");
+  const router = useRouter()
+  const dispatch = useDispatch()
+  const [query, setQuery] = useState("")
 
   const handleCategoriesRedirect = () => {
-    router.push("/search");
-  };
+    router.push("/search")
+  }
+
+  useEffect(() => {
+    dispatch(fetchServices())
+  }, [])
 
   return (
     <React.Fragment>
@@ -58,7 +63,7 @@ const Index = () => {
         <ViewMoreButton clickHandler={() => router.push("/services")} />
       </div>
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default Index;
+export default Index

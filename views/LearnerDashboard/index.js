@@ -1,18 +1,24 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import CompactServiceCard from '../Chat/CompactServiceCard/CompactServiceCard'
 import SearchBar from '../../components/Inputs/SearchBar'
 import { CardFilledWithImage } from '../../components/Cards/Cards'
 import { ViewMoreButton } from '../../components/Buttons/Index'
 import { useRouter } from 'next/router'
+import { fetchServices } from '../../store/actions/appActions'
+import { useDispatch } from 'react-redux'
 
 const Index = () => {
   const router = useRouter()
-
+  const dispatch = useDispatch()
   const [query, setQuery] = useState('')
 
   const handleCategoriesRedirect = () => {
     router.push('/search')
   }
+
+  useEffect(() => {
+    dispatch(fetchServices())
+  }, [])
 
   return (
     <React.Fragment>
@@ -69,6 +75,6 @@ const Index = () => {
       </div>
     </React.Fragment>
   )
-};
+}
 
-export default Index;
+export default Index

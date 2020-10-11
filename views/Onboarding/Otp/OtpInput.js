@@ -9,7 +9,7 @@ const OtpInput = ({ index, value, changeHandler, isIncorrect, showStatus, handle
   return (
     <input
       id={`otp-${index}`}
-      style={{outline: 'none'}}
+      style={{ outline: 'none' }}
       maxLength={1}
       type='text'
       className={isIncorrect && showStatus ? `border-2 border-red ${baseStyles}` : baseStyles}
@@ -17,11 +17,19 @@ const OtpInput = ({ index, value, changeHandler, isIncorrect, showStatus, handle
       onChange={e => changeHandler(e.target.value)}
       onKeyUp={e => {
         if (e.key === 'Enter') {
-          handleSubmit()
+          return handleSubmit()
+        }
+
+        if (!value && e.key === 'Backspace' && index > 0) {
+          return document.getElementById(`otp-${index - 1}`).focus()
+        }
+
+        if (index < 5 && e.key !== 'Backspace') {
+          return document.getElementById(`otp-${index + 1}`).focus()
         }
       }}
     />
   )
-};
+}
 
-export default OtpInput;
+export default OtpInput
