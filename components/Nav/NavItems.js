@@ -10,7 +10,7 @@ const NavItems = () => {
   const userType = useSelector(state => state.app.userType)
 
   return (
-    <div className='w-full p-4 bg-white rounded-lg shadow-md'>
+    <div className='w-full p-4 bg-white text-primary rounded-lg shadow-md'>
       <LeftNavItem
         clickHandler={() => router.push('/dashboard')}
         icon={`${basePath}home`}

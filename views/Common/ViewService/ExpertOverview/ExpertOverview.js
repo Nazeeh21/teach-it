@@ -18,7 +18,7 @@ const ExpertOverview = () => {
   const router = useRouter()
 
   return (
-    <div>
+    <div className='text-primary'>
       <PrimaryButton label='Subscribe' />
       <div className='bg-white w-full rounded-md my-5 p-3'>
         <p className='text-2xl font-bold'>Arun Kumar Pattnaik</p>

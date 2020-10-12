@@ -48,7 +48,7 @@ const Index = () => {
   return (
     <div
       style={{ backgroundColor: '#E8ECFF' }}
-      className='rounded-lg w-full mt-8'
+      className='rounded-lg w-full mt-8 text-primary'
     >
       <div className='mt-1 pt-2 pb-1 grid grid-rows-1 grid-cols-2'>
         <p className='text-xl font-medium pt-1 pb-2 pl-4'>Messages</p>

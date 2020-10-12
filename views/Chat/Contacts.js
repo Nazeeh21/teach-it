@@ -52,7 +52,7 @@ const Contacts = () => {
   const ChatWindowContactClickHandler = (name) => setCurrentContact(name)
 
   return (
-    <div className="w-full">
+    <div className="w-full text-primary">
       <div id="contacts" className="shadow-lg bg-white rounded-lg">
         <div className="grid grid-cols-2 grid-rows-1 py-3 px-3 my-2 items-center">
           <p className="text-darkGrey font-medium text-2xl ">Contacts</p>

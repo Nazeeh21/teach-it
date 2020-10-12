@@ -6,7 +6,7 @@ import Milestone from './Milestone/Milestone'
 
 const ViewService = ({ response }) => {
   return (
-    <div className='bg-lightGrey'>
+    <div className='bg-lightGrey text-primary'>
       <div
         style={{ backgroundImage: `url("guitar.png")`, height: '18rem' }}
         className='grid grid-cols-1 grid-rows-2 p-5 text-right'
