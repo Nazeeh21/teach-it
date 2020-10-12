@@ -27,15 +27,21 @@ export const fetchServices = () => {
 
 export const fetchViewService = (id) => {
   return async dispatch => {
-    const res = await api.get('/service/3/', {
-      headers: {
-        Authorization: `Token ${localStorage.getItem('token')}`,
-      },
-    })
-    console.log('Fetch View Service response', res.data)
-    dispatch({
-      type: FETCH_VIEW_SERVICE,
-      data: res.data
-    })
+    try {
+      if (id) {
+        const res = await api.get(`/service/${id}/`, {
+          headers: {
+            Authorization: `Token ${localStorage.getItem('token')}`,
+          },
+        })
+        console.log('Fetch View Service response', res.data)
+        dispatch({
+          type: FETCH_VIEW_SERVICE,
+          data: res.data
+        })
+      }
+    } catch (e) {
+      console.log(e)
+    }
   }
 } 

@@ -12,11 +12,20 @@ const Index = () => {
   const dispatch = useDispatch()
   const id = router.query.id
   const viewServiceData = useSelector(state => state.app.viewServiceData)
-  console.log(id)
+
+  // console.log('Outside', id)
 
   useEffect(() => {
+    // const id = router.query.id
+
+    // console.log(router.query.id)
+    console.log('ID', id)
     dispatch(fetchViewService(id))
-  }, [])
+  }, [id])
+
+  if (!id) {
+    return null
+  }
 
   return (
     <LayoutProvider rightContent={<ExpertOverview />}>
