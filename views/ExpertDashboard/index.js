@@ -30,7 +30,7 @@ const Index = () => {
           <SearchBar value={query} changeHandler={(val) => setQuery(val)} />
         </div>
       </div>
-
+ 
       {
         services.map(service => (
           <CompactServiceCard

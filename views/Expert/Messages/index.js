@@ -61,7 +61,6 @@ const Index = () => {
       {ChatWindowData.map((data) => (
         <div key={() => uuid()} className='bg-white'>
           <ChatWindowContact
-            key={() => uuid()}
             src={data.src}
             name={data.name}
             text={data.text}

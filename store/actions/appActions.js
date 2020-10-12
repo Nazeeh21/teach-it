@@ -1,5 +1,5 @@
 import api from '../../api'
-import { CHANGE_USER_TYPE, FETCH_SERVICES } from '../actionTypes'
+import { CHANGE_USER_TYPE, FETCH_SERVICES, FETCH_VIEW_SERVICE } from '../actionTypes'
 
 export const changeUserType = (newType) => {
   return {
@@ -24,3 +24,18 @@ export const fetchServices = () => {
     })
   }
 }
+
+export const fetchViewService = (id) => {
+  return async dispatch => {
+    const res = await api.get('/service/3/', {
+      headers: {
+        Authorization: `Token ${localStorage.getItem('token')}`,
+      },
+    })
+    console.log('Fetch View Service response', res.data)
+    dispatch({
+      type: FETCH_VIEW_SERVICE,
+      data: res.data
+    })
+  }
+} 

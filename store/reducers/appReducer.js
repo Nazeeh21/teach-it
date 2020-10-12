@@ -1,10 +1,11 @@
 import { EXPERT } from '../../constants'
 
-const { CHANGE_USER_TYPE, FETCH_SERVICES } = require('../actionTypes')
+const { CHANGE_USER_TYPE, FETCH_SERVICES, FETCH_VIEW_SERVICE } = require('../actionTypes')
 
 const initialState = {
   userType: EXPERT,
-  services: []
+  services: [],
+  viewServiceData: null
 }
 
 const reducer = (state = initialState, action) => {
@@ -18,6 +19,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         services: [...action.services]
+      }
+    case FETCH_VIEW_SERVICE:
+      return {
+        ...state,
+        viewServiceData: action.data
       }
     default:
       return state
