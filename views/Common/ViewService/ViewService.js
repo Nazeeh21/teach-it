@@ -5,6 +5,10 @@ import loremIpsum from '../../../utility/loremIpsum'
 import Milestone from './Milestone/Milestone'
 
 const ViewService = ({ response }) => {
+  if (!response) {
+    return null
+  }
+
   return (
     <div className='bg-lightGrey text-primary'>
       <div
@@ -48,7 +52,7 @@ const ViewService = ({ response }) => {
               </div>
               <div className='flex'>
                 <img src='/clock.svg' alt='clock-img' />
-                <p className='mx-2'>{response.start_at.substring(11,13)} pm, 2 hours</p>
+                <p className='mx-2'>{response.start_at.substring(11, 13)} pm, 2 hours</p>
               </div>
               <div className='flex'>
                 <img src='/calender.svg' alt='calender' />
