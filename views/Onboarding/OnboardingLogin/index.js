@@ -19,15 +19,45 @@ const Index = () => {
   const [medium, setMedium] = useState('email')
   const [email, setEmail] = useState('')
   const [phone, setPhone] = useState('')
-  const [isEmailValid, setisEmailValid] = useState(true)
+  const [isEmailValid, setIsEmailValid] = useState(true)
+  const [isPhoneValid, setIsPhoneValid] = useState(true)
+
+  const goForward = () => router.push('/otp')
 
   const handleContinue = () => {
-    if (medium === 'email' && (!email || !isEmailValid)) {
-      return null
+    // if (medium === 'email' && (!email || !isEmailValid)) {
+    //   return null
+    // }
+
+    // if (medium === 'phone' && (!phone || !isPhoneValid)) {
+    //   return null
+    // }
+
+    // if (medium === 'email' && email && isEmailValid) {
+    //   return dispatch(auth({ id: email }, 'email'))
+    // }
+
+    // if (medium === 'phone' && phone && isPhoneValid) {
+    //   return dispatch(auth({ id: phone }, 'phone'))
+    // }
+
+    if (medium === 'email') {
+      if (email && isEmailValid) {
+        dispatch(auth({ id: email }, 'email'))
+        return goForward()
+      } else {
+        return null
+      }
     }
 
-    dispatch(auth({ id: email }, 'email'))
-    router.push('/otp')
+    if (medium === 'phone') {
+      if (phone && isPhoneValid) {
+        dispatch(auth({ id: phone }, 'mobile'))
+        return goForward()
+      } else {
+        return null
+      }
+    }
   }
 
   return (
@@ -50,8 +80,12 @@ const Index = () => {
             type='email'
             required
             isValid={isEmailValid}
-            setIsValid={setisEmailValid}
-          />) : (<div className='my-4 w-6/12 mx-auto'><PhoneInput output={phone} changeHandler={setPhone} /></div>)
+            setIsValid={setIsEmailValid}
+          />) : (
+          <div className='my-4 sm:w-12/12 md:w-11/12 lg:w-8/12 xl:w-6/12 mx-auto'>
+            <PhoneInput isValid={isPhoneValid} setIsValid={setIsPhoneValid} output={phone} changeHandler={setPhone} />
+          </div>
+          )
         }
       </div>
       <PrimaryButton
