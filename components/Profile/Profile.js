@@ -25,8 +25,7 @@ const Profile = ({
 
       <Avatar
         purpose="isForProfile"
-        src="
-        nazeeh_profile.jpg"
+        src="/nazeeh_profile.jpg"
         alt="profile_img"
       />
 

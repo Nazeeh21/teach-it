@@ -19,7 +19,8 @@ export const createService = (createServiceData) => {
     try {
       const res = await api.post('service/', createServiceData, {
         headers: {
-          Authorization: `Token ${localStorage.getItem('token')}`,
+          // Authorization: `Token ${localStorage.getItem('token')}`,
+          Authorization: 'Token 4665448e0fc9398c6e373dc6a51060b178595bdb'
         },
       })
       console.log(res)

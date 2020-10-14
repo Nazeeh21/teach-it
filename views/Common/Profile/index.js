@@ -16,24 +16,26 @@ const VidThumbnail = ({ thumbSrc }) => (
   </React.Fragment>
 )
 
-const Index = ({ type = 'provider', id = '1'}) => {
-  const dispatch = useDispatch()
-
-  const name = useSelector(state => state.viewProfile[type].name)
-  const languages = useSelector(state => state.viewProfile[type].languages)
-  const country = useSelector(state => state.viewProfile[type].country)
-  const isPro = useSelector(state => state.viewProfile[type].is_pro)
-  const isVerified = useSelector(state => state.viewProfile[type].is_verified)
+const Index = ({ type = 'provider', id }) => {
   
+  const dispatch = useDispatch()
   useEffect(() => {
     dispatch(viewProfile(type, id))
-  }, [])
+  }, [id])
+  
+  const profileData = useSelector(state => state.viewProfile)
+
+  if( !profileData) {
+    return null
+  }
+  
+  
   return (
     <div className='w-full bg-white border-2 border-highlight rounded-sm flex flex-col p-6'>
       <Profile
-        country={country}
-        languages={[languages]}
-        name={name}
+        country={profileData[type].country}
+        // languages={[profileData[type].languages]}
+        name={profileData[type].name}
         heading='Best guitar trainer in Asia'
         subHeading={loremIpsum}
         online
