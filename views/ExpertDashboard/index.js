@@ -34,6 +34,7 @@ const Index = () => {
       {
         services.map(service => (
           <CompactServiceCard
+            buttonClickHandler={() => router.push(`/view-service/${service.pk}`)}
             key={service.pk}
             category={service.category}
             languages={service.languages}

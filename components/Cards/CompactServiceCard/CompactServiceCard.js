@@ -2,14 +2,14 @@ import React from 'react'
 import loremIpsum from '../../../utility/loremIpsum'
 import { CardButton } from '../../Buttons/Index'
 import QuestionCard from './QuestionCard'
-import { useRouter } from 'next/router'
+// import { useRouter } from 'next/router'
 
 const Image = ({ src, alt }) => (
   <img className='w-full rounded-lg h-auto ' src={src} alt={alt} />
 )
 
-const CompactServiceCard = ({ descriptionText = loremIpsum, imgSrc = 'stock/girl2.jpg', category, languages, paymentType }) => {
-  const router = useRouter()
+const CompactServiceCard = ({ descriptionText = loremIpsum, imgSrc = 'stock/girl2.jpg', category, languages, paymentType, buttonClickHandler }) => {
+  // const router = useRouter()
 
   return (
     <div className='flex flex-row w-full p-2 bg-white shadow-md rounded-lg mb-6'>
@@ -34,7 +34,7 @@ const CompactServiceCard = ({ descriptionText = loremIpsum, imgSrc = 'stock/girl
             <p className='text-darkGrey'>Payments: {paymentType}</p>
           </div>
           <div className='mr-10 sm:w-4/12 md:w-2/12 lg:w-3/12 justify-self-end md:mr-40 lg:mr-12 xl:mr-24'>
-            <CardButton clickHandler={() => router.push('/view-service')} label='View' />
+            <CardButton clickHandler={buttonClickHandler} label='View' />
           </div>
         </div>
         <div className='flex flex-col mt-4'>

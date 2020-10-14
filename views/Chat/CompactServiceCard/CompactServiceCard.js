@@ -18,7 +18,7 @@ const CompactServiceCard = ({
   cost,
   languages,
   startDate,
-  serviceType
+  serviceType,
 }) => {
   // const router = useRouter()
 

@@ -32,7 +32,7 @@ const Index = () => {
       {
         services.map(service => (
           <CompactServiceCard
-            buttonClickHandler={() => router.push('/view-service')}
+            buttonClickHandler={() => router.push(`/view-service/${service.pk}`)}
             category={service.category}
             languages={service.languages}
             serviceType={service.type}
