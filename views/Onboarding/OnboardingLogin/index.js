@@ -89,7 +89,7 @@ const Index = () => {
         }
       </div>
       <PrimaryButton
-        disabled={!isEmailValid}
+        disabled={medium === 'email' ? !isEmailValid : !isPhoneValid}
         clickHandler={handleContinue}
         label='Send OTP'
         styles={'sm:w-12/12 md:w-11/12 lg:w-10/12 xl:w-9/12 m-auto mt-4'}
