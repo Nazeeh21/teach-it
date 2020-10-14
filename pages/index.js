@@ -14,7 +14,7 @@ export default function Home() {
   }, [])
 
   return (
-    <div>
+    <div className='text-primary'>
       <Head>
         <title>VideoWork</title>
         <link rel='icon' href='/favicon.ico' />

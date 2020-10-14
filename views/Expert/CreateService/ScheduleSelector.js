@@ -31,6 +31,7 @@ const ScheduleSelector = ({
   startDateChangeHandler,
   endDate,
   endDateChangeHandler,
+  setMilestoneData
 }) => {
   // const dispatch = useDispatch()
   // const hour = useSelector(state => state.createService.startHour)
@@ -82,7 +83,7 @@ const ScheduleSelector = ({
           </div>
         </div>
         <div className='mt-10'>
-          <CustomizeAndMilestoneContainer />
+          <CustomizeAndMilestoneContainer setMileStoneData={setMilestoneData} />
         </div>
       </React.Fragment>
     )

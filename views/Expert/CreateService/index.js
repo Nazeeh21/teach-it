@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useRouter } from 'next/router'
 import { EXPERT } from '../../../constants'
 import { PrimaryButton } from '../../../components/Buttons/Index'
-import { createService } from '../../../store/actions/createServiceAction'
+import { createMilestone, createService } from '../../../store/actions/createServiceAction'
 
 const SectionTitle = ({ children }) => (
   <h3 className='text-lg text-primary mb-2'>{children}</h3>
@@ -31,6 +31,7 @@ const Index = () => {
   const [activeAgeGroup, setActiveAgeGroup] = useState(null)
   const [startDate, setStartDate] = useState(null)
   const [endDate, setEndDate] = useState(null)
+  const [milestoneData, setMileStoneData] = useState(null)
 
   const router = useRouter()
   const userType = useSelector((state) => state.app.userType)
@@ -80,6 +81,7 @@ const Index = () => {
     }
 
     dispatch(createService(formData))
+    // dispatch(createMilestone(milestoneData))
   }
 
   return (
@@ -119,7 +121,7 @@ const Index = () => {
             type={serviceType === 0 ? 'live' : 'media'}
           />
         </Accordion>
-
+ 
         <Accordion id='schedule' label='Service schedule'>
           <ScheduleSelector
             startDate={startDate}
@@ -135,6 +137,7 @@ const Index = () => {
             duration={duration}
             durationChangedHandler={value => setDuration(value)}
             type={serviceType}
+            setMilestoneData={data => setMileStoneData(data)}
           />
         </Accordion>
 
