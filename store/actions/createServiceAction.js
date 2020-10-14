@@ -1,6 +1,5 @@
 import api from '../../api'
 import {
-  CREATE_SERVICE,
   SET_AUDIO_ONLY,
   SET_VIDEO_AND_AUDIO,
   UPDATE_TITLE,

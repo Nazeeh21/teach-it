@@ -1,5 +1,7 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import Profile from '../../../components/Profile/Profile'
+import { viewProfile } from '../../../store/actions/viewProfileActions'
 import loremIpsum from '../../../utility/loremIpsum'
 
 const Image = ({ src }) => (
@@ -14,13 +16,24 @@ const VidThumbnail = ({ thumbSrc }) => (
   </React.Fragment>
 )
 
-const Index = () => {
+const Index = ({ type = 'provider', id = '1'}) => {
+  const dispatch = useDispatch()
+
+  const name = useSelector(state => state.viewProfile[type].name)
+  const languages = useSelector(state => state.viewProfile[type].languages)
+  const country = useSelector(state => state.viewProfile[type].country)
+  const isPro = useSelector(state => state.viewProfile[type].is_pro)
+  const isVerified = useSelector(state => state.viewProfile[type].is_verified)
+  
+  useEffect(() => {
+    dispatch(viewProfile(type, id))
+  }, [])
   return (
     <div className='w-full bg-white border-2 border-highlight rounded-sm flex flex-col p-6'>
       <Profile
-        country='India'
-        languages={['English', 'Gujarati', 'Hindi']}
-        name='Nazeeh Vahora'
+        country={country}
+        languages={[languages]}
+        name={name}
         heading='Best guitar trainer in Asia'
         subHeading={loremIpsum}
         online
