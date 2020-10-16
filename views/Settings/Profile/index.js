@@ -169,6 +169,7 @@ const Index = () => {
           <Input
             valid={isValid.inputData.displayName.valid}
             touched={isValid.inputData.displayName.touched}
+            inValidMessage='Enter a valid Name'
             value={displayName}
             changeHandler={(value) => {
               setDisplayName(value)
@@ -186,6 +187,9 @@ const Index = () => {
           <Label>Website URL</Label>
 
           <Input
+            valid={isValid.inputData.age.valid}
+            touched={isValid.inputData.age.touched}
+            inValidMessage='Enter a valid age'
             type='number'
             value={age}
             changeHandler={(value) => {
@@ -194,6 +198,9 @@ const Index = () => {
             }}
           />
           <Input
+            valid={isValid.inputData.websiteURL.valid}
+            touched={isValid.inputData.websiteURL.touched}
+            inValidMessage='Enter a valid URL'
             type='url'
             value={websiteURL}
             changeHandler={(value) => {
@@ -212,6 +219,9 @@ const Index = () => {
           <Label>Mobile</Label>
 
           <Input
+            valid={isValid.inputData.primaryEmail.valid}
+            touched={isValid.inputData.primaryEmail.touched}
+            inValidMessage='Enter a valid email'
             type='email'
             value={primaryEmail}
             changeHandler={(value) => {
@@ -220,6 +230,9 @@ const Index = () => {
             }}
           />
           <Input
+            valid={isValid.inputData.mobile.valid}
+            touched={isValid.inputData.mobile.touched}
+            inValidMessage='Enter a valid Number'
             type='number'
             value={mobile}
             changeHandler={(value) => {
@@ -238,10 +251,10 @@ const Index = () => {
             value={oneLineBio}
             onChange={(e) => {
               setOneLineBio(e.target.value)
-              inputDataChangeHandler(value, 'oneLineBio', 'text')
+              inputDataChangeHandler(e.target.value, 'oneLineBio', 'text')
             }}
-            className='rounded w-full p-4 text-sm bg-lightGrey'
-          />
+            className={`${!isValid.inputData.oneLineBio.valid && isValid.inputData.oneLineBio.touched && 'border-red border-solid border-2'} rounded w-full p-4 text-sm bg-lightGrey`} />
+          {!isValid.inputData.oneLineBio.valid && isValid.inputData.oneLineBio.touched && <p>Enter a valid bio</p>}
         </div>
         <div className='my-10'>
           <Label>Profile description</Label>
@@ -249,10 +262,10 @@ const Index = () => {
             value={profileDescription}
             onChange={(e) => {
               setProfileDescription(e.target.value)
-              inputDataChangeHandler(value, 'profileDescription', 'text')
+              inputDataChangeHandler(e.target.value, 'profileDescription', 'text')
             }}
-            className='rounded w-full p-4 text-sm bg-lightGrey h-32'
-          />
+            className={`${!isValid.inputData.profileDescription.valid && isValid.inputData.profileDescription.touched && 'border-red border-solid border-2'} rounded w-full p-4 text-sm bg-lightGrey h-32`} />
+            {!isValid.inputData.profileDescription.valid && isValid.inputData.profileDescription.touched && <p>Enter a valid description</p>}
           {/* <p className='rounded w-full p-2 text-sm bg-lightGrey'>{loremIpsum}</p> */}
         </div>
 
@@ -260,7 +273,7 @@ const Index = () => {
         <Upload label='Certificates' />
 
         <div className='w-1/3 mt-6'>
-          <PrimaryButton label='Save' clickHandler={saveButtonClickHandler} />
+          <PrimaryButton label='Save' disabled={!isValid.isFormValid} clickHandler={saveButtonClickHandler} />
         </div>
       </div>
       {/* White container end */}
