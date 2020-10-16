@@ -1,14 +1,15 @@
 import React from "react";
 import Avatar from "../Images/Avatar";
 import {v4 as uuid} from 'uuid'
+import loremIpsum from "../../utility/loremIpsum";
 
 const Profile = ({
-  country,
-  languages,
-  name,
-  heading,
-  subHeading,
-  online = false,
+  country = 'India',
+  languages = ['English', 'Gujarati', 'Hindi'],
+  name = 'Nazeeh Vahora',
+  heading = 'Best guitar trainer in Asia',
+  subHeading = loremIpsum,
+  online = true,
 }) => (
   <div className="w-full m-2 flex flex-row">
     <div className="w-3/12 mr-8 justify-center">
@@ -24,8 +25,7 @@ const Profile = ({
 
       <Avatar
         purpose="isForProfile"
-        src="
-        nazeeh_profile.jpg"
+        src="/nazeeh_profile.jpg"
         alt="profile_img"
       />
 
