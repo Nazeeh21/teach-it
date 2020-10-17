@@ -67,25 +67,30 @@ const Upload = ({ label }) => (
 )
 
 const Index = () => {
+  
   const dispatch = useDispatch()
+  
   useEffect(() => {
     dispatch(fetchProfileData())
   }, [])
 
   const fetchedData = useSelector(state => state.settings)
 
-  if(fetchedData=== null) {
+  if(!fetchedData.data) {
+    console.log('Data currently not fetched')
     return null
   }
 
-  const [displayName, setDisplayName] = useState(fetchedData.name)
-  const [age, setAge] = useState(fetchedData.age)
+  console.log(fetchedData)
+
+  const [displayName, setDisplayName] = useState(fetchedData.data.name)
+  const [age, setAge] = useState(fetchedData.data.age)
   const [websiteURL, setWebsiteURL] = useState('')
   const [country, setCountry] = useState(null)
   const [language, setLanguage] = useState(null)
-  const [primaryEmail, setPrimaryEmail] = useState(fetchedData.email)
-  const [mobile, setMobile] = useState(fetchedData.mobile)
-  const [oneLineBio, setOneLineBio] = useState(fetchedData.bio)
+  const [primaryEmail, setPrimaryEmail] = useState(fetchedData.data.email)
+  const [mobile, setMobile] = useState(fetchedData.data.mobile)
+  const [oneLineBio, setOneLineBio] = useState(fetchedData.data.bio)
   const [profileDescription, setProfileDescription] = useState('')
 
   const [isValid, setIsValid] = useState({
