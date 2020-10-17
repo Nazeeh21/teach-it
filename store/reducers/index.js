@@ -1,10 +1,18 @@
-import appReducer from "./appReducer";
-import authReducer from "./authReducer";
+import appReducer from './appReducer'
+import authReducer from './authReducer'
 import profileReducer from './profileReducer'
 import createServiceReducer from './createServiceReducer'
 import viewProfileReducer from './viewProfileReducer'
-const { combineReducers } = require("redux");
+import settingReducer from './settingReducer'
+const { combineReducers } = require('redux')
 
-const rootReducer = combineReducers({ app: appReducer, auth: authReducer, profile: profileReducer, createService: createServiceReducer, viewProfile: viewProfileReducer });
+const rootReducer = combineReducers({
+  app: appReducer,
+  auth: authReducer,
+  profile: profileReducer,
+  createService: createServiceReducer,
+  viewProfile: viewProfileReducer,
+  settings: settingReducer,
+})
 
-export default rootReducer;
+export default rootReducer

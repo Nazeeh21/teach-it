@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Toggle from '../../../components/Toggle'
 import {
   PrimaryButton,
@@ -8,8 +8,8 @@ import Input from '../../../components/Inputs/HighlightInput'
 import Dropdown from '../../../components/Inputs/Dropdown'
 import loremIpsum from '../../../utility/loremIpsum'
 import UploadButton from '../../../components/Upload/UploadButton'
-import { useDispatch } from 'react-redux'
-import { saveProfile } from '../../../store/actions/settingActions'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchProfileData, saveProfile, updateData } from '../../../store/actions/settingActions'
 import { validate } from '../../../utility/validation'
 
 const CrossButton = (
@@ -68,15 +68,26 @@ const Upload = ({ label }) => (
 
 const Index = () => {
   const dispatch = useDispatch()
-  const [displayName, setDisplayName] = useState('')
-  const [age, setAge] = useState('')
+  useEffect(() => {
+    dispatch(fetchProfileData())
+  }, [])
+
+  const fetchedData = useSelector(state => state.settings)
+
+  if(fetchedData=== null) {
+    return null
+  }
+
+  const [displayName, setDisplayName] = useState(fetchedData.name)
+  const [age, setAge] = useState(fetchedData.age)
   const [websiteURL, setWebsiteURL] = useState('')
   const [country, setCountry] = useState(null)
   const [language, setLanguage] = useState(null)
-  const [primaryEmail, setPrimaryEmail] = useState('')
-  const [mobile, setMobile] = useState('')
-  const [oneLineBio, setOneLineBio] = useState('')
+  const [primaryEmail, setPrimaryEmail] = useState(fetchedData.email)
+  const [mobile, setMobile] = useState(fetchedData.mobile)
+  const [oneLineBio, setOneLineBio] = useState(fetchedData.bio)
   const [profileDescription, setProfileDescription] = useState('')
+
   const [isValid, setIsValid] = useState({
     inputData: {
       displayName: {
@@ -123,6 +134,7 @@ const Index = () => {
 
     dispatch(saveProfile(formData))
   }
+
   const inputDataChangeHandler = (value, field, type) => {
     const newIsValid = {
       ...isValid,
