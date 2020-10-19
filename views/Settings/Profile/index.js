@@ -81,8 +81,6 @@ const Index = () => {
     return null
   }
 
-  console.log(fetchedData)
-
   const [displayName, setDisplayName] = useState(fetchedData.data.name)
   const [age, setAge] = useState(fetchedData.data.age)
   const [websiteURL, setWebsiteURL] = useState('')

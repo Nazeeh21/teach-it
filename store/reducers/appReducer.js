@@ -1,11 +1,12 @@
 import { EXPERT } from '../../constants'
 
-const { CHANGE_USER_TYPE, FETCH_SERVICES, FETCH_VIEW_SERVICE } = require('../actionTypes')
+const { CHANGE_USER_TYPE, FETCH_SERVICES, FETCH_VIEW_SERVICE, SET_CURRENT_PROFILE } = require('../actionTypes')
 
 const initialState = {
   userType: EXPERT,
   services: [],
-  viewServiceData: null
+  viewServiceData: null,
+  currentProfile: null
 }
 
 const reducer = (state = initialState, action) => {
@@ -24,6 +25,13 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         viewServiceData: action.data
+      }
+    case SET_CURRENT_PROFILE:
+      localStorage.setItem('currentProfile', action.id)
+
+      return {
+        ...state,
+        currentProfile: action.id
       }
     default:
       return state
