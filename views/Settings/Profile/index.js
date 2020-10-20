@@ -135,6 +135,7 @@ const Index = () => {
       bio: `${oneLineBio}`,
       age: `${age}`,
       balance: 0,
+      email: `${primaryEmail}`,
       mobile: `${mobile}`,
     }
 

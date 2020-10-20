@@ -10,7 +10,7 @@ const Input = ({
   touched = false,
   inValidMessage = '',
 }) => {
-  console.log('Default value', defaultValue)
+  // console.log('Default value', defaultValue)
 
   return (
     <div>

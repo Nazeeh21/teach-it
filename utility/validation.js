@@ -10,5 +10,5 @@ const regex = {
 }
 
 export const validate = (type, value) => {
-  return regex[type].test(value) && value !== ''
+  return regex[type].test(value) 
 }
