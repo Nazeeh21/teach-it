@@ -71,7 +71,7 @@ const Index = () => {
   const dispatch = useDispatch()
   
   useEffect(() => {
-    dispatch(fetchProfileData())
+    // dispatch(fetchProfileData())
   }, [])
 
   const fetchedData = useSelector(state => state.settings)
