@@ -17,19 +17,19 @@ const VidThumbnail = ({ thumbSrc }) => (
 )
 
 const Index = ({ type = 'provider', id }) => {
-  
+
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(viewProfile(type, id))
   }, [id])
-  
+
   const profileData = useSelector(state => state.viewProfile)
 
-  if( !profileData) {
+  if (!profileData) {
     return null
   }
-  
-  
+
+
   return (
     <div className='w-full bg-white border-2 border-highlight rounded-sm flex flex-col p-6'>
       <Profile
@@ -66,6 +66,6 @@ certificates/3.png' />
       </div>
     </div>
   )
-};
+}
 
-export default Index;
+export default Index

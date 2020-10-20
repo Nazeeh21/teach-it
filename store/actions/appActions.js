@@ -10,19 +10,23 @@ export const changeUserType = (newType) => {
 
 export const fetchServices = () => {
   return async (dispatch) => {
-    const res = await api.get('service/', {
-      headers: {
-        'Authorization': `Token ${localStorage.getItem('token')}`,
-        'X-Profile-ID': 4
-      }
-    })
-
-    console.log('Fetch service response', res)
-
-    dispatch({
-      type: FETCH_SERVICES,
-      services: res.data.results
-    })
+    try {
+      const res = await api.get('service/', {
+        headers: {
+          'Authorization': `Token ${localStorage.getItem('token')}`,
+          'X-Profile-ID': localStorage.getItem('currentProfile')
+        }
+      })
+  
+      console.log('Fetch service response', res)
+  
+      dispatch({
+        type: FETCH_SERVICES,
+        services: res.data.results
+      })
+    } catch (e) {
+      console.log(e)
+    }
   }
 }
 
@@ -33,6 +37,7 @@ export const fetchViewService = (id) => {
         const res = await api.get(`/service/${id}/`, {
           headers: {
             Authorization: `Token ${localStorage.getItem('token')}`,
+            'X-Profile-ID': localStorage.getItem('currentProfile')
           },
         })
         console.log('Fetch View Service response', res.data)
@@ -57,9 +62,10 @@ export const fetchProfiles = () => {
       })
       console.log('Profiles', res.data)
       if (res.data.profiles.length > 0) {
+        console.log(res.data.profiles[0].id)
         dispatch({
           type: SET_CURRENT_PROFILE,
-          data: res.data.profiles[0].id
+          id: res.data.profiles[0].id
         })
       }
     } catch (e) {
