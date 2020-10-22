@@ -1,7 +1,6 @@
 import React from 'react'
 import { PrimaryButton } from '../../../components/Buttons/Index'
 import Rating from '../../../components/Rating/Rating'
-import loremIpsum from '../../../utility/loremIpsum'
 import Milestone from './Milestone/Milestone'
 
 const ViewService = ({ response }) => {

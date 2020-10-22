@@ -11,6 +11,8 @@ const MyServices = () => {
   const [query, setQuery] = useState('')
   const services = useSelector(state => state.app.services)
 
+  const [activePillLabel, setLabel] = useState('all')
+
   const router = useRouter()
 
   const dispatch = useDispatch()
@@ -35,14 +37,22 @@ const MyServices = () => {
           )}
       </div>
       <Pills
+        activeLabel={activePillLabel}
+        setLabel={setLabel}
         width='w-10/12 sm:w-10/12 md:w-5/12'
         color='white'
         label1='All'
-        label2='Live video'
-        label3='Rich media'
+        label2='Live'
+        label3='Rich'
       />
       {
-        services.map(service => (
+        services.filter(service => {
+          if (activePillLabel === 'all') {
+            return true
+          }
+
+          return activePillLabel === service.type
+        }).map(service => (
           <CompactServiceCard
             buttonClickHandler={() => router.push(`/view-service/${service.pk}`)}
             category={service.category}

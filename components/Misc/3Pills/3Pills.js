@@ -1,8 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Pill } from './Pill'
 
-const Index = ({ color, label1, label2, label3, width = 'w-2/12' }) => {
-  const [activeId, setActiveId] = useState(0)
+const Index = ({ activeLabel, setLabel, color, label1, label2, label3, width = 'w-2/12' }) => {
 
   return (
     <div
@@ -10,30 +9,30 @@ const Index = ({ color, label1, label2, label3, width = 'w-2/12' }) => {
       className={`flex items-stretch ${width} rounded-full`}
     >
       <Pill
-        inactive={activeId !== 0}
+        inactive={activeLabel !== label1.toLowerCase()}
         label={label1}
         color={color}
         textColor='black'
         clickHandler={() => {
-          setActiveId(0)
+          setLabel(label1.toLowerCase())
         }}
       />
       <Pill
-        inactive={activeId !== 1}
+        inactive={activeLabel !== label2.toLowerCase()}
         label={label2}
         color={color}
         textColor='black'
         clickHandler={() => {
-          setActiveId(1)
+          setLabel(label2.toLowerCase())
         }}
       />
       <Pill
-        inactive={activeId !== 2}
+        inactive={activeLabel !== label3.toLowerCase()}
         label={label3}
         color={color}
         textColor='black'
         clickHandler={() => {
-          setActiveId(2)
+          setLabel(label3.toLowerCase())
         }}
       />
     </div>
