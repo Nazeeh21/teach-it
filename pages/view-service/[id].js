@@ -28,7 +28,7 @@ const Index = () => {
   }
 
   return (
-    <LayoutProvider rightContent={<ExpertOverview />}>
+    <LayoutProvider rightContent={<ExpertOverview providerPk={viewServiceData && viewServiceData.provider} />}>
       {viewServiceData && <ViewService response={viewServiceData} />}
     </LayoutProvider>
   )

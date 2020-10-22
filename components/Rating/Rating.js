@@ -5,7 +5,7 @@ const ratingChanged = (newRating) => {
   console.log(newRating)
 }
 
-const Rating = ({ size = 25 }) => (
+const Rating = ({ size = 25, value = 4 }) => (
   <StarsRating
     className=''
     count={5}
@@ -14,7 +14,7 @@ const Rating = ({ size = 25 }) => (
     color1={'#f4ebc1'}
     color2={'#ffd700'}
     onChange={() => {}}
-    value={4}
+    value={value}
   />
 )
 

@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Pills from '../../../components/Misc/3Pills/3Pills'
 import CompactServiceCard from '../../Chat/CompactServiceCard/CompactServiceCard'
 import { useRouter } from 'next/router'
 import SearchBar from '../../../components/Inputs/SearchBar'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchServices } from '../../../store/actions/appActions'
 
 const MyServices = () => {
   const [showSearchbar, toggleShowSearchBar] = useState(false)
@@ -12,7 +13,11 @@ const MyServices = () => {
 
   const router = useRouter()
 
-  const handleRedirect = () => router.push('/rich-media-service')
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(fetchServices())
+  }, [])
 
   return (
     <div>
@@ -39,7 +44,7 @@ const MyServices = () => {
       {
         services.map(service => (
           <CompactServiceCard
-            buttonClickHandler={() => router.push('/view-service')}
+            buttonClickHandler={() => router.push(`/view-service/${service.pk}`)}
             category={service.category}
             languages={service.languages}
             serviceType={service.type}

@@ -1,37 +1,38 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import CompactServiceCard from '../Chat/CompactServiceCard/CompactServiceCard'
 import { useRouter } from 'next/router'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchServices } from '../../store/actions/appActions'
 
 const Index = () => {
   const router = useRouter()
 
-  const handleRedirect = () => router.push('/view-service')
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(fetchServices())
+  }, [])
+
+  const services = useSelector(state => state.app.services)
 
   return (
     <div className='w-full'>
       <div className='font-medium text-2xl grid grid-cols-2 grid-rows-1'>
         <p>Search Results</p>
       </div>
-      <CompactServiceCard
-        buttonClickHandler={handleRedirect}
-        butttonText='View'
-        media={{ text: 'Rich Media', src: 'rich-media.svg', color: '#41BE27' }}
-      />
-      <CompactServiceCard
-        buttonClickHandler={handleRedirect}
-        butttonText='View'
-        media={{ text: 'Rich Media', src: 'rich-media.svg', color: '#41BE27' }}
-      />
-      <CompactServiceCard
-        buttonClickHandler={handleRedirect}
-        butttonText='View'
-        media={{ text: 'Rich Media', src: 'rich-media.svg', color: '#41BE27' }}
-      />
-      <CompactServiceCard
-        buttonClickHandler={handleRedirect}
-        butttonText='View'
-        media={{ text: 'Rich Media', src: 'rich-media.svg', color: '#41BE27' }}
-      />
+      {
+        services.map(service => (
+          <CompactServiceCard
+            buttonClickHandler={() => router.push(`/view-service/${service.pk}`)}
+            category={service.category}
+            languages={service.languages}
+            serviceType={service.type}
+            descriptionText={service.description}
+            cost={service.cost}
+            startDate={service.start_at}
+          />
+        ))
+      }
     </div>
   )
 }

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   PrimaryButton,
   SecondaryButton,
@@ -6,6 +6,7 @@ import {
 import Avatar from '../../../../components/Images/Avatar'
 import Rating from '../../../../components/Rating/Rating'
 import { useRouter } from 'next/router'
+import { fetchProviderData } from '../../../../services/viewService'
 
 const Card = ({ count, text }) => (
   <div className='font-medium my-3 grid'>
@@ -14,14 +15,24 @@ const Card = ({ count, text }) => (
   </div>
 )
 
-const ExpertOverview = () => {
+const ExpertOverview = ({ providerPk }) => {
   const router = useRouter()
+
+  const [providerData, setProviderData] = useState()
+
+  useEffect(() => {
+    fetchProviderData(providerPk).then(res => setProviderData(res))
+  }, [])
+
+  if (!providerData || !providerPk) {
+    return null
+  }
 
   return (
     <div className='text-primary'>
       <PrimaryButton label='Subscribe' />
       <div className='bg-white w-full rounded-md my-5 p-3'>
-        <p className='text-2xl font-bold'>Arun Kumar Pattnaik</p>
+        <p className='text-2xl font-bold'>{providerData.name}</p>
         <div className='flex'>
           <div className='w-6/12 p-2'>
             <Avatar
@@ -31,10 +42,10 @@ const ExpertOverview = () => {
             />
           </div>
           <div className='text-center m-2 w-6/12'>
-            <p className='text-center text-red text-md'>Unverified</p>
+            <p className={`text-center text-${providerData.is_verified ? 'green' : 'red'} text-md`}>{providerData.is_verified ? 'Verified' : 'Unverified'}</p>
             <Card count='58' text='Services' />
             <Card count='425' text='Learners' />
-            <Card count={<Rating size='15' />} text='152 avg rating' />
+            <Card count={<Rating size='15' value={providerData.rating_position} />} text={`${providerData.review_count} total reviews`} />
           </div>
         </div>
         <div className='flex flex-col gap-4'>
