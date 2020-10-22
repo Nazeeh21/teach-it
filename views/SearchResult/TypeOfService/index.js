@@ -1,19 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Pills3 from '../../../components/Misc/3Pills/3Pills'
 import Pills2 from '../../../components/Misc/3Pills/2Pills'
-// import Rating from '../../../components/Rating/Rating'
 import DatePicker from '../../Expert/CreateService/LiveServiceFormComponents/DateSelector/DatePicker/DatePicker'
 import { PrimaryButton } from '../../../components/Buttons/Index'
-import { useRouter } from 'next/router'
-
-// const RatingSelection = (
-//   <div className='flex'>
-//     <Rating />
-//   </div>
-// )
 
 const Index = () => {
-  const router = useRouter()  
+
+  const [activeTimingLabel, setLabel] = useState('anytime')
 
   return (
     <div className='w-full rounded-lg bg-white px-3 py-2'>
@@ -49,6 +42,8 @@ const Index = () => {
 
       <p className='text-lg font-medium mt-6 mb-2'>Timings</p>
       <Pills3
+        activeLabel={activeTimingLabel}
+        setLabel={setLabel}
         width='full'
         color='white'
         label1='Anytime'
