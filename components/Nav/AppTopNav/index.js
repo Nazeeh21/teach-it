@@ -34,9 +34,9 @@ const Index = () => {
       .catch((e) => console.log(e))
   }, [])
 
-  {
-    otherProfiles && console.log(otherProfiles)
-  }
+  // {
+  //   otherProfiles && console.log(otherProfiles)
+  // }
 
   const notificationOpenHandler = () => setShowNotifications(true)
 
@@ -67,15 +67,15 @@ const Index = () => {
             />
           </div>
 
-          <div className='w-full md:mr-12' onClick={notificationOpenHandler}>
+          <div className='w-full md:mr-24' onClick={notificationOpenHandler}>
             <Icon
               src='/misc/notifications.svg'
               alt='Notifications'
               onClick={notificationOpenHandler}
             />
           </div>
-          <div className='flex flex-col'>
-            {currentProfile && <div className='flex justify-center'>
+          <div className='flex flex-col right-0 mr-10 mt-2 absolute justify-self-end'>
+            {currentProfile && <div className='flex flex-row'>
               <ProfileSwitch name={currentProfile.name} clickHandler={() => router.push('/profile')} />
               <img
                 src='/arrows/down.svg'
