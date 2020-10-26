@@ -28,7 +28,6 @@ const reducer = (state = initialState, action) => {
       }
     case SET_CURRENT_PROFILE:
       localStorage.setItem('currentProfile', action.id)
-
       return {
         ...state,
         currentProfile: action.id
