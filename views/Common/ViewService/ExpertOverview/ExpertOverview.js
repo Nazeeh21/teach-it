@@ -16,13 +16,15 @@ const Card = ({ count, text }) => (
 )
 
 const ExpertOverview = ({ providerPk }) => {
+
   const router = useRouter()
 
   const [providerData, setProviderData] = useState()
 
   useEffect(() => {
+    console.log('Provider pk', providerPk)
     fetchProviderData(providerPk).then(res => setProviderData(res))
-  }, [])
+  }, [providerPk])
 
   if (!providerData || !providerPk) {
     return null
