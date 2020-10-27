@@ -1,5 +1,5 @@
 import api from '../../api'
-import { CHANGE_USER_TYPE, FETCH_SERVICES, FETCH_VIEW_SERVICE, SET_CURRENT_PROFILE } from '../actionTypes'
+import { CHANGE_USER_TYPE, FETCH_SERVICES, FETCH_VIEW_SERVICE, LOGOUT, SET_CURRENT_PROFILE } from '../actionTypes'
 
 export const changeUserType = (newType) => {
   return {
@@ -79,5 +79,12 @@ export const switchProfile = (id) => {
   return {
     type: SET_CURRENT_PROFILE,
     id: id
+  }
+}
+
+export const logout = () => {
+  console.log('logout called')
+  return {
+    type: LOGOUT
   }
 }

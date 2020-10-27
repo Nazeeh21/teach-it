@@ -7,7 +7,7 @@ import Notifications from '../../Notifications'
 import MobileBottomNav from '../MobileBottomNav'
 import { fetchAllProfiles } from '../../../services/fetchProfiles'
 import { useDispatch } from 'react-redux'
-import { switchProfile } from '../../../store/actions/appActions'
+import { logout, switchProfile } from '../../../store/actions/appActions'
 
 const Index = () => {
   const dispatch = useDispatch()
@@ -23,11 +23,17 @@ const Index = () => {
   useEffect(() => {
     fetchAllProfiles()
       .then((res) => {
-        const currentProfileData = res.filter(profile => profile.id == window.localStorage.getItem('currentProfile'))
+        const currentProfileData = res.filter(
+          (profile) =>
+            profile.id == window.localStorage.getItem('currentProfile')
+        )
         setCurrentProfile(currentProfileData)
         console.log(currentProfileData[0])
-        
-        const otherProfilesData = res.filter(profile => profile.id != window.localStorage.getItem('currentProfile'))
+
+        const otherProfilesData = res.filter(
+          (profile) =>
+            profile.id != window.localStorage.getItem('currentProfile')
+        )
         setOtherProfiles(otherProfilesData)
         console.log(otherProfilesData)
       })
@@ -75,20 +81,51 @@ const Index = () => {
             />
           </div>
           <div className='flex flex-col right-0 mr-10 mt-2 absolute justify-self-end'>
-            {currentProfile && <div className='flex flex-row'>
-              <ProfileSwitch name={currentProfile.name} clickHandler={() => router.push('/profile')} />
-              <img
-                src='/arrows/down.svg'
-                alt='Switch profile'
-                className='cursor-pointer'
-                onClick={e => setShowAllProfiles(prevState => !prevState)}
-              />
-            </div>}
-            {otherProfiles && showAllProfiles &&
-              otherProfiles.map((profile) => (
-                <ProfileSwitch key={profile.name} id={profile.id} name={profile.name} clickHandler={(id) => dispatch(switchProfile(id))} />
-              ))}
+            {currentProfile && !showAllProfiles && (
+              <div className='flex flex-row'>
+                <ProfileSwitch
+                  name={currentProfile.name}
+                  clickHandler={() => router.push('/profile')}
+                />
+                <img
+                  src='/arrows/down.svg'
+                  alt='Switch profile'
+                  className='cursor-pointer'
+                  onClick={(e) => setShowAllProfiles((prevState) => !prevState)}
+                />
+              </div>
+            )}
           </div>
+          {otherProfiles && showAllProfiles && (
+            <div className='flex flex-col right-0 mr-8 mt-24 absolute justify-self-end bg-white px-2 border-gray-500 border-solid border-b-2 shadow-xl rounded-b'>
+              <div className='flex flex-row'>
+                <ProfileSwitch
+                  name={currentProfile.name}
+                  clickHandler={() => router.push('/profile')}
+                />
+                <img
+                  src='/angle-arrow-up.svg'
+                  alt='Switch profile'
+                  className='cursor-pointer w-3'
+                  onClick={(e) => setShowAllProfiles((prevState) => !prevState)}
+                />
+              </div>
+              {otherProfiles.map((profile) => (
+                <div className='mt-2'>
+                  <ProfileSwitch
+                    key={profile.name}
+                    id={profile.id}
+                    name={profile.name}
+                    clickHandler={(id) => dispatch(switchProfile(id))}
+                  />
+                </div>
+              ))}
+              <div onClick={() => {
+                dispatch(logout())
+                router.push('/login')
+              }} className='font-medium text-center my-2 cursor-pointer'>Log out</div>
+            </div>
+          )}
         </div>
       </div>
       <MobileBottomNav />
