@@ -6,7 +6,7 @@ import { useRouter } from 'next/router'
 import Notifications from '../../Notifications'
 import MobileBottomNav from '../MobileBottomNav'
 import { fetchAllProfiles } from '../../../services/fetchProfiles'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { logout, switchProfile } from '../../../store/actions/appActions'
 
 const Index = () => {
@@ -39,10 +39,6 @@ const Index = () => {
       })
       .catch((e) => console.log(e))
   }, [])
-
-  // {
-  //   otherProfiles && console.log(otherProfiles)
-  // }
 
   const notificationOpenHandler = () => setShowNotifications(true)
 
@@ -97,7 +93,7 @@ const Index = () => {
             )}
           </div>
           {otherProfiles && showAllProfiles && (
-            <div className='flex flex-col right-0 mr-8 mt-24 absolute justify-self-end bg-white px-2 border-gray-500 border-solid border-b-2 shadow-xl rounded-b'>
+            <div className='flex flex-col right-0 top-0 mr-8 mt-4 absolute justify-self-end bg-white px-2 border-gray-500 border-solid border-b-2 shadow-xl rounded-b'>
               <div className='flex flex-row'>
                 <ProfileSwitch
                   name={currentProfile.name}
@@ -116,14 +112,23 @@ const Index = () => {
                     key={profile.name}
                     id={profile.id}
                     name={profile.name}
-                    clickHandler={(id) => dispatch(switchProfile(id))}
+                    clickHandler={(id) => {
+                      dispatch(switchProfile(id))
+                      setShowAllProfiles((prevState) => !prevState)
+                      router.push('/dashboard')
+                    }}
                   />
                 </div>
               ))}
-              <div onClick={() => {
-                dispatch(logout())
-                router.push('/login')
-              }} className='font-medium text-center my-2 cursor-pointer'>Log out</div>
+              <div
+                onClick={() => {
+                  dispatch(logout())
+                  router.push('/login')
+                }}
+                className='font-medium text-center my-2 cursor-pointer'
+              >
+                Log out
+              </div>
             </div>
           )}
         </div>
