@@ -23,19 +23,20 @@ const Index = () => {
   useEffect(() => {
     fetchAllProfiles()
       .then((res) => {
+        console.log('ALl profiles data : ', res)
         const currentProfileData = res.filter(
           (profile) =>
             profile.id == window.localStorage.getItem('currentProfile')
         )
-        setCurrentProfile(currentProfileData)
-        console.log(currentProfileData[0])
+        setCurrentProfile(currentProfileData[0])
+        console.log('Current profile data : ' , currentProfileData[0])
 
         const otherProfilesData = res.filter(
           (profile) =>
             profile.id != window.localStorage.getItem('currentProfile')
         )
         setOtherProfiles(otherProfilesData)
-        console.log(otherProfilesData)
+        console.log('Other profile data : ', otherProfilesData)
       })
       .catch((e) => console.log(e))
   }, [])
