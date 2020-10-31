@@ -70,13 +70,13 @@ const Index = () => {
       is_private: false,
       live_type: liveType,
       cost: fees,
-      session_type: 'weekly',
-      payment_type: 'weekly',
+      session_type: `${serviceFreq === 'per day' ? 'daily' : serviceFreq === 'per week' ? 'weekly' : 'monthly'}`,
+      payment_type: `${paymentFreq === 'per day' ? 'daily' : paymentFreq === 'per week' ? 'weekly' : 'monthly'}`,
       allow_questions: false,
       question_fee: '5656',
       allow_subscribe: false,
-      allow_recording: false,
-      allow_visible_user_names: false,
+      allow_recording: `${allowRecording === 'yes' ? 'true' : 'false'}`,
+      allow_visible_user_names: `${showFullName === 'yes' ? 'true' : 'false'}`,
       // start_at: `10/16/2020 ${startTimeHour} ' : ' ${startTimeMin} ' ' ${startTimeStamp}`,
       // end_at: `12/16/2020 ${startTimeHour} ' : ' ${startTimeMin} ' ' ${startTimeStamp}`,
       start_at: '2020-10-16T02:08:00Z',
@@ -103,6 +103,7 @@ const Index = () => {
               clickHandler={() => {
                 setType('live')
                 setServiceType(0)
+                setPaymentFreq(null)
               }}
             />
             <ServiceTypeCard
@@ -111,6 +112,8 @@ const Index = () => {
               clickHandler={() => {
                 setType('rich')
                 setServiceType(1)
+                // setLiveType(null)
+                setServiceFreq(null)
               }}
             />
           </div>
