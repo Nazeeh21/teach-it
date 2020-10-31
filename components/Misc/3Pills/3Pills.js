@@ -1,8 +1,15 @@
 import React from 'react'
 import { Pill } from './Pill'
 
-const Index = ({ activeLabel, setLabel, color, label1, label2, label3, width = 'w-2/12' }) => {
-
+const Index = ({
+  activeLabel,
+  setLabel,
+  color,
+  label1,
+  label2,
+  label3,
+  width = 'w-2/12',
+}) => {
   return (
     <div
       style={{ background: '#F3F5FD' }}

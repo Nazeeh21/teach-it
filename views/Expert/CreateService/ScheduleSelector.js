@@ -7,15 +7,7 @@ import DateSelector from './LiveServiceFormComponents/DateSelector/DateSelector'
 import TimeSelector from './LiveServiceFormComponents/TimeSelector/TimeSelector'
 import DurationSelector from './LiveServiceFormComponents/DurationSelector/DurationSelector'
 import CustomizeAndMilestoneContainer from './LiveServiceFormComponents/CustomizeAndMilestoneContainer'
-// import { useDispatch, useSelector } from 'react-redux'
-// import {
-//   setDuration,
-//   setStartHour,
-//   setStartMin,
-//   setServiceFrequency,
-//   setDaysOfWeek,
-//   setStartTimeStamp,
-// } from '../../../store/actions/createServiceAction'
+
 
 const ScheduleSelector = ({
   type,
@@ -31,22 +23,23 @@ const ScheduleSelector = ({
   startDateChangeHandler,
   endDate,
   endDateChangeHandler,
-  setMilestoneData
+  setMilestoneData,
+  serviceFreq,
+  setServiceFreq,
+  paymentFreq,
+  setPaymentFreq
 }) => {
-  // const dispatch = useDispatch()
-  // const hour = useSelector(state => state.createService.startHour)
-  // const min = useSelector(state => state.createService.startMin)
-  // const duration = useSelector((state) => state.createService.duration)
+
+  // const [activePillLabel, setLabel] = useState('per day')
 
   if (type === 0) {
     return (
       <React.Fragment>
-        <ServiceFreeqSel />
+        <ServiceFreeqSel activeLabel={serviceFreq} setLabel={setServiceFreq} />
         <div className='mt-6'>
           <DaySelector
             changedHandler={(value) => {
               weekDaysChangedHandler(value)
-              // dispatch(setDaysOfWeek(value))
             }}
           />
         </div>
@@ -60,15 +53,12 @@ const ScheduleSelector = ({
               minValue={min}
               timeStampChanged={(value) => {
                 timeStampChangedHandler(value)
-                // dispatch(setStartTimeStamp(value))
               }}
               hourChanged={(value) => {
                 hourChangedHandler(value)
-                // dispatch(setStartHour(value))
               }}
               minChanged={(value) => {
                 minChangedHandler(value)
-                // dispatch(setStartMin(value))
               }}
             />
           </div>
@@ -77,7 +67,6 @@ const ScheduleSelector = ({
               duration={duration}
               onDurationChanged={(value) => {
                 durationChangedHandler(value)
-                // dispatch(setDuration(value))
               }}
             />
           </div>
@@ -98,6 +87,8 @@ const ScheduleSelector = ({
             At what frequency subscriber of the service shall pay
           </p>
           <Pills
+            activeLabel={paymentFreq}
+            setLabel={setPaymentFreq}
             width='w-6/12'
             color='white'
             label1='Per day'
