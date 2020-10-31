@@ -3,7 +3,7 @@ import DatePicker from '../../../components/DateAndTimePicker/DatePicker/DatePic
 import Pills from '../../../components/Misc/3Pills/3Pills'
 import ServiceFreeqSel from './LiveServiceFormComponents/ServiceFreeqSelector/ServiceFreeqSel'
 import DaySelector from './LiveServiceFormComponents/DaySelector/DaySelector'
-import DateSelector from './LiveServiceFormComponents/DateSelector/DateSelector'
+// import DateSelector from './LiveServiceFormComponents/DateSelector/DateSelector'
 import TimeSelector from './LiveServiceFormComponents/TimeSelector/TimeSelector'
 import DurationSelector from './LiveServiceFormComponents/DurationSelector/DurationSelector'
 import CustomizeAndMilestoneContainer from './LiveServiceFormComponents/CustomizeAndMilestoneContainer'
@@ -47,13 +47,13 @@ const ScheduleSelector = ({
             <div className='w-6/12'>
               <p className='mb-2'>Start date</p>
               <div className='-ml-2'>
-                <DatePicker />
+                <DatePicker value={startDate} handleDayChange={startDateChangeHandler} />
               </div>
             </div>
             <div className='w-6/12'>
               <p className='mb-2'>End date</p>
               <div className='-ml-2'>
-                <DatePicker />
+                <DatePicker value={endDate} handleDayChange={endDateChangeHandler} />
               </div>
             </div>
           </div>
@@ -113,13 +113,13 @@ const ScheduleSelector = ({
           <div className='w-6/12'>
             <p className='mb-2'>Start date</p>
             <div className='-ml-2'>
-              <DatePicker />
+              <DatePicker value={startDate} handleDayChange={startDateChangeHandler}/>
             </div>
           </div>
           <div className='w-6/12'>
             <p className='mb-2'>End date</p>
             <div className='-ml-2'>
-              <DatePicker />
+              <DatePicker value={endDate} handleDayChange={endDateChangeHandler} />
             </div>
           </div>
         </div>

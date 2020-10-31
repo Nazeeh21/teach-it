@@ -102,6 +102,8 @@ const Index = () => {
               active={serviceType === 0}
               clickHandler={() => {
                 setType('live')
+                setStartDate(null)
+                setEndDate(null)
                 setServiceType(0)
                 setPaymentFreq(null)
               }}
@@ -111,6 +113,8 @@ const Index = () => {
               active={serviceType === 1}
               clickHandler={() => {
                 setType('rich')
+                setStartDate(null)
+                setEndDate(null)
                 setServiceType(1)
                 // setLiveType(null)
                 setServiceFreq(null)
