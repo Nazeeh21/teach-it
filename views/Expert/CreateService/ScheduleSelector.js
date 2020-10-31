@@ -8,7 +8,6 @@ import TimeSelector from './LiveServiceFormComponents/TimeSelector/TimeSelector'
 import DurationSelector from './LiveServiceFormComponents/DurationSelector/DurationSelector'
 import CustomizeAndMilestoneContainer from './LiveServiceFormComponents/CustomizeAndMilestoneContainer'
 
-
 const ScheduleSelector = ({
   type,
   weekDaysChangedHandler,
@@ -27,9 +26,8 @@ const ScheduleSelector = ({
   serviceFreq,
   setServiceFreq,
   paymentFreq,
-  setPaymentFreq
+  setPaymentFreq,
 }) => {
-
   // const [activePillLabel, setLabel] = useState('per day')
 
   if (type === 0) {
@@ -44,7 +42,21 @@ const ScheduleSelector = ({
           />
         </div>
         <div className='mt-6'>
-          <DateSelector />
+          {/* <DatePicker /> */}
+          <div className='w-full flex text-lg font-medium'>
+            <div className='w-6/12'>
+              <p className='mb-2'>Start date</p>
+              <div className='-ml-2'>
+                <DatePicker />
+              </div>
+            </div>
+            <div className='w-6/12'>
+              <p className='mb-2'>End date</p>
+              <div className='-ml-2'>
+                <DatePicker />
+              </div>
+            </div>
+          </div>
         </div>
         <div className='flex mt-6'>
           <div className='w-6/12'>
@@ -97,21 +109,41 @@ const ScheduleSelector = ({
           />
         </div>
 
-        <div className='my-4 flex'>
+        <div className='mt-6 w-full flex text-lg font-medium'>
+          <div className='w-6/12'>
+            <p className='mb-2'>Start date</p>
+            <div className='-ml-2'>
+              <DatePicker />
+            </div>
+          </div>
+          <div className='w-6/12'>
+            <p className='mb-2'>End date</p>
+            <div className='-ml-2'>
+              <DatePicker />
+            </div>
+          </div>
+        </div>
+        {/* <div className='my-4 flex'>
           <div className='w-6/12'>
             <div className='text-lg mb-2'>Start date</div>
             <div>
-              <DatePicker value={startDate} changeHandler={value => startDateChangeHandler(value)} />
+              <DatePicker
+                value={startDate}
+                changeHandler={(value) => startDateChangeHandler(value)}
+              />
             </div>
           </div>
 
           <div className='w-6/12 mx-3'>
             <div className='text-lg mb-2'>End date</div>
             <div>
-              <DatePicker value={endDate} changeHandler={value =>  endDateChangeHandler(value)} />
+              <DatePicker
+                value={endDate}
+                changeHandler={(value) => endDateChangeHandler(value)}
+              />
             </div>
           </div>
-        </div>
+        </div> */}
       </React.Fragment>
     )
   }
