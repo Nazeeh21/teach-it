@@ -3,8 +3,11 @@ import api from '../../api'
 import { PrimaryButton } from '../../components/Buttons/Index'
 import Pills3 from '../../components/Misc/3Pills/3Pills'
 import Question from '../Learner/RichMediaService/Question'
+import { useRouter } from 'next/router'
 
 const Support = () => {
+  const router = useRouter()
+
   const [filter, setFilter] = useState('open')
   const [tickets, setTickets] = useState([])
 
@@ -42,7 +45,7 @@ const Support = () => {
         <Question question={loremIpsum.substring(100)} />
         <Question question={loremIpsum.substring(100)} /> */}
         {
-          tickets.filter(ticket => ticket.status.toLowerCase() === filter).map(ticket => <Question key={ticket.chat_id} question={ticket.title} time={ticket.created_at} />)
+          tickets.filter(ticket => ticket.status.toLowerCase() === filter).map(ticket => <Question key={ticket.chat_id} question={ticket.title} time={ticket.created_at} clickHandler={() => router.push(`/support/${ticket.chat_id}`)} />)
         }
       </div>
       <div className='mb-20 md:mb-0 grid grid-cols-1 grid-rows-2 md:grid-cols-2 md:grid-rows-1 items-center mt-5'>
