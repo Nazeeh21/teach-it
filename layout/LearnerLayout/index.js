@@ -4,8 +4,10 @@ import { CenterSection, ThreeCols } from '..'
 import InviteCard from '../../components/Misc/InviteCard'
 import AppTopNav from '../../components/Nav/AppTopNav'
 import Messages from '../../views/Expert/Messages'
+import { useSelector } from 'react-redux'
 
 const Index = ({ children, rightContent, alternate = false }) => {
+
   if (alternate) {
     return (
       <React.Fragment>

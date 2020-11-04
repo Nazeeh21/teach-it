@@ -1,5 +1,5 @@
 import api from '../../api'
-import { CHANGE_USER_TYPE, FETCH_SERVICES, FETCH_VIEW_SERVICE, SET_CURRENT_PROFILE } from '../actionTypes'
+import { CHANGE_USER_TYPE, FETCH_SERVICES, FETCH_VIEW_SERVICE, LOGOUT, SET_CURRENT_PROFILE } from '../actionTypes'
 
 export const changeUserType = (newType) => {
   return {
@@ -18,7 +18,7 @@ export const fetchServices = () => {
         }
       })
   
-      console.log('Fetch service response', res)
+      // console.log('Fetch service response', res)
   
       dispatch({
         type: FETCH_SERVICES,
@@ -60,9 +60,9 @@ export const fetchProfiles = () => {
           Authorization: `Token ${localStorage.getItem('token')}`,
         },
       })
-      console.log('Profiles', res.data)
+      // console.log('Profiles', res.data)
       if (res.data.profiles.length > 0) {
-        console.log(res.data.profiles[0].id)
+        // console.log(res.data.profiles[0].id)
         dispatch({
           type: SET_CURRENT_PROFILE,
           id: res.data.profiles[0].id
@@ -71,5 +71,20 @@ export const fetchProfiles = () => {
     } catch (e) {
       console.log(e)
     }
+  }
+}
+
+export const switchProfile = (id) => {
+  console.log(id)
+  return {
+    type: SET_CURRENT_PROFILE,
+    id: id
+  }
+}
+
+export const logout = () => {
+  console.log('logout called')
+  return {
+    type: LOGOUT
   }
 }

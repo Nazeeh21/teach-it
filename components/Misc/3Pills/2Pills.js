@@ -1,29 +1,30 @@
 import React, { useState } from 'react'
 import { Pill } from './Pill'
 
-export default ({ color, label1, label2, width = '2/12' }) => {
-  const [activeId, setActiveId] = useState(0)
+const Pills2 = ({ activeLabel, setLabel, color, label1, label2, width = '2/12' }) => {
 
   return (
     <div style={{background: '#F3F5FD'}} className={`flex items-stretch w-${width} rounded-full`}>
       <Pill
-        inactive={activeId !== 0}
+        inactive={activeLabel !== label1.toLowerCase()}
         label={label1}
         color={color}
         textColor='black'
         clickHandler={() => {
-          setActiveId(0)
+          setLabel(label1.toLowerCase())
         }}
       />
       <Pill
-        inactive={activeId !== 1}
+        inactive={activeLabel !== label2.toLowerCase()}
         label={label2}
         color={color}
         textColor='black'
         clickHandler={() => {
-          setActiveId(1)
+          setLabel(label2.toLowerCase())
         }}
       />
     </div>
   )
 }
+
+export default Pills2

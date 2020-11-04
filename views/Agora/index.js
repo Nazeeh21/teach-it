@@ -22,7 +22,7 @@ const Index = () => {
     const stream = AgoraRTC.createStream({
       streamId: 1,
       audio: true,
-      video: true,
+      video: false,
       screen: false
     })
 

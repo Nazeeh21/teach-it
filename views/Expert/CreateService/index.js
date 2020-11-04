@@ -32,6 +32,10 @@ const Index = () => {
   const [startDate, setStartDate] = useState(null)
   const [endDate, setEndDate] = useState(null)
   const [milestoneData, setMileStoneData] = useState(null)
+  const [serviceFreq, setServiceFreq] = useState('per day')
+  const [paymentFreq, setPaymentFreq] = useState('per day')
+  const [allowRecording, setAllowRecording] = useState('no')
+  const [showFullName, setShowFullName] = useState('no')
 
   const router = useRouter()
   const userType = useSelector((state) => state.app.userType)
@@ -60,24 +64,24 @@ const Index = () => {
       title: title,
       description: description,
       category: null,
-      languages: 'english',
+      languages: ['en'],
       type: type,
       is_group: false,
       is_private: false,
       live_type: liveType,
       cost: fees,
-      session_type: 'weekly',
-      payment_type: 'weekly',
+      session_type: `${serviceFreq === 'per day' ? 'daily' : serviceFreq === 'per week' ? 'weekly' : 'monthly'}`,
+      payment_type: `${paymentFreq === 'per day' ? 'daily' : paymentFreq === 'per week' ? 'weekly' : 'monthly'}`,
       allow_questions: false,
       question_fee: '5656',
       allow_subscribe: false,
-      allow_recording: false,
-      allow_visible_user_names: false,
+      allow_recording: `${allowRecording === 'yes' ? 'true' : 'false'}`,
+      allow_visible_user_names: `${showFullName === 'yes' ? 'true' : 'false'}`,
       // start_at: `10/16/2020 ${startTimeHour} ' : ' ${startTimeMin} ' ' ${startTimeStamp}`,
       // end_at: `12/16/2020 ${startTimeHour} ' : ' ${startTimeMin} ' ' ${startTimeStamp}`,
       start_at: '2020-10-16T02:08:00Z',
       end_at: '2020-10-24T02:08:00Z',
-      age_group: {activeAgeGroup}
+      age_group: `${activeAgeGroup}`
     }
 
     dispatch(createService(formData))
@@ -98,8 +102,10 @@ const Index = () => {
               active={serviceType === 0}
               clickHandler={() => {
                 setType('live')
-                // dispatch(setMediaType('live'))
+                setStartDate(null)
+                setEndDate(null)
                 setServiceType(0)
+                setPaymentFreq(null)
               }}
             />
             <ServiceTypeCard
@@ -107,8 +113,11 @@ const Index = () => {
               active={serviceType === 1}
               clickHandler={() => {
                 setType('rich')
-                // dispatch(setMediaType('rich'))
+                setStartDate(null)
+                setEndDate(null)
                 setServiceType(1)
+                // setLiveType(null)
+                setServiceFreq(null)
               }}
             />
           </div>
@@ -138,19 +147,12 @@ const Index = () => {
             durationChangedHandler={value => setDuration(value)}
             type={serviceType}
             setMilestoneData={data => setMileStoneData(data)}
+            serviceFreq={serviceFreq}
+            setServiceFreq={setServiceFreq}
+            paymentFreq={paymentFreq}
+            setPaymentFreq={setPaymentFreq}
           />
         </Accordion>
-
-        {/* <Accordion label='AUDIENCE'> */}
-        {/* <div className='flex mt-6'>
-            <div className='w-6/12'>
-              <AllowRecording />
-            </div>
-            <div className='w-6/12 ml-6'>
-              <ShowFullName />
-            </div>
-          </div> */}
-        {/* </Accordion> */}
 
         <Accordion id='fees' label='Fees'>
           <FeesSelector fees={fees} feesChangedHandler={value => setFees(value)} />
@@ -161,8 +163,8 @@ const Index = () => {
         </Accordion>
 
         <div className='flex gap-4'>
-          <AllowRecording />
-          <ShowFullName />
+          <AllowRecording activeLabel={allowRecording} setLabel={setAllowRecording} />
+          <ShowFullName activeLabel={showFullName} setLabel={setShowFullName} />
         </div>
         <div className='w-4/12 mt-10'>
           <PrimaryButton label='Continue' clickHandler={continueClickedHandler} />

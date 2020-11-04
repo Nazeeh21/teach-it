@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 import Pills from '../../../../../components/Misc/3Pills/3Pills'
 
-const ServiceFreeqSel = () => {
-  const [activeLabel, setLabel] = useState('per day')
+const ServiceFreeqSel = ({ activeLabel, setLabel}) => {
 
   return (
   <React.Fragment>

@@ -3,11 +3,13 @@ import { PrimaryButton } from '../../../components/Buttons/Index'
 import Rating from '../../../components/Rating/Rating'
 import Milestone from './Milestone/Milestone'
 
-const ViewService = ({ response }) => {
-  if (!response) {
+const ViewService = ({ response, milestoneData }) => {
+  if (!response || !milestoneData) {
     return null
   }
 
+  console.log('ViewService')
+  console.log(milestoneData)
   return (
     <div className='bg-lightGrey text-primary'>
       <div
@@ -63,9 +65,10 @@ const ViewService = ({ response }) => {
             </div>
           </div>
           <div className='my-20'>
+            {milestoneData.map(milestone => <Milestone title={milestone.title} sessionsNumber={milestone.sessions_number} description={milestone.description} />)}
+            {/* <Milestone  />
             <Milestone />
-            <Milestone />
-            <Milestone />
+            <Milestone /> */}
           </div>
           <div className='w-6/12'>
             <PrimaryButton label='Subscribe' />
