@@ -54,7 +54,7 @@ class VideoStream {
   }
 
   joinChannel = (roomId, userId) => {
-    this.client.join(null, roomId, userId, (uid) => {
+    this.client.join('0b129377515e43889543cec7fec454ff', roomId, userId, (uid) => {
       const logMessage = 'User ' + uid + ' join channel successfully'
       console.log(logMessage)
       this.client.publish(this.localStream, err => {
