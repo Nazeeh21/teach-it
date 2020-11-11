@@ -1,50 +1,42 @@
-import React, { useEffect, useState } from 'react'
-import LayoutProvider from '../../layout/LayoutProvider'
-import AgoraRTC from 'agora-rtc-sdk'
+import React, { useCallback, useEffect, useState } from 'react'
+import VideoStream from './VideoStream'
+
+const roomId = '10'
+const userId = '12345678'
 
 const Index = () => {
-  const [client, setClient] = useState()
-  const [localStream, setLocalStream] = useState()
-
-  const initClient = () => {
-    const agoraClient = AgoraRTC.createClient({ mode: 'rtc', codec: 'h264' })
-
-    agoraClient.init('a79d3d6b148340be8c8375ea556f824c', () => {
-      console.log('test')
-    }, (e) => {
-      console.log(e)
-    })
-
-    setClient(agoraClient)
-  }
-
-  const initLocalStream = async () => {
-    const stream = AgoraRTC.createStream({
-      streamId: 1,
-      audio: true,
-      video: false,
-      screen: false
-    })
-
-    stream.init(function () {
-      console.log("init local stream success")
-      // play stream with html element id "local_stream"
-      setLocalStream(stream)
-      stream.play('local-stream')
-    }, function (err) {
-      console.error("init local stream failed ", err)
-    })
-  }
+  const [videoStream, setVideoStream] = useState()
+  const [presentVideoStreams, setPresentVideoStreams] = useState([])
 
   useEffect(() => {
-    initClient()
-    initLocalStream()
+    const videoStream = new VideoStream(userId)
+    setVideoStream(videoStream)
+
+    return startRoom()
   }, [])
 
+  useEffect(() => {
+    startRoom()
+  }, [startRoom])
+
+  const startRoom = useCallback(() => {
+    if (videoStream) {
+      videoStream.initLocalStream('local_stream', roomId, userId, () => {})
+      const vidStreams = []
+      vidStreams.push({
+        stream: videoStream.localStream,
+        element: <div id='local_stream' className='h-100 w-100'></div>,
+      })
+      setPresentVideoStreams(vidStreams)
+    }
+  }, [videoStream])
+
   return (
-    <LayoutProvider>
-      <video style={{ height: '400px', width: '400px' }} id='local-stream' />
-    </LayoutProvider>
+    <div>
+      {presentVideoStreams.map((stream, index) => {
+        return stream.element
+      })}
+    </div>
   )
 }
 
