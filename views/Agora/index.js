@@ -11,25 +11,25 @@ const Index = () => {
   useEffect(() => {
     const videoStream = new VideoStream(userId)
     setVideoStream(videoStream)
-
-    return startRoom()
   }, [])
 
   useEffect(() => {
-    startRoom()
-  }, [startRoom])
-
-  const startRoom = useCallback(() => {
+    console.log('outside')
     if (videoStream) {
-      videoStream.initLocalStream('local_stream', roomId, userId, () => {})
-      const vidStreams = []
-      vidStreams.push({
-        stream: videoStream.localStream,
-        element: <div id='local_stream' className='h-100 w-100'></div>,
-      })
-      setPresentVideoStreams(vidStreams)
+      console.log('inside')
+      startRoom()
     }
-  }, [videoStream])
+  }, [startRoom, videoStream])
+
+  const startRoom = () => {
+    videoStream.initLocalStream('local_stream', roomId, userId, () => {})
+    const vidStreams = []
+    vidStreams.push({
+      stream: videoStream.localStream,
+      element: <div id='local_stream' className='h-100 w-100'></div>,
+    })
+    setPresentVideoStreams(vidStreams)
+  }
 
   return (
     <div>
