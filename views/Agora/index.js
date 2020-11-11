@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import VideoStream from './VideoStream'
 
-const roomId = '10'
+const roomId = 'test'
 const userId = '12345678'
 
 const Index = () => {
