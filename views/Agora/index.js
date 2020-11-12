@@ -7,16 +7,15 @@ const userId = '12345678'
 const Index = () => {
   const [videoStream, setVideoStream] = useState()
   const [presentVideoStreams, setPresentVideoStreams] = useState([])
+  const [remoteStreams, setRemoteStreams] = useState([])
 
   useEffect(() => {
-    const videoStream = new VideoStream(userId)
+    const videoStream = new VideoStream(userId, updateRemoteStreams)
     setVideoStream(videoStream)
   }, [])
 
   useEffect(() => {
-    console.log('outside')
     if (videoStream) {
-      console.log('inside')
       startRoom()
     }
   }, [startRoom, videoStream])
@@ -30,6 +29,29 @@ const Index = () => {
     })
     setPresentVideoStreams(vidStreams)
   }
+
+  const updateRemoteStreams = (remoteStreams) => {
+    setRemoteStreams(remoteStreams)
+  }
+
+  useEffect(() => {
+    const streams = [...presentVideoStreams]
+    Object.keys(remoteStreams).forEach((key) => {
+      const stream = remoteStreams[key]
+      const streamId = stream.getId()
+      streams.push({
+        stream,
+        element: (
+          <div
+            key={streamId}
+            id={`agora_remote ${streamId}`}
+            className='w-full h-64'
+          />
+        ),
+      })
+    })
+    setPresentVideoStreams(streams)
+  }, [remoteStreams])
 
   return (
     <div>

@@ -7,7 +7,7 @@ class VideoStream {
 
   remoteStreams = {}
 
-  constructor(userId, shareScreen = false) {
+  constructor(userId, updateStreamsInParent, shareScreen = false) {
     this.localStream = AgoraRTC.createStream({
       streamID: userId,
       audio: true,
@@ -16,6 +16,7 @@ class VideoStream {
     })
     this.client = AgoraRTC.createClient({ mode: 'live', codec: 'h264' })
     this.initClient()
+    this.updateStreamsInParent = updateStreamsInParent
   }
   
   close = () => {
@@ -130,6 +131,7 @@ class VideoStream {
 
   updateStreams = (remoteStreams) => {
     this.remoteStreams = remoteStreams
+    this.updateStreamsInParent(remoteStreams)
   }
 }
 
