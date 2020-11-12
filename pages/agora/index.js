@@ -1,4 +1,5 @@
 import React from 'react'
+import LayoutProvider from '../../layout/LayoutProvider'
 import dynamic from 'next/dynamic'
 
 const Agora = dynamic(
@@ -9,7 +10,9 @@ const Agora = dynamic(
 const Index = () => {
 
   return (
-    <Agora />
+    <LayoutProvider>
+      <Agora />
+    </LayoutProvider>
   )
 }
 
