@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react'
 import VideoStream from './VideoStream'
 
 const roomId = 'test'
-const userId = '12345678'
+const userId = Math.random().toString(36).substring(7)
 
 const Index = () => {
   const [videoStream, setVideoStream] = useState()
