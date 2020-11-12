@@ -98,7 +98,7 @@ class VideoStream {
     const remoteStream = evt.stream
     console.log('Remote stream added: ', remoteStream.getId())
     this.remoteStreams[remoteStream.getId()].play(
-      'agora_remote' + remoteStream.getId()
+      'agora_remote ' + remoteStream.getId()
     )
     this.updateStreams(this.remoteStreams)
   }
