@@ -13,7 +13,7 @@ const Index = () => {
     dispatch(fetchServices())
   }, [])
 
-  const services = useSelector(state => state.app.services)
+  const results = useSelector(state => state.app.searchResults)
 
   return (
     <div className='w-full'>
@@ -21,7 +21,7 @@ const Index = () => {
         <p>Search Results</p>
       </div>
       {
-        services.map(service => (
+        results.map(service => (
           <CompactServiceCard
             buttonClickHandler={() => router.push(`/view-service/${service.pk}`)}
             category={service.category}

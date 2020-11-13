@@ -1,22 +1,33 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Pills3 from '../../../components/Misc/3Pills/3Pills'
 import Pills2 from '../../../components/Misc/3Pills/2Pills'
 import DatePicker from '../../Expert/CreateService/LiveServiceFormComponents/DateSelector/DatePicker/DatePicker'
 import { PrimaryButton } from '../../../components/Buttons/Index'
+import { useDispatch } from 'react-redux'
+import { fetchSearchResults } from '../../../store/actions/appActions'
 
 const Index = () => {
+  const dispatch = useDispatch()
 
-  const [activeTimingLabel, setLabel] = useState('anytime')
+  const [activeTypeLabel, setTypeLabel] = useState('live')
+  const [activeTimingLabel, setTimingLabel] = useState('anytime')
+  const [maxCost, setMaxCost] = useState(0)
+
+  useEffect(() => {
+    dispatch(fetchSearchResults({ type: activeTypeLabel, max_cost: maxCost }))
+  }, [activeTypeLabel, activeTimingLabel, maxCost])
 
   return (
     <div className='w-full rounded-lg bg-white px-3 py-2'>
       <p className='mb-2 text-lg font-medium'>Type of Service</p>
-      <Pills2 width='full' color='white' label1='Live' label2='Rich media' />
+      <Pills2 activeLabel={activeTypeLabel} setLabel={setTypeLabel} width='full' color='white' label1='live' label2='rich' />
 
       <p className='text-lg font-medium mt-6'>Maximum Cost</p>
       <input
         className='mt-2 w-full bg-lightGrey rounded-md h-10 p-2'
         type='number'
+        value={maxCost}
+        onChange={e => setMaxCost(e.target.value)}
       />
 
       <p className='text-lg font-medium mt-6'>Duration</p>
@@ -43,7 +54,7 @@ const Index = () => {
       <p className='text-lg font-medium mt-6 mb-2'>Timings</p>
       <Pills3
         activeLabel={activeTimingLabel}
-        setLabel={setLabel}
+        setLabel={setTimingLabel}
         width='full'
         color='white'
         label1='Anytime'
