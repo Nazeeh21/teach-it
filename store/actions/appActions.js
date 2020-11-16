@@ -111,7 +111,7 @@ export const fetchSearchResults = (payload) => {
         results: res.data.results
       })
     } catch (e) {
-      console.log('Error while fetching search results', err)
+      console.log('Error while fetching search results', e)
     }
   }
 }
