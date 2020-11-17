@@ -3,10 +3,10 @@ import CreateServiceCard from '../../components/Misc/CreateServiceCard'
 import EarningsCard from '../../components/Misc/EarningsCard'
 import AppTopNav from '../../components/Nav/AppTopNav'
 import NavItems from '../../components/Nav/NavItems'
-import { CenterSection, ThreeCols } from '..'
+import { AgoraCenterSection, CenterSection, ThreeCols } from '..'
 import Messages from '../../views/Expert/Messages'
 
-const Index = ({ children, rightContent, alternate = false }) => {
+const Index = ({ children, rightContent, alternate = false, forAgora }) => {
   if (alternate) {
     return (
       <React.Fragment>
@@ -40,8 +40,8 @@ const Index = ({ children, rightContent, alternate = false }) => {
           <NavItems />
           <Messages />
         </ThreeCols>
-        <CenterSection>{children}</CenterSection>
-        <ThreeCols side='right'>
+        {!forAgora ? <CenterSection>{children}</CenterSection> : <AgoraCenterSection>{children}</AgoraCenterSection>}
+        {!forAgora && <ThreeCols side='right'>
           {rightContent ? (
             rightContent
           ) : (
@@ -50,7 +50,7 @@ const Index = ({ children, rightContent, alternate = false }) => {
               <CreateServiceCard />
             </React.Fragment>
           )}
-        </ThreeCols>
+        </ThreeCols>}
       </div>
     </React.Fragment>
   )

@@ -25,7 +25,7 @@ const Index = () => {
     const vidStreams = []
     vidStreams.push({
       stream: videoStream.localStream,
-      element: <div id='local_stream' className='w-full h-64'></div>,
+      element: <div id='local_stream' style={{height: '35rem'}} className='w-full rounded'></div>,
     })
     setPresentVideoStreams(vidStreams)
   }
@@ -55,6 +55,7 @@ const Index = () => {
 
   return (
     <div>
+      {/* {presentVideoStreams[0].element} */}
       {presentVideoStreams.map((stream, index) => {
         return stream.element
       })}
