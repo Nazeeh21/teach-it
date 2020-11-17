@@ -1,13 +1,14 @@
 import { EXPERT } from '../../constants'
 
-const { CHANGE_USER_TYPE, FETCH_SERVICES, FETCH_VIEW_SERVICE, SET_CURRENT_PROFILE, LOGOUT, FETCH_SEARCH_RESULTS } = require('../actionTypes')
+const { CHANGE_USER_TYPE, FETCH_SERVICES, FETCH_VIEW_SERVICE, SET_CURRENT_PROFILE, LOGOUT, FETCH_SEARCH_RESULTS, FETCH_USER_SERVICES } = require('../actionTypes')
 
 const initialState = {
   userType: EXPERT,
   services: [],
   viewServiceData: null,
   currentProfile: null,
-  searchResults: []
+  searchResults: [],
+  userServices: []
 }
 
 const reducer = (state = initialState, action) => {
@@ -21,6 +22,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         services: [...action.services]
+      }
+    case FETCH_USER_SERVICES:
+      return {
+        ...state,
+        userServices: [...action.services]
       }
     case FETCH_VIEW_SERVICE:
       return {

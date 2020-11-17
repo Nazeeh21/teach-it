@@ -4,12 +4,12 @@ import CompactServiceCard from '../../Chat/CompactServiceCard/CompactServiceCard
 import { useRouter } from 'next/router'
 import SearchBar from '../../../components/Inputs/SearchBar'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchServices } from '../../../store/actions/appActions'
+import { fetchServices, fetchUserServices } from '../../../store/actions/appActions'
 
 const MyServices = () => {
   const [showSearchbar, toggleShowSearchBar] = useState(false)
   const [query, setQuery] = useState('')
-  const services = useSelector(state => state.app.services)
+  const services = useSelector(state => state.app.userServices)
 
   const [activePillLabel, setLabel] = useState('all')
 
@@ -18,7 +18,7 @@ const MyServices = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(fetchServices())
+    dispatch(fetchUserServices())
   }, [])
 
   return (
