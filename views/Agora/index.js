@@ -45,7 +45,7 @@ const Index = () => {
           <div
             key={streamId}
             id={`agora_remote ${streamId}`}
-            className='w-full h-64'
+            className='w-2/12 h-48 m-2 inline-block'
           />
         ),
       })
