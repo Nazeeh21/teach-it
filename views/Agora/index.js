@@ -55,7 +55,6 @@ const Index = () => {
 
   return (
     <div>
-      {/* {presentVideoStreams[0].element} */}
       {presentVideoStreams.map((stream, index) => {
         return stream.element
       })}

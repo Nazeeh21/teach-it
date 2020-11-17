@@ -56,7 +56,7 @@ class VideoStream {
   }
 
   joinChannel = (roomId, userId) => {
-    this.client.join('006a79d3d6b148340be8c8375ea556f824cIAA1jcBcpbw5L1ItL7uGBgzA9TzMOYbYwrXt1+ly9ve3Xgx+f9gAAAAAEAARj/Pi0ietXwEAAQDRJ61f', roomId, userId, (uid) => {
+    this.client.join('006a79d3d6b148340be8c8375ea556f824cIABtQcMDK9gGwgfNb/PzHRsWjXAHRlwoLzUPbHmDqLPBQAx+f9gAAAAAEABID2Uqo1K1XwEAAQCjUrVf', roomId, userId, (uid) => {
       const logMessage = 'User ' + uid + ' join channel successfully'
       console.log(logMessage)
       this.client.publish(this.localStream, err => {
