@@ -1,6 +1,7 @@
 import React from 'react'
 import LayoutProvider from '../../layout/LayoutProvider'
 import dynamic from 'next/dynamic'
+import VideoChat from '../../components/VideoCall/VideoChat/VideoChat'
 
 const Agora = dynamic(() => import('../../views/Agora'), { ssr: false })
 
@@ -38,8 +39,11 @@ const Index = () => {
           </div>
         </div>
 
-        <div className='z-0 h-full w-full rounded-md'>
+        <div className='z-0 h-auto w-full rounded-md'>
           <Agora />
+        </div>
+        <div>
+          <VideoChat />
         </div>
       </div>
     </LayoutProvider>
