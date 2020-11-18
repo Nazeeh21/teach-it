@@ -4,9 +4,9 @@ import Partipants from './Participants/Participants'
 import VideoChat from './VideoChat/VideoChat'
 
 const VideoCall = () => (
-  <div className='w-8/12 m-4 '>
+  <div className="w-8/12 m-4 ">
     <MainVideo />
-    <div className='flex'>
+    <div className="flex">
       <Partipants />
       <VideoChat />
     </div>

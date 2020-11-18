@@ -8,6 +8,6 @@ const Index = () => {
       <GetStarted />
     </LandingLayout>
   )
-};
+}
 
-export default Index;
+export default Index

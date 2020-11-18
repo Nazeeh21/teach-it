@@ -2,16 +2,14 @@ import React from 'react'
 import { Icon } from '../../../components/Images/Icon'
 import loremIpsum from '../../../utility/loremIpsum'
 
-const ServiceTypeCard = (
-  {
-    noIcon,
-    iconSrc = 'live.svg',
-    label,
-    desc = loremIpsum,
-    active,
-    clickHandler,
-  }
-) => {
+const ServiceTypeCard = ({
+  noIcon,
+  iconSrc = 'live.svg',
+  label,
+  desc = loremIpsum,
+  active,
+  clickHandler,
+}) => {
   return (
     <div
       onClick={clickHandler}
@@ -19,13 +17,13 @@ const ServiceTypeCard = (
         active ? 'secondary' : 'lightGrey'
       } border-l-${active ? 4 : 2}`}
     >
-      <div className='flex items-center'>
+      <div className="flex items-center">
         {!noIcon && <Icon src={iconSrc} />}
-        <h3 className='text-primary text-xl'>{label}</h3>
+        <h3 className="text-primary text-xl">{label}</h3>
       </div>
-      <p className='text-sm text-darkGrey'>{desc}</p>
+      <p className="text-sm text-darkGrey">{desc}</p>
     </div>
   )
-};
+}
 
-export default ServiceTypeCard;
+export default ServiceTypeCard

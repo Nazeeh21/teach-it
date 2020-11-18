@@ -1,5 +1,4 @@
-import {
-} from '../actionTypes'
+import {} from '../actionTypes'
 
 const intialState = {
   mediaType: null,
@@ -18,7 +17,6 @@ const intialState = {
 
 const reducer = (state = intialState, action) => {
   switch (action.type) {
-    
     default:
       return state
   }

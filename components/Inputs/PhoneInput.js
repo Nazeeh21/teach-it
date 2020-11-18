@@ -29,17 +29,32 @@ const PhoneInput = ({ changeHandler, isValid, setIsValid }) => {
   }, [concat, validate])
 
   return (
-    <div className={`text-lg flex rounded-full w-full bg-highlight p-4 border-2 ${isValid ? 'border-highlight' : 'border-red'}`}>
-      <div className='w-3/12 border-r-2 border-medGrey'>
-        <select className='bg-highlight cursor-pointer' value={countryCode} onChange={e => setCountry(e.target.value)}>
-          <option value='+91'>+91</option>
-          <option value='+92'>+92</option>
-          <option value='+93'>+93</option>
-          <option value='+94'>+94</option>
+    <div
+      className={`text-lg flex rounded-full w-full bg-highlight p-4 border-2 ${
+        isValid ? 'border-highlight' : 'border-red'
+      }`}
+    >
+      <div className="w-3/12 border-r-2 border-medGrey">
+        <select
+          className="bg-highlight cursor-pointer"
+          value={countryCode}
+          onChange={(e) => setCountry(e.target.value)}
+        >
+          <option value="+91">+91</option>
+          <option value="+92">+92</option>
+          <option value="+93">+93</option>
+          <option value="+94">+94</option>
         </select>
       </div>
-      <div className='w-9/12'>
-        <input required maxLength={10} className='bg-highlight' type='number' value={number} onChange={e => setNumber(e.target.value)} />
+      <div className="w-9/12">
+        <input
+          required
+          maxLength={10}
+          className="bg-highlight"
+          type="number"
+          value={number}
+          onChange={(e) => setNumber(e.target.value)}
+        />
       </div>
     </div>
   )

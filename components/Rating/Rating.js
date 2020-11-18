@@ -7,7 +7,7 @@ const ratingChanged = (newRating) => {
 
 const Rating = ({ size = 25, value = 4 }) => (
   <StarsRating
-    className=''
+    className=""
     count={5}
     onChange={ratingChanged}
     size={size}

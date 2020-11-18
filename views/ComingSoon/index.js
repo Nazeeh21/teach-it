@@ -6,9 +6,9 @@ import Footer from '../LandingPage/Footer'
 const ComingSoon = () => (
   <div>
     <LandingPageNavbar />
-    <div className='text-center text-5xl py-32'>Coming Soon</div>
+    <div className="text-center text-5xl py-32">Coming Soon</div>
     <VideoWorkDesc />
-    <Footer/>
+    <Footer />
   </div>
 )
 

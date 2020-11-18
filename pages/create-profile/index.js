@@ -8,6 +8,6 @@ const Index = () => {
       <CreateProfile />
     </LandingLayout>
   )
-};
+}
 
-export default Index;
+export default Index

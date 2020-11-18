@@ -6,7 +6,12 @@ import { settings as navItems } from '../../constants/nav_items'
 
 const Settings = () => {
   return (
-    <LayoutProvider alternate rightContent={<InnerNav navItems={navItems} destructiveAction='Disable account' />}>
+    <LayoutProvider
+      alternate
+      rightContent={
+        <InnerNav navItems={navItems} destructiveAction="Disable account" />
+      }
+    >
       <Profile />
     </LayoutProvider>
   )

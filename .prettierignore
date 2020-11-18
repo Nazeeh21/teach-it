@@ -1,0 +1,5 @@
+# Ignore artifacts
+.next
+.vscode
+assets
+node_modules

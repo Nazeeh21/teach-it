@@ -12,33 +12,33 @@ const NavItems = () => {
   return (
     <div
       style={{ zIndex: 2000 }}
-      className='justify-center lg:hidden xl:hidden fixed bottom-0 left-0 w-full items-center gap-4 p-4 bg-white rounded-lg shadow-md flex'
+      className="justify-center lg:hidden xl:hidden fixed bottom-0 left-0 w-full items-center gap-4 p-4 bg-white rounded-lg shadow-md flex"
     >
       <LeftNavItem
         clickHandler={() => router.push('/dashboard')}
         icon={`${basePath}home_grey.svg`}
-        label='Home'
+        label="Home"
         userType={userType}
         isActive={router.pathname === '/dashboard'}
       />
       <LeftNavItem
         clickHandler={() => router.push('/categories')}
         icon={`${basePath}categories_grey.svg`}
-        label='Categories'
+        label="Categories"
         userType={userType}
         isActive={router.pathname === '/categories'}
       />
       <LeftNavItem
         clickHandler={() => router.push('/messages')}
         icon={`${basePath}messages_grey.svg`}
-        label='Messages'
+        label="Messages"
         userType={userType}
         isActive={router.pathname === '/messages'}
       />
       <LeftNavItem
         clickHandler={() => router.push('/services')}
         icon={`${basePath}services_grey.svg`}
-        label='Services'
+        label="Services"
         userType={userType}
         isActive={router.pathname === '/services'}
       />

@@ -1,45 +1,45 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { Icon } from "../../../components/Images/Icon";
-import Question from "./Question";
-import { PrimaryButton } from "../../../components/Buttons/Index";
-import AskQuestion from "./AskQuestion/index";
-import api from "../../../api";
+import React, { useCallback, useEffect, useState } from 'react'
+import { Icon } from '../../../components/Images/Icon'
+import Question from './Question'
+import { PrimaryButton } from '../../../components/Buttons/Index'
+import AskQuestion from './AskQuestion/index'
+import api from '../../../api'
 import QuestionModal from './QuestionModal'
 
 const Questions = () => {
-  const [showAskQuestionModal, toggleAskQuestionModal] = useState(false);
-  const [showQuestionModal, toggleQuestionModal] = useState(false);
-  const [triggerFetch, setTriggerFetch] = useState(false);
+  const [showAskQuestionModal, toggleAskQuestionModal] = useState(false)
+  const [showQuestionModal, toggleQuestionModal] = useState(false)
+  const [triggerFetch, setTriggerFetch] = useState(false)
 
-  const askQuestionOpenHandler = () => toggleAskQuestionModal(true);
+  const askQuestionOpenHandler = () => toggleAskQuestionModal(true)
   const askQuestionCloseHandler = () => {
-    toggleAskQuestionModal(false);
-    setTriggerFetch((val) => !val);
-  };
+    toggleAskQuestionModal(false)
+    setTriggerFetch((val) => !val)
+  }
 
-  const questionModalOpenHandler = () => toggleQuestionModal(true);
-  const questionModalCloseHandler = () => toggleQuestionModal(false);
+  const questionModalOpenHandler = () => toggleQuestionModal(true)
+  const questionModalCloseHandler = () => toggleQuestionModal(false)
 
-  const [questions, setQuestions] = useState([]);
+  const [questions, setQuestions] = useState([])
 
   const getQuestions = useCallback(async () => {
     try {
-      const res = await api.get("service/1/questions/", {
+      const res = await api.get('service/1/questions/', {
         headers: {
-          Authorization: `Token ${localStorage.getItem("token")}`,
-          "X-Profile-ID": localStorage.getItem("currentProfile"),
+          Authorization: `Token ${localStorage.getItem('token')}`,
+          'X-Profile-ID': localStorage.getItem('currentProfile'),
         },
-      });
-      console.log("Fetched questions", res.data);
-      setQuestions(res.data);
+      })
+      console.log('Fetched questions', res.data)
+      setQuestions(res.data)
     } catch (e) {
-      console.log("Error while fetching questions", e);
+      console.log('Error while fetching questions', e)
     }
-  }, [triggerFetch]);
+  }, [triggerFetch])
 
   useEffect(() => {
-    getQuestions();
-  }, [getQuestions]);
+    getQuestions()
+  }, [getQuestions])
 
   return (
     <div className="w-full">
@@ -82,7 +82,7 @@ const Questions = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Questions;
+export default Questions

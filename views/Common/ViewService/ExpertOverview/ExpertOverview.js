@@ -9,21 +9,20 @@ import { useRouter } from 'next/router'
 import { fetchProviderData } from '../../../../services/viewService'
 
 const Card = ({ count, text }) => (
-  <div className='font-medium my-3 grid'>
-    <p className='text-2xl justify-self-center'>{count}</p>
+  <div className="font-medium my-3 grid">
+    <p className="text-2xl justify-self-center">{count}</p>
     <p>{text}</p>
   </div>
 )
 
 const ExpertOverview = ({ providerPk }) => {
-
   const router = useRouter()
 
   const [providerData, setProviderData] = useState()
 
   useEffect(() => {
     console.log('Provider pk', providerPk)
-    fetchProviderData(providerPk).then(res => setProviderData(res))
+    fetchProviderData(providerPk).then((res) => setProviderData(res))
   }, [providerPk])
 
   if (!providerData || !providerPk) {
@@ -31,34 +30,43 @@ const ExpertOverview = ({ providerPk }) => {
   }
 
   return (
-    <div className='text-primary'>
-      <PrimaryButton label='Subscribe' />
-      <div className='bg-white w-full rounded-md my-5 p-3'>
-        <p className='text-2xl font-bold'>{providerData.name}</p>
-        <div className='flex'>
-          <div className='w-6/12 p-2'>
+    <div className="text-primary">
+      <PrimaryButton label="Subscribe" />
+      <div className="bg-white w-full rounded-md my-5 p-3">
+        <p className="text-2xl font-bold">{providerData.name}</p>
+        <div className="flex">
+          <div className="w-6/12 p-2">
             <Avatar
-              src='/stock/girl2.jpg'
-              alt='profile'
-              purpose='isForProfile'
+              src="/stock/girl2.jpg"
+              alt="profile"
+              purpose="isForProfile"
             />
           </div>
-          <div className='text-center m-2 w-6/12'>
-            <p className={`text-center text-${providerData.is_verified ? 'green' : 'red'} text-md`}>{providerData.is_verified ? 'Verified' : 'Unverified'}</p>
-            <Card count='58' text='Services' />
-            <Card count='425' text='Learners' />
-            <Card count={<Rating size='15' value={providerData.rating_position} />} text={`${providerData.review_count} total reviews`} />
+          <div className="text-center m-2 w-6/12">
+            <p
+              className={`text-center text-${
+                providerData.is_verified ? 'green' : 'red'
+              } text-md`}
+            >
+              {providerData.is_verified ? 'Verified' : 'Unverified'}
+            </p>
+            <Card count="58" text="Services" />
+            <Card count="425" text="Learners" />
+            <Card
+              count={<Rating size="15" value={providerData.rating_position} />}
+              text={`${providerData.review_count} total reviews`}
+            />
           </div>
         </div>
-        <div className='flex flex-col gap-4'>
+        <div className="flex flex-col gap-4">
           <SecondaryButton
             clickHandler={() => router.push('/messages')}
-            label='Send message'
-            color='primary'
+            label="Send message"
+            color="primary"
           />
           <SecondaryButton
             clickHandler={() => router.push('/profile')}
-            label='View profile & reviews'
+            label="View profile & reviews"
           />
         </div>
       </div>

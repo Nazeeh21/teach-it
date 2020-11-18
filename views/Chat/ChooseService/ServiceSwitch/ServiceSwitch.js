@@ -4,12 +4,12 @@ import { Pill } from './Pill/Pill'
 const ServiceSwitch = ({ color, label1, label2 }) => {
   const [activeId, setActiveId] = useState(0)
   return (
-    <div className='flex w-8/12 rounded-full bg-lightGrey m-2'>
+    <div className="flex w-8/12 rounded-full bg-lightGrey m-2">
       <Pill
         inactive={activeId !== 0}
         label={label1}
         color={color}
-        textColor='black'
+        textColor="black"
         clickHandler={() => {
           setActiveId(0)
         }}
@@ -18,13 +18,13 @@ const ServiceSwitch = ({ color, label1, label2 }) => {
         inactive={activeId !== 1}
         label={label2}
         color={color}
-        textColor='black'
+        textColor="black"
         clickHandler={() => {
           setActiveId(1)
         }}
       />
     </div>
   )
-};
+}
 
-export default ServiceSwitch;
+export default ServiceSwitch

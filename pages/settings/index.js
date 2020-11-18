@@ -1,8 +1,8 @@
-import React from "react";
-import LayoutProvider from "../../layout/LayoutProvider";
-import InnerNav from "../../components/Nav/InnerNav";
-import General from "../../views/Settings/General";
-import { settings as navItems } from "../../constants/nav_items";
+import React from 'react'
+import LayoutProvider from '../../layout/LayoutProvider'
+import InnerNav from '../../components/Nav/InnerNav'
+import General from '../../views/Settings/General'
+import { settings as navItems } from '../../constants/nav_items'
 
 const Settings = () => {
   return (
@@ -14,7 +14,7 @@ const Settings = () => {
     >
       <General />
     </LayoutProvider>
-  );
-};
+  )
+}
 
-export default Settings;
+export default Settings

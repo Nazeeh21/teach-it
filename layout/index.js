@@ -1,7 +1,7 @@
 import React from 'react'
 
 const FooterItem = ({ label }) => (
-  <a href='/' className='cursor-pointer text-secondary text-sm'>
+  <a href="/" className="cursor-pointer text-secondary text-sm">
     {label}
   </a>
 )
@@ -25,12 +25,12 @@ export const ThreeCols = ({ children, side }) => {
       {children}
       {side === 'left' && (
         <React.Fragment>
-          <div className='grid grid-flow-rol grid-cols-3 mt-6 gap-2'>
-            <FooterItem label='Privacy Policy' />
-            <FooterItem label='Terms of use' />
-            <FooterItem label='Sitemap' />
+          <div className="grid grid-flow-rol grid-cols-3 mt-6 gap-2">
+            <FooterItem label="Privacy Policy" />
+            <FooterItem label="Terms of use" />
+            <FooterItem label="Sitemap" />
           </div>
-          <p className='text-darkGrey text-sm mt-2'>All copyrights reserved.</p>
+          <p className="text-darkGrey text-sm mt-2">All copyrights reserved.</p>
         </React.Fragment>
       )}
     </div>
@@ -39,20 +39,22 @@ export const ThreeCols = ({ children, side }) => {
 
 export const DoubleSection = ({ children }) => {
   return (
-    <div className='w-9/12 flex flex-col pt-4 pl-4 pr-4 mb-6'>{children}</div>
+    <div className="w-9/12 flex flex-col pt-4 pl-4 pr-4 mb-6">{children}</div>
   )
 }
 
 export const CenterSection = ({ children, alternate = false }) => {
   if (alternate) {
     return (
-      <div className='w-full xs:w-full sm:w-full md:w-full lg:flex lg:w-6/12 flex flex-col pt-4 pl-2 pr-16 mb-6'>
+      <div className="w-full xs:w-full sm:w-full md:w-full lg:flex lg:w-6/12 flex flex-col pt-4 pl-2 pr-16 mb-6">
         {children}
       </div>
     )
   }
 
   return (
-    <div className='w-full xs:w-full sm:w-full md:w-full lg:flex lg:w-6/12 flex flex-col pt-4 pl-4 pr-4 mb-6'>{children}</div>
+    <div className="w-full xs:w-full sm:w-full md:w-full lg:flex lg:w-6/12 flex flex-col pt-4 pl-4 pr-4 mb-6">
+      {children}
+    </div>
   )
 }

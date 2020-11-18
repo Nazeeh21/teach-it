@@ -2,7 +2,7 @@ import React from 'react'
 
 const Input = ({
   defaultValue = '',
-  placeholder='',
+  placeholder = '',
   type = 'text',
   value = '',
   changeHandler,
@@ -24,7 +24,9 @@ const Input = ({
         } p-4 w-full rounded bg-highlight`}
         placeholder={placeholder}
       />
-      {!valid && touched && <p className='text-red text-sm'>{inValidMessage}</p>}
+      {!valid && touched && (
+        <p className="text-red text-sm">{inValidMessage}</p>
+      )}
     </div>
   )
 }

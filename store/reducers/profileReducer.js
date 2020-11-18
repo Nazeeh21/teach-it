@@ -1,7 +1,7 @@
-import {  SAVEDATA } from '../actionTypes/index'
+import { SAVEDATA } from '../actionTypes/index'
 
 const initialState = {
-  profileData: []
+  profileData: [],
 }
 
 const saveHandler = (state, formData) => {
@@ -11,12 +11,12 @@ const saveHandler = (state, formData) => {
 
   newProfileData.push(formData)
   return {
-    profileData: newProfileData
+    profileData: newProfileData,
   }
 }
 
-const reducer = ( state = initialState, action) => {
-  switch(action.type) {
+const reducer = (state = initialState, action) => {
+  switch (action.type) {
     case SAVEDATA:
       return saveHandler(state, action.formData)
     default:

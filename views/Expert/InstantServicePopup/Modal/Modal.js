@@ -19,12 +19,12 @@ const Modal = ({ children, triggerOnClose, open, toggleOpen }) => {
       // onClick={(e) => handleClickOutside(e)}
       className={open ? `show-modal modal` : `modal`}
     >
-      <div className='modal-content rounded-lg'>
+      <div className="modal-content rounded-lg">
         {/* <button onClick={() => closeModal()}>Close</button> */}
         {children}
       </div>
     </div>
   )
-};
+}
 
-export default Modal;
+export default Modal

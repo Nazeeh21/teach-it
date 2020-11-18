@@ -11,12 +11,12 @@ const Index = ({ children, rightContent, alternate = false }) => {
     return (
       <React.Fragment>
         <AppTopNav />
-        <div className='h-auto bg-lightGrey w-full flex flex-row'>
-          <ThreeCols side='left'>
+        <div className="h-auto bg-lightGrey w-full flex flex-row">
+          <ThreeCols side="left">
             <NavItems />
             <Messages />
           </ThreeCols>
-          <ThreeCols side='center'>
+          <ThreeCols side="center">
             {rightContent ? (
               rightContent
             ) : (
@@ -35,13 +35,13 @@ const Index = ({ children, rightContent, alternate = false }) => {
   return (
     <React.Fragment>
       <AppTopNav />
-      <div className='h-auto bg-lightGrey w-full flex flex-row'>
-        <ThreeCols side='left'>
+      <div className="h-auto bg-lightGrey w-full flex flex-row">
+        <ThreeCols side="left">
           <NavItems />
           <Messages />
         </ThreeCols>
         <CenterSection>{children}</CenterSection>
-        <ThreeCols side='right'>
+        <ThreeCols side="right">
           {rightContent ? (
             rightContent
           ) : (

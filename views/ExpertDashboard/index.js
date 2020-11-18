@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react"
-import CompactServiceCard from "../../components/Cards/CompactServiceCard/CompactServiceCard"
-import SearchBar from "../../components/Inputs/SearchBar"
-import { CardFilledWithImage } from "../../components/Cards/Cards"
-import { ViewMoreButton } from "../../components/Buttons/Index"
-import { useRouter } from "next/router"
+import React, { useState, useEffect } from 'react'
+import CompactServiceCard from '../../components/Cards/CompactServiceCard/CompactServiceCard'
+import SearchBar from '../../components/Inputs/SearchBar'
+import { CardFilledWithImage } from '../../components/Cards/Cards'
+import { ViewMoreButton } from '../../components/Buttons/Index'
+import { useRouter } from 'next/router'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchServices } from '../../store/actions/appActions'
 
@@ -12,10 +12,10 @@ const Index = () => {
   const dispatch = useDispatch()
   const [query, setQuery] = useState('')
 
-  const services = useSelector(state => state.app.services)
+  const services = useSelector((state) => state.app.services)
 
   const handleCategoriesRedirect = () => {
-    router.push("/search")
+    router.push('/search')
   }
 
   useEffect(() => {
@@ -30,24 +30,22 @@ const Index = () => {
           <SearchBar value={query} changeHandler={(val) => setQuery(val)} />
         </div>
       </div>
- 
-      {
-        services.map(service => (
-          <CompactServiceCard
-            buttonClickHandler={() => router.push(`/view-service/${service.pk}`)}
-            key={service.pk}
-            category={service.category}
-            languages={service.languages}
-            descriptionText={service.description}
-            paymentType={service.payment_type}
-          />
-        ))
-      }
+
+      {services.map((service) => (
+        <CompactServiceCard
+          buttonClickHandler={() => router.push(`/view-service/${service.pk}`)}
+          key={service.pk}
+          category={service.category}
+          languages={service.languages}
+          descriptionText={service.description}
+          paymentType={service.payment_type}
+        />
+      ))}
 
       {/* <CompactServiceCard imgSrc='/stock/music.jpg' />
       <CompactServiceCard imgSrc='/stock/photography.jpg' /> */}
       <div className="m-auto w-2/12">
-        <ViewMoreButton clickHandler={() => router.push("/services")} />
+        <ViewMoreButton clickHandler={() => router.push('/services')} />
       </div>
       <h3 className="text-2xl mb-6">Trending services</h3>
       <div className="grid grid-flow-row grid-cols-2 w-full gap-6 mb-6">
@@ -65,9 +63,9 @@ const Index = () => {
         />
         <CardFilledWithImage
           clickHandler={handleCategoriesRedirect}
-          src='/yoga.jpg'
-          title='Yoga'
-          subTitle='461 learners'
+          src="/yoga.jpg"
+          title="Yoga"
+          subTitle="461 learners"
         />
         <CardFilledWithImage
           clickHandler={handleCategoriesRedirect}
@@ -77,7 +75,7 @@ const Index = () => {
         />
       </div>
       <div className="m-auto w-2/12">
-        <ViewMoreButton clickHandler={() => router.push("/services")} />
+        <ViewMoreButton clickHandler={() => router.push('/services')} />
       </div>
     </React.Fragment>
   )

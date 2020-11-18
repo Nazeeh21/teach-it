@@ -1,29 +1,29 @@
-import React from "react";
-import Dropdown from "../../../components/Inputs/Dropdown";
-import Toggle from "../../../components/Toggle";
-import { PrimaryButton } from "../../../components/Buttons/Index";
-import ShowAllButton from "../ShowAllButton";
-import User from "../Users";
-import NavSwitch from "../../../components/NavSwitch";
+import React from 'react'
+import Dropdown from '../../../components/Inputs/Dropdown'
+import Toggle from '../../../components/Toggle'
+import { PrimaryButton } from '../../../components/Buttons/Index'
+import ShowAllButton from '../ShowAllButton'
+import User from '../Users'
+import NavSwitch from '../../../components/NavSwitch'
 
-const Label = ({ children }) => <h3 className="text-2xl">{children}</h3>;
+const Label = ({ children }) => <h3 className="text-2xl">{children}</h3>
 
 const SubLabel = ({ children }) => (
   <h3 className="text-xl text-darkGrey mb-6">{children}</h3>
-);
+)
 
 const GreyLine = () => (
   <div
-    style={{ height: "0.05rem", opacity: "50%" }}
+    style={{ height: '0.05rem', opacity: '50%' }}
     className="bg-darkGrey w-full"
   />
-);
+)
 
-const LargeText = ({ children }) => <h3 className="text-xl">{children}</h3>;
+const LargeText = ({ children }) => <h3 className="text-xl">{children}</h3>
 
-const PaymentText = () => <div className="text-md text-darkGrey">₹ 7468</div>;
+const PaymentText = () => <div className="text-md text-darkGrey">₹ 7468</div>
 
-const RoleText = () => <div className="text-md text-darkGrey">Admin</div>;
+const RoleText = () => <div className="text-md text-darkGrey">Admin</div>
 
 const Service = () => {
   return (
@@ -112,13 +112,12 @@ const Service = () => {
           </div>
         </div>
 
-        <div className='w-3/12 mt-6'>
-        <PrimaryButton label='Continue' />
+        <div className="w-3/12 mt-6">
+          <PrimaryButton label="Continue" />
         </div>
-        
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Service;
+export default Service

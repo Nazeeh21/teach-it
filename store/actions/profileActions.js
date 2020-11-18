@@ -5,7 +5,7 @@ export const continueHandler = (formData) => {
   return (dispatch) => {
     console.log(formData)
     // dispatch(saveData(formData[0]))
-    formData.map( async (data) => {
+    formData.map(async (data) => {
       try {
         // const res = await api.put(
         //   '/user/',
@@ -16,22 +16,26 @@ export const continueHandler = (formData) => {
         //     },
         //   }
         // )
-        const res = await api.post('/user/profile/', {
-          ...data,
-          primary_type: 'seeker',
-        }, {
-          headers: {
-            Authorization: `Token ${localStorage.getItem('token')}`
+        const res = await api.post(
+          '/user/profile/',
+          {
+            ...data,
+            primary_type: 'seeker',
+          },
+          {
+            headers: {
+              Authorization: `Token ${localStorage.getItem('token')}`,
+            },
           }
-        })
+        )
 
         console.log(res)
       } catch (error) {
         console.log(error)
       }
-      dispatch(saveData(data))   
+      dispatch(saveData(data))
     })
-  } 
+  }
 }
 
 const saveData = (data) => {
