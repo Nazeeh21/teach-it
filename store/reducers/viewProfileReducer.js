@@ -1,30 +1,30 @@
 const initialState = {
   provider: {},
-  seeker: {}
+  seeker: {},
 }
 
 const providerDataUpdate = (state, data) => {
   return {
     ...state,
-    provider: data
+    provider: data,
   }
 }
 
 const seekerDataUpdate = (state, data) => {
   return {
     ...state,
-    seeker: data
+    seeker: data,
   }
 }
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'provider' :
+    case 'provider':
       return providerDataUpdate(state, action.data)
-    case 'seeker' :
+    case 'seeker':
       return seekerDataUpdate(state, action.data)
-    default :
-    return null;
+    default:
+      return null
   }
 }
 

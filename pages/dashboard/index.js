@@ -1,9 +1,9 @@
-import React, { useEffect } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { EXPERT, LEARNER } from "../../constants"
-import LayoutProvider from "../../layout/LayoutProvider"
-import ExpertDashboard from "../../views/ExpertDashboard"
-import LearnerDashboard from "../../views/LearnerDashboard"
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { EXPERT, LEARNER } from '../../constants'
+import LayoutProvider from '../../layout/LayoutProvider'
+import ExpertDashboard from '../../views/ExpertDashboard'
+import LearnerDashboard from '../../views/LearnerDashboard'
 import { useRouter } from 'next/router'
 import { fetchProfiles } from '../../store/actions/appActions'
 

@@ -4,20 +4,18 @@ import { validate } from '../../utility/validation'
 const labelClasses =
   'block text-textBoxTitle p-1 text-darkGrey text-left w-full'
 
-const TextInput = (
-  {
-    label,
-    placeholder = null,
-    value,
-    changeHandler,
-    type = 'text',
-    required = false,
-    bottomLabel = null,
-    styles = null,
-    isValid,
-    setIsValid
-  }
-) => {
+const TextInput = ({
+  label,
+  placeholder = null,
+  value,
+  changeHandler,
+  type = 'text',
+  required = false,
+  bottomLabel = null,
+  styles = null,
+  isValid,
+  setIsValid,
+}) => {
   const [touched, setTouched] = useState(false)
 
   const validateValue = useCallback(() => {
@@ -62,6 +60,6 @@ const TextInput = (
       <p className={labelClasses}>{bottomLabel}</p>
     </div>
   )
-};
+}
 
-export default TextInput;
+export default TextInput

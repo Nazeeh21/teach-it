@@ -48,18 +48,18 @@ const Index = () => {
   return (
     <div
       style={{ backgroundColor: '#E8ECFF' }}
-      className='rounded-lg w-full mt-8 text-primary'
+      className="rounded-lg w-full mt-8 text-primary"
     >
-      <div className='mt-1 pt-2 pb-1 grid grid-rows-1 grid-cols-2'>
-        <p className='text-xl font-medium pt-1 pb-2 pl-4'>Messages</p>
-        <div className='mr-3'>
-          <select className='mt-1 pb-1 pt-1 pl-2 pr-4 rounded-lg w-full mr-6'>
-            <option value='all'>All</option>
+      <div className="mt-1 pt-2 pb-1 grid grid-rows-1 grid-cols-2">
+        <p className="text-xl font-medium pt-1 pb-2 pl-4">Messages</p>
+        <div className="mr-3">
+          <select className="mt-1 pb-1 pt-1 pl-2 pr-4 rounded-lg w-full mr-6">
+            <option value="all">All</option>
           </select>
         </div>
       </div>
       {ChatWindowData.map((data) => (
-        <div key={() => uuid()} className='bg-white'>
+        <div key={() => uuid()} className="bg-white">
           <ChatWindowContact
             src={data.src}
             name={data.name}
@@ -72,7 +72,7 @@ const Index = () => {
       ))}
       <div
         style={{ color: '#4968FF' }}
-        className='cursor-pointer bg-white text-center py-3 text-sm font-md rounded-b-lg'
+        className="cursor-pointer bg-white text-center py-3 text-sm font-md rounded-b-lg"
         onClick={() => router.push('/messages')}
       >
         View all messages

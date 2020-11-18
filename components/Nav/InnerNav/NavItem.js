@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 
 const NavItem = ({ label, active = false, link }) => {
   const router = useRouter()
-  
+
   return (
     <div
       onClick={() => router.push(link)}
@@ -14,6 +14,6 @@ const NavItem = ({ label, active = false, link }) => {
       <p>{label}</p>
     </div>
   )
-};
+}
 
-export default NavItem;
+export default NavItem

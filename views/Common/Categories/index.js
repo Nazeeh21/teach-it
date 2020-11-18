@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { CardFilledWithImage as Card } from "../../../components/Cards/Cards";
-import { useRouter } from "next/router";
-import { fetchCategories } from "../../../services/fetchCategories";
+import React, { useEffect, useState } from 'react'
+import { CardFilledWithImage as Card } from '../../../components/Cards/Cards'
+import { useRouter } from 'next/router'
+import { fetchCategories } from '../../../services/fetchCategories'
 
 // const Card = ({ clickHandler }) => (
 //   <CardFilledWithImage
@@ -13,35 +13,42 @@ import { fetchCategories } from "../../../services/fetchCategories";
 // );
 
 const Index = () => {
-  const router = useRouter();
+  const router = useRouter()
 
   const [categories, setCategories] = useState(null)
 
   useEffect(() => {
-    fetchCategories().then(res => {
-      console.log('Categories in Index.js', res)
-      setCategories(res)
-    }).catch(e => console.log(e))
-    
+    fetchCategories()
+      .then((res) => {
+        console.log('Categories in Index.js', res)
+        setCategories(res)
+      })
+      .catch((e) => console.log(e))
   }, [])
 
   const handleRedirect = () => {
-    router.push("/search");
-  };
+    router.push('/search')
+  }
 
-  if(categories !== null) {
+  if (categories !== null) {
     console.log('In Index.js', categories)
   }
- 
+
   return (
     <div className="w-full">
       <h3 className="text-2xl text-primary p-2 font-semibold">Categories</h3>
-      {categories !== null && <div className="w-full grid grid-flow-row grid-cols-2 gap-6">
-        {
-          categories.map(category => (
-            <Card src={category.avatar} title={category.title} subTitle={category.seeker_count} clickHandler={handleRedirect} />
-          ))
-        /* <Card
+      {categories !== null && (
+        <div className="w-full grid grid-flow-row grid-cols-2 gap-6">
+          {
+            categories.map((category) => (
+              <Card
+                src={category.avatar}
+                title={category.title}
+                subTitle={category.seeker_count}
+                clickHandler={handleRedirect}
+              />
+            ))
+            /* <Card
           title="Yoga"
           subTitle="234 learners"
           src="/yoga.jpg"
@@ -76,10 +83,12 @@ const Index = () => {
           subTitle="1355 learners"
           src="/stock/photography.jpg"
           clickHandler={handleRedirect}
-        /> */}
-      </div>}
+        /> */
+          }
+        </div>
+      )}
     </div>
-  );
-};
+  )
+}
 
-export default Index;
+export default Index

@@ -9,6 +9,6 @@ const Index = () => {
       <Chat />
     </LayoutProvider>
   )
-};
+}
 
-export default Index;
+export default Index

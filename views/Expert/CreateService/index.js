@@ -11,10 +11,13 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useRouter } from 'next/router'
 import { EXPERT } from '../../../constants'
 import { PrimaryButton } from '../../../components/Buttons/Index'
-import { createMilestone, createService } from '../../../store/actions/createServiceAction'
+import {
+  createMilestone,
+  createService,
+} from '../../../store/actions/createServiceAction'
 
 const SectionTitle = ({ children }) => (
-  <h3 className='text-lg text-primary mb-2'>{children}</h3>
+  <h3 className="text-lg text-primary mb-2">{children}</h3>
 )
 
 const Index = () => {
@@ -70,8 +73,20 @@ const Index = () => {
       is_private: false,
       live_type: liveType,
       cost: fees,
-      session_type: `${serviceFreq === 'per day' ? 'daily' : serviceFreq === 'per week' ? 'weekly' : 'monthly'}`,
-      payment_type: `${paymentFreq === 'per day' ? 'daily' : paymentFreq === 'per week' ? 'weekly' : 'monthly'}`,
+      session_type: `${
+        serviceFreq === 'per day'
+          ? 'daily'
+          : serviceFreq === 'per week'
+          ? 'weekly'
+          : 'monthly'
+      }`,
+      payment_type: `${
+        paymentFreq === 'per day'
+          ? 'daily'
+          : paymentFreq === 'per week'
+          ? 'weekly'
+          : 'monthly'
+      }`,
       allow_questions: false,
       question_fee: '5656',
       allow_subscribe: false,
@@ -81,7 +96,7 @@ const Index = () => {
       // end_at: `12/16/2020 ${startTimeHour} ' : ' ${startTimeMin} ' ' ${startTimeStamp}`,
       start_at: '2020-10-16T02:08:00Z',
       end_at: '2020-10-24T02:08:00Z',
-      age_group: `${activeAgeGroup}`
+      age_group: `${activeAgeGroup}`,
     }
 
     dispatch(createService(formData))
@@ -89,16 +104,16 @@ const Index = () => {
   }
 
   return (
-    <div className='w-full'>
-      <h3 className='text-2xl text-primary mb-4'>Create new service</h3>
-      <div className='border-2 border-highlight bg-white rounded-sm p-6'>
-        <Accordion id='details' label='Service details'>
+    <div className="w-full">
+      <h3 className="text-2xl text-primary mb-4">Create new service</h3>
+      <div className="border-2 border-highlight bg-white rounded-sm p-6">
+        <Accordion id="details" label="Service details">
           {/* TODO: Language selection */}
 
           <SectionTitle>Service type</SectionTitle>
-          <div className='w-full grid grid-cols-2 gap-5 mb-6'>
+          <div className="w-full grid grid-cols-2 gap-5 mb-6">
             <ServiceTypeCard
-              label='Live'
+              label="Live"
               active={serviceType === 0}
               clickHandler={() => {
                 setType('live')
@@ -109,7 +124,7 @@ const Index = () => {
               }}
             />
             <ServiceTypeCard
-              label='Rich media'
+              label="Rich media"
               active={serviceType === 1}
               clickHandler={() => {
                 setType('rich')
@@ -130,8 +145,8 @@ const Index = () => {
             type={serviceType === 0 ? 'live' : 'media'}
           />
         </Accordion>
- 
-        <Accordion id='schedule' label='Service schedule'>
+
+        <Accordion id="schedule" label="Service schedule">
           <ScheduleSelector
             startDate={startDate}
             startDateChangeHandler={(value) => setStartDate(value)}
@@ -144,9 +159,9 @@ const Index = () => {
             timeStampChangedHandler={(value) => setStartTimeStamp(value)}
             weekDaysChangedHandler={(value) => setWeekDays(value)}
             duration={duration}
-            durationChangedHandler={value => setDuration(value)}
+            durationChangedHandler={(value) => setDuration(value)}
             type={serviceType}
-            setMilestoneData={data => setMileStoneData(data)}
+            setMilestoneData={(data) => setMileStoneData(data)}
             serviceFreq={serviceFreq}
             setServiceFreq={setServiceFreq}
             paymentFreq={paymentFreq}
@@ -154,20 +169,32 @@ const Index = () => {
           />
         </Accordion>
 
-        <Accordion id='fees' label='Fees'>
-          <FeesSelector fees={fees} feesChangedHandler={value => setFees(value)} />
+        <Accordion id="fees" label="Fees">
+          <FeesSelector
+            fees={fees}
+            feesChangedHandler={(value) => setFees(value)}
+          />
         </Accordion>
 
-        <Accordion id='audience' label='Audience'>
-          <AudienceSelector activeAgeGroup={activeAgeGroup} ageGroupChangeHandler={activeGroupChangeHandler} />
+        <Accordion id="audience" label="Audience">
+          <AudienceSelector
+            activeAgeGroup={activeAgeGroup}
+            ageGroupChangeHandler={activeGroupChangeHandler}
+          />
         </Accordion>
 
-        <div className='flex gap-4'>
-          <AllowRecording activeLabel={allowRecording} setLabel={setAllowRecording} />
+        <div className="flex gap-4">
+          <AllowRecording
+            activeLabel={allowRecording}
+            setLabel={setAllowRecording}
+          />
           <ShowFullName activeLabel={showFullName} setLabel={setShowFullName} />
         </div>
-        <div className='w-4/12 mt-10'>
-          <PrimaryButton label='Continue' clickHandler={continueClickedHandler} />
+        <div className="w-4/12 mt-10">
+          <PrimaryButton
+            label="Continue"
+            clickHandler={continueClickedHandler}
+          />
         </div>
       </div>
     </div>

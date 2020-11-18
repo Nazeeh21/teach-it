@@ -2,7 +2,6 @@ import React from 'react'
 import { LEARNER } from '../../../constants'
 
 const Icon = ({ src, alt, active }) => {
-
   return (
     <img
       className={`cursor-pointer w-4 h-auto align-middle`}
@@ -17,7 +16,7 @@ const LeftNavItem = ({ icon, label, clickHandler, isActive, userType }) => {
 
   if (isActive) {
     return (
-      <div onClick={clickHandler} className='flex flex-row items-center'>
+      <div onClick={clickHandler} className="flex flex-row items-center">
         <Icon src={icon} alt={label} />
         <p className={`cursor-pointer text-${color} ml-1`}>{label}</p>
       </div>
@@ -25,7 +24,7 @@ const LeftNavItem = ({ icon, label, clickHandler, isActive, userType }) => {
   }
 
   return (
-    <div onClick={clickHandler} className='flex flex-row items-center'>
+    <div onClick={clickHandler} className="flex flex-row items-center">
       <Icon src={icon} alt={label} />
       <p className={`cursor-pointer hover:text-${color} ml-1`}>{label}</p>
     </div>

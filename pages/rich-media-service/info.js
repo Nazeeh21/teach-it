@@ -1,8 +1,8 @@
-import React from "react";
-import LayoutProvider from "../../layout/LayoutProvider";
-import InnerNav from "../../components/Nav/InnerNav";
+import React from 'react'
+import LayoutProvider from '../../layout/LayoutProvider'
+import InnerNav from '../../components/Nav/InnerNav'
 import ViewService from '../../views/Common/ViewService/ViewService'
-import { richService as navItems } from "../../constants/nav_items";
+import { richService as navItems } from '../../constants/nav_items'
 
 const Settings = () => {
   return (
@@ -14,7 +14,7 @@ const Settings = () => {
     >
       <ViewService />
     </LayoutProvider>
-  );
-};
+  )
+}
 
-export default Settings;
+export default Settings

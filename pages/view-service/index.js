@@ -14,13 +14,12 @@ const Index = () => {
           Authorization: `Token ${localStorage.getItem('token')}`,
         },
       })
-      console.log('VIEW_SERVICE' , res.data)
+      console.log('VIEW_SERVICE', res.data)
       response = res.data
-      viewService= <ViewService response={res.data} />
+      viewService = <ViewService response={res.data} />
     } catch (error) {
       console.log(error)
     }
-
   }, [])
   return (
     <LayoutProvider rightContent={<ExpertOverview />}>

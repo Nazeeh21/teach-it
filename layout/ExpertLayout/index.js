@@ -11,12 +11,12 @@ const Index = ({ children, rightContent, alternate = false, forAgora }) => {
     return (
       <React.Fragment>
         <AppTopNav />
-        <div className='h-auto bg-lightGrey w-full flex flex-row'>
-          <ThreeCols side='left'>
+        <div className="h-auto bg-lightGrey w-full flex flex-row">
+          <ThreeCols side="left">
             <NavItems />
             <Messages />
           </ThreeCols>
-          <ThreeCols side='center'>
+          <ThreeCols side="center">
             {rightContent ? (
               rightContent
             ) : (
@@ -35,22 +35,28 @@ const Index = ({ children, rightContent, alternate = false, forAgora }) => {
   return (
     <React.Fragment>
       <AppTopNav />
-      <div className='h-auto bg-lightGrey w-full flex flex-row'>
-        <ThreeCols side='left'>
+      <div className="h-auto bg-lightGrey w-full flex flex-row">
+        <ThreeCols side="left">
           <NavItems />
           <Messages />
         </ThreeCols>
-        {!forAgora ? <CenterSection>{children}</CenterSection> : <AgoraCenterSection>{children}</AgoraCenterSection>}
-        {!forAgora && <ThreeCols side='right'>
-          {rightContent ? (
-            rightContent
-          ) : (
-            <React.Fragment>
-              <EarningsCard />
-              <CreateServiceCard />
-            </React.Fragment>
-          )}
-        </ThreeCols>}
+        {!forAgora ? (
+          <CenterSection>{children}</CenterSection>
+        ) : (
+          <AgoraCenterSection>{children}</AgoraCenterSection>
+        )}
+        {!forAgora && (
+          <ThreeCols side="right">
+            {rightContent ? (
+              rightContent
+            ) : (
+              <React.Fragment>
+                <EarningsCard />
+                <CreateServiceCard />
+              </React.Fragment>
+            )}
+          </ThreeCols>
+        )}
       </div>
     </React.Fragment>
   )

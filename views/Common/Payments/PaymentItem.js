@@ -1,6 +1,11 @@
-import React from "react";
+import React from 'react'
 
-const PaymentItem = ({ label = 'Payment done', pending = false, amount = '480', days = 3}) => {
+const PaymentItem = ({
+  label = 'Payment done',
+  pending = false,
+  amount = '480',
+  days = 3,
+}) => {
   return (
     <div className="w-full pb-6 pt-6 border-b-2 border-highlight grid grid-cols-2 gap-4">
       <div className="flex flex-row">
@@ -25,7 +30,7 @@ const PaymentItem = ({ label = 'Payment done', pending = false, amount = '480', 
         <p className="text-3xl text-darkGrey justify-self-end">₹ {amount}</p>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default PaymentItem;
+export default PaymentItem

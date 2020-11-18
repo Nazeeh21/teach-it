@@ -3,20 +3,18 @@ import { validate } from '../../utility/validation'
 
 const labelClasses = 'block text-textBoxTitle p-1 text-darkGrey'
 
-const RoundedInput = (
-  {
-    label,
-    placeholder,
-    value,
-    changeHandler,
-    type,
-    required = false,
-    bottomLabel,
-    styles,
-    isValid,
-    setIsValid
-  }
-) => {
+const RoundedInput = ({
+  label,
+  placeholder,
+  value,
+  changeHandler,
+  type,
+  required = false,
+  bottomLabel,
+  styles,
+  isValid,
+  setIsValid,
+}) => {
   const [touched, setTouched] = useState(false)
 
   const validateValue = useCallback(() => {
@@ -51,7 +49,9 @@ const RoundedInput = (
         }}
         placeholder={placeholder}
         required={required}
-        className={`border-${isValid ? 'learner' : 'red border-2' } w-full bg-highlight rounded-full p-4 text-${
+        className={`border-${
+          isValid ? 'learner' : 'red border-2'
+        } w-full bg-highlight rounded-full p-4 text-${
           touched ? 'text-primary' : 'text-darkGrey'
         }`}
       />
@@ -60,6 +60,6 @@ const RoundedInput = (
       <p className={labelClasses}>{bottomLabel}</p>
     </div>
   )
-};
+}
 
-export default RoundedInput;
+export default RoundedInput

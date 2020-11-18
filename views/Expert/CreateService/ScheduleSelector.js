@@ -34,32 +34,38 @@ const ScheduleSelector = ({
     return (
       <React.Fragment>
         <ServiceFreeqSel activeLabel={serviceFreq} setLabel={setServiceFreq} />
-        <div className='mt-6'>
+        <div className="mt-6">
           <DaySelector
             changedHandler={(value) => {
               weekDaysChangedHandler(value)
             }}
           />
         </div>
-        <div className='mt-6'>
+        <div className="mt-6">
           {/* <DatePicker /> */}
-          <div className='w-full flex text-lg font-medium'>
-            <div className='w-6/12'>
-              <p className='mb-2'>Start date</p>
-              <div className='-ml-2'>
-                <DatePicker value={startDate} handleDayChange={startDateChangeHandler} />
+          <div className="w-full flex text-lg font-medium">
+            <div className="w-6/12">
+              <p className="mb-2">Start date</p>
+              <div className="-ml-2">
+                <DatePicker
+                  value={startDate}
+                  handleDayChange={startDateChangeHandler}
+                />
               </div>
             </div>
-            <div className='w-6/12'>
-              <p className='mb-2'>End date</p>
-              <div className='-ml-2'>
-                <DatePicker value={endDate} handleDayChange={endDateChangeHandler} />
+            <div className="w-6/12">
+              <p className="mb-2">End date</p>
+              <div className="-ml-2">
+                <DatePicker
+                  value={endDate}
+                  handleDayChange={endDateChangeHandler}
+                />
               </div>
             </div>
           </div>
         </div>
-        <div className='flex mt-6'>
-          <div className='w-6/12'>
+        <div className="flex mt-6">
+          <div className="w-6/12">
             <TimeSelector
               hourValue={hour}
               minValue={min}
@@ -74,7 +80,7 @@ const ScheduleSelector = ({
               }}
             />
           </div>
-          <div className='w-6/12'>
+          <div className="w-6/12">
             <DurationSelector
               duration={duration}
               onDurationChanged={(value) => {
@@ -83,7 +89,7 @@ const ScheduleSelector = ({
             />
           </div>
         </div>
-        <div className='mt-10'>
+        <div className="mt-10">
           <CustomizeAndMilestoneContainer setMileStoneData={setMilestoneData} />
         </div>
       </React.Fragment>
@@ -93,33 +99,39 @@ const ScheduleSelector = ({
   if (type === 1) {
     return (
       <React.Fragment>
-        <div className=''>
-          <p className='mt-2 text-lg'>Payment frequency</p>
-          <p className='mt-1 mb-2 text-darkGrey text-sm'>
+        <div className="">
+          <p className="mt-2 text-lg">Payment frequency</p>
+          <p className="mt-1 mb-2 text-darkGrey text-sm">
             At what frequency subscriber of the service shall pay
           </p>
           <Pills
             activeLabel={paymentFreq}
             setLabel={setPaymentFreq}
-            width='w-6/12'
-            color='white'
-            label1='Per day'
-            label2='Per week'
-            label3='Per month'
+            width="w-6/12"
+            color="white"
+            label1="Per day"
+            label2="Per week"
+            label3="Per month"
           />
         </div>
 
-        <div className='mt-6 w-full flex text-lg font-medium'>
-          <div className='w-6/12'>
-            <p className='mb-2'>Start date</p>
-            <div className='-ml-2'>
-              <DatePicker value={startDate} handleDayChange={startDateChangeHandler}/>
+        <div className="mt-6 w-full flex text-lg font-medium">
+          <div className="w-6/12">
+            <p className="mb-2">Start date</p>
+            <div className="-ml-2">
+              <DatePicker
+                value={startDate}
+                handleDayChange={startDateChangeHandler}
+              />
             </div>
           </div>
-          <div className='w-6/12'>
-            <p className='mb-2'>End date</p>
-            <div className='-ml-2'>
-              <DatePicker value={endDate} handleDayChange={endDateChangeHandler} />
+          <div className="w-6/12">
+            <p className="mb-2">End date</p>
+            <div className="-ml-2">
+              <DatePicker
+                value={endDate}
+                handleDayChange={endDateChangeHandler}
+              />
             </div>
           </div>
         </div>

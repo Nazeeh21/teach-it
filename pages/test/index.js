@@ -5,13 +5,15 @@ import GeneralSetting from '../../views/Settings/General'
 import Service from '../../views/Settings/Service'
 
 const Index = () => {
-  return (<div>
-    <ExpertLayout alternate>
-      {/* <GeneralSetting /> */}
-      {/* <ProfileSetting /> */}
-      <AppSettings />
-    </ExpertLayout>
-  </div>)
+  return (
+    <div>
+      <ExpertLayout alternate>
+        {/* <GeneralSetting /> */}
+        {/* <ProfileSetting /> */}
+        <AppSettings />
+      </ExpertLayout>
+    </div>
+  )
 }
 
 export default Index
