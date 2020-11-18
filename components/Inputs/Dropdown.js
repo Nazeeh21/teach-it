@@ -2,7 +2,10 @@ import React from 'react'
 
 const Dropdown = ({ changeHandler }) => {
   return (
-    <select className='bg-highlight p-2 rounded' onChange={e => changeHandler(e.target.value)}>
+    <select
+      className="bg-highlight p-2 rounded"
+      onChange={(e) => changeHandler(e.target.value)}
+    >
       <option>Test1</option>
       <option>Test2</option>
       <option>Test3</option>

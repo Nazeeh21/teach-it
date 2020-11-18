@@ -12,6 +12,6 @@ const Index = ({ children }) => {
       <Footer />
     </React.Fragment>
   )
-};
+}
 
-export default Index;
+export default Index

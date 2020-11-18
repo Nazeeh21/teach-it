@@ -5,7 +5,7 @@ import Chat from '../../Chat/Chat'
 const ServiceChat = () => {
   return (
     <Chat
-      label='Stock Market'
+      label="Stock Market"
       disabled
       expertDetails={{
         name: 'Nazeeh Vahora',
@@ -13,6 +13,6 @@ const ServiceChat = () => {
       }}
     />
   )
-};
+}
 
-export default ServiceChat;
+export default ServiceChat

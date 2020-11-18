@@ -9,7 +9,7 @@ export const PrimaryButton = ({
   clickHandler,
   disabled = false,
   styles,
-  textSize = 'innerTitle'
+  textSize = 'innerTitle',
 }) => {
   return (
     <div className={styles}>
@@ -138,8 +138,7 @@ export const Pill = ({
   color,
   textColor,
 }) => {
-  const inactiveClass =
-    'bg-none text-md border-none inline w-full px-8 py-2'
+  const inactiveClass = 'bg-none text-md border-none inline w-full px-8 py-2'
 
   return (
     <button
@@ -158,7 +157,7 @@ export const Pill = ({
 
 export const ViewMoreButton = ({ label = 'View all', clickHandler }) => (
   <button
-    className='w-full text-secondary text-sm pt-2 pb-2 pl-4 pr-4 rounded-md bg-lightGrey mb-6'
+    className="w-full text-secondary text-sm pt-2 pb-2 pl-4 pr-4 rounded-md bg-lightGrey mb-6"
     onClick={clickHandler}
   >
     {label}

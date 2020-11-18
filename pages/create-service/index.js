@@ -11,6 +11,6 @@ const Index = () => {
       <CreateService />
     </LayoutProvider>
   )
-};
+}
 
-export default Index;
+export default Index

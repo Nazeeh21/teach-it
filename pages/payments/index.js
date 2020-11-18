@@ -8,6 +8,6 @@ const Index = () => {
       <Payments />
     </LayoutProvider>
   )
-};
+}
 
-export default Index;
+export default Index

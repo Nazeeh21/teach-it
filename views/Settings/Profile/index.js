@@ -21,41 +21,41 @@ const CrossButton = (
       left: '80%',
       bottom: '6%',
     }}
-    className='rounded-full w-4/12 bg-red flex text-white'
+    className="rounded-full w-4/12 bg-red flex text-white"
   >
-    <button className='m-auto'>x</button>
+    <button className="m-auto">x</button>
   </div>
 )
 
 const UploadImageAndVideo = (
   <div
     style={{ backgroundImage: `url('images&videos/1.png')` }}
-    className='w-9/12 h-full rounded-lg'
+    className="w-9/12 h-full rounded-lg"
   >
     {CrossButton}
   </div>
 )
 
 const Switch = ({ label }) => (
-  <div className='grid grid-cols-2 items-center mt-4'>
-    <p className='text-lg'>{label}</p>
-    <div className='justify-self-end'>
+  <div className="grid grid-cols-2 items-center mt-4">
+    <p className="text-lg">{label}</p>
+    <div className="justify-self-end">
       <Toggle />
     </div>
   </div>
 )
 
 const Label = ({ children }) => (
-  <h3 className='text-xl mb-2 mt-6'>{children}</h3>
+  <h3 className="text-xl mb-2 mt-6">{children}</h3>
 )
 
 const Upload = ({ label }) => (
   <React.Fragment>
-    <div className='my-10'>
-      <p className='text-xl my-2'>{label}</p>
-      <p className='w-full text-sm text-darkGrey'>{loremIpsum}</p>
+    <div className="my-10">
+      <p className="text-xl my-2">{label}</p>
+      <p className="w-full text-sm text-darkGrey">{loremIpsum}</p>
     </div>
-    <div className='p-2 bg-lightGrey rounded grid grid-cols-5 items-center'>
+    <div className="p-2 bg-lightGrey rounded grid grid-cols-5 items-center">
       <div>
         <UploadButton />
       </div>
@@ -82,7 +82,7 @@ const Index = () => {
         console.log(e)
       })
     // console.log(fetchData)
-  },[])
+  }, [])
 
   const [displayName, setDisplayName] = useState('')
   const [age, setAge] = useState('')
@@ -157,50 +157,50 @@ const Index = () => {
   }
 
   return (
-    <div className='w-full'>
+    <div className="w-full">
       {/* <input defaultValue={fetchedData && fetchedData[0].email} onChange = {e => setPrimaryEmail(e.target.value)} /> */}
-      <h3 className='text-2xl mb-4'>Profile settings</h3>
+      <h3 className="text-2xl mb-4">Profile settings</h3>
       {/* White container start */}
-      <div className='bg-white w-full rounded-lg p-6'>
-        <div className='grid grid-cols-2'>
-          <div className='flex gap-6 items-center'>
+      <div className="bg-white w-full rounded-lg p-6">
+        <div className="grid grid-cols-2">
+          <div className="flex gap-6 items-center">
             <img
-              src='/stock/girl2.jpg'
-              alt='Profile Picture'
-              className='rounded-full w-24'
+              src="/stock/girl2.jpg"
+              alt="Profile Picture"
+              className="rounded-full w-24"
             />
-            <p className='text-secondary cursor-pointer'>Change photo</p>
+            <p className="text-secondary cursor-pointer">Change photo</p>
           </div>
-          <div className='grid grid-cols-2 bg-highlight p-6 items-center'>
-            <p className='text-lg'>Available for work</p>
-            <div className='justify-self-end'>
+          <div className="grid grid-cols-2 bg-highlight p-6 items-center">
+            <p className="text-lg">Available for work</p>
+            <div className="justify-self-end">
               <Toggle />
             </div>
           </div>
         </div>
-        <div className='w-full bg-highlight p-4 flex gap-4 mt-6 mb-12'>
-          <SecondaryButton label='Request Verification' />
-          <SecondaryButton disabled label='Apply to become a pro' />
+        <div className="w-full bg-highlight p-4 flex gap-4 mt-6 mb-12">
+          <SecondaryButton label="Request Verification" />
+          <SecondaryButton disabled label="Apply to become a pro" />
         </div>
 
         <Label>Display name</Label>
 
-        <div className='grid grid-cols-2 items-center gap-x-6 gap-y-0 grid-flow-row'>
+        <div className="grid grid-cols-2 items-center gap-x-6 gap-y-0 grid-flow-row">
           <Input
             placeholder={fetchedData && fetchedData[0].name}
             defaultValue={fetchedData && fetchedData[0].name}
             valid={isValid.inputData.displayName.valid}
             touched={isValid.inputData.displayName.touched}
-            inValidMessage='Enter a valid Name'
+            inValidMessage="Enter a valid Name"
             value={displayName}
             changeHandler={(value) => {
               setDisplayName(value)
               inputDataChangeHandler(value, 'displayName', 'text')
             }}
           />
-          <div className='grid grid-cols-2 items-center'>
-            <p className='text-lg'>Show full name on profile</p>
-            <div className='justify-self-end'>
+          <div className="grid grid-cols-2 items-center">
+            <p className="text-lg">Show full name on profile</p>
+            <div className="justify-self-end">
               <Toggle />
             </div>
           </div>
@@ -213,8 +213,8 @@ const Index = () => {
             defaultValue={fetchedData && fetchedData[0].age}
             valid={isValid.inputData.age.valid}
             touched={isValid.inputData.age.touched}
-            inValidMessage='Enter a valid age'
-            type='number'
+            inValidMessage="Enter a valid age"
+            type="number"
             value={age}
             changeHandler={(value) => {
               setAge(value)
@@ -224,8 +224,8 @@ const Index = () => {
           <Input
             valid={isValid.inputData.websiteURL.valid}
             touched={isValid.inputData.websiteURL.touched}
-            inValidMessage='Enter a valid URL'
-            type='url'
+            inValidMessage="Enter a valid URL"
+            type="url"
             value={websiteURL}
             changeHandler={(value) => {
               setWebsiteURL(value)
@@ -247,8 +247,8 @@ const Index = () => {
             defaultValue={fetchedData && fetchedData[0].email}
             valid={isValid.inputData.primaryEmail.valid}
             touched={isValid.inputData.primaryEmail.touched}
-            inValidMessage='Enter a valid email'
-            type='email'
+            inValidMessage="Enter a valid email"
+            type="email"
             value={primaryEmail}
             changeHandler={(value) => {
               setPrimaryEmail(value)
@@ -259,8 +259,8 @@ const Index = () => {
             defaultValue={fetchedData && fetchedData[0].mobile}
             valid={isValid.inputData.mobile.valid}
             touched={isValid.inputData.mobile.touched}
-            inValidMessage='Enter a valid Number'
-            type='number'
+            inValidMessage="Enter a valid Number"
+            type="number"
             value={mobile}
             changeHandler={(value) => {
               setMobile(value)
@@ -268,11 +268,11 @@ const Index = () => {
             }}
           />
 
-          <Switch label='Show services taken' />
-          <Switch label='Show online status' />
+          <Switch label="Show services taken" />
+          <Switch label="Show online status" />
         </div>
 
-        <div className='my-10'>
+        <div className="my-10">
           <Label>One line bio</Label>
           <input
             defaultValue={fetchedData && fetchedData[0].bio}
@@ -290,10 +290,10 @@ const Index = () => {
           {!isValid.inputData.oneLineBio.valid &&
             isValid.inputData.oneLineBio.touched && <p>Enter a valid bio</p>}
         </div>
-        <div className='my-10'>
+        <div className="my-10">
           <Label>Profile description</Label>
           <textarea
-            defaultValue=''
+            defaultValue=""
             value={profileDescription}
             onChange={(e) => {
               setProfileDescription(e.target.value)
@@ -316,12 +316,12 @@ const Index = () => {
           {/* <p className='rounded w-full p-2 text-sm bg-lightGrey'>{loremIpsum}</p> */}
         </div>
 
-        <Upload label='Demo videos' />
-        <Upload label='Certificates' />
+        <Upload label="Demo videos" />
+        <Upload label="Certificates" />
 
-        <div className='w-1/3 mt-6'>
+        <div className="w-1/3 mt-6">
           <PrimaryButton
-            label='Save'
+            label="Save"
             disabled={!isValid.isFormValid}
             clickHandler={saveButtonClickHandler}
           />

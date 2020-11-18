@@ -7,56 +7,56 @@ const basePath = '/nav_icons/'
 
 const NavItems = () => {
   const router = useRouter()
-  const userType = useSelector(state => state.app.userType)
+  const userType = useSelector((state) => state.app.userType)
 
   return (
-    <div className='w-full p-4 bg-white text-primary rounded-lg shadow-md'>
+    <div className="w-full p-4 bg-white text-primary rounded-lg shadow-md">
       <LeftNavItem
         clickHandler={() => router.push('/dashboard')}
         icon={`${basePath}home`}
-        label='Home'
+        label="Home"
         userType={userType}
         isActive={router.pathname === '/dashboard'}
       />
       <LeftNavItem
         clickHandler={() => router.push('/categories')}
         icon={`${basePath}categories`}
-        label='Categories'
+        label="Categories"
         userType={userType}
         isActive={router.pathname === '/categories'}
       />
       <LeftNavItem
         clickHandler={() => router.push('/messages')}
         icon={`${basePath}messages`}
-        label='Messages'
+        label="Messages"
         userType={userType}
         isActive={router.pathname === '/messages'}
       />
       <LeftNavItem
         clickHandler={() => router.push('/services')}
         icon={`${basePath}services`}
-        label='Services'
+        label="Services"
         userType={userType}
         isActive={router.pathname === '/services'}
       />
       <LeftNavItem
         clickHandler={() => router.push('/payments')}
         icon={`${basePath}payments`}
-        label='Payments'
+        label="Payments"
         userType={userType}
         isActive={router.pathname === '/payments'}
       />
       <LeftNavItem
         clickHandler={() => router.push('/support')}
         icon={`${basePath}support`}
-        label='Support'
+        label="Support"
         userType={userType}
         isActive={router.pathname === '/support'}
       />
       <LeftNavItem
         clickHandler={() => router.push('/settings')}
         icon={`${basePath}settings`}
-        label='Settings'
+        label="Settings"
         userType={userType}
         isActive={router.pathname === '/settings'}
       />

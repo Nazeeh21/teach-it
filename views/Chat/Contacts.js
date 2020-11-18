@@ -1,50 +1,50 @@
-import React, { useState } from "react";
-import { ChatWindowContact } from "../../components/Chat/ChatWindowContact";
-import SearchBar from "../../components/Inputs/SearchBar";
-import ChooseService from "./ChooseService/ChooseService";
-import {v4 as uuid} from 'uuid'
+import React, { useState } from 'react'
+import { ChatWindowContact } from '../../components/Chat/ChatWindowContact'
+import SearchBar from '../../components/Inputs/SearchBar'
+import ChooseService from './ChooseService/ChooseService'
+import { v4 as uuid } from 'uuid'
 
 const ChatWindowData = [
   {
-    src: "stock/girl2.jpg",
-    name: "Arun",
+    src: 'stock/girl2.jpg',
+    name: 'Arun',
     active: false,
-    time: "5",
-    text: "See you soon",
+    time: '5',
+    text: 'See you soon',
   },
   {
-    src: "stock/girl2.jpg",
-    name: "Deepak Kumar",
+    src: 'stock/girl2.jpg',
+    name: 'Deepak Kumar',
     active: true,
-    time: "5",
-    text: "See you soon",
-    current: "true",
+    time: '5',
+    text: 'See you soon',
+    current: 'true',
   },
   {
-    src: "stock/girl2.jpg",
-    name: "John Doe",
+    src: 'stock/girl2.jpg',
+    name: 'John Doe',
     active: false,
-    time: "5",
-    text: "See you soon",
+    time: '5',
+    text: 'See you soon',
   },
   {
-    src: "stock/girl2.jpg",
-    name: "Nisha Sharma",
+    src: 'stock/girl2.jpg',
+    name: 'Nisha Sharma',
     active: true,
-    time: "5",
-    text: "See you soon",
+    time: '5',
+    text: 'See you soon',
   },
   {
-    src: "stock/girl2.jpg",
-    name: "Sonia",
+    src: 'stock/girl2.jpg',
+    name: 'Sonia',
     active: true,
-    time: "5",
-    text: "See you soon",
+    time: '5',
+    text: 'See you soon',
   },
-];
+]
 
 const Contacts = () => {
-  const [searchBarOpen, toggleSearch] = useState(false);
+  const [searchBarOpen, toggleSearch] = useState(false)
   const [query, setQuery] = useState('')
 
   const [currentContact, setCurrentContact] = useState('')
@@ -62,9 +62,16 @@ const Contacts = () => {
               type="text"
             /> */}
             {searchBarOpen ? (
-              <SearchBar value={query} changeHandler={setQuery} bgColor='highlight' />
+              <SearchBar
+                value={query}
+                changeHandler={setQuery}
+                bgColor="highlight"
+              />
             ) : (
-              <div onClick={() => toggleSearch(true)} className="cursor-pointer h-auto w-1/12 ml-1">
+              <div
+                onClick={() => toggleSearch(true)}
+                className="cursor-pointer h-auto w-1/12 ml-1"
+              >
                 <img
                   className="w-full h-auto"
                   src="/search.png"
@@ -76,7 +83,7 @@ const Contacts = () => {
         </div>
         <div className="flex w-full justify-center px-3">
           <select
-            style={{ outline: "none" }}
+            style={{ outline: 'none' }}
             className="h-10 w-full text-lg rounded-md border-2 border-lightGrey"
           >
             <option label="Sonia" value="sonia" />
@@ -101,7 +108,7 @@ const Contacts = () => {
         ))}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Contacts;
+export default Contacts

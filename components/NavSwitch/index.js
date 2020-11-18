@@ -15,7 +15,7 @@ const Index = ({ color1, color2, label1, label2, textColor = 'white' }) => {
   }
 
   return (
-    <div className='flex w-full rounded-full bg-lightGrey p-2'>
+    <div className="flex w-full rounded-full bg-lightGrey p-2">
       <Pill
         inactive={activeId !== 0}
         label={label1}

@@ -17,22 +17,29 @@ const CrossButton = (
       left: '80%',
       bottom: '6%',
     }}
-    className='rounded-full w-4/12 bg-red flex text-white'
+    className="rounded-full w-4/12 bg-red flex text-white"
   >
-    <button className='m-auto'>x</button>
+    <button className="m-auto">x</button>
   </div>
 )
 
 const UploadImageAndVideo = (
   <div
     style={{ backgroundImage: `url('images&videos/1.png')` }}
-    className='w-9/12 h-full rounded-lg'
+    className="w-9/12 h-full rounded-lg"
   >
     {CrossButton}
   </div>
 )
 
-const UpperForm = ({ type, typeChangedHandler, title, description, titleChangedHandler, descriptionChangedHandler }) => {
+const UpperForm = ({
+  type,
+  typeChangedHandler,
+  title,
+  description,
+  titleChangedHandler,
+  descriptionChangedHandler,
+}) => {
   const [liveServiceType, setServiceType] = useState(null)
   // const dispatch = useDispatch()
   // const title = useSelector((state) => state.createService.title)
@@ -42,16 +49,16 @@ const UpperForm = ({ type, typeChangedHandler, title, description, titleChangedH
   // useEffect(() =>{
 
   // }, [liveServiceType])
- 
+
   return (
-    <div className='w-full font-medium'>
+    <div className="w-full font-medium">
       {type === 'live' && (
         <React.Fragment>
-          <p className='text-lg my-2'>Live Service type</p>
-          <div className='w-full grid grid-cols-2 gap-5 mb-6'>
+          <p className="text-lg my-2">Live Service type</p>
+          <div className="w-full grid grid-cols-2 gap-5 mb-6">
             <ServiceTypeCard
-              label='Video and audio'
-              desc='learners can see and hear you'
+              label="Video and audio"
+              desc="learners can see and hear you"
               active={liveServiceType === 0}
               clickHandler={() => {
                 typeChangedHandler('video')
@@ -61,8 +68,8 @@ const UpperForm = ({ type, typeChangedHandler, title, description, titleChangedH
               noIcon
             />
             <ServiceTypeCard
-              label='Audio only'
-              desc='learners can only hear your voice'
+              label="Audio only"
+              desc="learners can only hear your voice"
               active={liveServiceType === 1}
               clickHandler={() => {
                 typeChangedHandler('audio')
@@ -74,22 +81,22 @@ const UpperForm = ({ type, typeChangedHandler, title, description, titleChangedH
           </div>
         </React.Fragment>
       )}
-      <div className='my-10'>
-        <p className='text-lg my-2'>Title</p>
+      <div className="my-10">
+        <p className="text-lg my-2">Title</p>
         <input
           value={title}
-          className='rounded w-full p-2 text-sm bg-lightGrey'
+          className="rounded w-full p-2 text-sm bg-lightGrey"
           onChange={(e) => {
             titleChangedHandler(e.target.value)
             // dispatch(updateTitle(e.target.value))
           }}
         />
       </div>
-      <div className='my-10'>
-        <p className='text-lg my-2'>Description</p>
+      <div className="my-10">
+        <p className="text-lg my-2">Description</p>
         <textarea
           value={description}
-          className='rounded w-full p-2 text-sm bg-lightGrey h-32'
+          className="rounded w-full p-2 text-sm bg-lightGrey h-32"
           onChange={(e) => {
             descriptionChangedHandler(e.target.value)
             // dispatch(updateDescription(e.target.value))
@@ -97,13 +104,13 @@ const UpperForm = ({ type, typeChangedHandler, title, description, titleChangedH
         />
         {/* <p className='rounded w-full p-2 text-sm bg-lightGrey'>{loremIpsum}</p> */}
       </div>
-      <div className='my-10'>
-        <p className='text-lg my-2'>Images and videos</p>
-        <p className='w-full text-sm text-darkGrey'>
+      <div className="my-10">
+        <p className="text-lg my-2">Images and videos</p>
+        <p className="w-full text-sm text-darkGrey">
           Upload some images and videos showcasing your skills (max 5)
         </p>
       </div>
-      <div className='p-2 bg-lightGrey rounded grid grid-cols-5 items-center'>
+      <div className="p-2 bg-lightGrey rounded grid grid-cols-5 items-center">
         <div>
           <UploadButton />
         </div>

@@ -14,14 +14,14 @@ export default function Home() {
   }, [])
 
   return (
-    <div className='text-primary'>
+    <div className="text-primary">
       <Head>
         <title>VideoWork</title>
-        <link rel='icon' href='/favicon.ico' />
+        <link rel="icon" href="/favicon.ico" />
         {/* <!-- Fonts --> */}
         <link
-          href='https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap'
-          rel='stylesheet'
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap"
+          rel="stylesheet"
         />
       </Head>
 

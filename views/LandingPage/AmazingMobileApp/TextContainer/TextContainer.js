@@ -1,15 +1,17 @@
 import React from 'react'
 
 const TextContainer = ({ data }) => (
-  <div className='mx-6'>
+  <div className="mx-6">
     <p
       style={{ color: '#1d2d50', lineHeight: '120%' }}
-      className='text-3xl text-left font-semibold '>
+      className="text-3xl text-left font-semibold "
+    >
       {data.title}
     </p>
     <p
       style={{ lineHeight: '110%' }}
-      className='my-4 text-darkGrey text-left text-xl font-medium'>
+      className="my-4 text-darkGrey text-left text-xl font-medium"
+    >
       {data.subTitle}
     </p>
   </div>

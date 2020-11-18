@@ -1,5 +1,5 @@
-import React, { useState } from "react"
-import TextInput from "../../../../components/Inputs/TextInput"
+import React, { useState } from 'react'
+import TextInput from '../../../../components/Inputs/TextInput'
 import IconPicker from './IconPicker'
 
 const Form = ({ name, setName, email, setEmail, age, setAge, index }) => {

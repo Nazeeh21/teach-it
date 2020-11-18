@@ -1,37 +1,37 @@
 export const settings = [
   {
     label: 'Service',
-    link: '/settings/service'
+    link: '/settings/service',
   },
   {
     label: 'General',
-    link: '/settings/general'
+    link: '/settings/general',
   },
   {
     label: 'App',
-    link: '/settings/app'
+    link: '/settings/app',
   },
   {
     label: 'Payments',
-    link: '/settings/payments'
+    link: '/settings/payments',
   },
   {
     label: 'Profile',
-    link: '/settings/profile'
+    link: '/settings/profile',
   },
 ]
 
 export const richService = [
   {
     label: 'Service',
-    link: '/rich-media-service'
+    link: '/rich-media-service',
   },
   {
     label: 'Service Information',
-    link: '/rich-media-service/info'
+    link: '/rich-media-service/info',
   },
   {
     label: 'Questions',
-    link: '/rich-media-service/questions'
+    link: '/rich-media-service/questions',
   },
 ]

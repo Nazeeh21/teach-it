@@ -25,7 +25,9 @@ a {
   padding: 3px;
 }
 
-input, button, textarea {
+input,
+button,
+textarea {
   outline: none !important;
 }
 
@@ -113,7 +115,7 @@ input, button, textarea {
   background: grey;
   border-radius: 100px;
   position: relative;
-  transition: background-color .2s;
+  transition: background-color 0.2s;
 }
 
 .react-switch-label .react-switch-button {

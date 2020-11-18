@@ -1,6 +1,6 @@
 import React from 'react'
 import Card from './Card/Card'
-import {v4 as uuid} from 'uuid'
+import { v4 as uuid } from 'uuid'
 
 const cardData = [
   {
@@ -17,10 +17,10 @@ const cardData = [
   },
 ]
 const JoiningCards = () => (
-  <div className='my-10 md:my-20 xl:my-32'>
-    <div className='flex flex-col md:flex-row justify-center'>
+  <div className="my-10 md:my-20 xl:my-32">
+    <div className="flex flex-col md:flex-row justify-center">
       {cardData.map((data) => (
-        <div key={() => uuid()} className='w-11/12 md:w-6/12 xl:w-4/12 m-6'>
+        <div key={() => uuid()} className="w-11/12 md:w-6/12 xl:w-4/12 m-6">
           <Card data={data} />
         </div>
       ))}

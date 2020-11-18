@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import BackDrop from "../../../../components/Backdrop";
-import { PrimaryButton } from "../../../../components/Buttons/Index";
-import Avatar from "../../../../components/Images/Avatar";
-import loremIpsum from "../../../../utility/loremIpsum";
+import React, { useState } from 'react'
+import BackDrop from '../../../../components/Backdrop'
+import { PrimaryButton } from '../../../../components/Buttons/Index'
+import Avatar from '../../../../components/Images/Avatar'
+import loremIpsum from '../../../../utility/loremIpsum'
 import api from '../../../../api'
 
 const AskQuestion = ({ show, clickHandler }) => {
@@ -10,15 +10,19 @@ const AskQuestion = ({ show, clickHandler }) => {
 
   const sendQuestion = async () => {
     try {
-      const res = await api.post('service/1/questions/', {
-        title: question,
-        is_answered: false
-      }, {
-        headers: {
-          'Authorization': `Token ${localStorage.getItem('token')}`,
-          'X-Profile-ID': localStorage.getItem('currentProfile')
+      const res = await api.post(
+        'service/1/questions/',
+        {
+          title: question,
+          is_answered: false,
+        },
+        {
+          headers: {
+            Authorization: `Token ${localStorage.getItem('token')}`,
+            'X-Profile-ID': localStorage.getItem('currentProfile'),
+          },
         }
-      })
+      )
 
       console.log('Successfully sent the question', res.data)
 
@@ -33,10 +37,10 @@ const AskQuestion = ({ show, clickHandler }) => {
       <BackDrop show={show} clicked={clickHandler} />
       <div
         style={{
-          zIndex: "100",
-          borderBottomLeftRadius: "1rem",
-          borderTopLeftRadius: "1rem",
-          opacity: show ? "1" : "0",
+          zIndex: '100',
+          borderBottomLeftRadius: '1rem',
+          borderTopLeftRadius: '1rem',
+          opacity: show ? '1' : '0',
         }}
         className="absolute right-0 top-0 bg-white w-10/12 lg:w-5/12 xl:w-5/12 h-full pt-6 pl-8 pr-5"
       >
@@ -61,14 +65,14 @@ const AskQuestion = ({ show, clickHandler }) => {
           type="text"
           placeholder={loremIpsum}
           value={question}
-          onChange={e => setQuestion(e.target.value)}
+          onChange={(e) => setQuestion(e.target.value)}
         />
         <div className="w-7/12 md:w-4/12 mt-8">
           <PrimaryButton clickHandler={sendQuestion} label="Send" />
         </div>
       </div>
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default AskQuestion;
+export default AskQuestion

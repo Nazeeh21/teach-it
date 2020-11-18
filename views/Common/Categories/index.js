@@ -1,6 +1,6 @@
-import React from "react";
-import { CardFilledWithImage as Card } from "../../../components/Cards/Cards";
-import { useRouter } from "next/router";
+import React from 'react'
+import { CardFilledWithImage as Card } from '../../../components/Cards/Cards'
+import { useRouter } from 'next/router'
 
 // const Card = ({ clickHandler }) => (
 //   <CardFilledWithImage
@@ -12,11 +12,11 @@ import { useRouter } from "next/router";
 // );
 
 const Index = () => {
-  const router = useRouter();
+  const router = useRouter()
 
   const handleRedirect = () => {
-    router.push("/search");
-  };
+    router.push('/search')
+  }
 
   return (
     <div className="w-full">
@@ -60,7 +60,7 @@ const Index = () => {
         />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Index;
+export default Index

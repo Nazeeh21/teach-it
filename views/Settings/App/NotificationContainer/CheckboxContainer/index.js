@@ -4,14 +4,12 @@ import Checkbox from '../../../../Expert/CreateService/LiveServiceFormComponents
 const CheckboxContainer = ({ label }) => {
   const [active, setActive] = useState(true)
 
-  const checkboxClickHandler = () => (
-    setActive(presentState => !presentState)
-  )
+  const checkboxClickHandler = () => setActive((presentState) => !presentState)
 
   return (
-    <div className='w-full flex'>
+    <div className="w-full flex">
       <Checkbox active={active} clicked={checkboxClickHandler} />
-      <p className='ml-2'>{label}</p>
+      <p className="ml-2">{label}</p>
     </div>
   )
 }
