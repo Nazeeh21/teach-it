@@ -17,7 +17,7 @@ const Index = () => {
   const handleRedirect = () => {
     router.push("/search");
   };
-
+ 
   return (
     <div className="w-full">
       <h3 className="text-2xl text-primary p-2 font-semibold">Categories</h3>
