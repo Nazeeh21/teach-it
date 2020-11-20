@@ -6,6 +6,7 @@ import ExpertDashboard from '../../views/ExpertDashboard'
 import LearnerDashboard from '../../views/LearnerDashboard'
 import { useRouter } from 'next/router'
 import { fetchProfiles } from '../../store/actions/appActions'
+import { saveToken } from '../../store/actions/authActions'
 
 const Index = () => {
   const router = useRouter()
@@ -13,6 +14,9 @@ const Index = () => {
 
   let userType = useSelector((state) => state.app.userType)
 
+  let token = useSelector((state) => state.auth.token)
+
+  console.log('/dashboard', token)
   useEffect(() => {
     const token = window.localStorage.getItem('token')
 
@@ -22,8 +26,13 @@ const Index = () => {
 
     if (token) {
       dispatch(fetchProfiles())
+      dispatch(saveToken(token))
     }
   }, [])
+
+  if (token == null) {
+    return null
+  }
 
   if (userType === LEARNER) {
     return (

@@ -3,6 +3,7 @@ const {
   AUTH_START,
   AUTH_RESET,
   SAVE_OTP,
+  SAVE_TOKEN,
 } = require('../actionTypes')
 
 const initialState = {
@@ -36,12 +37,18 @@ const saveOtp = (state, otp) => {
   }
 }
 
-const verifyOtp = (state, status, token) => {
+const verifyOtp = (state, status) => {
   console.log('verifyOtp in authReducer', status)
 
   return {
     ...state,
     status,
+  }
+}
+
+const saveToken = (state, token) => {
+  return {
+    ...state,
     token,
   }
 }
@@ -53,9 +60,12 @@ const reducer = (state = initialState, action) => {
     case AUTH_RESET:
       return reset()
     case VERIFY_OTP:
-      return verifyOtp(state, action.status, action.token)
+      return verifyOtp(state, action.status)
     case SAVE_OTP:
       return saveOtp(state, action.otp)
+    case SAVE_TOKEN:
+      localStorage.setItem('token', action.token)
+      return saveToken(state, action.token)
     default:
       return state
   }

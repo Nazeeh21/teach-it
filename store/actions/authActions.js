@@ -1,5 +1,11 @@
 import api from '../../api'
-import { AUTH_RESET, AUTH_START, SAVE_OTP, VERIFY_OTP } from '../actionTypes'
+import {
+  AUTH_RESET,
+  AUTH_START,
+  SAVE_TOKEN,
+  SAVE_OTP,
+  VERIFY_OTP,
+} from '../actionTypes'
 
 export const auth = (data, medium) => {
   return async (dispatch) => {
@@ -31,11 +37,11 @@ export const verifyOtp = (input, medium) => {
         otp: input,
       })
       console.log('[Verify Otp]', res.data)
-      localStorage.setItem('token', res.data.token)
+      // localStorage.setItem('token', res.data.token)
+      dispatch(saveToken(res.data.token))
       dispatch({
         type: VERIFY_OTP,
         status: 'success',
-        token: res.data.token,
       })
     } catch (e) {
       console.log(e)
@@ -44,6 +50,13 @@ export const verifyOtp = (input, medium) => {
         status: 'failure',
       })
     }
+  }
+}
+
+export const saveToken = (token) => {
+  return {
+    type: SAVE_TOKEN,
+    token: token,
   }
 }
 
