@@ -30,11 +30,12 @@ export const verifyOtp = (input, medium) => {
       const res = await api.post(`auth/${medium}/verify/`, {
         otp: input,
       })
-
+      console.log('[Verify Otp]', res.data)
       localStorage.setItem('token', res.data.token)
       dispatch({
         type: VERIFY_OTP,
         status: 'success',
+        token: res.data.token,
       })
     } catch (e) {
       console.log(e)

@@ -11,6 +11,7 @@ const initialState = {
   status: '',
   data: {},
   otp: '',
+  token: null,
 }
 
 const startAuth = (state, medium, data) => {
@@ -35,12 +36,13 @@ const saveOtp = (state, otp) => {
   }
 }
 
-const verifyOtp = (state, status) => {
+const verifyOtp = (state, status, token) => {
   console.log('verifyOtp in authReducer', status)
 
   return {
     ...state,
     status,
+    token,
   }
 }
 
@@ -51,7 +53,7 @@ const reducer = (state = initialState, action) => {
     case AUTH_RESET:
       return reset()
     case VERIFY_OTP:
-      return verifyOtp(state, action.status)
+      return verifyOtp(state, action.status, action.token)
     case SAVE_OTP:
       return saveOtp(state, action.otp)
     default:

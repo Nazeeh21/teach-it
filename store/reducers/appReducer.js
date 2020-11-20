@@ -49,6 +49,7 @@ const reducer = (state = initialState, action) => {
       }
     case LOGOUT:
       localStorage.removeItem('currentProfile')
+      localStorage.removeItem('token')
       return {
         ...state,
         currentProfile: null,
