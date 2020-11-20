@@ -84,7 +84,7 @@ export const registerProvider = async (name) => {
     const res = await api.post(
       'provider/',
       {
-        name: name,
+        name: name !== null ? name : 'test',
         country: 'India',
         detail: 'Details',
       },
@@ -109,7 +109,7 @@ export const registerSeeker = async (name) => {
     const res = await api.post(
       'seeker/',
       {
-        name: name,
+        name: name !== null ? name : 'test',
       },
       {
         headers: {
