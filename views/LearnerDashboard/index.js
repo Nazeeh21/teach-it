@@ -29,8 +29,9 @@ const Index = () => {
           <SearchBar value={query} changeHandler={(val) => setQuery(val)} />
         </div>
       </div>
-      {services.map((service) => (
+      {services.map((service, index) => (
         <CompactServiceCard
+          key={index}
           buttonClickHandler={() => router.push(`/view-service/${service.pk}`)}
           category={service.category}
           languages={service.languages}

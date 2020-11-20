@@ -58,8 +58,14 @@ const Index = () => {
           </select>
         </div>
       </div>
-      {ChatWindowData.map((data) => (
-        <div key={() => uuid()} className="bg-white">
+      {ChatWindowData.map((data, index) => (
+        <div
+          key={
+            // () => uuid()
+            index
+          }
+          className="bg-white"
+        >
           <ChatWindowContact
             src={data.src}
             name={data.name}
