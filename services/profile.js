@@ -48,7 +48,7 @@ export const isProvider = async () => {
 
     return {
       name: currentProfileData[0].name,
-      isProvider: 'provider' in currentProfileData,
+      isProvider: currentProfileData[0].provider !== null,
     }
   } catch (e) {
     console.log(e)
@@ -72,7 +72,7 @@ export const isSeeker = async () => {
 
     return {
       name: currentProfileData[0].name,
-      isSeeker: 'seeker' in currentProfileData,
+      isSeeker: currentProfileData[0].seeker !== null,
     }
   } catch (e) {
     console.log(e)
@@ -81,11 +81,12 @@ export const isSeeker = async () => {
 
 export const registerProvider = async (name) => {
   try {
-    const res = await api.put(
+    const res = await api.post(
       'provider/',
       {
         name: name,
         country: 'India',
+        detail: 'Details',
       },
       {
         headers: {
@@ -105,7 +106,7 @@ export const registerProvider = async (name) => {
 
 export const registerSeeker = async (name) => {
   try {
-    const res = await api.put(
+    const res = await api.post(
       'seeker/',
       {
         name: name,
