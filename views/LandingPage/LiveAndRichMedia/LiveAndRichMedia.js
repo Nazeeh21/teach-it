@@ -6,6 +6,7 @@ const LiveAndRichMedia = () => (
     <div className="flex justify-center flex-col md:flex-row">
       <div className="mb-6 md:w-6/12 md:m-3 xl:w-4/12 lg:m-3 lg:p-8  bg-white ">
         <Card
+          key="live"
           src="/live-logo.png"
           alt="live-logo"
           heading={{ text: 'Live', color: 'red' }}
@@ -19,6 +20,7 @@ const LiveAndRichMedia = () => (
       </div>
       <div className="md:w-6/12 md:m-3 xl:w-4/12 xl:m-3 xl:p-8  bg-white ">
         <Card
+          key="rich"
           src="/rich-media.png"
           alt="rich-media"
           heading={{ text: 'Rich Media', color: 'green' }}
