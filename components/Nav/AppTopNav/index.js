@@ -48,8 +48,7 @@ const Index = () => {
 
   return (
     <div>
-      {token && (
-        // && currentProfile
+      {token && currentProfile && (
         <div>
           {showNotifications && (
             <Notifications
