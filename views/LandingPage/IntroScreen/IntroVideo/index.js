@@ -10,9 +10,9 @@ const Index = () => {
       // width='100%'
       height="100%"
       playsInline
-      muted="true"
+      muted={true}
       loop
-      autoPlay="true"
+      autoPlay={true}
       src="/video.mp4"
       // src="/https://media.w3.org/2010/05/sintel/trailer_hd.mp4"
     />

@@ -1,12 +1,12 @@
 import React from 'react'
 import NavItems from '../../components/Nav/NavItems'
-import { CenterSection, ThreeCols } from '..'
+import { AgoraCenterSection, CenterSection, ThreeCols } from '..'
 import InviteCard from '../../components/Misc/InviteCard'
 import AppTopNav from '../../components/Nav/AppTopNav'
 import Messages from '../../views/Expert/Messages'
 import { useSelector } from 'react-redux'
 
-const Index = ({ children, rightContent, alternate = false }) => {
+const Index = ({ children, rightContent, alternate = false, forAgora }) => {
   if (alternate) {
     return (
       <React.Fragment>
@@ -39,16 +39,23 @@ const Index = ({ children, rightContent, alternate = false }) => {
           <NavItems />
           <Messages />
         </ThreeCols>
-        <CenterSection>{children}</CenterSection>
-        <ThreeCols side="right">
-          {rightContent ? (
-            rightContent
-          ) : (
-            <React.Fragment>
-              <InviteCard />
-            </React.Fragment>
-          )}
-        </ThreeCols>
+
+        {!forAgora ? (
+          <CenterSection>{children}</CenterSection>
+        ) : (
+          <AgoraCenterSection>{children}</AgoraCenterSection>
+        )}
+        {!forAgora && (
+          <ThreeCols side="right">
+            {rightContent ? (
+              rightContent
+            ) : (
+              <React.Fragment>
+                <InviteCard />
+              </React.Fragment>
+            )}
+          </ThreeCols>
+        )}
       </div>
     </React.Fragment>
   )

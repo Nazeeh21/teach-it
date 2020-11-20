@@ -13,8 +13,14 @@ const Card = ({ src, alt, heading, description, features }) => (
       </div>
       <div className="bg-lightGrey m-auto w-full h-1" />
       <div className="mt-8 lg:m-6">
-        {features.map((feature) => (
-          <div key={() => uuid()} className="flex  items-center">
+        {features.map((feature, index) => (
+          <div
+            key={
+              // () => uuid()
+              index
+            }
+            className="flex  items-center"
+          >
             <div
               style={{ backgroundColor: 'lightGrey' }}
               className="lg:m-2 w-5 h-5  rounded-full flex"

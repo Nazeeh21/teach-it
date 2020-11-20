@@ -4,12 +4,12 @@ import ExpertLayout from '../ExpertLayout'
 import { EXPERT, LEARNER } from '../../constants'
 import { useSelector } from 'react-redux'
 
-const LayoutProvider = ({ children, alternate, rightContent }) => {
+const LayoutProvider = ({ children, alternate, rightContent, forAgora = false }) => {
   const userType = useSelector((state) => state.app.userType)
 
   if (userType === LEARNER) {
     return (
-      <LearnerLayout alternate={alternate} rightContent={rightContent}>
+      <LearnerLayout alternate={alternate} rightContent={rightContent} forAgora={forAgora}>
         {children}
       </LearnerLayout>
     )
@@ -17,7 +17,7 @@ const LayoutProvider = ({ children, alternate, rightContent }) => {
 
   if (userType === EXPERT) {
     return (
-      <ExpertLayout alternate={alternate} rightContent={rightContent}>
+      <ExpertLayout alternate={alternate} rightContent={rightContent} forAgora={forAgora}>
         {children}
       </ExpertLayout>
     )
