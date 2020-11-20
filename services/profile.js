@@ -28,3 +28,14 @@ export const fetchAllProfiles = async () => {
     return null
   }
 }
+
+export const isProvider = async () => {
+  // send get request to '/provider' and check if the current profile object has a field named provider
+  // if exitsts then return true else return false
+}
+
+export const isSeeker = async () => {}
+
+export const registerProvider = async () => {}
+
+export const registerSeeker = async () => {}
