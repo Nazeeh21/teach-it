@@ -47,8 +47,14 @@ const AmazingMobileApp = () => (
       </div>
       <div className="flex flex-col md:flex-row items-center my-20">
         <div className="w-full md:w-5/12 xl:w-4/12 grid grid-flow-col grid-cols-1 grid-rows-2 gap-10">
-          {leftTextContainerData.map((data) => (
-            <TextContainer key={() => uuid()} data={data} />
+          {leftTextContainerData.map((data, index) => (
+            <TextContainer
+              key={
+                // () => uuid()
+                index
+              }
+              data={data}
+            />
           ))}
         </div>
         <div className="hidden md:w-5/12 xl:w-4/12 xl:mx-12 md:block">
@@ -59,8 +65,14 @@ const AmazingMobileApp = () => (
           />
         </div>
         <div className="w-full md:w-5/12 xl:w-4/12 grid grid-flow-col grid-cols-1 grid-rows-2 gap-10">
-          {rightTextContainerData.map((data) => (
-            <TextContainer key={() => uuid()} data={data} />
+          {rightTextContainerData.map((data, index) => (
+            <TextContainer
+              key={
+                // () => uuid()
+                index
+              }
+              data={data}
+            />
           ))}
         </div>
       </div>

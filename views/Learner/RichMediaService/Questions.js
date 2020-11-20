@@ -7,6 +7,8 @@ import api from '../../../api'
 import QuestionModal from './QuestionModal'
 
 const Questions = () => {
+  const [activeChatId, setActiveChatId] = useState()
+
   const [showAskQuestionModal, toggleAskQuestionModal] = useState(false)
   const [showQuestionModal, toggleQuestionModal] = useState(false)
   const [triggerFetch, setTriggerFetch] = useState(false)
@@ -17,7 +19,10 @@ const Questions = () => {
     setTriggerFetch((val) => !val)
   }
 
-  const questionModalOpenHandler = () => toggleQuestionModal(true)
+  const questionModalOpenHandler = (chatId) => {
+    toggleQuestionModal(true)
+    setActiveChatId(chatId)
+  }
   const questionModalCloseHandler = () => toggleQuestionModal(false)
 
   const [questions, setQuestions] = useState([])
@@ -53,6 +58,8 @@ const Questions = () => {
         <QuestionModal
           show={showQuestionModal}
           clickHandler={questionModalCloseHandler}
+          chatId={activeChatId}
+          serviceId={1}
         />
       )}
       <div className="grid grid-cols-2 items-center">
@@ -67,6 +74,7 @@ const Questions = () => {
             key={question.pk}
             question={question.title}
             clickHandler={questionModalOpenHandler}
+            chatId={question.chat}
           />
         ))}
       </div>

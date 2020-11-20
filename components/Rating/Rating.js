@@ -13,7 +13,7 @@ const Rating = ({ size = 25, value = 4 }) => (
     size={size}
     color1={'#f4ebc1'}
     color2={'#ffd700'}
-    onChange={() => {}}
+    onChange={ratingChanged}
     value={value}
   />
 )

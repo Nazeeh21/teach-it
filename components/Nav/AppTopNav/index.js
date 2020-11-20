@@ -5,7 +5,7 @@ import ProfileSwitch from '../../ProfileSwitch'
 import { useRouter } from 'next/router'
 import Notifications from '../../Notifications'
 import MobileBottomNav from '../MobileBottomNav'
-import { fetchAllProfiles } from '../../../services/fetchProfiles'
+import { fetchAllProfiles } from '../../../services/profile'
 import { useDispatch, useSelector } from 'react-redux'
 import { logout, switchProfile } from '../../../store/actions/appActions'
 

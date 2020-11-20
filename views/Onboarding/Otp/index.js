@@ -15,7 +15,7 @@ const Index = ({}) => {
   const authStatus = useSelector((state) => state.auth.status)
   const medium = useSelector((state) => state.auth.authMedium)
 
-  const [otp, setOtp] = useState([null, null, null, null, null, null])
+  const [otp, setOtp] = useState(['', '', '', '', '', ''])
   const [canContinue, setCanContinue] = useState(false)
   const [isCorrect, setIsCorrect] = useState(true)
   const [showStatus, setShowStatus] = useState(false)
