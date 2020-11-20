@@ -20,22 +20,32 @@ export const changeUserType = (newType) => {
 export const fetchServices = () => {
   return async (dispatch) => {
     try {
-      const res = await api.get('service/', {
-        headers: {
-          Authorization: `Token ${localStorage.getItem('token')}`,
-          'X-Profile-ID': localStorage.getItem('currentProfile'),
-        },
-      })
+      var flag = 0
 
-      // console.log('Fetch service response', res)
+      while (flag === 0) {
+        try {
+          var res = await api.get('service/', {
+            headers: {
+              Authorization: `Token ${localStorage.getItem('token')}`,
+              'X-Profile-ID': localStorage.getItem('currentProfile'),
+            },
+          })
 
-      dispatch({
-        type: FETCH_SERVICES,
-        services: res.data.results,
-      })
-    } catch (e) {
-      console.log(e)
+          console.log('Fetch service response', res)
+
+          flag = 1
+        } catch (e) {
+          console.log(e)
+        }
+      }
+    } catch (err) {
+      console.log(err)
     }
+
+    dispatch({
+      type: FETCH_SERVICES,
+      services: res.data.results,
+    })
   }
 }
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import { PrimaryButton } from '../../../components/Buttons/Index'
 
-const Question = ({ question, time, clickHandler }) => {
+const Question = ({ question, time, clickHandler, chatId }) => {
   const date = new Date(time)
 
   console.log(date)
@@ -11,7 +11,10 @@ const Question = ({ question, time, clickHandler }) => {
       <div className="flex rounded-lg border-highlight border-2 bg-white w-full p-6">
         <p className="w-3/4 font-semibold">{question}</p>
         <div className="w-1/4 ml-4">
-          <PrimaryButton label="View" clickHandler={clickHandler} />
+          <PrimaryButton
+            label="View"
+            clickHandler={() => clickHandler(chatId)}
+          />
         </div>
       </div>
       <div className="grid grid-cols-1 -mt-5 font-semibold">

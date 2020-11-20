@@ -34,7 +34,7 @@ const TextInput = ({
 
   return (
     <div className={`w-full m-auto mb-8 ${styles}`}>
-      <label className={labelClasses} for={label}>
+      <label className={labelClasses} htmlFor={label}>
         {label} {!required ? '(optional)' : null}
       </label>
       <input
