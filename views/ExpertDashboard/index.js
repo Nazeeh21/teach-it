@@ -6,13 +6,15 @@ import { ViewMoreButton } from '../../components/Buttons/Index'
 import { useRouter } from 'next/router'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchServices } from '../../store/actions/appActions'
+import { fetchQuestions } from '../../services/fetchQuestions'
 
 const Index = () => {
   const router = useRouter()
   const dispatch = useDispatch()
   const [query, setQuery] = useState('')
 
-  const services = useSelector((state) => state.app.services)
+  let services = useSelector((state) => state.app.services)
+  const currentProfileId = useSelector((state) => state.auth.token)
 
   const handleCategoriesRedirect = () => {
     router.push('/search')
@@ -20,8 +22,14 @@ const Index = () => {
 
   useEffect(() => {
     dispatch(fetchServices())
+    // fetchQuestions(1).then(res => {
+    //   console.log('expertDashboard', res)
+    //   setQuestions(res)
+    // })
   }, [])
 
+  services = services.filter((service) => service.provider === 5)
+  console.log('[expertDashboard]', services)
   return (
     <React.Fragment>
       <div className="grid grid-cols-2 w-full">
@@ -39,6 +47,7 @@ const Index = () => {
           languages={service.languages}
           descriptionText={service.description}
           paymentType={service.payment_type}
+          servicePk={service.pk}
         />
       ))}
 

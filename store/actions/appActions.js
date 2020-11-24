@@ -31,7 +31,7 @@ export const fetchServices = () => {
             },
           })
 
-          console.log('Fetch service response', res)
+          console.log('Fetch service response', res.data)
 
           flag = 1
         } catch (e) {

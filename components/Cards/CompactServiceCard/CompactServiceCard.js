@@ -1,4 +1,6 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { fetchQuestions } from '../../../services/fetchQuestions'
 import loremIpsum from '../../../utility/loremIpsum'
 import { CardButton } from '../../Buttons/Index'
 import QuestionCard from './QuestionCard'
@@ -15,9 +17,18 @@ const CompactServiceCard = ({
   languages,
   paymentType,
   buttonClickHandler,
+  servicePk,
 }) => {
   // const router = useRouter()
+  const [questions, setQuestions] = useState([])
 
+  useEffect(() => {
+    fetchQuestions(1)
+      .then((res) => setQuestions(res))
+      .catch((e) => console.log(e))
+  }, [servicePk])
+
+  // console.log('Compact Service Card', questionData)
   return (
     <div className="flex flex-row w-full p-2 bg-white shadow-md rounded-lg mb-6">
       <div className="p-3 w-2/12 flex flex-col">
@@ -46,8 +57,10 @@ const CompactServiceCard = ({
         </div>
         <div className="flex flex-col mt-4">
           <h3 className="text-primary text-xl mb-2">New questions</h3>
-          <QuestionCard />
-          <QuestionCard />
+          {/* <QuestionCard data={questionData} /> */}
+          {questions.map((question) => (
+            <QuestionCard data={question} />
+          ))}
         </div>
       </div>
     </div>
