@@ -44,6 +44,13 @@ const Index = () => {
   const userType = useSelector((state) => state.app.userType)
   const dispatch = useDispatch()
 
+  if (startDate) {
+    console.log('createService startDate ', startDate)
+  }
+  if (endDate) {
+    console.log('createService endDate ', endDate)
+  }
+
   const verifyUserType = useCallback(() => {
     if (userType === EXPERT) {
       return true
@@ -92,10 +99,25 @@ const Index = () => {
       allow_subscribe: false,
       allow_recording: `${allowRecording === 'yes' ? 'true' : 'false'}`,
       allow_visible_user_names: `${showFullName === 'yes' ? 'true' : 'false'}`,
-      // start_at: `10/16/2020 ${startTimeHour} ' : ' ${startTimeMin} ' ' ${startTimeStamp}`,
-      // end_at: `12/16/2020 ${startTimeHour} ' : ' ${startTimeMin} ' ' ${startTimeStamp}`,
-      start_at: '2020-10-16T02:08:00Z',
-      end_at: '2020-10-24T02:08:00Z',
+      start_at: `${
+        startDate.slice(11, 15) +
+        '-' +
+        startDate.slice(56, 58) +
+        '-' +
+        startDate.slice(8, 10) +
+        'T02:08:00Z'
+      }`,
+      end_at: `${
+        endDate.slice(11, 15) +
+        '-' +
+        endDate.slice(56, 58) +
+        '-' +
+        endDate.slice(8, 10) +
+        'T02:08:00Z'
+      }`,
+      // Wed Nov 18 2020 12:00:00 GMT+0530 (India Standard Time) 11
+      // start_at: '2020-10-16T02:08:00Z',
+      // end_at: '2020-10-24T02:08:00Z',
       age_group: `${activeAgeGroup}`,
     }
 
