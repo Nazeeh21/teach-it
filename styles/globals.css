@@ -25,6 +25,10 @@ a {
   padding: 3px;
 }
 
+input:disabled {
+  cursor: not-allowed !important;
+}
+
 input,
 button,
 textarea {

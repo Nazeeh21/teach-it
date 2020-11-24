@@ -5,8 +5,8 @@ const OtpInput = ({
   index,
   value,
   changeHandler,
-  isIncorrect,
-  showStatus,
+  isIncorrect = false,
+  showStatus = false,
   handleSubmit,
 }) => {
   // const router = useRouter()
