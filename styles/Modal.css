@@ -10,11 +10,12 @@
   transform: scale(1.1);
   transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
   overflow-y: scroll;
+  z-index: 5000;
 }
 
 .modal-content {
   position: absolute;
-  top: 50%;
+  top: 20%;
   left: 50%;
 
   margin: 6rem auto;

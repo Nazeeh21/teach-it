@@ -9,6 +9,7 @@ const Input = ({
   valid = false,
   touched = false,
   inValidMessage = '',
+  disabled = false,
 }) => {
   // console.log('Default value', defaultValue)
 
@@ -23,6 +24,7 @@ const Input = ({
           !valid && touched && 'border-red border-solid border-2'
         } p-4 w-full rounded bg-highlight`}
         placeholder={placeholder}
+        disabled={disabled}
       />
       {!valid && touched && (
         <p className="text-red text-sm">{inValidMessage}</p>

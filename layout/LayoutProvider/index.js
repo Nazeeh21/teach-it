@@ -4,6 +4,7 @@ import ExpertLayout from '../ExpertLayout'
 import { EXPERT, LEARNER } from '../../constants'
 import { useDispatch, useSelector } from 'react-redux'
 import { saveToken } from '../../store/actions/authActions'
+import { SET_CURRENT_PROFILE } from '../../store/actionTypes'
 
 const LayoutProvider = ({
   children,
@@ -16,7 +17,9 @@ const LayoutProvider = ({
 
   useEffect(() => {
     const token = window.localStorage.getItem('token')
+    const profileId = window.localStorage.getItem('currentProfile')
     dispatch(saveToken(token))
+    dispatch({ type: SET_CURRENT_PROFILE, id: profileId })
   }, [])
 
   if (userType === LEARNER) {
