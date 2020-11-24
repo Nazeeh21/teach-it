@@ -20,6 +20,7 @@ const Index = () => {
 
   const [showAllProfiles, setShowAllProfiles] = useState(false)
   const token = useSelector((state) => state.auth.token)
+  const currentProfileID = useSelector((state) => state.app.currentProfile)
 
   useEffect(() => {
     fetchAllProfiles()
@@ -40,7 +41,7 @@ const Index = () => {
         console.log('Other profile data : ', otherProfilesData)
       })
       .catch((e) => console.log(e))
-  }, [])
+  }, [currentProfileID])
 
   const notificationOpenHandler = () => setShowNotifications(true)
 
@@ -117,8 +118,8 @@ const Index = () => {
                       }
                     />
                   </div>
-                  {otherProfiles.map((profile) => (
-                    <div className="mt-2">
+                  {otherProfiles.map((profile, index) => (
+                    <div className="mt-2" key={index}>
                       <ProfileSwitch
                         key={profile.name}
                         id={profile.id}

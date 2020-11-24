@@ -23,7 +23,7 @@ const CompactServiceCard = ({
   const [questions, setQuestions] = useState([])
 
   useEffect(() => {
-    fetchQuestions(1)
+    fetchQuestions(servicePk)
       .then((res) => setQuestions(res))
       .catch((e) => console.log(e))
   }, [servicePk])

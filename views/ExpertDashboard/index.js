@@ -28,7 +28,7 @@ const Index = () => {
     // })
   }, [])
 
-  services = services.filter((service) => service.provider === 5)
+  services = services.filter((service) => service.provider === currentProfileId)
   console.log('[expertDashboard]', services)
   return (
     <React.Fragment>
