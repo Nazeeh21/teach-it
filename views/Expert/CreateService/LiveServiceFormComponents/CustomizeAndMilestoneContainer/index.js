@@ -6,7 +6,7 @@ import loremIpsum from '../../../../../utility/loremIpsum'
 import { SecondaryButton } from '../../../../../components/Buttons/Index'
 import { v4 as uuid } from 'uuid'
 
-const Index = ({ setMileStoneData }) => {
+const Index = ({ mileStoneData, setMileStoneData }) => {
   const [arr, setArr] = useState([0])
   const [formData, setFormData] = useState([
     {
@@ -35,7 +35,7 @@ const Index = ({ setMileStoneData }) => {
   const sessionChangeHandler = (index, value) => {
     const newFormData = [...formData]
     newFormData[index].sessions_number = value
-    newFormData[index].title = 'Milestone ' + index
+    newFormData[index].title = 'Milestone ' + (index + 1).toString()
     setFormData(newFormData)
     setMileStoneData(formData)
   }
