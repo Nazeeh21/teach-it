@@ -80,7 +80,7 @@ const Index = ({ setMileStoneData }) => {
         know what each milestone will be covering and in how many sessions.{' '}
       </p>
       {arr.map((val, index) => (
-        <div key={() => uuid()} className="mt-5">
+        <div key={index} className="mt-5">
           <Container
             key={index}
             label={

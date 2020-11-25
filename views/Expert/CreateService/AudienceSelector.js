@@ -11,7 +11,7 @@ const AudienceSelector = ({ activeAgeGroup, ageGroupChangeHandler }) => {
   return (
     <div className="w-full">
       <p className="mt-2 text-lg">Age groups allowed</p>
-      <p className="mt-1 mb-2 text-darkGrey text-sm">
+      <div className="mt-1 mb-2 text-darkGrey text-sm">
         Learners who are not in the specified age group, will not be shown the
         service.{' '}
         <div className="grid grid-cols-2 grid-rows-2 grid-flow-row gap-5 my-5">
@@ -32,7 +32,7 @@ const AudienceSelector = ({ activeAgeGroup, ageGroupChangeHandler }) => {
           />
         </div>
         <span className="cursor-pointer text-secondary">Legal</span>
-      </p>
+      </div>
     </div>
   )
 }

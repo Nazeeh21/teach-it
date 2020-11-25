@@ -18,8 +18,8 @@ const DaySelector = ({ changedHandler }) => (
       className="bg-lightGrey text-md w-6/12 mt-2 p-3"
       onChange={(e) => changedHandler(e.target.value)}
     >
-      {WeekDays.map((day) => (
-        <option key={() => uuid()} value={day}>
+      {WeekDays.map((day, index) => (
+        <option key={index} value={day}>
           {day}
         </option>
       ))}

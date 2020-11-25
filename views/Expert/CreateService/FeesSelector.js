@@ -29,12 +29,11 @@ const FeesSelector = ({ fees, feesChangedHandler }) => {
         </div>
         <div className="flex justify-self-end w-7/12 ">
           <p className="w-7/12 p-2 ">You will get</p>
-          <p
+          <input
             style={{ background: '#fafcc2' }}
             className="text-lg rounded w-5/12 p-2"
-          >
-            ₹3900
-          </p>
+            placeholder="3900"
+          ></input>
         </div>
       </div>
     </div>

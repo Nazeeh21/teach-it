@@ -15,6 +15,9 @@ import {
   createMilestone,
   createService,
 } from '../../../store/actions/createServiceAction'
+import IsGroupContainer from './LiveServiceFormComponents/isGroup/Index'
+import IsPrivateContainer from './LiveServiceFormComponents/IsPrivate/Index'
+import QuestionFees from './LiveServiceFormComponents/QuestionFees/Index'
 
 const SectionTitle = ({ children }) => (
   <h3 className="text-lg text-primary mb-2">{children}</h3>
@@ -39,6 +42,10 @@ const Index = () => {
   const [paymentFreq, setPaymentFreq] = useState('per day')
   const [allowRecording, setAllowRecording] = useState('no')
   const [showFullName, setShowFullName] = useState('no')
+  const [isGroup, setIsGroup] = useState('no')
+  const [isPrivate, setIsPrivate] = useState('no')
+  const [questionFee, setQuestionFee] = useState('')
+  const [allowQuestion, setAllowQuestion] = useState('no')
 
   const router = useRouter()
   const userType = useSelector((state) => state.app.userType)
@@ -76,8 +83,8 @@ const Index = () => {
       category: null,
       languages: ['en'],
       type: type,
-      is_group: false,
-      is_private: false,
+      is_group: `${isGroup === 'yes' ? 'true' : 'false'}`,
+      is_private: `${isPrivate === 'yes' ? 'true' : 'false'}`,
       live_type: liveType,
       cost: fees,
       session_type: `${
@@ -94,9 +101,10 @@ const Index = () => {
           ? 'weekly'
           : 'monthly'
       }`,
-      allow_questions: false,
-      question_fee: '5656',
+      allow_questions: `${allowQuestion === 'yes' ? 'true' : 'false'}`,
+      question_fee: `${questionFee}`,
       allow_subscribe: false,
+      duration: `${duration}`,
       allow_recording: `${allowRecording === 'yes' ? 'true' : 'false'}`,
       allow_visible_user_names: `${showFullName === 'yes' ? 'true' : 'false'}`,
       start_at: `${
@@ -196,6 +204,12 @@ const Index = () => {
             fees={fees}
             feesChangedHandler={(value) => setFees(value)}
           />
+          <QuestionFees
+            value={questionFee}
+            changeHandler={setQuestionFee}
+            allowQuestions={allowQuestion}
+            allowQuestionChangeHandler={setAllowQuestion}
+          />
         </Accordion>
 
         <Accordion id="audience" label="Audience">
@@ -211,6 +225,11 @@ const Index = () => {
             setLabel={setAllowRecording}
           />
           <ShowFullName activeLabel={showFullName} setLabel={setShowFullName} />
+        </div>
+
+        <div className="flex gap-4 mt-4">
+          <IsGroupContainer activeLabel={isGroup} setLabel={setIsGroup} />
+          <IsPrivateContainer activeLabel={isPrivate} setLabel={setIsPrivate} />
         </div>
         <div className="w-4/12 mt-10">
           <PrimaryButton
