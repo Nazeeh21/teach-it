@@ -11,14 +11,10 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useRouter } from 'next/router'
 import { EXPERT } from '../../../constants'
 import { PrimaryButton } from '../../../components/Buttons/Index'
-import {
-  // createMilestone,
-  createService,
-} from '../../../store/actions/createServiceAction'
 import IsGroupContainer from './LiveServiceFormComponents/isGroup/Index'
 import IsPrivateContainer from './LiveServiceFormComponents/IsPrivate/Index'
 import QuestionFees from './LiveServiceFormComponents/QuestionFees/Index'
-import { createMilestone } from '../../../services/createMilestone'
+import { createService } from '../../../services/services'
 
 const SectionTitle = ({ children }) => (
   <h3 className="text-lg text-primary mb-2">{children}</h3>
@@ -130,11 +126,11 @@ const Index = () => {
       age_group: `${activeAgeGroup}`,
     }
 
-    dispatch(createService(formData))
+    createService(formData, milestoneData)
     // dispatch(createMilestone(milestoneData))
-    createMilestone(milestoneData)
-      .then((res) => console.log(res))
-      .catch((e) => console.log(e))
+    // createMilestone(milestoneData)
+    //   .then((res) => console.log(res))
+    //   .catch((e) => console.log(e))
   }
 
   return (

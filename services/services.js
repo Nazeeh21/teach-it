@@ -29,3 +29,46 @@ export const getProviderDetailsFromServiceId = async (serviceId) => {
     return null
   }
 }
+
+export const createService = async (createServiceData, createMilestoneData) => {
+  try {
+    const serviceData = await api.post('service/', createServiceData, {
+      headers: {
+        Authorization: `Token ${localStorage.getItem('token')}`,
+        // Authorization: 'Token 4665448e0fc9398c6e373dc6a51060b178595bdb',
+        'X-Profile-ID': window.localStorage.getItem('currentProfile'),
+      },
+    })
+    console.log(serviceData)
+    createMilestone(serviceData.data.pk, createMilestoneData)
+    return true
+  } catch (e) {
+    console.log(e)
+    return false
+  }
+}
+
+const createMilestone = (pk, milestoneData) => {
+  try {
+    const milestoneRes = milestoneData.map(async (milestone) => {
+      const res = await api.post(
+        `service/${pk}/milestone/`,
+        {
+          description: milestone.description,
+          sessions_number: milestone.sessions_number,
+        },
+        {
+          headers: {
+            Authorization: `Token ${localStorage.getItem('token')}`,
+            'X-Profile-ID': localStorage.getItem('currentProfile'),
+          },
+        }
+      )
+      // console.log(milestoneData)
+    })
+    return true
+  } catch (e) {
+    console.log(e)
+    return false
+  }
+}

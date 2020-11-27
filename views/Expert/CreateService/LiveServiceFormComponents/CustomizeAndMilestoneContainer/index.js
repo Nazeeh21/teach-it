@@ -12,7 +12,7 @@ const Index = ({ mileStoneData, setMileStoneData }) => {
     {
       sessions_number: '',
       description: '',
-      title: '',
+      // title: '',
     },
   ])
 

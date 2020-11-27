@@ -5,7 +5,8 @@ export const createMilestone = async (milestoneData) => {
     const res = await api.post(
       `service/1/milestone/`,
       {
-        milestoneData,
+        description: milestoneData.description,
+        sessions_number: milestoneData.sessions_number,
       },
       {
         headers: {
