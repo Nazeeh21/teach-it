@@ -18,7 +18,7 @@ class VideoStream {
     this.initClient()
     this.updateStreamsInParent = updateStreamsInParent
   }
-  
+
   close = () => {
     this.localStream.close()
   }
@@ -56,19 +56,25 @@ class VideoStream {
   }
 
   joinChannel = (roomId, userId) => {
-    this.client.join('006a79d3d6b148340be8c8375ea556f824cIABtQcMDK9gGwgfNb/PzHRsWjXAHRlwoLzUPbHmDqLPBQAx+f9gAAAAAEABID2Uqo1K1XwEAAQCjUrVf', roomId, userId, (uid) => {
-      const logMessage = 'User ' + uid + ' join channel successfully'
-      console.log(logMessage)
-      this.client.publish(this.localStream, err => {
-        console.log('Publish local stream error', err)
-      })
+    this.client.join(
+      '006a79d3d6b148340be8c8375ea556f824cIABK2mkRdlS7hm4QFqIyu3TdgWnmtatk+NNaMGVUOuzaogx+f9gAAAAAEAAWal0mZBLGXwEAAQBjEsZf',
+      roomId,
+      userId,
+      (uid) => {
+        const logMessage = 'User ' + uid + ' join channel successfully'
+        console.log(logMessage)
+        this.client.publish(this.localStream, (err) => {
+          console.log('Publish local stream error', err)
+        })
 
-      this.client.on('stream-published', evt => {
-        console.log('Publish local stream successfully')
-      })
-    }, err => {
-      console.log('Join channel failed', err)
-    })
+        this.client.on('stream-published', (evt) => {
+          console.log('Publish local stream successfully')
+        })
+      },
+      (err) => {
+        console.log('Join channel failed', err)
+      }
+    )
   }
 
   subscribeToClient = () => {
