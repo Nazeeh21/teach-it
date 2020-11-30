@@ -6,7 +6,6 @@ import { ViewMoreButton } from '../../components/Buttons/Index'
 import { useRouter } from 'next/router'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchServices } from '../../store/actions/appActions'
-import { fetchQuestions } from '../../services/fetchQuestions'
 
 const Index = () => {
   const router = useRouter()
@@ -14,7 +13,7 @@ const Index = () => {
   const [query, setQuery] = useState('')
 
   let services = useSelector((state) => state.app.services)
-  const currentProfileId = useSelector((state) => state.auth.token)
+  const currentProfileId = useSelector((state) => state.app.currentProfile)
 
   const handleCategoriesRedirect = () => {
     router.push('/search')
@@ -27,9 +26,10 @@ const Index = () => {
     //   setQuestions(res)
     // })
   }, [])
-
+  console.log('[expertDashboard before filter services]', services)
+  console.log('profileId', currentProfileId)
   services = services.filter((service) => service.provider === currentProfileId)
-  console.log('[expertDashboard]', services)
+  console.log('[expertDashboard after filter services]', services)
   return (
     <React.Fragment>
       <div className="grid grid-cols-2 w-full">

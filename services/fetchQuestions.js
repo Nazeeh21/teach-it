@@ -16,3 +16,18 @@ export const fetchQuestions = async (serviceId) => {
     console.log(e)
   }
 }
+
+export const fetchQuestionCreator = async (createrId) => {
+  try {
+    const res = await api.get(`/seeker/${createrId}/`, {
+      headers: {
+        Authorization: `Token ${localStorage.getItem('token')}`,
+        'X-Profile-ID': localStorage.getItem('currentProfile'),
+      },
+    })
+    console.log('fetchQuestionCreator', res.data.name)
+    return res.data
+  } catch (e) {
+    console.log('fetchQuestionCreator', e)
+  }
+}

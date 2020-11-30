@@ -1,14 +1,21 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { fetchQuestionCreator } from '../../../services/fetchQuestions'
 import loremIpsum from '../../../utility/loremIpsum'
 import Avatar from '../../Images/Avatar'
 
 const QuestionCard = (questionData) => {
-  // console.log('QuestionCard', questionData.data)
-  // console.log('QuestionCard date', questionData.data.created_at.toString().slice(0, 10))
-  // console.log('QuestionCard time', questionData.data.created_at.toString().slice(11, 19))
-
   const dateCreated = questionData.data.created_at.toString().slice(0, 10)
   const timeCreated = questionData.data.created_at.toString().slice(11, 19)
+  const [creatorName, setCreatorName] = useState('')
+
+  useEffect(() => {
+    fetchQuestionCreator(questionData.data.creator)
+      .then((res) => {
+        setCreatorName(res.name)
+        console.log('[fetchQuestionCreator]', res)
+      })
+      .catch((e) => console.log(e))
+  }, [])
 
   return (
     <div className="flex flex-col border-2 border-lightGrey rounded p-2 mb-4">
@@ -19,7 +26,7 @@ const QuestionCard = (questionData) => {
             src="/stock/girl2.jpg"
             alt="Nazeeh Vahora"
           />
-          <p className="text-md justify-self-start">Nazeeh Vahora</p>
+          <p className="text-md justify-self-start">{creatorName}</p>
         </div>
         <div className="text-darkGrey justify-self-end items-center text-sm">
           <div>{dateCreated}</div>

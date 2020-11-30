@@ -58,9 +58,12 @@ const CompactServiceCard = ({
         <div className="flex flex-col mt-4">
           <h3 className="text-primary text-xl mb-2">New questions</h3>
           {/* <QuestionCard data={questionData} /> */}
-          {questions.map((question) => (
-            <QuestionCard data={question} />
-          ))}
+          {questions.map(
+            (question) => (
+              <QuestionCard data={question} />
+            )
+            // console.log('Questions data from CompactServiceCard', question)
+          )}
         </div>
       </div>
     </div>

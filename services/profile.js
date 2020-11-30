@@ -3,8 +3,10 @@ import api from '../api'
 export const fetchAllProfiles = async () => {
   try {
     var flag = 0
+    const token = localStorage.getItem('token')
+    const currentProfileId = localStorage.getItem('currentProfile')
 
-    while (flag === 0) {
+    while (flag === 0 && token !== null && currentProfileId !== null) {
       try {
         var res = await api.get('user/', {
           headers: {

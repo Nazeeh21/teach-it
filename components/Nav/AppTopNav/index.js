@@ -23,25 +23,27 @@ const Index = () => {
   const currentProfileID = useSelector((state) => state.app.currentProfile)
 
   useEffect(() => {
-    fetchAllProfiles()
-      .then((res) => {
-        console.log('ALl profiles data : ', res)
-        const currentProfileData = res.filter(
-          (profile) =>
-            profile.id == window.localStorage.getItem('currentProfile')
-        )
-        setCurrentProfile(currentProfileData[0])
-        console.log('Current profile data : ', currentProfileData[0])
+    if (token !== null && currentProfileID !== null) {
+      fetchAllProfiles()
+        .then((res) => {
+          console.log('ALl profiles data : ', res)
+          const currentProfileData = res.filter(
+            (profile) =>
+              profile.id == window.localStorage.getItem('currentProfile')
+          )
+          setCurrentProfile(currentProfileData[0])
+          console.log('Current profile data : ', currentProfileData[0])
 
-        const otherProfilesData = res.filter(
-          (profile) =>
-            profile.id != window.localStorage.getItem('currentProfile')
-        )
-        setOtherProfiles(otherProfilesData)
-        console.log('Other profile data : ', otherProfilesData)
-      })
-      .catch((e) => console.log(e))
-  }, [currentProfileID])
+          const otherProfilesData = res.filter(
+            (profile) =>
+              profile.id != window.localStorage.getItem('currentProfile')
+          )
+          setOtherProfiles(otherProfilesData)
+          console.log('Other profile data : ', otherProfilesData)
+        })
+        .catch((e) => console.log(e))
+    }
+  }, [currentProfileID, token])
 
   const notificationOpenHandler = () => setShowNotifications(true)
 
