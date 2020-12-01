@@ -10,12 +10,14 @@ const Input = ({
   touched = false,
   inValidMessage = '',
   disabled = false,
+  autoComplete = true,
 }) => {
   // console.log('Default value', defaultValue)
 
   return (
     <div>
       <input
+        autoComplete={autoComplete}
         defaultValue={`${defaultValue}`}
         value={value}
         onChange={(e) => changeHandler(e.target.value)}

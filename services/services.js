@@ -30,7 +30,11 @@ export const getProviderDetailsFromServiceId = async (serviceId) => {
   }
 }
 
-export const createService = async (createServiceData, createMilestoneData) => {
+export const createService = async (
+  createServiceData,
+  createMilestoneData,
+  imageData
+) => {
   try {
     const serviceData = await api.post('service/', createServiceData, {
       headers: {
@@ -41,6 +45,7 @@ export const createService = async (createServiceData, createMilestoneData) => {
     })
     console.log(serviceData)
     createMilestone(serviceData.data.pk, createMilestoneData)
+    uploadImages(serviceData.data.pk, imageData)
     return true
   } catch (e) {
     console.log(e)
@@ -70,5 +75,21 @@ const createMilestone = (pk, milestoneData) => {
   } catch (e) {
     console.log(e)
     return false
+  }
+}
+
+const uploadImages = (pk, imageData) => {
+  try {
+    const uploadImageRes = imageData.map(async (data) => {
+      const res = await api.post(`service/${pk}/media/`, data, {
+        headers: {
+          Authorization: `Token ${localStorage.getItem('token')}`,
+          'X-Profile-ID': localStorage.getItem('currentProfile'),
+        },
+      })
+      console.log('UploadImageRes', res.data)
+    })
+  } catch (error) {
+    console.log(error)
   }
 }

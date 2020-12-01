@@ -34,7 +34,7 @@ const Index = () => {
   const [activeAgeGroup, setActiveAgeGroup] = useState(null)
   const [startDate, setStartDate] = useState(null)
   const [endDate, setEndDate] = useState(null)
-  const [milestoneData, setMileStoneData] = useState(null)
+  const [milestoneData, setMileStoneData] = useState([])
   const [serviceFreq, setServiceFreq] = useState('per day')
   const [paymentFreq, setPaymentFreq] = useState('per day')
   const [allowRecording, setAllowRecording] = useState('no')
@@ -43,6 +43,7 @@ const Index = () => {
   const [isPrivate, setIsPrivate] = useState('no')
   const [questionFee, setQuestionFee] = useState('')
   const [allowQuestion, setAllowQuestion] = useState('no')
+  const [files, setFiles] = useState([])
 
   const router = useRouter()
   const userType = useSelector((state) => state.app.userType)
@@ -127,7 +128,7 @@ const Index = () => {
       age_group: `${activeAgeGroup}`,
     }
 
-    createService(formData, milestoneData)
+    createService(formData, milestoneData, files)
     // dispatch(createMilestone(milestoneData))
     // createMilestone(milestoneData)
     //   .then((res) => console.log(res))
@@ -174,6 +175,7 @@ const Index = () => {
             description={description}
             descriptionChangedHandler={(value) => setDescription(value)}
             type={serviceType === 0 ? 'live' : 'media'}
+            imageInputChangeHandler={(value) => files.push(value)}
           />
         </Accordion>
 

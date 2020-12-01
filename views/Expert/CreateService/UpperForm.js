@@ -39,6 +39,7 @@ const UpperForm = ({
   description,
   titleChangedHandler,
   descriptionChangedHandler,
+  imageInputChangeHandler,
 }) => {
   const [liveServiceType, setServiceType] = useState(null)
   // const dispatch = useDispatch()
@@ -112,7 +113,7 @@ const UpperForm = ({
       </div>
       <div className="p-2 bg-lightGrey rounded grid grid-cols-5 items-center">
         <div>
-          <UploadButton />
+          <UploadButton imageInputChangeHandler={imageInputChangeHandler} />
         </div>
         {UploadImageAndVideo}
         {UploadImageAndVideo}
