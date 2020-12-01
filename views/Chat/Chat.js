@@ -1,9 +1,11 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import CompactServiceCard from './CompactServiceCard/CompactServiceCard'
-import { ChatWindowContact } from '../../components/Chat/ChatWindowContact'
+// import { ChatWindowContact } from '../../components/Chat/ChatWindowContact'
 import Message from '../../components/Chat/Message'
 import ChooseService from './ChooseService/ChooseService'
 import Avatar from '../../components/Images/Avatar'
+import { getChats } from '../../services/chat'
+import { useSelector } from 'react-redux'
 
 const Chat = ({ label = 'Chat', disabled, expertDetails }) => {
   const [showChooseService, setShowChooseService] = useState(false)

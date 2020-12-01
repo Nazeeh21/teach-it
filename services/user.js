@@ -1,11 +1,11 @@
 import api from '../api'
 
-export const updateEmail = async (email, token, profileId) => {
+export const updateEmail = async (medium, value, token, profileId) => {
   try {
     const res = await api.put(
-      '/user/auth/email/',
+      `/user/auth/${medium}/`,
       {
-        email,
+        [medium]: value,
       },
       {
         headers: {
@@ -25,10 +25,10 @@ export const updateEmail = async (email, token, profileId) => {
   }
 }
 
-export const verifyEmail = async (otp, token, profileId) => {
+export const verifyEmail = async (medium, otp, token, profileId) => {
   try {
     const res = await api.post(
-      '/user/auth/email/verify/',
+      `/user/auth/${medium}/verify/`,
       {
         otp,
       },
@@ -44,7 +44,7 @@ export const verifyEmail = async (otp, token, profileId) => {
 
     return true
   } catch (e) {
-    console.log('Error while sending otp', e)
+    console.log('Error while verifying otp', e)
     return false
   }
 }

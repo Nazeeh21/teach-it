@@ -1,4 +1,4 @@
-import { EXPERT } from '../../constants'
+import { LEARNER } from '../../constants'
 
 const {
   CHANGE_USER_TYPE,
@@ -11,7 +11,7 @@ const {
 } = require('../actionTypes')
 
 const initialState = {
-  userType: EXPERT,
+  userType: LEARNER,
   services: [],
   viewServiceData: null,
   currentProfile: null,

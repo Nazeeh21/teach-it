@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { ChatWindowContact } from '../../components/Chat/ChatWindowContact'
 import SearchBar from '../../components/Inputs/SearchBar'
-import ChooseService from './ChooseService/ChooseService'
+// import ChooseService from './ChooseService/ChooseService'
 import { v4 as uuid } from 'uuid'
+import { useSelector } from 'react-redux'
+import { getChats } from '../../services/chat'
 
 const ChatWindowData = [
   {
@@ -46,10 +48,20 @@ const ChatWindowData = [
 const Contacts = () => {
   const [searchBarOpen, toggleSearch] = useState(false)
   const [query, setQuery] = useState('')
+  const [chats, setChats] = useState([])
+
+  let token = useSelector((state) => state.auth.token)
+  let profileId = useSelector((state) => state.app.currentProfile)
 
   const [currentContact, setCurrentContact] = useState('')
 
   const ChatWindowContactClickHandler = (name) => setCurrentContact(name)
+
+  useEffect(() => {
+    getChats(token, profileId)
+      .then((res) => setChats(res))
+      .catch((e) => console.log('Error while setting chats', e))
+  }, [token, profileId])
 
   return (
     <div className="w-full text-primary">

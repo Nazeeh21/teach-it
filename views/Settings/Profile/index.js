@@ -12,6 +12,7 @@ import { validate } from '../../../utility/validation'
 import { fetchProfileData } from '../../../services/settings'
 import { Upload, Switch, Label, Clickable } from './Util'
 import EmailModal from './EmailModal'
+import MobileModal from './MobileModal'
 
 const Index = () => {
   const dispatch = useDispatch()
@@ -29,6 +30,10 @@ const Index = () => {
         console.log(e)
       })
   }, [shouldFetch])
+
+  useEffect(() => {
+    console.log('Fetched data', fetchedData)
+  }, [fetchedData])
 
   const [displayName, setDisplayName] = useState('')
   const [age, setAge] = useState('')
@@ -101,6 +106,7 @@ const Index = () => {
   }
 
   const [emailModal, toggleEmailModal] = useState(false)
+  const [mobileModal, toggleMobileModal] = useState(false)
 
   if (!fetchedData) {
     return null
@@ -112,6 +118,11 @@ const Index = () => {
         triggerFetch={triggerFetch}
         showModal={emailModal}
         toggleModal={toggleEmailModal}
+      />
+      <MobileModal
+        triggerFetch={triggerFetch}
+        showModal={mobileModal}
+        toggleModal={toggleMobileModal}
       />
       <div className="w-full">
         <h3 className="text-2xl mb-4">Profile settings</h3>
@@ -211,6 +222,7 @@ const Index = () => {
               disabled={true}
             />
             <Input
+              placeholder={fetchedData && fetchedData[0].mobile}
               defaultValue={fetchedData && fetchedData[0].mobile}
               // valid={isValid.inputData.mobile.valid}
               // touched={isValid.inputData.mobile.touched}
@@ -228,7 +240,9 @@ const Index = () => {
             <Clickable onClick={() => toggleEmailModal(true)}>
               Change email
             </Clickable>
-            <Clickable>Change mobile</Clickable>
+            <Clickable onClick={() => toggleMobileModal(true)}>
+              Change mobile
+            </Clickable>
             {/* </div> */}
 
             <Switch label="Show services taken" />
