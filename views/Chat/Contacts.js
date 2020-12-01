@@ -2,50 +2,53 @@ import React, { useState, useEffect } from 'react'
 import { ChatWindowContact } from '../../components/Chat/ChatWindowContact'
 import SearchBar from '../../components/Inputs/SearchBar'
 // import ChooseService from './ChooseService/ChooseService'
-import { v4 as uuid } from 'uuid'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { getChats } from '../../services/chat'
+import { setActiveChatId } from '../../store/actions/chatActions'
+import { fetchOtherProfiles } from '../../services/profile'
 
-const ChatWindowData = [
-  {
-    src: 'stock/girl2.jpg',
-    name: 'Arun',
-    active: false,
-    time: '5',
-    text: 'See you soon',
-  },
-  {
-    src: 'stock/girl2.jpg',
-    name: 'Deepak Kumar',
-    active: true,
-    time: '5',
-    text: 'See you soon',
-    current: 'true',
-  },
-  {
-    src: 'stock/girl2.jpg',
-    name: 'John Doe',
-    active: false,
-    time: '5',
-    text: 'See you soon',
-  },
-  {
-    src: 'stock/girl2.jpg',
-    name: 'Nisha Sharma',
-    active: true,
-    time: '5',
-    text: 'See you soon',
-  },
-  {
-    src: 'stock/girl2.jpg',
-    name: 'Sonia',
-    active: true,
-    time: '5',
-    text: 'See you soon',
-  },
-]
+// const ChatWindowData = [
+//   {
+//     src: 'stock/girl2.jpg',
+//     name: 'Arun',
+//     active: false,
+//     time: '5',
+//     text: 'See you soon',
+//   },
+//   {
+//     src: 'stock/girl2.jpg',
+//     name: 'Deepak Kumar',
+//     active: true,
+//     time: '5',
+//     text: 'See you soon',
+//     current: 'true',
+//   },
+//   {
+//     src: 'stock/girl2.jpg',
+//     name: 'John Doe',
+//     active: false,
+//     time: '5',
+//     text: 'See you soon',
+//   },
+//   {
+//     src: 'stock/girl2.jpg',
+//     name: 'Nisha Sharma',
+//     active: true,
+//     time: '5',
+//     text: 'See you soon',
+//   },
+//   {
+//     src: 'stock/girl2.jpg',
+//     name: 'Sonia',
+//     active: true,
+//     time: '5',
+//     text: 'See you soon',
+//   },
+// ]
 
 const Contacts = () => {
+  const dispatch = useDispatch()
+
   const [searchBarOpen, toggleSearch] = useState(false)
   const [query, setQuery] = useState('')
   const [chats, setChats] = useState([])
@@ -53,15 +56,24 @@ const Contacts = () => {
   let token = useSelector((state) => state.auth.token)
   let profileId = useSelector((state) => state.app.currentProfile)
 
-  const [currentContact, setCurrentContact] = useState('')
+  const currentContact = useSelector((state) => state.chat.activeChatId)
 
-  const ChatWindowContactClickHandler = (name) => setCurrentContact(name)
+  const chatWindowContactClickHandler = (id) => dispatch(setActiveChatId(id))
 
   useEffect(() => {
+    fetchOtherProfiles(token, profileId)
+
     getChats(token, profileId)
-      .then((res) => setChats(res))
+      .then((res) => {
+        console.log('Inside', res)
+        setChats(res)
+      })
       .catch((e) => console.log('Error while setting chats', e))
   }, [token, profileId])
+
+  if (!chats) {
+    return null
+  }
 
   return (
     <div className="w-full text-primary">
@@ -103,7 +115,7 @@ const Contacts = () => {
             <option label="Arun" value="arun" />
           </select>
         </div>
-        {ChatWindowData.map((data) => (
+        {/* {ChatWindowData.map((data) => (
           <div key={() => uuid()} className="">
             <ChatWindowContact
               clickHandler={ChatWindowContactClickHandler}
@@ -117,6 +129,17 @@ const Contacts = () => {
               // current='false'
             />
           </div>
+        ))} */}
+        {chats.map((chat) => (
+          <ChatWindowContact
+            clickHandler={() => chatWindowContactClickHandler(chat.id)}
+            src={chat.sender_avatar_url}
+            name={chat.sender_name}
+            text={chat.last_msg.message}
+            active={false}
+            time={chat.last_msg.created_at}
+            current={currentContact === chat.id}
+          />
         ))}
       </div>
     </div>

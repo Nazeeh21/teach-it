@@ -5,7 +5,6 @@ import { LandingContainer } from '../../../containers'
 import { useRouter } from 'next/router'
 import { useDispatch, useSelector } from 'react-redux'
 import { auth, resetAuth, verifyOtp } from '../../../store/actions/authActions'
-import api from '../../../api'
 
 const Index = ({}) => {
   const router = useRouter()

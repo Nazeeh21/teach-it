@@ -4,15 +4,46 @@ import CompactServiceCard from './CompactServiceCard/CompactServiceCard'
 import Message from '../../components/Chat/Message'
 import ChooseService from './ChooseService/ChooseService'
 import Avatar from '../../components/Images/Avatar'
-import { getChats } from '../../services/chat'
+import { getChatData, sendMessage } from '../../services/chat'
 import { useSelector } from 'react-redux'
 
 const Chat = ({ label = 'Chat', disabled, expertDetails }) => {
+  const chatId = useSelector((state) => state.chat.activeChatId)
+
+  const token = useSelector((state) => state.auth.token)
+  const profileId = useSelector((state) => state.app.currentProfile)
+
+  const [messages, setMessages] = useState([])
+
+  const [input, setInput] = useState('')
+  const [fetch, triggerFetch] = useState(false)
+
+  useEffect(() => {
+    getChatData(token, profileId, chatId)
+      .then((res) => setMessages(res.reverse()))
+      .catch((e) => console.log('Error while setting chat data', e))
+  }, [chatId, fetch, token, profileId])
+
   const [showChooseService, setShowChooseService] = useState(false)
 
   const chooseServiceCloseHandler = () => setShowChooseService(false)
 
   const chooseServiceOpenHandler = () => setShowChooseService(true)
+
+  const submitHandler = async () => {
+    const success = await sendMessage(token, profileId, chatId, input)
+
+    if (success) {
+      setInput('')
+      triggerFetch((fetch) => !fetch)
+    } else {
+      alert('Failed to send the message. Please try again.')
+    }
+  }
+
+  if (!messages) {
+    return null
+  }
 
   return (
     <div className="w-full">
@@ -45,73 +76,23 @@ const Chat = ({ label = 'Chat', disabled, expertDetails }) => {
               <h4>{expertDetails.name}</h4>
             </div>
           )}
-          <Message
-            className="justify-self-end"
-            type="text"
-            author={{ isSelf: 'true' }}
-            content="How are you doing? Will you be in Mumbai next week?"
-            status="Deivered"
-            time="4:35pm"
-          />
-          <Message
-            type="text"
-            author={{
-              isSelf: 'false',
-              profilePic: 'nazeeh-profile.jpg',
-              name: 'John',
-            }}
-            content="Maybe, I'll let you know"
-            time="4:35pm"
-          />
-          <Message
-            type="image"
-            author={{
-              isSelf: 'false',
-              profilePic: 'nazeeh-profile.jpg',
-              name: 'John',
-            }}
-            content={{
-              src: 'shimla.png',
-              alt: 'shimla',
-              text: 'In Shimla now',
-            }}
-            time="4:35pm"
-          />
-          <Message
-            type="service"
-            author={{
-              isSelf: 'false',
-              profilePic: 'nazeeh-profile.jpg',
-              name: 'John',
-            }}
-            content={
-              <CompactServiceCard
-                hrefText="Edit"
-                butttonText="Accept"
-                media={{ src: 'Live.svg', text: 'Live', color: '#ff414d' }}
-                imgsrc="/stock/guitar.jpg"
-              />
-            }
-            time="4:35pm"
-          />
-          <Message
-            type="service"
-            author={{
-              isSelf: 'false',
-              profilePic: 'nazeeh-profile.jpg',
-              name: 'John',
-            }}
-            content={
-              <CompactServiceCard
-                hrefText=""
-                butttonText="Pending"
-                buttonDisabled="true"
-                media={{ src: 'Live.svg', text: 'Live', color: '#ff414d' }}
-                imgsrc="/stock/music.jpg"
-              />
-            }
-            time="4:35pm"
-          />
+          <div
+            style={{ maxHeight: '70vh' }}
+            className="grid grid-flow-row overflow-y-scroll"
+          >
+            {messages.map((message) => {
+              return (
+                <Message
+                  key={message.created_at}
+                  type="text"
+                  author={{ isSelf: message.sender == profileId }}
+                  content={message.message}
+                  status={'Delivered'}
+                  time={message.created_at}
+                />
+              )
+            })}
+          </div>
         </div>
         <div
           className="bg-accentedWhite rounded-bl-md rounded-br-md flex justify-center"
@@ -143,8 +124,14 @@ const Chat = ({ label = 'Chat', disabled, expertDetails }) => {
               style={{ outline: 'none' }}
               className="border-highlight border-2 w-8/12 h-10 mx-2 my-2 rounded px-2 py-4"
               type="text"
-              onChange={(e) => e.target.value}
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
               disabled={disabled}
+              onKeyUp={(e) => {
+                if (e.key === 'Enter') {
+                  submitHandler()
+                }
+              }}
             />
           )}
         </div>

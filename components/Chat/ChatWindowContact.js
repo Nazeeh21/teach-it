@@ -27,7 +27,7 @@ export const ChatWindowContact = ({
   clickHandler,
 }) => (
   <div
-    onClick={() => clickHandler(name)}
+    onClick={clickHandler}
     style={{ borderBottom: '2px solid #f3f4f8' }}
     className={`bg-${
       current ? 'lightCyan' : 'white'

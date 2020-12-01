@@ -25,6 +25,7 @@ export const continueHandler = (formData) => {
           {
             headers: {
               Authorization: `Token ${localStorage.getItem('token')}`,
+              'X-Profile-ID': localStorage.getItem('currentProfile'),
             },
           }
         )
