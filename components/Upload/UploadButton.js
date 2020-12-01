@@ -57,7 +57,10 @@ const UploadButton = ({ text, footerText, imageInputChangeHandler }) => {
           // console.log('inUpload Button', URL.createObjectURL(data))
           const fd = new FormData()
           fd.append('image', data, data.name)
-          imageInputChangeHandler(fd)
+          imageInputChangeHandler({
+            forUpload: fd,
+            forPreview: URL.createObjectURL(data),
+          })
           // imageInputChangeHandler(URL.createObjectURL(data))
         }}
       />

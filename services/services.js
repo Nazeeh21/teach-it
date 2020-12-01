@@ -81,7 +81,7 @@ const createMilestone = (pk, milestoneData) => {
 const uploadImages = (pk, imageData) => {
   try {
     const uploadImageRes = imageData.map(async (data) => {
-      const res = await api.post(`service/${pk}/media/`, data, {
+      const res = await api.post(`service/${pk}/media/`, data.forUpload, {
         headers: {
           Authorization: `Token ${localStorage.getItem('token')}`,
           'X-Profile-ID': localStorage.getItem('currentProfile'),

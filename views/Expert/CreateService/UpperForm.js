@@ -9,7 +9,7 @@ import ServiceTypeCard from './ServiceTypeCard'
 // } from '../../../store/actions/createServiceAction'
 import { useSelector, useDispatch } from 'react-redux'
 
-const CrossButton = (
+const CrossButton = ({ clickHandler, index }) => (
   <div
     style={{
       border: '3px solid white',
@@ -17,18 +17,26 @@ const CrossButton = (
       left: '80%',
       bottom: '6%',
     }}
-    className="rounded-full w-4/12 bg-red flex text-white"
+    onClick={() => clickHandler(index)}
+    className="cursor-pointer rounded-full w-4/12 bg-red flex text-white"
   >
-    <button className="m-auto">x</button>
+    <div className="m-auto">x</div>
   </div>
 )
 
-const UploadImageAndVideo = (
+const UploadImageAndVideo = ({ src, cancelClickHandler, index }) => (
   <div
-    style={{ backgroundImage: `url('images&videos/1.png')` }}
-    className="w-9/12 h-full rounded-lg"
+    // style={{ backgroundImage: `url('images&videos/1.png')` }}
+    style={{
+      backgroundImage: `url(${src})`,
+      backgroundRepeat: 'no-repeat',
+      backgroundSize: 'cover',
+      width: 'full',
+      height: 'full',
+    }}
+    className="w-auto max-w-9/12 h-full rounded-lg mr-6"
   >
-    {CrossButton}
+    <CrossButton clickHandler={cancelClickHandler} index={index} />
   </div>
 )
 
@@ -40,6 +48,8 @@ const UpperForm = ({
   titleChangedHandler,
   descriptionChangedHandler,
   imageInputChangeHandler,
+  imageDataForPreview,
+  imageCrossHandler,
 }) => {
   const [liveServiceType, setServiceType] = useState(null)
   // const dispatch = useDispatch()
@@ -50,6 +60,8 @@ const UpperForm = ({
   // useEffect(() =>{
 
   // }, [liveServiceType])
+
+  useEffect(() => {}, [imageDataForPreview])
 
   return (
     <div className="w-full font-medium">
@@ -115,10 +127,14 @@ const UpperForm = ({
         <div>
           <UploadButton imageInputChangeHandler={imageInputChangeHandler} />
         </div>
-        {UploadImageAndVideo}
-        {UploadImageAndVideo}
-        {UploadImageAndVideo}
-        {UploadImageAndVideo}
+        {imageDataForPreview.map((imageData, index) => (
+          <UploadImageAndVideo
+            key={index}
+            src={imageData.forPreview}
+            index={index}
+            cancelClickHandler={imageCrossHandler}
+          />
+        ))}
       </div>
     </div>
   )

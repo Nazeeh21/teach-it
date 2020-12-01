@@ -175,7 +175,17 @@ const Index = () => {
             description={description}
             descriptionChangedHandler={(value) => setDescription(value)}
             type={serviceType === 0 ? 'live' : 'media'}
-            imageInputChangeHandler={(value) => files.push(value)}
+            imageInputChangeHandler={(data) => {
+              const newFile = [...files]
+              newFile.push(data)
+              setFiles(newFile)
+            }}
+            imageDataForPreview={files}
+            imageCrossHandler={(index) => {
+              const newFile = [...files]
+              newFile.splice(index, 1)
+              setFiles(newFile)
+            }}
           />
         </Accordion>
 
