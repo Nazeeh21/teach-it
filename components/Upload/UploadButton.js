@@ -54,9 +54,11 @@ const UploadButton = ({ text, footerText, imageInputChangeHandler }) => {
         onChange={(event) => {
           const data = event.target.files[0]
           console.log('in Upload Button', data)
+          // console.log('inUpload Button', URL.createObjectURL(data))
           const fd = new FormData()
           fd.append('image', data, data.name)
           imageInputChangeHandler(fd)
+          // imageInputChangeHandler(URL.createObjectURL(data))
         }}
       />
       {/* <SecondaryButton label="Upload" clickHandler={uploadCLickHandler} /> */}
