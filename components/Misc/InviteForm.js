@@ -38,18 +38,29 @@ const InviteForm = ({ show, backdropClickHandler, inviteClicked }) => {
       >
         <Label>Name</Label>
         <Input value={name} placeholder="" changeHandler={(e) => setName(e)} />
-        <div>Enter email or Mobile</div>
+        <div className="font-semibold">
+          <Label>Enter email or Mobile</Label>
+        </div>
         <Label>Email</Label>
         <Input
+          autoComplete={false}
           value={email}
           placeholder=""
-          changeHandler={(e) => setEmail(e)}
+          changeHandler={(e) => {
+            setEmail(e)
+            setMobile('')
+          }}
         />
         <Label>Mobile No</Label>
         <Input
+          // type="number"
+          autoComplete={false}
           value={mobile}
           placeholder=""
-          changeHandler={(e) => setMobile(e)}
+          changeHandler={(e) => {
+            setMobile(e)
+            setEmail('')
+          }}
         />
         <div className="w-10/12 lg:w-6/12 mt-4">
           <SecondaryButton

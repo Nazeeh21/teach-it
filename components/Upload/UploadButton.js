@@ -1,11 +1,38 @@
+import axios from 'axios'
 import React, { useState } from 'react'
+import { SecondaryButton } from '../Buttons/Index'
 
-const UploadButton = ({ text, footerText }) => {
-  const [file, setFile] = useState()
+const UploadButton = ({ text, footerText, imageInputChangeHandler }) => {
+  // const [file, setFile] = useState()
 
   const handleClick = () => {
     document.getElementById('upload-input').click()
   }
+
+  // const inputChangeHandler = (event) => {
+  //   // setFile(event.target.files[0])
+
+  //   // console.log('Uploaded Image', fd)
+  //   const fileData = event.target.files[0]
+  //   // console.log(fileData.name)
+  //   setFile(fileData)
+
+  //   // console.log(fd)
+  // }
+
+  // const uploadCLickHandler = async () => {
+  //   const fd = new FormData()
+  //   fd.append('image', file, file.name)
+
+  //   const res = await axios.post('http://34.122.42.109/api/v1/service/44/media/', fd, {
+  //     headers: {
+  //       Authorization: `Token ${localStorage.getItem('token')}`,
+  //       'X-Profile-ID': 2,
+  //     },
+  //   })
+
+  //   console.log(res)
+  // }
 
   return (
     <React.Fragment>
@@ -23,9 +50,18 @@ const UploadButton = ({ text, footerText }) => {
         id="upload-input"
         className="hidden"
         type="file"
-        value={file}
-        onChange={(e) => setFile()}
+        // value={file}
+        onChange={(event) => {
+          const data = event.target.files[0]
+          console.log('in Upload Button', data)
+          // console.log('inUpload Button', URL.createObjectURL(data))
+          const fd = new FormData()
+          fd.append('image', data, data.name)
+          imageInputChangeHandler(fd)
+          // imageInputChangeHandler(URL.createObjectURL(data))
+        }}
       />
+      {/* <SecondaryButton label="Upload" clickHandler={uploadCLickHandler} /> */}
     </React.Fragment>
   )
 }
