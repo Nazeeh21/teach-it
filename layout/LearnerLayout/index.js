@@ -4,9 +4,20 @@ import { AgoraCenterSection, CenterSection, ThreeCols } from '..'
 import InviteCard from '../../components/Misc/InviteCard'
 import AppTopNav from '../../components/Nav/AppTopNav'
 import Messages from '../../views/Expert/Messages'
-import { useSelector } from 'react-redux'
+import { useState } from 'react'
+import InviteForm from '../../components/Misc/InviteForm'
 
 const Index = ({ children, rightContent, alternate = false, forAgora }) => {
+  const [showInvite, setShowInvite] = useState(false)
+
+  const InviteButtonCLickHanlder = () => {
+    setShowInvite(true)
+  }
+
+  const backdropClickHandler = () => {
+    setShowInvite(false)
+  }
+
   if (alternate) {
     return (
       <React.Fragment>
@@ -33,6 +44,13 @@ const Index = ({ children, rightContent, alternate = false, forAgora }) => {
 
   return (
     <React.Fragment>
+      {showInvite && (
+        <InviteForm
+          show={showInvite}
+          backdropClickHandler={backdropClickHandler}
+          inviteClicked={InviteButtonCLickHanlder}
+        />
+      )}
       <AppTopNav />
       <div className="h-auto bg-lightGrey w-full flex flex-row">
         <ThreeCols side="left">
@@ -51,7 +69,7 @@ const Index = ({ children, rightContent, alternate = false, forAgora }) => {
               rightContent
             ) : (
               <React.Fragment>
-                <InviteCard />
+                <InviteCard clickHandler={InviteButtonCLickHanlder} />
               </React.Fragment>
             )}
           </ThreeCols>

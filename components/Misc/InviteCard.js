@@ -1,6 +1,6 @@
 import React from 'react'
 
-const InviteCard = () => {
+const InviteCard = ({ clickHandler }) => {
   return (
     <div className="h-auto w-full flex flex-col">
       <div
@@ -17,7 +17,10 @@ const InviteCard = () => {
           earn 5% of their earnings for 3 months!
         </p>
         <div className="w-2/3 mt-6">
-          <button className="bg-white text-secondary border-secondary border-2 rounded-lg pt-2 pb-2 pl-6 pr-6">
+          <button
+            onClick={clickHandler}
+            className="bg-white text-secondary border-secondary border-2 rounded-lg pt-2 pb-2 pl-6 pr-6"
+          >
             Invite
           </button>
         </div>
