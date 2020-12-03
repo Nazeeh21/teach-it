@@ -6,25 +6,25 @@ const UploadButton = ({ text, footerText, imageInputChangeHandler }) => {
   // const [file, setFile] = useState()
 
   const handleClick = () => {
-    document.getElementById('upload-input').click()
+    document.getElementById('uploadInput').click()
   }
 
   // const inputChangeHandler = (event) => {
   //   // setFile(event.target.files[0])
 
-  //   // console.log('Uploaded Image', fd)
+  //   // console.log('Uploaded Image', formData)
   //   const fileData = event.target.files[0]
   //   // console.log(fileData.name)
   //   setFile(fileData)
 
-  //   // console.log(fd)
+  //   // console.log(formData)
   // }
 
   // const uploadCLickHandler = async () => {
-  //   const fd = new FormData()
-  //   fd.append('image', file, file.name)
+  //   const formData = new FormData()
+  //   formData.append('image', file, file.name)
 
-  //   const res = await axios.post('http://34.122.42.109/api/v1/service/44/media/', fd, {
+  //   const res = await axios.post('http://34.122.42.109/api/v1/service/44/media/', formData, {
   //     headers: {
   //       Authorization: `Token ${localStorage.getItem('token')}`,
   //       'X-Profile-ID': 2,
@@ -46,24 +46,36 @@ const UploadButton = ({ text, footerText, imageInputChangeHandler }) => {
       <p className="m-1 text-serviceCardDescription text-darkGrey">
         {footerText}
       </p>
+      {/* <form encType="multipart/form-data" action=""> */}
       <input
-        id="upload-input"
+        id="uploadInput"
         className="hidden"
+        // encType="multipart/form-data"
         type="file"
+        name="doc"
         // value={file}
         onChange={(event) => {
           const data = event.target.files[0]
           console.log('in Upload Button', data)
-          // console.log('inUpload Button', URL.createObjectURL(data))
-          const fd = new FormData()
-          fd.append('image', data, data.name)
+          console.log('in Upload Button for preview', URL.createObjectURL(data))
+
+          const formData = new FormData()
+          console.log('Before appending', formData)
+
+          // console.log('In Upload Button', document.getElementById("uploadInput").files[0])
+
+          formData.append('image', data)
+          console.log('FormData in Upload Button After appending', formData)
+
           imageInputChangeHandler({
-            forUpload: fd,
+            forUpload: formData,
             forPreview: URL.createObjectURL(data),
           })
           // imageInputChangeHandler(URL.createObjectURL(data))
         }}
       />
+      {/* </form> */}
+
       {/* <SecondaryButton label="Upload" clickHandler={uploadCLickHandler} /> */}
     </React.Fragment>
   )

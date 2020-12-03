@@ -81,12 +81,19 @@ const createMilestone = (pk, milestoneData) => {
 const uploadImages = (pk, imageData) => {
   try {
     const uploadImageRes = imageData.map(async (data) => {
-      const res = await api.post(`service/${pk}/media/`, data.forUpload, {
-        headers: {
-          Authorization: `Token ${localStorage.getItem('token')}`,
-          'X-Profile-ID': localStorage.getItem('currentProfile'),
-        },
-      })
+      console.log('uploading Media', data.forUpload)
+      const res = await api.post(
+        `service/${pk}/media/`,
+        { doc: data.forUpload },
+        {
+          headers: {
+            'content-type': 'multipart/form-data',
+            // "Content-Type": "multipart/form-data",
+            Authorization: `Token ${localStorage.getItem('token')}`,
+            'X-Profile-ID': localStorage.getItem('currentProfile'),
+          },
+        }
+      )
       console.log('UploadImageRes', res.data)
     })
   } catch (error) {
