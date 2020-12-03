@@ -49,6 +49,10 @@ const Index = () => {
 
   const notificationCloseHandler = () => setShowNotifications(false)
 
+  if (!token || !currentProfile) {
+    return <div className="h-16 bg-white w-full"></div>
+  }
+
   return (
     <div>
       {token && currentProfile && (

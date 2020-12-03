@@ -1,4 +1,3 @@
-import Axios from 'axios'
 import api from '../../api'
 import {
   CHANGE_USER_TYPE,

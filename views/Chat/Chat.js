@@ -41,7 +41,7 @@ const Chat = ({ label = 'Chat', disabled, expertDetails }) => {
     }
   }
 
-  if (!messages) {
+  if (!messages || !chatId) {
     return null
   }
 

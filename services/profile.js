@@ -131,16 +131,20 @@ export const registerSeeker = async (name) => {
 
 export const fetchOtherProfiles = async (token, profileId) => {
   try {
-    const profiles = await api.get('user/', {
+    const res = await api.get('user/', {
       headers: {
         Authorization: `Token ${token}`,
         'X-Profile-ID': profileId,
       },
     })
 
-    console.log('Profiles', profiles.data)
+    console.log('Profiles', res.data)
 
-    return profiles.data.profiles
+    const { profiles } = res.data
+
+    return {
+      profiles,
+    }
   } catch (e) {
     console.log(e)
     return null

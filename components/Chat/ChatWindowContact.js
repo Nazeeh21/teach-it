@@ -1,6 +1,8 @@
 import React from 'react'
 import Avatar from '../Images/Avatar'
 
+const CHAR_LIMIT = 30
+
 const ActiveSign = () => (
   <div
     style={{
@@ -38,12 +40,12 @@ export const ChatWindowContact = ({
       <Avatar src={src} alt={name} purpose="isForChat" />
     </div>
     <div>
-      <p className={`${current ? 'font-bold' : 'font-normal'} text-xl`}>
+      <p className={`${current ? 'font-bold' : 'font-normal'} text-md`}>
         {name}
       </p>
       <div className="grid grid-cols-2 items-center w-full">
-        <p className="col-span-2 text-lg text-darkGrey justify-start lg:mr-4">
-          {text}
+        <p className="col-span-2 text-sm text-darkGrey justify-start lg:mr-4">
+          {text.length > CHAR_LIMIT ? `${text.slice(0, CHAR_LIMIT)}...` : text}
         </p>
         <p className="justify-self-end italic text-lightGrey text-xs justify-end">
           {time} min ago
