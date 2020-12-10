@@ -7,7 +7,11 @@ import Notifications from '../../Notifications'
 import MobileBottomNav from '../MobileBottomNav'
 import { fetchAllProfiles } from '../../../services/profile'
 import { useDispatch, useSelector } from 'react-redux'
-import { logout, switchProfile } from '../../../store/actions/appActions'
+import {
+  logout,
+  setProviderId,
+  switchProfile,
+} from '../../../store/actions/appActions'
 
 const Index = () => {
   const dispatch = useDispatch()
@@ -32,6 +36,12 @@ const Index = () => {
               profile.id == window.localStorage.getItem('currentProfile')
           )
           setCurrentProfile(currentProfileData[0])
+          dispatch(
+            setProviderId(
+              currentProfileData[0]['provider'] &&
+                currentProfileData[0]['provider'].id
+            )
+          )
           console.log('Current profile data : ', currentProfileData[0])
 
           const otherProfilesData = res.filter(
@@ -48,6 +58,10 @@ const Index = () => {
   const notificationOpenHandler = () => setShowNotifications(true)
 
   const notificationCloseHandler = () => setShowNotifications(false)
+
+  if (!token || !currentProfile) {
+    return <div className="h-16 bg-white w-full"></div>
+  }
 
   return (
     <div>

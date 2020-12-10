@@ -1,13 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import UploadButton from '../../../components/Upload/UploadButton'
 import ServiceTypeCard from './ServiceTypeCard'
-// import {
-//   setAudioOnly,
-//   setVideoAndAudio,
-//   updateDescription,
-//   updateTitle,
-// } from '../../../store/actions/createServiceAction'
-import { useSelector, useDispatch } from 'react-redux'
 
 const CrossButton = ({ clickHandler, index }) => (
   <div
@@ -26,7 +19,6 @@ const CrossButton = ({ clickHandler, index }) => (
 
 const UploadImageAndVideo = ({ src, cancelClickHandler, index }) => (
   <div
-    // style={{ backgroundImage: `url('images&videos/1.png')` }}
     style={{
       backgroundImage: `url(${src})`,
       backgroundRepeat: 'no-repeat',
@@ -52,16 +44,6 @@ const UpperForm = ({
   imageCrossHandler,
 }) => {
   const [liveServiceType, setServiceType] = useState(null)
-  // const dispatch = useDispatch()
-  // const title = useSelector((state) => state.createService.title)
-  // const description = useSelector((state) => state.createService.description)
-  // const [title, setTile] = useState('')
-  // const [description, setDescription] = useState('')
-  // useEffect(() =>{
-
-  // }, [liveServiceType])
-
-  useEffect(() => {}, [imageDataForPreview])
 
   return (
     <div className="w-full font-medium">
@@ -75,7 +57,6 @@ const UpperForm = ({
               active={liveServiceType === 0}
               clickHandler={() => {
                 typeChangedHandler('video')
-                // dispatch(setVideoAndAudio())
                 setServiceType(0)
               }}
               noIcon
@@ -86,7 +67,6 @@ const UpperForm = ({
               active={liveServiceType === 1}
               clickHandler={() => {
                 typeChangedHandler('audio')
-                // dispatch(setAudioOnly())
                 setServiceType(1)
               }}
               noIcon
@@ -101,7 +81,6 @@ const UpperForm = ({
           className="rounded w-full p-2 text-sm bg-lightGrey"
           onChange={(e) => {
             titleChangedHandler(e.target.value)
-            // dispatch(updateTitle(e.target.value))
           }}
         />
       </div>
@@ -112,10 +91,8 @@ const UpperForm = ({
           className="rounded w-full p-2 text-sm bg-lightGrey h-32"
           onChange={(e) => {
             descriptionChangedHandler(e.target.value)
-            // dispatch(updateDescription(e.target.value))
           }}
         />
-        {/* <p className='rounded w-full p-2 text-sm bg-lightGrey'>{loremIpsum}</p> */}
       </div>
       <div className="my-10">
         <p className="text-lg my-2">Images and videos</p>

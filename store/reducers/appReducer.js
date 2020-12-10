@@ -8,6 +8,7 @@ const {
   LOGOUT,
   FETCH_SEARCH_RESULTS,
   FETCH_USER_SERVICES,
+  SET_PROVIDER_ID,
 } = require('../actionTypes')
 
 const initialState = {
@@ -18,6 +19,7 @@ const initialState = {
   currentProfile: null,
   searchResults: [],
   userServices: [],
+  providerId: null,
 }
 
 const reducer = (state = initialState, action) => {
@@ -59,6 +61,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         searchResults: action.results,
+      }
+    case SET_PROVIDER_ID:
+      return {
+        ...state,
+        providerId: action.id,
       }
     default:
       return state
