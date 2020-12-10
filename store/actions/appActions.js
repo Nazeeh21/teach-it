@@ -1,4 +1,4 @@
-import Axios from 'axios'
+import axios from 'axios'
 import api from '../../api'
 import {
   CHANGE_USER_TYPE,
@@ -17,19 +17,28 @@ export const changeUserType = (newType) => {
   }
 }
 
-export const fetchServices = () => {
+export const fetchServices = (nextPageUrl = null) => {
   return async (dispatch) => {
     try {
       var flag = 0
 
       while (flag === 0) {
         try {
-          var res = await api.get('service/', {
-            headers: {
-              Authorization: `Token ${localStorage.getItem('token')}`,
-              'X-Profile-ID': localStorage.getItem('currentProfile'),
-            },
-          })
+          if (!nextPageUrl) {
+            var res = await api.get('service/', {
+              headers: {
+                Authorization: `Token ${localStorage.getItem('token')}`,
+                'X-Profile-ID': localStorage.getItem('currentProfile'),
+              },
+            })
+          } else {
+            var res = await axios.get(nextPageUrl, {
+              headers: {
+                Authorization: `Token ${localStorage.getItem('token')}`,
+                'X-Profile-ID': localStorage.getItem('currentProfile'),
+              },
+            })
+          }
 
           console.log('Fetch service response', res.data)
 
@@ -45,6 +54,8 @@ export const fetchServices = () => {
     dispatch({
       type: FETCH_SERVICES,
       services: res.data.results,
+      nextURL: res.data.next,
+      previousURL: res.data.previous,
     })
   }
 }

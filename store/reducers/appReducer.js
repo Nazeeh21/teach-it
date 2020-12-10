@@ -12,12 +12,14 @@ const {
 
 const initialState = {
   // userType: LEARNER,
-  userType: EXPERT,
+  userType: LEARNER,
   services: [],
   viewServiceData: null,
   currentProfile: null,
   searchResults: [],
   userServices: [],
+  nextServicePageUrl: null,
+  previousPageURL: null,
 }
 
 const reducer = (state = initialState, action) => {
@@ -28,9 +30,13 @@ const reducer = (state = initialState, action) => {
         userType: action.newType,
       }
     case FETCH_SERVICES:
+      const newService = [...state.services, ...action.services]
+
       return {
         ...state,
-        services: [...action.services],
+        services: newService,
+        nextServicePageUrl: action.nextURL,
+        previousPageURL: action.previousURL,
       }
     case FETCH_USER_SERVICES:
       return {

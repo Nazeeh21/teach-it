@@ -12,14 +12,26 @@ const Index = () => {
   const dispatch = useDispatch()
   const [query, setQuery] = useState('')
   const services = useSelector((state) => state.app.services)
+  const nextServicePageUrl = useSelector(
+    (state) => state.app.nextServicePageUrl
+  )
+  const previousServicePageUrl = useSelector(
+    (state) => state.app.previousPageURL
+  )
 
   const handleCategoriesRedirect = () => {
     router.push('/search')
   }
 
   useEffect(() => {
-    dispatch(fetchServices())
-  }, [])
+    if (!nextServicePageUrl && !previousServicePageUrl) {
+      dispatch(fetchServices())
+    }
+  }, [services])
+
+  const viewMoreClickHandler = () => {
+    dispatch(fetchServices(nextServicePageUrl))
+  }
 
   return (
     <React.Fragment>
@@ -54,7 +66,7 @@ const Index = () => {
         media={{ text: 'Rich Media', color: 'green', src: 'rich-media.svg' }}
       /> */}
       <div className="m-auto w-2/12">
-        <ViewMoreButton clickHandler={() => router.push('/services')} />
+        <ViewMoreButton clickHandler={viewMoreClickHandler} />
       </div>
       <h3 className="text-2xl mb-6">Trending services</h3>
       <div className="grid grid-flow-row grid-cols-2 w-full gap-6 mb-6">
