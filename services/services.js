@@ -87,7 +87,9 @@ const uploadImages = (pk, imageData) => {
         { doc: data.forUpload },
         {
           headers: {
-            'content-type': 'multipart/form-data',
+            // 'content-type': 'multipart/form-data',
+            content_type:
+              'multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW',
             // "Content-Type": "multipart/form-data",
             Authorization: `Token ${localStorage.getItem('token')}`,
             'X-Profile-ID': localStorage.getItem('currentProfile'),

@@ -13,9 +13,9 @@ const UploadButton = ({ text, footerText, imageInputChangeHandler }) => {
   //   // setFile(event.target.files[0])
 
   //   // console.log('Uploaded Image', formData)
-  //   const fileData = event.target.files[0]
-  //   // console.log(fileData.name)
-  //   setFile(fileData)
+  //   const imageData = event.target.files[0]
+  //   // console.log(imageData.name)
+  //   setFile(imageData)
 
   //   // console.log(formData)
   // }
@@ -64,11 +64,18 @@ const UploadButton = ({ text, footerText, imageInputChangeHandler }) => {
 
           // console.log('In Upload Button', document.getElementById("uploadInput").files[0])
 
-          formData.append('image', data)
+          formData.append('doc', data)
           console.log('FormData in Upload Button After appending', formData)
 
+          let imageData
+          for (var pair of formData.entries()) {
+            console.log(pair[0] + ', ' + pair[1])
+            imageData = pair[1]
+            console.log('imageData in Uploadjs ', imageData)
+          }
+
           imageInputChangeHandler({
-            forUpload: formData,
+            forUpload: imageData,
             forPreview: URL.createObjectURL(data),
           })
           // imageInputChangeHandler(URL.createObjectURL(data))
