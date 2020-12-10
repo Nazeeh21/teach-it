@@ -6,6 +6,7 @@ import AppTopNav from '../../components/Nav/AppTopNav'
 import Messages from '../../views/Expert/Messages'
 import { useState } from 'react'
 import InviteForm from '../../components/Misc/InviteForm'
+import Header from '../../components/Header'
 
 const Index = ({ children, rightContent, alternate = false, forAgora }) => {
   const [showInvite, setShowInvite] = useState(false)

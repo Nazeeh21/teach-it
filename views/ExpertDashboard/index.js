@@ -13,6 +13,7 @@ const Index = () => {
   const [query, setQuery] = useState('')
 
   let services = useSelector((state) => state.app.services)
+  const providerId = useSelector((state) => state.app.providerId)
   const currentProfileId = useSelector((state) => state.app.currentProfile)
 
   const handleCategoriesRedirect = () => {
@@ -21,15 +22,10 @@ const Index = () => {
 
   useEffect(() => {
     dispatch(fetchServices())
-    // fetchQuestions(1).then(res => {
-    //   console.log('expertDashboard', res)
-    //   setQuestions(res)
-    // })
   }, [])
-  console.log('[expertDashboard before filter services]', services)
+
   console.log('profileId', currentProfileId)
-  services = services.filter((service) => service.provider === currentProfileId)
-  console.log('[expertDashboard after filter services]', services)
+
   return (
     <React.Fragment>
       <div className="grid grid-cols-2 w-full">
@@ -39,20 +35,21 @@ const Index = () => {
         </div>
       </div>
 
-      {services.map((service) => (
-        <CompactServiceCard
-          buttonClickHandler={() => router.push(`/view-service/${service.pk}`)}
-          key={service.pk}
-          category={service.category}
-          languages={service.languages}
-          descriptionText={service.description}
-          paymentType={service.payment_type}
-          servicePk={service.pk}
-        />
-      ))}
-
-      {/* <CompactServiceCard imgSrc='/stock/music.jpg' />
-      <CompactServiceCard imgSrc='/stock/photography.jpg' /> */}
+      {services
+        .filter((service) => service.provider == providerId)
+        .map((service) => (
+          <CompactServiceCard
+            buttonClickHandler={() =>
+              router.push(`/view-service/${service.pk}`)
+            }
+            key={service.pk}
+            category={service.category}
+            languages={service.languages}
+            descriptionText={service.description}
+            paymentType={service.payment_type}
+            servicePk={service.pk}
+          />
+        ))}
       <div className="m-auto w-2/12">
         <ViewMoreButton clickHandler={() => router.push('/services')} />
       </div>

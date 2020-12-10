@@ -5,6 +5,7 @@ import AppTopNav from '../../components/Nav/AppTopNav'
 import NavItems from '../../components/Nav/NavItems'
 import { AgoraCenterSection, CenterSection, ThreeCols } from '..'
 import Messages from '../../views/Expert/Messages'
+import Header from '../../components/Header'
 
 const Index = ({ children, rightContent, alternate = false, forAgora }) => {
   if (alternate) {

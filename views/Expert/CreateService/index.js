@@ -7,7 +7,7 @@ import AudienceSelector from './AudienceSelector'
 import UpperForm from './UpperForm'
 import AllowRecording from './LiveServiceFormComponents/Recording&LearnerName/AllowRecording'
 import ShowFullName from './LiveServiceFormComponents/Recording&LearnerName/ShowFullName'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { useRouter } from 'next/router'
 import { EXPERT } from '../../../constants'
 import { PrimaryButton } from '../../../components/Buttons/Index'
@@ -47,6 +47,8 @@ const Index = () => {
 
   const router = useRouter()
   const userType = useSelector((state) => state.app.userType)
+  const profileId = useSelector((state) => state.app.currentProfile)
+  const token = useSelector((state) => state.auth.token)
 
   if (startDate) {
     console.log('createService startDate ', startDate)
@@ -106,33 +108,10 @@ const Index = () => {
       allow_visible_user_names: `${showFullName === 'yes' ? 'true' : 'false'}`,
       start_at: `${startDate !== null && startDate.toISOString()}`,
       end_at: `${endDate !== null && endDate.toISOString()}`,
-      // start_at: `${
-      //   startDate.slice(11, 15) +
-      //   '-' +
-      //   startDate.slice(56, 58) +
-      //   '-' +
-      //   startDate.slice(8, 10) +
-      //   'T02:08:00Z'
-      // }`,
-      // end_at: `${
-      //   endDate.slice(11, 15) +
-      //   '-' +
-      //   endDate.slice(56, 58) +
-      //   '-' +
-      //   endDate.slice(8, 10) +
-      //   'T02:08:00Z'
-      // }`,
-      // Wed Nov 18 2020 12:00:00 GMT+0530 (India Standard Time) 11
-      // start_at: '2020-10-16T02:08:00Z',
-      // end_at: '2020-10-24T02:08:00Z',
       age_group: `${activeAgeGroup}`,
     }
 
-    createService(formData, milestoneData, files)
-    // dispatch(createMilestone(milestoneData))
-    // createMilestone(milestoneData)
-    //   .then((res) => console.log(res))
-    //   .catch((e) => console.log(e))
+    createService(formData, milestoneData, files, profileId, token)
   }
 
   return (
@@ -176,9 +155,9 @@ const Index = () => {
             descriptionChangedHandler={(value) => setDescription(value)}
             type={serviceType === 0 ? 'live' : 'media'}
             imageInputChangeHandler={(data) => {
-              const newFile = [...files]
-              newFile.push(data)
-              setFiles(newFile)
+              const newFiles = [...files]
+              newFiles.push(data)
+              setFiles(newFiles)
             }}
             imageDataForPreview={files}
             imageCrossHandler={(index) => {
