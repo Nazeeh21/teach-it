@@ -33,19 +33,25 @@ export const getProviderDetailsFromServiceId = async (serviceId) => {
 export const createService = async (
   createServiceData,
   createMilestoneData,
-  imageData
+  imageData,
+  profileId,
+  token
 ) => {
   try {
     const serviceData = await api.post('service/', createServiceData, {
       headers: {
-        Authorization: `Token ${localStorage.getItem('token')}`,
-        // Authorization: 'Token 4665448e0fc9398c6e373dc6a51060b178595bdb',
-        'X-Profile-ID': window.localStorage.getItem('currentProfile'),
+        Authorization: `Token ${token}`,
+        'X-Profile-ID': profileId,
       },
     })
     console.log(serviceData)
-    createMilestone(serviceData.data.pk, createMilestoneData)
-    uploadImages(serviceData.data.pk, imageData)
+    await createMilestone(
+      serviceData.data.pk,
+      createMilestoneData,
+      profileId,
+      token
+    )
+    await uploadImages(serviceData.data.pk, imageData, profileId, token)
     return true
   } catch (e) {
     console.log(e)
@@ -53,9 +59,9 @@ export const createService = async (
   }
 }
 
-const createMilestone = (pk, milestoneData) => {
+const createMilestone = async (pk, milestoneData, profileId, token) => {
   try {
-    const milestoneRes = milestoneData.map(async (milestone) => {
+    const milestoneRes = await milestoneData.map(async (milestone) => {
       const res = await api.post(
         `service/${pk}/milestone/`,
         {
@@ -64,12 +70,11 @@ const createMilestone = (pk, milestoneData) => {
         },
         {
           headers: {
-            Authorization: `Token ${localStorage.getItem('token')}`,
-            'X-Profile-ID': localStorage.getItem('currentProfile'),
+            Authorization: `Token ${token}`,
+            'X-Profile-ID': profileId,
           },
         }
       )
-      // console.log(milestoneData)
     })
     return true
   } catch (e) {
@@ -78,27 +83,38 @@ const createMilestone = (pk, milestoneData) => {
   }
 }
 
-const uploadImages = (pk, imageData) => {
+const uploadImages = async (servicePk, files, profileId, token) => {
   try {
-    const uploadImageRes = imageData.map(async (data) => {
-      console.log('uploading Media', data.forUpload)
-      const res = await api.post(
-        `service/${pk}/media/`,
-        { doc: data.forUpload },
-        {
-          headers: {
-            // 'content-type': 'multipart/form-data',
-            content_type:
-              'multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW',
-            // "Content-Type": "multipart/form-data",
-            Authorization: `Token ${localStorage.getItem('token')}`,
-            'X-Profile-ID': localStorage.getItem('currentProfile'),
-          },
-        }
-      )
-      console.log('UploadImageRes', res.data)
+    await files.map(
+      async (file) =>
+        await uploadImage(servicePk, file.forUpload, profileId, token)
+    )
+    return true
+  } catch (e) {
+    console.log(e)
+    return false
+  }
+}
+
+export const uploadImage = async (servicePk, data, profileId, token) => {
+  try {
+    const formData = new FormData()
+    formData.append('doc', data)
+
+    console.log('File', data)
+
+    const imgUpload = await api.post(`service/${servicePk}/media/`, formData, {
+      headers: {
+        Authorization: `Token ${token}`,
+        'X-Profile-ID': profileId,
+        'content-type': 'multipart/form-data',
+      },
     })
-  } catch (error) {
-    console.log(error)
+
+    console.log('Uploaded image successfully', imgUpload)
+    return true
+  } catch (e) {
+    console.log('Error while uploading image', e)
+    return false
   }
 }

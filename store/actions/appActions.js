@@ -1,4 +1,3 @@
-import Axios from 'axios'
 import api from '../../api'
 import {
   CHANGE_USER_TYPE,
@@ -8,6 +7,7 @@ import {
   FETCH_VIEW_SERVICE,
   LOGOUT,
   SET_CURRENT_PROFILE,
+  SET_PROVIDER_ID,
 } from '../actionTypes'
 
 export const changeUserType = (newType) => {
@@ -153,5 +153,12 @@ export const fetchSearchResults = (payload) => {
     } catch (e) {
       console.log('Error while fetching search results', e)
     }
+  }
+}
+
+export const setProviderId = (id) => {
+  return {
+    type: SET_PROVIDER_ID,
+    id,
   }
 }

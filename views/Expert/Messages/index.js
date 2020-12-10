@@ -1,49 +1,33 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { ChatWindowContact } from '../../../components/Chat/ChatWindowContact'
 import { useRouter } from 'next/router'
-import { v4 as uuid } from 'uuid'
-
-const ChatWindowData = [
-  {
-    src: '/stock/girl2.jpg',
-    name: 'Arun',
-    active: 'false',
-    time: '5',
-    text: 'See you soon',
-  },
-  {
-    src: '/stock/girl2.jpg',
-    name: 'Deepak Kumar',
-    active: 'false',
-    time: '5',
-    text: 'See you soon',
-    current: 'false',
-  },
-  {
-    src: '/stock/girl2.jpg',
-    name: 'John Doe',
-    active: 'false',
-    time: '5',
-    text: 'See you soon',
-  },
-  {
-    src: '/stock/girl2.jpg',
-    name: 'Nisha Sharma',
-    active: 'false',
-    time: '5',
-    text: 'See you soon',
-  },
-  {
-    src: '/stock/girl2.jpg',
-    name: 'Nisha Sharma',
-    active: 'false',
-    time: '5',
-    text: 'See you soon',
-  },
-]
+import { useDispatch, useSelector } from 'react-redux'
+import { getChats } from '../../../services/chat'
+import { setActiveChatId } from '../../../store/actions/chatActions'
 
 const Index = () => {
   const router = useRouter()
+  const dispatch = useDispatch()
+
+  let token = useSelector((state) => state.auth.token)
+  let profileId = useSelector((state) => state.app.currentProfile)
+
+  const [chats, setChats] = useState([])
+
+  useEffect(() => {
+    getChats(token, profileId).then((res) => {
+      setChats(res)
+    })
+  }, [token, profileId])
+
+  const clickHandler = (chatId) => {
+    dispatch(setActiveChatId(chatId))
+    router.push('/messages')
+  }
+
+  if (!chats) {
+    return null
+  }
 
   return (
     <div
@@ -58,23 +42,16 @@ const Index = () => {
           </select>
         </div>
       </div>
-      {ChatWindowData.map((data, index) => (
-        <div
-          key={
-            // () => uuid()
-            index
-          }
-          className="bg-white"
-        >
-          <ChatWindowContact
-            src={data.src}
-            name={data.name}
-            text={data.text}
-            active={data.active}
-            time={data.time}
-            current={data.current}
-          />
-        </div>
+      {chats.map((chat) => (
+        <ChatWindowContact
+          clickHandler={() => clickHandler(chat.id)}
+          src={chat.sender_avatar_url}
+          name={chat.sender_name}
+          text={chat.last_msg.message}
+          active={false}
+          time={chat.last_msg.created_at}
+          current={false}
+        />
       ))}
       <div
         style={{ color: '#4968FF' }}
