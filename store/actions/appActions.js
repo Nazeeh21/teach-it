@@ -1,6 +1,8 @@
 import api from '../../api'
+import axios from 'axios'
 import {
   CHANGE_USER_TYPE,
+  FETCH_PROVIDER_SERVICES,
   FETCH_SEARCH_RESULTS,
   FETCH_SERVICES,
   FETCH_USER_SERVICES,
@@ -14,6 +16,51 @@ export const changeUserType = (newType) => {
   return {
     type: CHANGE_USER_TYPE,
     newType,
+  }
+}
+
+export const fetchProviderService = (
+  providerId,
+  token,
+  currentProfileId,
+  nextPageUrl = null
+) => {
+  return async (dispatch) => {
+    try {
+      var flag = false
+
+      while (!flag) {
+        try {
+          if (!nextPageUrl) {
+            var res = await api.get(`provider/${providerId}/service/`, {
+              headers: {
+                Authorization: `Token ${token}`,
+                'X-Profile-ID': currentProfileId,
+              },
+            })
+          } else {
+            var res = await axios.get(nextPageUrl, {
+              headers: {
+                Authorization: `Token ${token}`,
+                'X-Profile-ID': currentProfileId,
+              },
+            })
+          }
+          flag = true
+          console.log('Fetch Provider Service ', res.data)
+        } catch (e) {
+          console.log(e)
+        }
+      }
+    } catch (e) {
+      console.log(e)
+    }
+    dispatch({
+      type: FETCH_PROVIDER_SERVICES,
+      services: res.data.results,
+      nextURL: res.data.next,
+      previousURL: res.data.previous,
+    })
   }
 }
 

@@ -65,9 +65,11 @@ const Index = () => {
         imgsrc='/stock/market.jpg'
         media={{ text: 'Rich Media', color: 'green', src: 'rich-media.svg' }}
       /> */}
-      <div className="m-auto w-2/12">
-        <ViewMoreButton clickHandler={viewMoreClickHandler} />
-      </div>
+      {nextServicePageUrl && (
+        <div className="m-auto w-2/12">
+          <ViewMoreButton clickHandler={viewMoreClickHandler} />
+        </div>
+      )}
       <h3 className="text-2xl mb-6">Trending services</h3>
       <div className="grid grid-flow-row grid-cols-2 w-full gap-6 mb-6">
         <CardFilledWithImage

@@ -5,26 +5,40 @@ import { CardFilledWithImage } from '../../components/Cards/Cards'
 import { ViewMoreButton } from '../../components/Buttons/Index'
 import { useRouter } from 'next/router'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchServices } from '../../store/actions/appActions'
+import {
+  fetchProviderService,
+  fetchServices,
+} from '../../store/actions/appActions'
 
 const Index = () => {
   const router = useRouter()
   const dispatch = useDispatch()
   const [query, setQuery] = useState('')
 
-  let services = useSelector((state) => state.app.services)
+  let services = useSelector((state) => state.app.providerService)
   const providerId = useSelector((state) => state.app.providerId)
   const currentProfileId = useSelector((state) => state.app.currentProfile)
+  const token = useSelector((state) => state.auth.token)
+  const nextUrl = useSelector((state) => state.app.nextProviderServiceUrl)
+  const previousUrl = useSelector(
+    (state) => state.app.previousProviderServiceUrl
+  )
 
   const handleCategoriesRedirect = () => {
     router.push('/search')
   }
 
   useEffect(() => {
-    dispatch(fetchServices())
-  }, [])
+    if (!nextUrl && !previousUrl) {
+      dispatch(fetchProviderService(providerId, token, currentProfileId))
+    }
+  }, [services])
 
   console.log('profileId', currentProfileId)
+
+  const viewMoreClickHandler = () => {
+    dispatch(fetchProviderService(providerId, token, currentProfileId, nextUrl))
+  }
 
   return (
     <React.Fragment>
@@ -35,24 +49,22 @@ const Index = () => {
         </div>
       </div>
 
-      {services
-        .filter((service) => service.provider == providerId)
-        .map((service) => (
-          <CompactServiceCard
-            buttonClickHandler={() =>
-              router.push(`/view-service/${service.pk}`)
-            }
-            key={service.pk}
-            category={service.category}
-            languages={service.languages}
-            descriptionText={service.description}
-            paymentType={service.payment_type}
-            servicePk={service.pk}
-          />
-        ))}
-      <div className="m-auto w-2/12">
-        <ViewMoreButton clickHandler={() => router.push('/services')} />
-      </div>
+      {services.map((service) => (
+        <CompactServiceCard
+          buttonClickHandler={() => router.push(`/view-service/${service.pk}`)}
+          key={service.pk}
+          category={service.category}
+          languages={service.languages}
+          descriptionText={service.description}
+          paymentType={service.payment_type}
+          servicePk={service.pk}
+        />
+      ))}
+      {nextUrl && (
+        <div className="m-auto w-2/12">
+          <ViewMoreButton clickHandler={viewMoreClickHandler} />
+        </div>
+      )}
       <h3 className="text-2xl mb-6">Trending services</h3>
       <div className="grid grid-flow-row grid-cols-2 w-full gap-6 mb-6">
         <CardFilledWithImage
