@@ -3,11 +3,15 @@ import Pills3 from '../../../components/Misc/3Pills/3Pills'
 import Pills2 from '../../../components/Misc/3Pills/2Pills'
 import DatePicker from '../../Expert/CreateService/LiveServiceFormComponents/DateSelector/DatePicker/DatePicker'
 import { PrimaryButton } from '../../../components/Buttons/Index'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { fetchSearchResults } from '../../../store/actions/appActions'
 
 const Index = () => {
   const dispatch = useDispatch()
+
+  const initialFetch = useSelector(
+    (state) => state.app.initialSearchResultFetched
+  )
 
   const [activeTypeLabel, setTypeLabel] = useState('live')
   const [activeTimingLabel, setTimingLabel] = useState('anytime')
@@ -24,19 +28,21 @@ const Index = () => {
   useEffect(() => {
     console.log('Sending the request')
     // const convertedDate = new Date(date)
-    dispatch(
-      fetchSearchResults({
-        type: activeTypeLabel,
-        max_cost: maxCost,
-        // rating: minRating,
-        provider_type: expertType,
-        language,
-        min_duration: duration,
-        max_duration: duration,
-        provider_location: expertLocation,
-        // starts_after: convertedDate,
-      })
-    )
+    if (!initialFetch) {
+      dispatch(
+        fetchSearchResults({
+          type: activeTypeLabel,
+          max_cost: maxCost,
+          // rating: minRating,
+          provider_type: expertType,
+          language,
+          min_duration: duration,
+          max_duration: duration,
+          provider_location: expertLocation,
+          // starts_after: convertedDate,
+        })
+      )
+    }
   }, [
     activeTypeLabel,
     activeTimingLabel,
