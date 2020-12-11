@@ -21,7 +21,13 @@ const Contacts = () => {
 
   const currentContact = useSelector((state) => state.chat.activeChatId)
 
-  const chatWindowContactClickHandler = (id) => dispatch(setActiveChatId(id))
+  // const executeScroll = () =>
+  //   document.getElementById('empty-div').scrollIntoView({ behavior: 'smooth' })
+
+  const chatWindowContactClickHandler = (id) => {
+    dispatch(setActiveChatId(id))
+    // executeScroll()
+  }
 
   useEffect(() => {
     fetchOtherProfiles(token, profileId)

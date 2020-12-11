@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import CompactServiceCard from './CompactServiceCard/CompactServiceCard'
 // import { ChatWindowContact } from '../../components/Chat/ChatWindowContact'
 import Message from '../../components/Chat/Message'
@@ -8,6 +8,8 @@ import { getChatData, sendMessage } from '../../services/chat'
 import { useSelector } from 'react-redux'
 
 const Chat = ({ label = 'Chat', disabled, expertDetails }) => {
+  let emptyDivRef = useRef(null)
+
   const chatId = useSelector((state) => state.chat.activeChatId)
 
   const token = useSelector((state) => state.auth.token)
@@ -17,6 +19,16 @@ const Chat = ({ label = 'Chat', disabled, expertDetails }) => {
 
   const [input, setInput] = useState('')
   const [fetch, triggerFetch] = useState(false)
+
+  const executeScroll = () => {
+    if (chatId) {
+      emptyDivRef.current.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+
+  useEffect(() => {
+    executeScroll()
+  }, [messages])
 
   useEffect(() => {
     getChatData(token, profileId, chatId)
@@ -76,10 +88,7 @@ const Chat = ({ label = 'Chat', disabled, expertDetails }) => {
               <h4>{expertDetails.name}</h4>
             </div>
           )}
-          <div
-            style={{ maxHeight: '70vh' }}
-            className="grid grid-flow-row overflow-y-scroll"
-          >
+          <div style={{ maxHeight: '70vh' }} className="grid grid-flow-row">
             {messages.map((message) => {
               return (
                 <Message
@@ -92,6 +101,7 @@ const Chat = ({ label = 'Chat', disabled, expertDetails }) => {
                 />
               )
             })}
+            <div ref={emptyDivRef} id="empty-div"></div>
           </div>
         </div>
         <div

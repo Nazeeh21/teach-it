@@ -10,6 +10,8 @@ const LeftNavItem = ({ icon, label, clickHandler, isActive, userType }) => {
 
   const inactiveSuffix = hovered ? iconColor : 'grey'
 
+  const textColor = hovered ? color : 'primary'
+
   if (isActive) {
     return (
       <div onClick={clickHandler} className="flex flex-row items-center m-2">
@@ -20,14 +22,20 @@ const LeftNavItem = ({ icon, label, clickHandler, isActive, userType }) => {
   }
 
   return (
-    <div
-      onMouseOver={() => setHovered(true)}
-      onMouseOut={() => setHovered(false)}
-      onClick={clickHandler}
-      className="flex flex-row items-center m-2"
-    >
-      <Icon src={`${icon}_${inactiveSuffix}.svg`} alt={label} />
-      <p className={`cursor-pointer hover:text-${color} ml-1`}>{label}</p>
+    <div onClick={clickHandler} className="flex flex-row items-center m-2">
+      <div
+        onMouseOver={() => setHovered(true)}
+        onMouseOut={() => setHovered(false)}
+      >
+        <Icon src={`${icon}_${inactiveSuffix}.svg`} alt={label} />
+      </div>
+      <p
+        onMouseOver={() => setHovered(true)}
+        onMouseOut={() => setHovered(false)}
+        className={`cursor-pointer ml-1 text-${textColor}`}
+      >
+        {label}
+      </p>
     </div>
   )
 }
