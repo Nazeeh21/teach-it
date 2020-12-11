@@ -222,7 +222,6 @@ export const fetchSearchResults = (payload) => {
         type: FETCH_SEARCH_RESULTS,
         results: res.data.results,
         nextURL: res.data.next,
-        initialFetch: true,
       })
     } catch (e) {
       console.log('Error while fetching search results', e)

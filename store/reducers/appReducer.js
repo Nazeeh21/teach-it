@@ -27,7 +27,6 @@ const initialState = {
   currentProfile: null,
   searchResults: [],
   nextSearchResultUrl: null,
-  initialSearchResultFetched: false,
   userServices: [],
   nextUserServicesUrl: null,
   // previousUserServicesUrl: null,
@@ -94,7 +93,6 @@ const reducer = (state = initialState, action) => {
         ...state,
         searchResults: action.results,
         nextSearchResultUrl: action.nextURL,
-        initialSearchResultFetched: action.initialFetch,
       }
     case SET_PROVIDER_ID:
       return {
