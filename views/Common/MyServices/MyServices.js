@@ -8,11 +8,19 @@ import {
   fetchServices,
   fetchUserServices,
 } from '../../../store/actions/appActions'
+import { ViewMoreButton } from '../../../components/Buttons/Index'
 
 const MyServices = () => {
   const [showSearchbar, toggleShowSearchBar] = useState(false)
   const [query, setQuery] = useState('')
   const services = useSelector((state) => state.app.userServices)
+  const nextUserServiceUrl = useSelector(
+    (state) => state.app.nextUserServicesUrl
+  )
+  // const previousUserServiceUrl = useSelector(state => state.app.previousUserServicesUrl)
+  const initialFetch = useSelector(
+    (state) => state.app.initialUserServicesFetched
+  )
 
   const [activePillLabel, setLabel] = useState('all')
 
@@ -21,8 +29,14 @@ const MyServices = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(fetchUserServices())
-  }, [])
+    if (!initialFetch) {
+      dispatch(fetchUserServices())
+    }
+  }, [services])
+
+  const viewMoreClickHandler = () => {
+    dispatch(fetchUserServices(nextUserServiceUrl))
+  }
 
   return (
     <div>
@@ -79,6 +93,12 @@ const MyServices = () => {
         butttonText='View'
         media={{ text: 'Rich Media', color: 'green', src: 'rich-media.svg' }}
       /> */}
+
+      {nextUserServiceUrl && (
+        <div className="m-auto w-2/12">
+          <ViewMoreButton clickHandler={viewMoreClickHandler} />
+        </div>
+      )}
     </div>
   )
 }

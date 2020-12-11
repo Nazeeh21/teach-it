@@ -59,7 +59,8 @@ export const fetchProviderService = (
       type: FETCH_PROVIDER_SERVICES,
       services: res.data.results,
       nextURL: res.data.next,
-      previousURL: res.data.previous,
+      // previousURL: res.data.previous,
+      initialFetch: true,
     })
   }
 }
@@ -102,26 +103,39 @@ export const fetchServices = (nextPageUrl = null) => {
       type: FETCH_SERVICES,
       services: res.data.results,
       nextURL: res.data.next,
-      previousURL: res.data.previous,
+      // previousURL: res.data.previous,
+      initialFetch: true,
     })
   }
 }
 
-export const fetchUserServices = () => {
+export const fetchUserServices = (nextPageUrl = null) => {
   return async (dispatch) => {
     try {
-      const res = await api.get('seeker/service/', {
-        headers: {
-          Authorization: `Token ${localStorage.getItem('token')}`,
-          'X-Profile-ID': localStorage.getItem('currentProfile'),
-        },
-      })
+      if (!nextPageUrl) {
+        var res = await api.get('seeker/service/', {
+          headers: {
+            Authorization: `Token ${localStorage.getItem('token')}`,
+            'X-Profile-ID': localStorage.getItem('currentProfile'),
+          },
+        })
+      } else {
+        var res = await axios.get(nextPageUrl, {
+          headers: {
+            Authorization: `Token ${localStorage.getItem('token')}`,
+            'X-Profile-ID': localStorage.getItem('currentProfile'),
+          },
+        })
+      }
 
-      // console.log('Fetch service response', res)
+      console.log('Fetch User service response', res.data)
 
       dispatch({
         type: FETCH_USER_SERVICES,
         services: res.data.results,
+        nextURL: res.data.next,
+        // previousURL: res.data.previous,
+        initialFetch: true,
       })
     } catch (e) {
       console.log(e)

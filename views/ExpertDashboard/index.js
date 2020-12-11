@@ -20,8 +20,11 @@ const Index = () => {
   const currentProfileId = useSelector((state) => state.app.currentProfile)
   const token = useSelector((state) => state.auth.token)
   const nextUrl = useSelector((state) => state.app.nextProviderServiceUrl)
-  const previousUrl = useSelector(
-    (state) => state.app.previousProviderServiceUrl
+  // const previousUrl = useSelector(
+  //   (state) => state.app.previousProviderServiceUrl
+  // )
+  const initialFetch = useSelector(
+    (state) => state.app.intialProviderServiceFetched
   )
 
   const handleCategoriesRedirect = () => {
@@ -29,7 +32,7 @@ const Index = () => {
   }
 
   useEffect(() => {
-    if (!nextUrl && !previousUrl) {
+    if (!initialFetch) {
       dispatch(fetchProviderService(providerId, token, currentProfileId))
     }
   }, [services])

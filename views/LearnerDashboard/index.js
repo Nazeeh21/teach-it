@@ -15,16 +15,17 @@ const Index = () => {
   const nextServicePageUrl = useSelector(
     (state) => state.app.nextServicePageUrl
   )
-  const previousServicePageUrl = useSelector(
-    (state) => state.app.previousPageURL
-  )
+  // const previousServicePageUrl = useSelector(
+  //   (state) => state.app.previousPageURL
+  // )
+  const initialFetch = useSelector((state) => state.app.initialServiceFetched)
 
   const handleCategoriesRedirect = () => {
     router.push('/search')
   }
 
   useEffect(() => {
-    if (!nextServicePageUrl && !previousServicePageUrl) {
+    if (!initialFetch) {
       dispatch(fetchServices())
     }
   }, [services])
