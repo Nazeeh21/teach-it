@@ -88,7 +88,7 @@ const Index = () => {
       mobile: `${mobile}`,
     }
 
-    dispatch(saveProfile(formData))
+    dispatch(saveProfile(formData, certificates))
   }
 
   const inputDataChangeHandler = (value, field, type) => {
@@ -107,6 +107,8 @@ const Index = () => {
 
   const [emailModal, toggleEmailModal] = useState(false)
   const [mobileModal, toggleMobileModal] = useState(false)
+
+  const [certificates, setCertificates] = useState([])
 
   if (!fetchedData) {
     return null
@@ -292,13 +294,31 @@ const Index = () => {
               )}
           </div>
 
-          <Upload label="Demo videos" />
-          <Upload label="Certificates" />
+          {/* <Upload key="demoVideos" files={certificates} label="Demo videos" imageInputChangeHandler={data => alert('Input for video clicked')} /> */}
+          <div>
+            <Upload
+              key="certificates"
+              files={certificates}
+              label="Certificates"
+              imageInputChangeHandler={(data) => {
+                // alert('Input for certificates clicked')
+                const newCertificates = [...certificates]
+                newCertificates.push(data)
+                setCertificates(newCertificates)
+                // console.log('new Certificates ', certificates)
+              }}
+              cancelClickHandler={(index) => {
+                const newCertificates = [...certificates]
+                newCertificates.splice(index, 1)
+                setCertificates(newCertificates)
+              }}
+            />
+          </div>
 
           <div className="w-1/3 mt-6">
             <PrimaryButton
               label="Save"
-              disabled={!isValid.isFormValid}
+              // disabled={!isValid.isFormValid}
               clickHandler={saveButtonClickHandler}
             />
           </div>
