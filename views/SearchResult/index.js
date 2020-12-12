@@ -2,7 +2,11 @@ import React, { useEffect } from 'react'
 import CompactServiceCard from '../Chat/CompactServiceCard/CompactServiceCard'
 import { useRouter } from 'next/router'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchServices } from '../../store/actions/appActions'
+import {
+  fetchNextSearchResults,
+  fetchServices,
+} from '../../store/actions/appActions'
+import { ViewMoreButton } from '../../components/Buttons/Index'
 
 const Index = () => {
   const router = useRouter()
@@ -14,6 +18,12 @@ const Index = () => {
   }, [])
 
   const results = useSelector((state) => state.app.searchResults)
+  const nextPageUrl = useSelector((state) => state.app.nextSearchResultUrl)
+  const payload = useSelector((state) => state.app.payloadForSearch)
+
+  const viewMoreClickHandler = () => {
+    dispatch(fetchNextSearchResults(nextPageUrl, payload))
+  }
 
   return (
     <div className="w-full">
@@ -31,6 +41,12 @@ const Index = () => {
           startDate={service.start_at}
         />
       ))}
+
+      {nextPageUrl && (
+        <div className="m-auto w-2/12">
+          <ViewMoreButton clickHandler={viewMoreClickHandler} />
+        </div>
+      )}
     </div>
   )
 }

@@ -10,6 +10,7 @@ const {
   FETCH_USER_SERVICES,
   SET_PROVIDER_ID,
   FETCH_PROVIDER_SERVICES,
+  FETCH_MORE_SEARCH_RESULTS,
 } = require('../actionTypes')
 
 const initialState = {
@@ -27,6 +28,7 @@ const initialState = {
   currentProfile: null,
   searchResults: [],
   nextSearchResultUrl: null,
+  payloadForSearch: null,
   userServices: [],
   nextUserServicesUrl: null,
   // previousUserServicesUrl: null,
@@ -89,9 +91,18 @@ const reducer = (state = initialState, action) => {
         currentProfile: null,
       }
     case FETCH_SEARCH_RESULTS:
+      // const newSearchResult = [...state.searchResults, ...action.results]
       return {
         ...state,
         searchResults: action.results,
+        nextSearchResultUrl: action.nextURL,
+        payloadForSearch: action.payload,
+      }
+    case FETCH_MORE_SEARCH_RESULTS:
+      const newSearchResult = [...state.searchResults, ...action.results]
+      return {
+        ...state,
+        searchResults: newSearchResult,
         nextSearchResultUrl: action.nextURL,
       }
     case SET_PROVIDER_ID:

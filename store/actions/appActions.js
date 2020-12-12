@@ -2,6 +2,7 @@ import api from '../../api'
 import axios from 'axios'
 import {
   CHANGE_USER_TYPE,
+  FETCH_MORE_SEARCH_RESULTS,
   FETCH_PROVIDER_SERVICES,
   FETCH_SEARCH_RESULTS,
   FETCH_SERVICES,
@@ -203,7 +204,7 @@ export const logout = () => {
 }
 
 export const fetchSearchResults = (payload) => {
-  console.log('Recieved payload', payload)
+  // console.log('Recieved payload', payload)
 
   return async (dispatch) => {
     try {
@@ -220,6 +221,34 @@ export const fetchSearchResults = (payload) => {
 
       dispatch({
         type: FETCH_SEARCH_RESULTS,
+        results: res.data.results,
+        nextURL: res.data.next,
+        payload: payload,
+      })
+    } catch (e) {
+      console.log('Error while fetching search results', e)
+    }
+  }
+}
+
+export const fetchNextSearchResults = (nextUrl, payload) => {
+  // console.log('Recieved payload', payload)
+
+  return async (dispatch) => {
+    try {
+      const res = await axios.get(nextUrl, {
+        params: {
+          ...payload,
+        },
+        headers: {
+          Authorization: `Token ${localStorage.getItem('token')}`,
+        },
+      })
+
+      console.log('Fetched next search results', res.data)
+
+      dispatch({
+        type: FETCH_MORE_SEARCH_RESULTS,
         results: res.data.results,
         nextURL: res.data.next,
       })
