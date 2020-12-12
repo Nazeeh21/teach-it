@@ -11,6 +11,9 @@ const {
   SET_PROVIDER_ID,
   FETCH_PROVIDER_SERVICES,
   FETCH_MORE_SEARCH_RESULTS,
+  FETCH_NEXT_SERVICES,
+  FETCH_NEXT_PROVIDER_SERVICES,
+  FETCH_NEXT_USER_SERVICES,
 } = require('../actionTypes')
 
 const initialState = {
@@ -19,11 +22,11 @@ const initialState = {
   services: [],
   nextServicePageUrl: null,
   // previousServicePageURL: null,
-  initialServiceFetched: false,
+  // initialServiceFetched: false,
   providerService: [],
   nextProviderServiceUrl: null,
   // previousProviderServiceUrl: null,
-  intialProviderServiceFetched: false,
+  // intialProviderServiceFetched: false,
   viewServiceData: null,
   currentProfile: null,
   searchResults: [],
@@ -32,7 +35,7 @@ const initialState = {
   userServices: [],
   nextUserServicesUrl: null,
   // previousUserServicesUrl: null,
-  initialUserServicesFetched: false,
+  // initialUserServicesFetched: false,
   providerId: null,
 }
 
@@ -44,33 +47,28 @@ const reducer = (state = initialState, action) => {
         userType: action.newType,
       }
     case FETCH_SERVICES:
-      const newService = [...state.services, ...action.services]
-
       return {
         ...state,
-        services: newService,
+        services: action.services,
         nextServicePageUrl: action.nextURL,
         // previousServicePageURL: action.previousURL,
-        initialServiceFetched: action.initialFetch,
+        // initialServiceFetched: action.initialFetch,
       }
     case FETCH_PROVIDER_SERVICES:
-      const newServices = [...state.providerService, ...action.services]
-
       return {
         ...state,
-        providerService: newServices,
+        providerService: action.services,
         nextProviderServiceUrl: action.nextURL,
         // previousProviderServiceUrl: action.previousURL,
-        intialProviderServiceFetched: action.initialFetch,
+        // intialProviderServiceFetched: action.initialFetch,
       }
     case FETCH_USER_SERVICES:
-      const newUserServices = [...state.userServices, ...action.services]
       return {
         ...state,
-        userServices: newUserServices,
+        userServices: action.services,
         nextUserServicesUrl: action.nextURL,
         // previousUserServicesUrl: action.previousURL,
-        initialUserServicesFetched: action.initialFetch,
+        // initialUserServicesFetched: action.initialFetch,
       }
     case FETCH_VIEW_SERVICE:
       return {
@@ -105,6 +103,37 @@ const reducer = (state = initialState, action) => {
         searchResults: newSearchResult,
         nextSearchResultUrl: action.nextURL,
       }
+
+    case FETCH_NEXT_SERVICES:
+      const newService = [...state.services, ...action.services]
+      return {
+        ...state,
+        services: newService,
+        nextServicePageUrl: action.nextURL,
+        // previousServicePageURL: action.previousURL,
+        // initialServiceFetched: action.initialFetch,
+      }
+
+    case FETCH_NEXT_PROVIDER_SERVICES:
+      const newServices = [...state.providerService, ...action.services]
+      return {
+        ...state,
+        providerService: newServices,
+        nextProviderServiceUrl: action.nextURL,
+        // previousProviderServiceUrl: action.previousURL,
+        // intialProviderServiceFetched: action.initialFetch,
+      }
+
+    case FETCH_NEXT_USER_SERVICES:
+      const newUserServices = [...state.userServices, ...action.services]
+      return {
+        ...state,
+        userServices: newUserServices,
+        nextUserServicesUrl: action.nextURL,
+        // previousUserServicesUrl: action.previousURL,
+        // initialUserServicesFetched: action.initialFetch,
+      }
+
     case SET_PROVIDER_ID:
       return {
         ...state,

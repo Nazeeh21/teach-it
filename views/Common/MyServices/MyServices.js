@@ -5,6 +5,7 @@ import { useRouter } from 'next/router'
 import SearchBar from '../../../components/Inputs/SearchBar'
 import { useDispatch, useSelector } from 'react-redux'
 import {
+  fetchNextUserServices,
   fetchServices,
   fetchUserServices,
 } from '../../../store/actions/appActions'
@@ -18,9 +19,9 @@ const MyServices = () => {
     (state) => state.app.nextUserServicesUrl
   )
   // const previousUserServiceUrl = useSelector(state => state.app.previousUserServicesUrl)
-  const initialFetch = useSelector(
-    (state) => state.app.initialUserServicesFetched
-  )
+  // const initialFetch = useSelector(
+  //   (state) => state.app.initialUserServicesFetched
+  // )
 
   const [activePillLabel, setLabel] = useState('all')
 
@@ -29,13 +30,13 @@ const MyServices = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    if (!initialFetch) {
-      dispatch(fetchUserServices())
-    }
-  }, [services])
+    // if (!initialFetch) {
+    dispatch(fetchUserServices())
+    // }
+  }, [])
 
   const viewMoreClickHandler = () => {
-    dispatch(fetchUserServices(nextUserServiceUrl))
+    dispatch(fetchNextUserServices(nextUserServiceUrl))
   }
 
   return (

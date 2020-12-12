@@ -4,7 +4,10 @@ import SearchBar from '../../components/Inputs/SearchBar'
 import { CardFilledWithImage } from '../../components/Cards/Cards'
 import { ViewMoreButton } from '../../components/Buttons/Index'
 import { useRouter } from 'next/router'
-import { fetchServices } from '../../store/actions/appActions'
+import {
+  fetchNextServices,
+  fetchServices,
+} from '../../store/actions/appActions'
 import { useDispatch, useSelector } from 'react-redux'
 
 const Index = () => {
@@ -18,20 +21,21 @@ const Index = () => {
   // const previousServicePageUrl = useSelector(
   //   (state) => state.app.previousPageURL
   // )
-  const initialFetch = useSelector((state) => state.app.initialServiceFetched)
+  // const initialFetch = useSelector((state) => state.app.initialServiceFetched)
 
   const handleCategoriesRedirect = () => {
     router.push('/search')
   }
 
   useEffect(() => {
-    if (!initialFetch) {
-      dispatch(fetchServices())
-    }
-  }, [services])
+    // if (!initialFetch) {
+    console.log('useEffect in LEarnerDashboard')
+    dispatch(fetchServices())
+    // }
+  }, [])
 
   const viewMoreClickHandler = () => {
-    dispatch(fetchServices(nextServicePageUrl))
+    dispatch(fetchNextServices(nextServicePageUrl))
   }
 
   return (

@@ -3,6 +3,9 @@ import axios from 'axios'
 import {
   CHANGE_USER_TYPE,
   FETCH_MORE_SEARCH_RESULTS,
+  FETCH_NEXT_PROVIDER_SERVICES,
+  FETCH_NEXT_SERVICES,
+  FETCH_NEXT_USER_SERVICES,
   FETCH_PROVIDER_SERVICES,
   FETCH_SEARCH_RESULTS,
   FETCH_SERVICES,
@@ -20,33 +23,20 @@ export const changeUserType = (newType) => {
   }
 }
 
-export const fetchProviderService = (
-  providerId,
-  token,
-  currentProfileId,
-  nextPageUrl = null
-) => {
+export const fetchProviderService = (providerId, token, currentProfileId) => {
   return async (dispatch) => {
     try {
       var flag = false
 
       while (!flag) {
         try {
-          if (!nextPageUrl) {
-            var res = await api.get(`provider/${providerId}/service/`, {
-              headers: {
-                Authorization: `Token ${token}`,
-                'X-Profile-ID': currentProfileId,
-              },
-            })
-          } else {
-            var res = await axios.get(nextPageUrl, {
-              headers: {
-                Authorization: `Token ${token}`,
-                'X-Profile-ID': currentProfileId,
-              },
-            })
-          }
+          var res = await api.get(`provider/${providerId}/service/`, {
+            headers: {
+              Authorization: `Token ${token}`,
+              'X-Profile-ID': currentProfileId,
+            },
+          })
+
           flag = true
           console.log('Fetch Provider Service ', res.data)
         } catch (e) {
@@ -61,33 +51,62 @@ export const fetchProviderService = (
       services: res.data.results,
       nextURL: res.data.next,
       // previousURL: res.data.previous,
-      initialFetch: true,
+      // initialFetch: true,
     })
   }
 }
 
-export const fetchServices = (nextPageUrl = null) => {
+export const fetchNextProviderService = (
+  providerId,
+  token,
+  currentProfileId,
+  nextPageUrl = null
+) => {
+  return async (dispatch) => {
+    try {
+      var flag = false
+
+      while (!flag) {
+        try {
+          var res = await axios.get(nextPageUrl, {
+            headers: {
+              Authorization: `Token ${token}`,
+              'X-Profile-ID': currentProfileId,
+            },
+          })
+
+          flag = true
+          console.log('Fetch Next Provider Service ', res.data)
+        } catch (e) {
+          console.log(e)
+        }
+      }
+    } catch (e) {
+      console.log(e)
+    }
+    dispatch({
+      type: FETCH_NEXT_PROVIDER_SERVICES,
+      services: res.data.results,
+      nextURL: res.data.next,
+      // previousURL: res.data.previous,
+      // initialFetch: true,
+    })
+  }
+}
+
+export const fetchServices = () => {
   return async (dispatch) => {
     try {
       var flag = 0
 
       while (flag === 0) {
         try {
-          if (!nextPageUrl) {
-            var res = await api.get('service/', {
-              headers: {
-                Authorization: `Token ${localStorage.getItem('token')}`,
-                'X-Profile-ID': localStorage.getItem('currentProfile'),
-              },
-            })
-          } else {
-            var res = await axios.get(nextPageUrl, {
-              headers: {
-                Authorization: `Token ${localStorage.getItem('token')}`,
-                'X-Profile-ID': localStorage.getItem('currentProfile'),
-              },
-            })
-          }
+          var res = await api.get('service/', {
+            headers: {
+              Authorization: `Token ${localStorage.getItem('token')}`,
+              'X-Profile-ID': localStorage.getItem('currentProfile'),
+            },
+          })
 
           console.log('Fetch service response', res.data)
 
@@ -105,29 +124,55 @@ export const fetchServices = (nextPageUrl = null) => {
       services: res.data.results,
       nextURL: res.data.next,
       // previousURL: res.data.previous,
-      initialFetch: true,
+      // initialFetch: true,
     })
   }
 }
 
-export const fetchUserServices = (nextPageUrl = null) => {
+export const fetchNextServices = (nextPageUrl = null) => {
   return async (dispatch) => {
     try {
-      if (!nextPageUrl) {
-        var res = await api.get('seeker/service/', {
-          headers: {
-            Authorization: `Token ${localStorage.getItem('token')}`,
-            'X-Profile-ID': localStorage.getItem('currentProfile'),
-          },
-        })
-      } else {
-        var res = await axios.get(nextPageUrl, {
-          headers: {
-            Authorization: `Token ${localStorage.getItem('token')}`,
-            'X-Profile-ID': localStorage.getItem('currentProfile'),
-          },
-        })
+      var flag = 0
+
+      while (flag === 0) {
+        try {
+          var res = await axios.get(nextPageUrl, {
+            headers: {
+              Authorization: `Token ${localStorage.getItem('token')}`,
+              'X-Profile-ID': localStorage.getItem('currentProfile'),
+            },
+          })
+
+          console.log('Fetch next service response', res.data)
+
+          flag = 1
+        } catch (e) {
+          console.log(e)
+        }
       }
+    } catch (err) {
+      console.log(err)
+    }
+
+    dispatch({
+      type: FETCH_NEXT_SERVICES,
+      services: res.data.results,
+      nextURL: res.data.next,
+      // previousURL: res.data.previous,
+      // initialFetch: true,
+    })
+  }
+}
+
+export const fetchUserServices = () => {
+  return async (dispatch) => {
+    try {
+      var res = await api.get('seeker/service/', {
+        headers: {
+          Authorization: `Token ${localStorage.getItem('token')}`,
+          'X-Profile-ID': localStorage.getItem('currentProfile'),
+        },
+      })
 
       console.log('Fetch User service response', res.data)
 
@@ -136,7 +181,32 @@ export const fetchUserServices = (nextPageUrl = null) => {
         services: res.data.results,
         nextURL: res.data.next,
         // previousURL: res.data.previous,
-        initialFetch: true,
+        // initialFetch: true,
+      })
+    } catch (e) {
+      console.log(e)
+    }
+  }
+}
+
+export const fetchNextUserServices = (nextPageUrl) => {
+  return async (dispatch) => {
+    try {
+      var res = await axios.get(nextPageUrl, {
+        headers: {
+          Authorization: `Token ${localStorage.getItem('token')}`,
+          'X-Profile-ID': localStorage.getItem('currentProfile'),
+        },
+      })
+
+      console.log('Fetch Next User service response', res.data)
+
+      dispatch({
+        type: FETCH_NEXT_USER_SERVICES,
+        services: res.data.results,
+        nextURL: res.data.next,
+        // previousURL: res.data.previous,
+        // initialFetch: true,
       })
     } catch (e) {
       console.log(e)

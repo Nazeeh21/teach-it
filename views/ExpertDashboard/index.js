@@ -6,6 +6,7 @@ import { ViewMoreButton } from '../../components/Buttons/Index'
 import { useRouter } from 'next/router'
 import { useDispatch, useSelector } from 'react-redux'
 import {
+  fetchNextProviderService,
   fetchProviderService,
   fetchServices,
 } from '../../store/actions/appActions'
@@ -23,24 +24,27 @@ const Index = () => {
   // const previousUrl = useSelector(
   //   (state) => state.app.previousProviderServiceUrl
   // )
-  const initialFetch = useSelector(
-    (state) => state.app.intialProviderServiceFetched
-  )
+  // const initialFetch = useSelector(
+  //   (state) => state.app.intialProviderServiceFetched
+  // )
 
   const handleCategoriesRedirect = () => {
     router.push('/search')
   }
 
   useEffect(() => {
-    if (!initialFetch) {
-      dispatch(fetchProviderService(providerId, token, currentProfileId))
-    }
-  }, [services])
+    // if (!initialFetch) {
+    console.log('useEffect in ExpertDashboard')
+    dispatch(fetchProviderService(providerId, token, currentProfileId))
+    // }
+  }, [])
 
   console.log('profileId', currentProfileId)
 
   const viewMoreClickHandler = () => {
-    dispatch(fetchProviderService(providerId, token, currentProfileId, nextUrl))
+    dispatch(
+      fetchNextProviderService(providerId, token, currentProfileId, nextUrl)
+    )
   }
 
   return (
