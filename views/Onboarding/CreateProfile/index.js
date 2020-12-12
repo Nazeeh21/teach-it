@@ -71,7 +71,7 @@ const Index = () => {
       >
         {arr.map((val, index) => (
           <Form
-            key={() => uuid()}
+            key={index}
             name={formData[index]['name']}
             email={formData[index]['email']}
             age={formData[index]['age']}

@@ -17,9 +17,9 @@ const Index = ({ navItems, destructiveAction = 'Unsubscribe' }) => {
 
   return (
     <div className="bg-white rounded-lg pt-4 pb-4">
-      {navItems.map((item) => (
+      {navItems.map((item, index) => (
         <NavItem
-          key={() => uuid()}
+          key={index}
           link={item.link}
           label={item.label}
           active={router.pathname === item.link}

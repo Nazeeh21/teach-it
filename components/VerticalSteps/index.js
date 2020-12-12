@@ -7,7 +7,7 @@ const Index = ({ items, activeStep }) => {
     <div className="bg-white rounded-lg p-4 shadow-sm flex flex-col">
       {items.map((item, index) => (
         <Step
-          key={() => uuid()}
+          key={index}
           label={item}
           index={index + 1}
           active={index === activeStep - 1}

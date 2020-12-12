@@ -7,14 +7,9 @@ const ProfileDropdown = ({ profiles }) => (
     style={{ border: '1px solid #6F6E7B', width: 'fitContent' }}
   >
     <select className="w-full ">
-      {profiles.map((profile) => {
+      {profiles.map((profile, index) => {
         return (
-          <option
-            key={() => uuid()}
-            className="m-1 p-3"
-            key={profile}
-            value={profile}
-          >
+          <option key={index} className="m-1 p-3" key={profile} value={profile}>
             {/* <div className='bg-gradient-to-r from-orange-400 via-red-500 to-pink-500'/> */}
             {profile}
           </option>
