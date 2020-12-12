@@ -32,8 +32,8 @@ const DateAndTimePicker = () => (
         style={{ width: 'fitContent' }}
       >
         <select className="bg-lightGrey w-full ">
-          {WeekDays.map((day) => (
-            <option key={() => uuid()} className="m-1 p-3">
+          {WeekDays.map((day, index) => (
+            <option key={index} className="m-1 p-3">
               {day}
             </option>
           ))}
@@ -89,8 +89,8 @@ const DateAndTimePicker = () => (
             style={{ width: 'fitContent' }}
           >
             <select className="bg-lightGrey w-full ">
-              {timeStamp.map((time) => (
-                <option key={() => uuid()} className="">
+              {timeStamp.map((time, index) => (
+                <option key={index} className="">
                   {time}
                 </option>
               ))}

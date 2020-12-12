@@ -13,6 +13,7 @@ import { fetchProfileData } from '../../../services/settings'
 import { Upload, Switch, Label, Clickable } from './Util'
 import EmailModal from './EmailModal'
 import MobileModal from './MobileModal'
+import { fetchCertificates } from '../../../services/profileSettings'
 
 const Index = () => {
   const dispatch = useDispatch()
@@ -31,9 +32,15 @@ const Index = () => {
       })
   }, [shouldFetch])
 
+  const [fetchedCertificates, setFetchedCertificates] = useState([])
   useEffect(() => {
     console.log('Fetched data', fetchedData)
+    fetchCertificates()
+      .then((res) => setFetchedCertificates(res))
+      .catch((e) => console.log(e))
   }, [fetchedData])
+
+  console.log('Fetched Certificates in Profile.js', fetchedCertificates)
 
   const [displayName, setDisplayName] = useState('')
   const [age, setAge] = useState('')
@@ -84,8 +91,8 @@ const Index = () => {
       bio: `${oneLineBio}`,
       age: `${age}`,
       balance: 0,
-      email: `${primaryEmail}`,
-      mobile: `${mobile}`,
+      // email: `${primaryEmail}`,
+      // mobile: `${mobile}`,
     }
 
     dispatch(saveProfile(formData, certificates))
@@ -295,11 +302,13 @@ const Index = () => {
           </div>
 
           {/* <Upload key="demoVideos" files={certificates} label="Demo videos" imageInputChangeHandler={data => alert('Input for video clicked')} /> */}
-          <div>
+
+          <div className="mb-4">
             <Upload
               key="certificates"
               files={certificates}
               label="Certificates"
+              fetchedCertificates={fetchedCertificates}
               imageInputChangeHandler={(data) => {
                 // alert('Input for certificates clicked')
                 const newCertificates = [...certificates]

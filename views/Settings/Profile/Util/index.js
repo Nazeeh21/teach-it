@@ -35,6 +35,31 @@ const UploadImageAndVideo = ({ src, cancelClickHandler, index }) => {
   )
 }
 
+export const DisplayCertificates = ({ src }) => {
+  return (
+    <div
+      // style={{
+      //   backgroundImage: `url(${src})`,
+      //   backgroundRepeat: 'no-repeat',
+      //   backgroundSize: 'cover',
+      //   // width: 'full',
+      //   // height: 'full',
+      // }}
+      // className="w-2/12 max-w-3/12 h-24 mb-2 inline-block rounded-lg mr-6"
+      style={{
+        backgroundImage: `url(${src})`,
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
+        width: 'full',
+        // height: 'full',
+      }}
+      // className="w-auto max-w-9/12 h-full min-h-24 rounded-lg mr-6"
+      className="w-auto max-w-9/12 h-24 mb-2 inline-block rounded-lg mr-6"
+    >
+      <CrossButton clickHandler={() => {}} />
+    </div>
+  )
+}
 export const Switch = ({ label }) => (
   <div className="grid grid-cols-2 items-center mt-4">
     <p className="text-lg">{label}</p>
@@ -53,6 +78,7 @@ export const Upload = ({
   files,
   imageInputChangeHandler,
   cancelClickHandler,
+  fetchedCertificates,
 }) => {
   console.log('In Upload ', files)
   files.map((data) => console.log('InUpload', data.forPreview))
@@ -66,6 +92,9 @@ export const Upload = ({
         <div>
           <UploadButton imageInputChangeHandler={imageInputChangeHandler} />
         </div>
+        {fetchedCertificates.map((data, index) => (
+          <DisplayCertificates key={index} src={data} />
+        ))}
         {files.map((data, index) => (
           <UploadImageAndVideo
             key={index}

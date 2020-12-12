@@ -42,8 +42,9 @@ const Index = () => {
           </select>
         </div>
       </div>
-      {chats.map((chat) => (
+      {chats.map((chat, index) => (
         <ChatWindowContact
+          key={index}
           clickHandler={() => clickHandler(chat.id)}
           src={chat.sender_avatar_url}
           name={chat.sender_name}
