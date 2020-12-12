@@ -84,8 +84,8 @@ const Index = () => {
       bio: `${oneLineBio}`,
       age: `${age}`,
       balance: 0,
-      email: `${primaryEmail}`,
-      mobile: `${mobile}`,
+      // email: `${primaryEmail}`,
+      // mobile: `${mobile}`,
     }
 
     dispatch(saveProfile(formData, certificates))
