@@ -90,15 +90,27 @@ const Chat = ({ label = 'Chat', disabled, expertDetails }) => {
           )}
           <div style={{ maxHeight: '70vh' }} className="grid grid-flow-row">
             {messages.map((message) => {
+              // console.log('In Chat.js logging message ', message)
+              // console.log('In Chat.js logging profileId ', profileId)
+
+              let author = { isSelf: false }
+              if (message.sender == profileId) {
+                author.isSelf = true
+              }
               return (
-                <Message
-                  key={message.created_at}
-                  type="text"
-                  author={{ isSelf: message.sender == profileId }}
-                  content={message.message}
-                  status={'Delivered'}
-                  time={message.created_at}
-                />
+                <div className={author.isSelf && ' grid grid-cols-2'}>
+                  {author.isSelf && <div />}
+                  <Message
+                    key={message.created_at}
+                    type="text"
+                    author={author}
+                    content={message.message}
+                    status={'Delivered'}
+                    time={message.created_at}
+                    width={author.isSelf ? 'w-full' : 'w-6/12'}
+                  />
+                  {!author.isSelf && <div />}
+                </div>
               )
             })}
             <div ref={emptyDivRef} id="empty-div"></div>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Container from './Container/Container'
 import TimeSelector from '../TimeSelector/TimeSelector'
 import DurationSelector from '../DurationSelector/DurationSelector'
@@ -8,6 +8,9 @@ import { v4 as uuid } from 'uuid'
 
 const Index = ({ mileStoneData, setMileStoneData }) => {
   const [arr, setArr] = useState([0])
+  const [activeMileStone, setActiveMilestone] = useState(false)
+  const [activeCustomize, setActiveCustomize] = useState(false)
+
   const [formData, setFormData] = useState([
     {
       sessions_number: '',
@@ -47,9 +50,29 @@ const Index = ({ mileStoneData, setMileStoneData }) => {
     setMileStoneData(formData)
   }
 
+  // const disableMilestone = () => {
+  //   const newData = []
+  //   const newArr = [0]
+  //   setMileStoneData(newData)
+  //   setArr(newArr)
+  // }
+
+  const toggleMileStone = () => {
+    setActiveMilestone((prevState) => !prevState)
+    const newData = []
+    const newArr = [0]
+    setMileStoneData(newData)
+    setArr(newArr)
+  }
+  const toggleCustomize = () => {
+    setActiveCustomize((prevState) => !prevState)
+  }
+  useEffect(() => {}, [])
   return (
     <div className="w-full text-lg font-medium">
       <Container
+        active={activeCustomize}
+        toggleActive={toggleCustomize}
         label={
           <div>
             <p className="">Customize</p>
@@ -83,6 +106,8 @@ const Index = ({ mileStoneData, setMileStoneData }) => {
         <div key={index} className="mt-5">
           <Container
             key={index}
+            active={activeMileStone}
+            toggleActive={toggleMileStone}
             label={
               <div>
                 <p className="">Enable Milestones</p>
@@ -114,6 +139,7 @@ const Index = ({ mileStoneData, setMileStoneData }) => {
                     <SecondaryButton
                       label="Add another milestone"
                       clickHandler={addMileStone}
+                      disabled={!activeMileStone}
                     />
                   </div>
                 </div>
