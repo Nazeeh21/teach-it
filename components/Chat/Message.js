@@ -27,7 +27,7 @@ const Index = ({
             ) : null}
           </div>
           <div className={`flex flex-col ${width}`}>
-            <div className="bg-highlight rounded-lg p-2">{content}</div>
+            <div className="bg-highlight rounded-lg p-2 ">{content}</div>
             <div className="text-darkGrey text-sm text-bold m-1 text-right">
               {author.isSelf && `${status} ,`} <ReactTimeAgo date={date} />
             </div>
