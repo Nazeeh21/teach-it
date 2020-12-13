@@ -100,13 +100,19 @@ const Index = () => {
                   onClick={notificationOpenHandler}
                 />
               </div>
-              <div className="flex flex-col right-0 mr-10 mt-2 absolute justify-self-end">
+              <div
+                style={{ marginTop: '0.25rem' }}
+                className="flex flex-col right-0 mr-10 absolute justify-self-end"
+              >
                 {currentProfile && !showAllProfiles && (
                   <div className="flex flex-row">
-                    <ProfileSwitch
-                      name={currentProfile.name}
-                      clickHandler={() => router.push('/profile')}
-                    />
+                    <div className="mr-2">
+                      <ProfileSwitch
+                        name={currentProfile.name}
+                        clickHandler={() => router.push('/profile')}
+                      />
+                    </div>
+
                     <img
                       src="/arrows/down.svg"
                       alt="Switch profile"
@@ -119,7 +125,10 @@ const Index = () => {
                 )}
               </div>
               {otherProfiles && showAllProfiles && (
-                <div className="flex flex-col right-0 top-0 mr-8 mt-4 absolute justify-self-end bg-white px-2 border-gray-500 border-solid border-b-2 shadow-xl rounded-b">
+                <div
+                  style={{ marginTop: '1.4rem' }}
+                  className="flex flex-col right-0 top-0 mr-8 absolute justify-self-end bg-white px-2 border-gray-500 border-solid border-b-2 shadow-xl rounded-b"
+                >
                   <div className="flex flex-row">
                     <ProfileSwitch
                       name={currentProfile.name}
