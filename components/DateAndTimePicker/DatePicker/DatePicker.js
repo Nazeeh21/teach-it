@@ -38,9 +38,9 @@ export default class Example extends React.Component {
           onDayChange={this.handleDayChange}
           dayPickerProps={{
             selectedDays: selectedDay,
-            disabledDays: {
-              daysOfWeek: [0, 6],
-            },
+            // disabledDays: {
+            //   daysOfWeek: [0, 6],
+            // },
           }}
         />
       </div>

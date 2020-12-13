@@ -49,6 +49,7 @@ const ScheduleSelector = ({
               <div className="-ml-2">
                 <DatePicker
                   // value={startDate}
+
                   handleDayChange={startDateChangeHandler}
                 />
               </div>
@@ -58,6 +59,7 @@ const ScheduleSelector = ({
               <div className="-ml-2">
                 <DatePicker
                   // value={endDate}
+
                   handleDayChange={endDateChangeHandler}
                 />
               </div>
