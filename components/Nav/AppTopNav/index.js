@@ -143,7 +143,7 @@ const Index = () => {
                         clickHandler={(id) => {
                           dispatch(switchProfile(id))
                           setShowAllProfiles((prevState) => !prevState)
-                          router.push('/dashboard')
+                          // router.push('/dashboard')
                         }}
                       />
                     </div>

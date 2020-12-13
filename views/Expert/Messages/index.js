@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getChats } from '../../../services/chat'
 import { setActiveChatId } from '../../../store/actions/chatActions'
 
+const placeholderAvi = '/avis/ana.png'
+
 const Index = () => {
   const router = useRouter()
   const dispatch = useDispatch()
@@ -46,7 +48,7 @@ const Index = () => {
         <ChatWindowContact
           key={index}
           clickHandler={() => clickHandler(chat.id)}
-          src={chat.sender_avatar_url}
+          src={chat.sender_avatar_url || placeholderAvi}
           name={chat.sender_name}
           text={chat.last_msg.message}
           active={false}

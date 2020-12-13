@@ -7,7 +7,7 @@ import AudienceSelector from './AudienceSelector'
 import UpperForm from './UpperForm'
 import AllowRecording from './LiveServiceFormComponents/Recording&LearnerName/AllowRecording'
 import ShowFullName from './LiveServiceFormComponents/Recording&LearnerName/ShowFullName'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useRouter } from 'next/router'
 import { EXPERT } from '../../../constants'
 import { PrimaryButton } from '../../../components/Buttons/Index'
@@ -15,12 +15,15 @@ import IsGroupContainer from './LiveServiceFormComponents/isGroup/Index'
 import IsPrivateContainer from './LiveServiceFormComponents/IsPrivate/Index'
 import QuestionFees from './LiveServiceFormComponents/QuestionFees/Index'
 import { createService } from '../../../services/services'
+import { SET_CREATE_SERVICE_ACTIVE_STEP } from '../../../store/actionTypes'
 
 const SectionTitle = ({ children }) => (
   <h3 className="text-lg text-primary mb-2">{children}</h3>
 )
 
 const Index = () => {
+  const dispatch = useDispatch()
+
   const [type, setType] = useState(null)
   const [liveType, setLiveType] = useState(null)
   const [title, setTitle] = useState('')
@@ -71,11 +74,54 @@ const Index = () => {
     }
   }, [verifyUserType])
 
+  useEffect(() => {
+    if (
+      type &&
+      title &&
+      description &&
+      startTimeHour &&
+      startTimeMin &&
+      startDate &&
+      endDate &&
+      serviceFreq &&
+      fees &&
+      questionFee &&
+      paymentFreq
+    ) {
+      dispatch({ type: SET_CREATE_SERVICE_ACTIVE_STEP, step: 4 })
+    } else if (
+      type &&
+      title &&
+      description &&
+      startTimeHour &&
+      startTimeMin &&
+      startDate &&
+      endDate &&
+      serviceFreq
+    ) {
+      dispatch({ type: SET_CREATE_SERVICE_ACTIVE_STEP, step: 3 })
+    } else if (type && title && description) {
+      dispatch({ type: SET_CREATE_SERVICE_ACTIVE_STEP, step: 2 })
+    }
+  }, [
+    type,
+    title,
+    description,
+    startTimeHour,
+    startTimeMin,
+    startDate,
+    endDate,
+    serviceFreq,
+    fees,
+    questionFee,
+    paymentFreq,
+  ])
+
   const [serviceType, setServiceType] = useState(null)
 
   const activeGroupChangeHandler = (ageGroup) => setActiveAgeGroup(ageGroup)
 
-  const continueClickedHandler = () => {
+  const continueClickedHandler = async () => {
     const formData = {
       title: title,
       description: description,
@@ -111,7 +157,15 @@ const Index = () => {
       age_group: `${activeAgeGroup}`,
     }
 
-    createService(formData, milestoneData, files, profileId, token)
+    const success = await createService(
+      formData,
+      milestoneData,
+      files,
+      profileId,
+      token
+    )
+
+    if (success) dispatch({ type: SET_CREATE_SERVICE_ACTIVE_STEP, step: 5 })
   }
 
   return (

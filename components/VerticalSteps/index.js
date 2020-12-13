@@ -1,6 +1,5 @@
 import React from 'react'
 import Step from './Step'
-import { v4 as uuid } from 'uuid'
 
 const Index = ({ items, activeStep }) => {
   return (

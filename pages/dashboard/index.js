@@ -16,7 +16,10 @@ const Index = () => {
 
   let token = useSelector((state) => state.auth.token)
 
-  console.log('/dashboard', token)
+  useEffect(() => {
+    window.scrollTo('0', '0')
+  }, [])
+
   useEffect(() => {
     const token = window.localStorage.getItem('token')
 

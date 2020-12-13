@@ -33,7 +33,7 @@ export const ChatWindowContact = ({
     style={{ borderBottom: '2px solid #f3f4f8' }}
     className={`bg-${
       current ? 'lightCyan' : 'white'
-    } cursor-pointer p-2 flex flex-row items-center w-full rounded-b-lg`}
+    } cursor-pointer p-2 grid grid-flow-col gap-4 items-center w-full rounded-b-lg`}
   >
     <div>
       {active && <ActiveSign />}

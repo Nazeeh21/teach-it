@@ -8,6 +8,8 @@ import { setActiveChatId } from '../../store/actions/chatActions'
 import { fetchOtherProfiles } from '../../services/profile'
 import { switchProfile } from '../../store/actions/appActions'
 
+const placeholderAvi = '/avis/ana.png'
+
 const Contacts = () => {
   const dispatch = useDispatch()
 
@@ -90,11 +92,11 @@ const Contacts = () => {
         {chats.map((chat) => (
           <ChatWindowContact
             clickHandler={() => chatWindowContactClickHandler(chat.id)}
-            src={chat.sender_avatar_url}
+            src={chat.sender_avatar_url || placeholderAvi}
             name={chat.sender_name}
             text={chat.last_msg.message}
             active={false}
-            time={chat.last_msg.created_at}
+            time={chat.last_msg.created_at.slice(0, 20)}
             current={currentContact === chat.id}
           />
         ))}
