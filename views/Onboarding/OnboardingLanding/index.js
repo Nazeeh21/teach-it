@@ -66,20 +66,20 @@ const Index = () => {
 
       <div className="grid grid-flow-row grid-cols-1 gap-10">
         <GridItem
-          imgsrc="/onboarding/grid1.svg"
+          imgSrc="/onboarding/grid1.svg"
           text="This switch in the header lets you quickly toggle between your
             expert dashboard and your learner dashboard."
         />
 
         <GridItem
-          imgsrc="/onboarding/grid2.svg"
+          imgSrc="onboarding/grid2.svg"
           text={
             'While in provider mode, click the buttons on the right sidebar to start creating your services.'
           }
         />
 
         <GridItem
-          imgsrc="/onboarding/grid3.svg"
+          imgSrc="onboarding/grid3.svg"
           text="Click the payments link in the sidebar to quickly check your earnings and make withdrawls."
         />
       </div>
