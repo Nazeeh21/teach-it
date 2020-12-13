@@ -65,6 +65,7 @@ const Index = () => {
           descriptionText={service.description}
           paymentType={service.payment_type}
           servicePk={service.pk}
+          startDate={service.start_at}
         />
       ))}
       {nextUrl && (

@@ -1,6 +1,7 @@
 import React from 'react'
 import CardButton from './CardButton/CardButton'
 import loremIpsum from '../../../utility/loremIpsum'
+import ISO6391 from 'iso-639-1'
 // import { useRouter } from 'next/router'
 
 const Image = ({ src, alt }) => (
@@ -21,6 +22,7 @@ const CompactServiceCard = ({
   serviceType,
 }) => {
   // const router = useRouter()
+  let date = new Date(startDate)
 
   return (
     <div className="flex flex-row w-auto p-2 bg-white shadow-md rounded-lg my-3">
@@ -42,11 +44,17 @@ const CompactServiceCard = ({
               <p>{cost}/week</p>
               <p>5:30 pm</p>
               <p style={{ opacity: '80%' }}>Mon, Tue, Wed, Thurs, Sat</p>
-              <p style={{ opacity: '80%' }}>Start date: {startDate}</p>
+              <p style={{ opacity: '80%' }}>
+                Start date: {date.toLocaleDateString()}
+              </p>
             </div>
           </div>
           <p className="text-darkGrey text-xs font-medium w-1/2">
-            {languages}
+            {languages &&
+              languages.map((lang, idx) => (
+                <span key={idx}>{ISO6391.getName(lang)}</span>
+              ))}
+            <br></br>
             17 weeks
           </p>
         </div>

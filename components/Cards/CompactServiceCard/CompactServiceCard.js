@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
 import { fetchQuestions } from '../../../services/fetchQuestions'
 import loremIpsum from '../../../utility/loremIpsum'
 import { CardButton } from '../../Buttons/Index'
 import QuestionCard from './QuestionCard'
+import ISO6391 from 'iso-639-1'
 // import { useRouter } from 'next/router'
 
 const Image = ({ src, alt }) => (
@@ -18,7 +18,10 @@ const CompactServiceCard = ({
   paymentType,
   buttonClickHandler,
   servicePk,
+  startDate,
 }) => {
+  let date = new Date(startDate)
+
   // const router = useRouter()
   const [questions, setQuestions] = useState([])
 
@@ -44,11 +47,15 @@ const CompactServiceCard = ({
         </p>
         <div className="flex flex-row mt-6">
           <p className="w-1/2">{category}</p>
-          <p className="text-darkGrey w-1/2">{languages}</p>
+          <p className="text-darkGrey w-1/2">
+            {languages.map((lang, idx) => (
+              <span key={idx}>{ISO6391.getName(lang)}</span>
+            ))}
+          </p>
         </div>
         <div className="grid grid-cols-2 items-center">
           <div className="flex flex-col w-1/2 mt-4">
-            <p className="text-darkGrey">Date: 5 Aug, 2020</p>
+            <p className="text-darkGrey">Date: {date.toLocaleDateString()}</p>
             <p className="text-darkGrey">Payments: {paymentType}</p>
           </div>
           <div className="mr-10 sm:w-4/12 md:w-2/12 lg:w-3/12 justify-self-end md:mr-40 lg:mr-12 xl:mr-24">

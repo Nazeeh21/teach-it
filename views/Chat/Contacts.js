@@ -96,7 +96,7 @@ const Contacts = () => {
             name={chat.sender_name}
             text={chat.last_msg.message}
             active={false}
-            time={chat.last_msg.created_at.slice(0, 20)}
+            time={chat.last_msg.created_at}
             current={currentContact === chat.id}
           />
         ))}

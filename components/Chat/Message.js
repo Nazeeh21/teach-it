@@ -1,5 +1,6 @@
 import React from 'react'
 import Avatar from '../Images/Avatar'
+import ReactTimeAgo from 'react-time-ago'
 
 const Index = ({
   type,
@@ -10,6 +11,7 @@ const Index = ({
   width = 'w-6/12',
 }) => {
   let message
+  let date = new Date(time)
 
   switch (type) {
     case 'text':
@@ -27,7 +29,7 @@ const Index = ({
           <div className={`flex flex-col ${width}`}>
             <div className="bg-highlight rounded-lg p-2">{content}</div>
             <div className="text-darkGrey text-sm text-bold m-1 text-right">
-              {author.isSelf && `${status} ,`} {time}
+              {author.isSelf && `${status} ,`} <ReactTimeAgo date={date} />
             </div>
           </div>
         </div>
@@ -53,7 +55,7 @@ const Index = ({
             </div>
 
             <div className="text-darkGrey text-sm text-bold m-1 text-right">
-              {author.isSelf && `${status} ,`} {time}
+              {author.isSelf && `${status} ,`} <ReactTimeAgo date={date} />
             </div>
           </div>
         </div>
@@ -73,7 +75,7 @@ const Index = ({
             <div className="bg-highlight rounded-lg p-2">{content}</div>
 
             <div className="text-darkGrey text-sm text-bold m-1 text-right">
-              {author.isSelf && `${status} ,`} {time}
+              {/* {author.isSelf && `${status} ,`} {timeAgo(new Date(time))} */}
             </div>
           </div>
         </div>

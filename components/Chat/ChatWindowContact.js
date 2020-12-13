@@ -1,5 +1,6 @@
 import React from 'react'
 import Avatar from '../Images/Avatar'
+import ReactTimeAgo from 'react-time-ago'
 
 const CHAR_LIMIT = 30
 
@@ -27,30 +28,36 @@ export const ChatWindowContact = ({
   time,
   current = false,
   clickHandler,
-}) => (
-  <div
-    onClick={clickHandler}
-    style={{ borderBottom: '2px solid #f3f4f8' }}
-    className={`bg-${
-      current ? 'lightCyan' : 'white'
-    } cursor-pointer p-2 grid grid-flow-col gap-4 items-center w-full rounded-b-lg`}
-  >
-    <div>
-      {active && <ActiveSign />}
-      <Avatar src={src} alt={name} purpose="isForChat" />
-    </div>
-    <div>
-      <p className={`${current ? 'font-bold' : 'font-normal'} text-md`}>
-        {name}
-      </p>
-      <div className="grid grid-cols-2 items-center w-full">
-        <p className="col-span-2 text-sm text-darkGrey justify-start lg:mr-4">
-          {text.length > CHAR_LIMIT ? `${text.slice(0, CHAR_LIMIT)}...` : text}
+}) => {
+  let date = new Date(time)
+
+  return (
+    <div
+      onClick={clickHandler}
+      style={{ borderBottom: '2px solid #f3f4f8' }}
+      className={`bg-${
+        current ? 'lightCyan' : 'white'
+      } cursor-pointer p-2 flex gap-4 items-center w-full rounded-b-lg`}
+    >
+      <div>
+        {active && <ActiveSign />}
+        <Avatar src={src} alt={name} purpose="isForChat" />
+      </div>
+      <div>
+        <p className={`${current ? 'font-bold' : 'font-normal'} text-md`}>
+          {name.length === 0 ? 'User' : name}
         </p>
-        <p className="justify-self-end italic text-lightGrey text-xs justify-end">
-          {time} min ago
-        </p>
+        <div className="grid grid-cols-2 items-center w-full">
+          <p className="col-span-2 text-sm text-darkGrey justify-start lg:mr-4">
+            {text.length > CHAR_LIMIT
+              ? `${text.slice(0, CHAR_LIMIT)}...`
+              : text}
+          </p>
+          <p className="justify-self-end italic text-lightGrey text-xs justify-end">
+            <ReactTimeAgo date={date} />
+          </p>
+        </div>
       </div>
     </div>
-  </div>
-)
+  )
+}
