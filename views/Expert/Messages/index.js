@@ -27,7 +27,7 @@ const Index = () => {
     router.push('/messages')
   }
 
-  if (!chats) {
+  if (!chats || chats.length === 0) {
     return null
   }
 

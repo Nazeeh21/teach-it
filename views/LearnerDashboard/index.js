@@ -58,18 +58,6 @@ const Index = () => {
           startDate={service.start_at}
         />
       ))}
-      {/* <CompactServiceCard
-        buttonClickHandler={() => router.push('/view-service')}
-        butttonText='View'
-        imgsrc='/stock/guitar.jpg'
-        media={{ text: 'Live', color: 'red', src: 'live.svg' }}
-      />
-      <CompactServiceCard
-        buttonClickHandler={() => router.push('/view-service')}
-        butttonText='View'
-        imgsrc='/stock/market.jpg'
-        media={{ text: 'Rich Media', color: 'green', src: 'rich-media.svg' }}
-      /> */}
       {nextServicePageUrl && (
         <div className="m-auto w-2/12">
           <ViewMoreButton clickHandler={viewMoreClickHandler} />
