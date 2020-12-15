@@ -94,9 +94,9 @@ const Contacts = () => {
             clickHandler={() => chatWindowContactClickHandler(chat.id)}
             src={chat.sender_avatar_url || placeholderAvi}
             name={chat.sender_name}
-            text={chat.last_msg.message}
+            text={chat.last_msg && chat.last_msg.message}
             active={false}
-            time={chat.last_msg.created_at}
+            time={chat.last_msg && chat.last_msg.created_at}
             current={currentContact === chat.id}
           />
         ))}

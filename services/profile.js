@@ -150,3 +150,28 @@ export const fetchOtherProfiles = async (token, profileId) => {
     return null
   }
 }
+
+export const getProviderProfile = async (
+  providerId,
+  currentProfileId,
+  token
+) => {
+  try {
+    console.log('Received providerId', providerId)
+    const profileData = await api.get(`provider/${providerId}/`, {
+      headers: {
+        Authorization: `Token ${token}`,
+        'X-Profile-ID': currentProfileId,
+      },
+    })
+
+    const { data } = profileData
+
+    console.log('Provider profile data', data)
+
+    return data
+  } catch (e) {
+    console.log('Error in getProviderProfile', e)
+    return null
+  }
+}

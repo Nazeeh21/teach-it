@@ -66,3 +66,29 @@ export const sendMessage = async (token, profileId, chatId, message) => {
     return false
   }
 }
+
+export const createChat = async (token, profileId, userId) => {
+  try {
+    const res = await api.post(
+      `/chat/`,
+      {
+        user_id: userId,
+      },
+      {
+        headers: {
+          Authorization: `Token ${token}`,
+          'X-Profile-ID': profileId,
+        },
+      }
+    )
+
+    console.log('createChat', res)
+
+    const { data } = res
+
+    return data.chat_id
+  } catch (e) {
+    console.log('Error while creating chat', e)
+    return false
+  }
+}
