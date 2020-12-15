@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import CompactServiceCard from './CompactServiceCard/CompactServiceCard'
 // import { ChatWindowContact } from '../../components/Chat/ChatWindowContact'
 import Message from '../../components/Chat/Message'
@@ -19,6 +19,7 @@ const Chat = ({ label = 'Chat', disabled, expertDetails }) => {
 
   const [input, setInput] = useState('')
   const [fetch, triggerFetch] = useState(false)
+  const [inputDisabled, setInputDisabled] = useState(false)
 
   const executeScroll = () => {
     if (chatId) {
@@ -43,6 +44,8 @@ const Chat = ({ label = 'Chat', disabled, expertDetails }) => {
   const chooseServiceOpenHandler = () => setShowChooseService(true)
 
   const submitHandler = async () => {
+    setInputDisabled(true)
+
     const success = await sendMessage(token, profileId, chatId, input)
 
     if (success) {
@@ -51,6 +54,8 @@ const Chat = ({ label = 'Chat', disabled, expertDetails }) => {
     } else {
       alert('Failed to send the message. Please try again.')
     }
+
+    setInputDisabled(false)
   }
 
   if (!messages || !chatId) {
@@ -90,9 +95,6 @@ const Chat = ({ label = 'Chat', disabled, expertDetails }) => {
           )}
           <div style={{ maxHeight: '70vh' }} className="grid grid-flow-row">
             {messages.map((message) => {
-              // console.log('In Chat.js logging message ', message)
-              // console.log('In Chat.js logging profileId ', profileId)
-
               let author = { isSelf: false }
               if (message.sender == profileId) {
                 author.isSelf = true
@@ -148,7 +150,7 @@ const Chat = ({ label = 'Chat', disabled, expertDetails }) => {
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              disabled={disabled}
+              disabled={inputDisabled}
               onKeyUp={(e) => {
                 if (e.key === 'Enter') {
                   submitHandler()

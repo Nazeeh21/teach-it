@@ -7,11 +7,11 @@ import Profile from '../../views/Common/Profile'
 import ProfileOverview from '../../components/Profile/ProfileOverview'
 
 const Index = () => {
-  let token = useSelector((state) => state.auth.token)
-  let profileId = useSelector((state) => state.app.currentProfile)
-
   const router = useRouter()
   const id = router.query.id
+
+  let token = useSelector((state) => state.auth.token)
+  let profileId = useSelector((state) => state.app.currentProfile)
 
   const [profileData, setProfileData] = useState()
 

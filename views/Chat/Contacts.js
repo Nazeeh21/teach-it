@@ -89,17 +89,22 @@ const Contacts = () => {
             ))}
           </select>
         </div>
-        {chats.map((chat) => (
-          <ChatWindowContact
-            clickHandler={() => chatWindowContactClickHandler(chat.id)}
-            src={chat.sender_avatar_url || placeholderAvi}
-            name={chat.sender_name}
-            text={chat.last_msg && chat.last_msg.message}
-            active={false}
-            time={chat.last_msg && chat.last_msg.created_at}
-            current={currentContact === chat.id}
-          />
-        ))}
+        {chats.map((chat, index) => {
+          const { sender_avatar_url, sender_name, id, last_msg } = chat
+
+          return (
+            <ChatWindowContact
+              key={index}
+              clickHandler={() => chatWindowContactClickHandler(id)}
+              src={sender_avatar_url || placeholderAvi}
+              name={sender_name}
+              text={last_msg && last_msg.message}
+              active={false}
+              time={last_msg && last_msg.created_at}
+              current={currentContact === id}
+            />
+          )
+        })}
       </div>
     </div>
   )

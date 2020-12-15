@@ -45,7 +45,7 @@ export const ChatWindowContact = ({
       </div>
       <div>
         <p className={`${current ? 'font-bold' : 'font-normal'} text-md`}>
-          {name ? 'User' : name}
+          {name ? name : 'User'}
         </p>
         <div className="grid grid-cols-2 items-center w-full">
           <p className="col-span-2 text-sm text-darkGrey justify-start lg:mr-4">

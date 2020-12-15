@@ -68,7 +68,9 @@ const CompactServiceCard = ({
               src={`${serviceType}.svg`}
               alt={serviceType}
             />
-            {serviceType}
+            <span style={{ textTransform: 'capitalize' }}>
+              {serviceType === 'rich' ? 'Rich Media' : serviceType}
+            </span>
           </div>
           <div className="w-4/12 flex items-center">
             <div className="w-3/12 mx-2">

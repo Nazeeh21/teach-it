@@ -4,7 +4,7 @@ import InnerNav from '../../components/Nav/InnerNav'
 import Chat from '../../views/Learner/RichMediaService/ServiceChat'
 import { richService as navItems } from '../../constants/nav_items'
 
-const Settings = () => {
+const Index = () => {
   return (
     <LayoutProvider
       alternate
@@ -17,4 +17,4 @@ const Settings = () => {
   )
 }
 
-export default Settings
+export default Index

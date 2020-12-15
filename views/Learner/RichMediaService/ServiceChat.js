@@ -1,5 +1,4 @@
 import React from 'react'
-import InnerNav from '../../../components/Nav/InnerNav'
 import Chat from '../../Chat/Chat'
 
 const ServiceChat = () => {

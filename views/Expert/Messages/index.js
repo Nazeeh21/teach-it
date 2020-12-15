@@ -44,18 +44,22 @@ const Index = () => {
           </select>
         </div>
       </div>
-      {chats.map((chat, index) => (
-        <ChatWindowContact
-          key={index}
-          clickHandler={() => clickHandler(chat.id)}
-          src={chat.sender_avatar_url || placeholderAvi}
-          name={chat.sender_name}
-          text={chat.last_msg && chat.last_msg.message}
-          active={false}
-          time={chat.last_msg && chat.last_msg.created_at}
-          current={false}
-        />
-      ))}
+      {chats.map((chat, index) => {
+        const { sender_avatar_url, sender_name, id, last_msg } = chat
+
+        return (
+          <ChatWindowContact
+            key={index}
+            clickHandler={() => clickHandler(id)}
+            src={sender_avatar_url || placeholderAvi}
+            name={sender_name}
+            text={last_msg && last_msg.message}
+            active={false}
+            time={last_msg && last_msg.created_at}
+            current={false}
+          />
+        )
+      })}
       <div
         style={{ color: '#4968FF' }}
         className="cursor-pointer bg-white text-center py-3 text-sm font-md rounded-b-lg"

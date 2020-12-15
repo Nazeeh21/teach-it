@@ -70,7 +70,10 @@ const Index = () => {
       ))}
       {nextUrl && (
         <div className="m-auto w-2/12">
-          <ViewMoreButton clickHandler={viewMoreClickHandler} />
+          <ViewMoreButton
+            label="View more"
+            clickHandler={viewMoreClickHandler}
+          />
         </div>
       )}
       <h3 className="text-2xl mb-6">Trending services</h3>
@@ -101,7 +104,7 @@ const Index = () => {
         />
       </div>
       <div className="m-auto w-2/12">
-        <ViewMoreButton clickHandler={() => router.push('/services')} />
+        <ViewMoreButton clickHandler={() => router.push('/categories')} />
       </div>
     </React.Fragment>
   )
