@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react'
 import VideoChat from '../../components/VideoCall/VideoChat/VideoChat'
 import VideoStream from './VideoStream'
 import styled from 'styled-components'
+import { useRouter } from 'next/router'
 // import './Toggle.css'
 
 const roomId = 'test'
@@ -17,6 +18,7 @@ const Div = styled.div`
   position: absolute;
   `
 const Index = (props) => {
+  const router = useRouter()
   const [videoStream, setVideoStream] = useState()
   const [presentVideoStreams, setPresentVideoStreams] = useState([])
   const [remoteStreams, setRemoteStreams] = useState([])
@@ -75,6 +77,12 @@ const Index = (props) => {
     })
     setPresentVideoStreams(streams)
   }, [remoteStreams])
+
+  const leaveMeeting = () => {
+    videoStream.leaveMeeting();
+    // this.props.leaveMeeting();
+    router.push('/')
+  }
 
   const toggleMic = () => {
     const isAudio = videoStream.toggleAudio()
@@ -168,7 +176,7 @@ const Index = (props) => {
                 alt='Video Camera'
               />
             </div>
-            <div className='w-8 cursor-pointer'>
+            <div className='w-12 cursor-pointer border-2 border-learner rounded-full p-2 h-auto' onClick={leaveMeeting}>
               <img src='endCall.png' alt='End call' />
             </div>
           </div>
