@@ -5,10 +5,13 @@ import VideoStream from './VideoStream'
 const roomId = 'test'
 const userId = Math.random().toString(36).substring(7)
 
-const Index = () => {
+const Index = (props) => {
   const [videoStream, setVideoStream] = useState()
   const [presentVideoStreams, setPresentVideoStreams] = useState([])
   const [remoteStreams, setRemoteStreams] = useState([])
+  const [isAudio, setIsAudio] = useState(props.isHost)
+  const [isVideo, setIsVideo] = useState(props.isHost)
+  const [isSharingScreen, setIsSharingScreen] = useState(false)
 
   useEffect(() => {
     const videoStream = new VideoStream(userId, updateRemoteStreams)
@@ -60,6 +63,39 @@ const Index = () => {
     setPresentVideoStreams(streams)
   }, [remoteStreams])
 
+  const toggleMic = () => {
+    
+    const isAudio = videoStream.toggleAudio();
+    setIsAudio(isAudio)
+  }
+
+  const toggleVideo = () => {
+    
+    const isVideo = videoStream.toggleVideo();
+    setIsVideo(isVideo)
+  }
+
+  const toggleShareScreen = () => {
+    // const { videoStream, isSharingScreen, roomId } = this.state;
+    const { user } = props;
+    videoStream.close();
+    videoStream.stop();
+    videoStream.leaveMeeting();
+    let newStream = null;
+    if (!isSharingScreen) {
+      newStream = new VideoStream(user.user_id, this.updateRemoteStrams, true);
+    } else {
+      newStream = new VideoStream(user.user_id, this.updateRemoteStrams);
+    }
+    newStream.initLocalStream('local_stream', roomId, user.user_id, () => {});
+    setVideoStream(newStream)
+    isSharingScreen(prevState => !prevState)
+    // this.setState({
+    //   videoStream: newStream,
+    //   isSharingScreen: !isSharingScreen,
+    // });
+  }
+
   return (
     <div className='rounded-md'>
       <div className='rounded-md absolute z-10 text-white py-4 px-2 '>
@@ -89,10 +125,10 @@ const Index = () => {
             Ring the group
           </div>
           <div className='flex items-center justify-center mt-4'>
-            <div className='w-12 cursor-pointer bg-white rounded-full p-2 h-auto'>
+            <div className='w-12 cursor-pointer bg-white rounded-full p-2 h-auto' onClick={toggleMic}>
               <img src='mic.png' alt='Mic' />
             </div>
-            <div className='w-12 cursor-pointer bg-white rounded-full p-2 h-auto mx-4'>
+            <div className='w-12 cursor-pointer bg-white rounded-full p-2 h-auto mx-4' onClick={toggleVideo}>
               <img src='video-camera.png' alt='Video Camera' />
             </div>
             <div className='w-8 cursor-pointer'>

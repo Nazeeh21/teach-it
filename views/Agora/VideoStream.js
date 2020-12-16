@@ -133,6 +133,34 @@ class VideoStream {
     this.remoteStreams = remoteStreams
     this.updateStreamsInParent(remoteStreams)
   }
+
+  leaveMeeting = () => {
+    this.localStream.close();
+    this.client.leave();
+    this.updateStreams(this.remoteStreams);
+  }
+
+  toggleAudio = () => {
+    if (this.isAudio) {
+      this.localStream.muteAudio();
+    } else {
+      this.localStream.unmuteAudio();
+    }
+    this.isAudio = !this.isAudio;
+    return this.isAudio;
+  }
+
+  toggleVideo = () => {
+    if (this.isVideo) {
+      this.localStream.muteVideo();
+    } else {
+      this.localStream.unmuteVideo();
+    }
+    this.isVideo = !this.isVideo;
+    return this.isVideo;
+  }
 }
+
+
 
 export default VideoStream
