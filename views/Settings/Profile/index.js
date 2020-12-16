@@ -6,7 +6,7 @@ import {
 } from '../../../components/Buttons/Index'
 import Input from '../../../components/Inputs/HighlightInput'
 import Dropdown from '../../../components/Inputs/Dropdown'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { saveProfile } from '../../../store/actions/settingActions'
 import { validate } from '../../../utility/validation'
 import { fetchProfileData } from '../../../services/settings'
@@ -14,33 +14,16 @@ import { Upload, Switch, Label, Clickable } from './Util'
 import EmailModal from './EmailModal'
 import MobileModal from './MobileModal'
 import { fetchCertificates } from '../../../services/profileSettings'
+import ChangeAvatarModal from './ChangeAvatarModal/Index'
 
 const Index = () => {
   const dispatch = useDispatch()
+  const userType = useSelector((state) => state.app.userType)
+  const [toggleChangePhoto, setToggleChangePhoto] = useState(false)
 
   const [shouldFetch, triggerFetch] = useState(false)
 
   const [fetchedData, setFetchedData] = useState(null)
-  useEffect(() => {
-    fetchProfileData()
-      .then((res) => {
-        console.log(res)
-        setFetchedData(res)
-      })
-      .catch((e) => {
-        console.log(e)
-      })
-  }, [shouldFetch])
-
-  const [fetchedCertificates, setFetchedCertificates] = useState([])
-  useEffect(() => {
-    console.log('Fetched data', fetchedData)
-    fetchCertificates()
-      .then((res) => setFetchedCertificates(res))
-      .catch((e) => console.log(e))
-  }, [fetchedData])
-
-  console.log('Fetched Certificates in Profile.js', fetchedCertificates)
 
   const [displayName, setDisplayName] = useState('')
   const [age, setAge] = useState('')
@@ -49,6 +32,64 @@ const Index = () => {
   const [language, setLanguage] = useState(null)
   const [oneLineBio, setOneLineBio] = useState('')
   const [profileDescription, setProfileDescription] = useState('')
+  const [avatarUrl, setAvatarUrl] = useState('')
+  const [isAvatarChanged, setIsAvatarChanged] = useState(false)
+
+  useEffect(() => {
+    fetchProfileData()
+      .then((res) => {
+        console.log('In Profile.js logging fetched ProfileData', res[0])
+        setFetchedData(res)
+        setDisplayName(res[0].name)
+        setAge(res[0].age)
+        setWebsiteURL(res[0].provider.website)
+        setCountry(res[0].provider.country)
+        setLanguage(res[0].languages[0])
+        userType === 0
+          ? setOneLineBio(res[0].provider.bio)
+          : setOneLineBio(res[0].seeker.bio)
+        setProfileDescription(res[0].provider.description)
+        setAvatarUrl(res[0].avatar_url)
+      })
+      .catch((e) => {
+        console.log(e)
+      })
+  }, [shouldFetch])
+
+  const [fetchedCertificates, setFetchedCertificates] = useState([])
+
+  useEffect(() => {
+    console.log('Fetched data', fetchedData)
+    fetchCertificates()
+      .then((res) => setFetchedCertificates(res))
+      .catch((e) => console.log(e))
+  }, [fetchedData])
+
+  // console.log('Fetched Certificates in Profile.js', fetchedCertificates)
+  console.log('Fetched profileData in Profile.js', age)
+  console.log('Fetched name in Profile.js', displayName)
+  console.log('Fetched websiteUrl in Profile.js', websiteURL)
+  console.log('Fetched country in Profile.js', country)
+  console.log('Fetched language in Profile.js', language)
+  console.log('Fetched onelineBio in Profile.js', oneLineBio)
+  console.log('Fetched profileDesc in Profile.js', profileDescription)
+
+  // const [displayName, setDisplayName] = useState('')
+  // const [age, setAge] = useState('')
+  // const [websiteURL, setWebsiteURL] = useState('')
+  // const [country, setCountry] = useState(null)
+  // const [language, setLanguage] = useState(null)
+  // const [oneLineBio, setOneLineBio] = useState('')
+  // const [profileDescription, setProfileDescription] = useState('')
+  // if(fetchedData) {
+  //   setDisplayName(fetchedData[0].name)
+  //   setAge(fetchedData[0].age)
+  //   setWebsiteURL(fetchedData[0].provider.website)
+  //   setCountry(fetchedData[0].provider.country)
+  //   setLanguage(fetchedData[0].languages[0])
+  //   userType === 0 ? setOneLineBio(fetchedData[0].provider.bio) : setOneLineBio(fetchedData[0].seeker.bio)
+  //   setProfileDescription(fetchedData[0].provider.description)
+  // }
 
   const [isValid, setIsValid] = useState({
     inputData: {
@@ -93,6 +134,9 @@ const Index = () => {
       balance: 0,
       // email: `${primaryEmail}`,
       // mobile: `${mobile}`,
+      // avatar_url: `${avatarUrl}`,
+      avatar_url: `${isAvatarChanged ? avatarUrl.forPreview : avatarUrl}`,
+      // avatar_url: 'http://localhost:3000/daae4ff1-32fa-4424-a4a9-80bb860225e3'
     }
 
     dispatch(saveProfile(formData, certificates))
@@ -121,6 +165,13 @@ const Index = () => {
     return null
   }
 
+  const saveAvatarClickHandler = (data) => {
+    setAvatarUrl(data)
+    setIsAvatarChanged(true)
+    setToggleChangePhoto(false)
+    // console.log('In saveAvatarHandler ', data)
+  }
+
   return (
     <>
       <EmailModal
@@ -133,17 +184,30 @@ const Index = () => {
         showModal={mobileModal}
         toggleModal={toggleMobileModal}
       />
+      {toggleChangePhoto && (
+        <ChangeAvatarModal
+          show={toggleChangePhoto}
+          backdropClickHandler={() => setToggleChangePhoto(false)}
+          saveButtonClickHandler={saveAvatarClickHandler}
+        />
+      )}
       <div className="w-full">
         <h3 className="text-2xl mb-4">Profile settings</h3>
         <div className="bg-white w-full rounded-lg p-6">
           <div className="grid grid-cols-2">
             <div className="flex gap-6 items-center">
               <img
-                src="/stock/girl2.jpg"
+                // src="/stock/girl2.jpg"
+                src={`${isAvatarChanged ? avatarUrl.forPreview : avatarUrl}`}
                 alt="Profile Picture"
                 className="rounded-full w-24"
               />
-              <p className="text-secondary cursor-pointer">Change photo</p>
+              <div
+                className="text-secondary cursor-pointer"
+                onClick={() => setToggleChangePhoto(true)}
+              >
+                Change photo
+              </div>
             </div>
             <div className="grid grid-cols-2 bg-highlight p-6 items-center">
               <p className="text-lg">Available for work</p>
