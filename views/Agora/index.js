@@ -1,16 +1,29 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import VideoChat from '../../components/VideoCall/VideoChat/VideoChat'
 import VideoStream from './VideoStream'
+import styled from 'styled-components'
+// import './Toggle.css'
 
 const roomId = 'test'
 const userId = Math.random().toString(36).substring(7)
-
+const Div = styled.div`
+  width: 48px;
+  height: 42px;
+  border-bottom: 2px solid white;
+  -webkit-transform:
+      translateY(-20px)
+      translateX(5px)
+      rotate(45deg); 
+  position: absolute;
+  `
 const Index = (props) => {
   const [videoStream, setVideoStream] = useState()
   const [presentVideoStreams, setPresentVideoStreams] = useState([])
   const [remoteStreams, setRemoteStreams] = useState([])
-  const [isAudio, setIsAudio] = useState(props.isHost)
-  const [isVideo, setIsVideo] = useState(props.isHost)
+  // const [isAudio, setIsAudio] = useState(props.isHost)
+  // const [isVideo, setIsVideo] = useState(props.isHost)
+  const [isAudio, setIsAudio] = useState(true)
+  const [isVideo, setIsVideo] = useState(true)
   const [isSharingScreen, setIsSharingScreen] = useState(false)
 
   useEffect(() => {
@@ -64,37 +77,37 @@ const Index = (props) => {
   }, [remoteStreams])
 
   const toggleMic = () => {
-    
-    const isAudio = videoStream.toggleAudio();
+    const isAudio = videoStream.toggleAudio()
     setIsAudio(isAudio)
   }
 
   const toggleVideo = () => {
-    
-    const isVideo = videoStream.toggleVideo();
+    const isVideo = videoStream.toggleVideo()
     setIsVideo(isVideo)
   }
 
   const toggleShareScreen = () => {
     // const { videoStream, isSharingScreen, roomId } = this.state;
-    const { user } = props;
-    videoStream.close();
-    videoStream.stop();
-    videoStream.leaveMeeting();
-    let newStream = null;
+    // const { user } = props
+    videoStream.close()
+    videoStream.stop()
+    videoStream.leaveMeeting()
+    let newStream = null
     if (!isSharingScreen) {
-      newStream = new VideoStream(user.user_id, this.updateRemoteStrams, true);
+      newStream = new VideoStream(userId, updateRemoteStreams, true)
     } else {
-      newStream = new VideoStream(user.user_id, this.updateRemoteStrams);
+      newStream = new VideoStream(userId, updateRemoteStreams)
     }
-    newStream.initLocalStream('local_stream', roomId, user.user_id, () => {});
+    newStream.initLocalStream('local_stream', roomId, userId, () => {})
     setVideoStream(newStream)
-    isSharingScreen(prevState => !prevState)
+    setIsSharingScreen((prevState) => !prevState)
     // this.setState({
     //   videoStream: newStream,
     //   isSharingScreen: !isSharingScreen,
     // });
   }
+
+  
 
   return (
     <div className='rounded-md'>
@@ -125,11 +138,35 @@ const Index = (props) => {
             Ring the group
           </div>
           <div className='flex items-center justify-center mt-4'>
-            <div className='w-12 cursor-pointer bg-white rounded-full p-2 h-auto' onClick={toggleMic}>
-              <img src='mic.png' alt='Mic' />
+            <div
+              className={`w-12 cursor-pointer border-2 rounded-full p-2 h-auto ${!isAudio && 'bg-red'}`}
+              onClick={toggleMic}
+            >
+              {!isAudio && <Div />}
+              <img style={{ margin: 'auto' }} src='mic.png' alt='Mic' />
+              {/* <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" style={{width: '100%', height: '100%'}} */}
             </div>
-            <div className='w-12 cursor-pointer bg-white rounded-full p-2 h-auto mx-4' onClick={toggleVideo}>
-              <img src='video-camera.png' alt='Video Camera' />
+            <div
+              className={`w-12 cursor-pointer border-2 rounded-full p-2 h-auto mx-4 ${!isVideo && 'bg-red'}`}
+              onClick={toggleVideo}
+            >
+               {!isVideo && <Div />}
+              <img
+                style={{ margin: 'auto' }}
+                src='video-camera.png'
+                alt='Video Camera'
+              />
+            </div>
+            <div
+              className={`w-12 cursor-pointer border-2 rounded-full p-2 h-auto mr-4 ${!isSharingScreen && 'bg-red'}`}
+              onClick={toggleShareScreen}
+            >
+               {isSharingScreen && <Div />}
+              <img
+                style={{ margin: 'auto' }}
+                src={`${isSharingScreen ? 'stop-sharing.png' : 'share-screen.png'}`}
+                alt='Video Camera'
+              />
             </div>
             <div className='w-8 cursor-pointer'>
               <img src='endCall.png' alt='End call' />
@@ -144,7 +181,6 @@ const Index = (props) => {
         })}
       </div>
       <div>
-        
         <VideoChat />
         <div
           className='bg-accentedWhite rounded-bl-md rounded-br-md flex justify-center w-6/12'
