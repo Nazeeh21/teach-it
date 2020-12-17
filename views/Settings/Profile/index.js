@@ -18,6 +18,7 @@ import ChangeAvatarModal from './ChangeAvatarModal/Index'
 
 const Index = () => {
   const dispatch = useDispatch()
+  const currentProfileID = useSelector((state) => state.app.currentProfile)
   const userType = useSelector((state) => state.app.userType)
   const [toggleChangePhoto, setToggleChangePhoto] = useState(false)
 
@@ -54,7 +55,7 @@ const Index = () => {
       .catch((e) => {
         console.log(e)
       })
-  }, [shouldFetch])
+  }, [shouldFetch, currentProfileID])
 
   const [fetchedCertificates, setFetchedCertificates] = useState([])
 
