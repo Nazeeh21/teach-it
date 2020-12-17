@@ -9,10 +9,10 @@ const Index = () => {
   return (
     <LayoutProvider forAgora={true}>
       <div>
-        <div className="absolute z-10 text-white py-4 px-2 ">
-          <div className="flex items-center">
-            <div className="w-8 mr-4 cursor-pointer">
-              <img src="/hamBurger.png" alt="Hamburger" />
+        {/* <div className='absolute z-10 text-white py-4 px-2 '>
+          <div className='flex items-center'>
+            <div className='w-8 mr-4 cursor-pointer'>
+              <img src='/hamBurger.png' alt='Hamburger' />
             </div>
             <div>
               <p className="font-bold">Quaterly Review</p>
@@ -49,15 +49,13 @@ const Index = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
 
-        <div className="z-0 h-auto w-full rounded-md">
+        
           <Agora />
-        </div>
-        <div className="">
-          <div className="">
-            <VideoChat />
-          </div>
+        {/* </div> */}
+        {/* <div>
+          <VideoChat />
           <div
             className="bg-accentedWhite rounded-bl-md rounded-br-md flex justify-center w-6/12"
             id="typebox"
@@ -82,7 +80,7 @@ const Index = () => {
               // disabled={disabled}
             />
           </div>
-        </div>
+        </div> */}
       </div>
     </LayoutProvider>
   )

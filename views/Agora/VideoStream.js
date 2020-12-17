@@ -56,25 +56,19 @@ class VideoStream {
   }
 
   joinChannel = (roomId, userId) => {
-    this.client.join(
-      '006a79d3d6b148340be8c8375ea556f824cIAAkc5+JgIeE6maxUX0HELhWlSl7Vmc+bYClpvwBHJyhigx+f9gAAAAAEABC9EaCBGzXXwEAAQD3a9df',
-      roomId,
-      userId,
-      (uid) => {
-        const logMessage = 'User ' + uid + ' join channel successfully'
-        console.log(logMessage)
-        this.client.publish(this.localStream, (err) => {
-          console.log('Publish local stream error', err)
-        })
+    this.client.join('006a79d3d6b148340be8c8375ea556f824cIAAkc5+JgIeE6maxUX0HELhWlSl7Vmc+bYClpvwBHJyhigx+f9gAAAAAEABC9EaCBGzXXwEAAQD3a9df', roomId, userId, (uid) => {
+      const logMessage = 'User ' + uid + ' join channel successfully'
+      console.log(logMessage)
+      this.client.publish(this.localStream, err => {
+        console.log('Publish local stream error', err)
+      })
 
-        this.client.on('stream-published', (evt) => {
-          console.log('Publish local stream successfully')
-        })
-      },
-      (err) => {
-        console.log('Join channel failed', err)
-      }
-    )
+      this.client.on('stream-published', evt => {
+        console.log('Publish local stream successfully')
+      })
+    }, err => {
+      console.log('Join channel failed', err)
+    })
   }
 
   subscribeToClient = () => {
@@ -139,6 +133,34 @@ class VideoStream {
     this.remoteStreams = remoteStreams
     this.updateStreamsInParent(remoteStreams)
   }
+
+  leaveMeeting = () => {
+    this.localStream.close();
+    this.client.leave();
+    this.updateStreams(this.remoteStreams);
+  }
+
+  toggleAudio = () => {
+    if (this.isAudio) {
+      this.localStream.muteAudio();
+    } else {
+      this.localStream.unmuteAudio();
+    }
+    this.isAudio = !this.isAudio;
+    return this.isAudio;
+  }
+
+  toggleVideo = () => {
+    if (this.isVideo) {
+      this.localStream.muteVideo();
+    } else {
+      this.localStream.unmuteVideo();
+    }
+    this.isVideo = !this.isVideo;
+    return this.isVideo;
+  }
 }
+
+
 
 export default VideoStream
