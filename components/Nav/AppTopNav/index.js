@@ -109,6 +109,7 @@ const Index = () => {
                     <div className="mr-2">
                       <ProfileSwitch
                         name={currentProfile.name}
+                        profileSrc={currentProfile.avatar_url}
                         clickHandler={() => router.push('/profile')}
                       />
                     </div>
@@ -132,6 +133,7 @@ const Index = () => {
                   <div className="flex flex-row">
                     <div className="mr-2">
                       <ProfileSwitch
+                        profileSrc={currentProfile.avatar_url}
                         name={currentProfile.name}
                         clickHandler={() => router.push('/profile')}
                       />
@@ -150,6 +152,7 @@ const Index = () => {
                       <ProfileSwitch
                         key={profile.name}
                         id={profile.id}
+                        profileSrc={profile.avatar_url}
                         name={profile.name}
                         clickHandler={(id) => {
                           dispatch(switchProfile(id))

@@ -1,7 +1,12 @@
 import React from 'react'
 import { useRouter } from 'next/router'
 
-const Index = ({ name = 'Anastasia', clickHandler, id }) => {
+const Index = ({
+  name = 'Anastasia',
+  clickHandler,
+  id,
+  profileSrc = '/avis/ana.png',
+}) => {
   const router = useRouter()
 
   return (
@@ -11,9 +16,9 @@ const Index = ({ name = 'Anastasia', clickHandler, id }) => {
         className="flex flex-col w-full items-center"
       >
         <img
-          src="/avis/ana.png"
+          src={profileSrc}
           alt="Switch profile"
-          className="w-8 h-auto cursor-pointer rounded-full"
+          className="w-8 max-w-3/12 h-auto min-h-8 cursor-pointer rounded-full"
         />
         <p className="text-xs cursor-pointer">{name}</p>
       </div>
