@@ -126,14 +126,16 @@ const Index = () => {
               </div>
               {otherProfiles && showAllProfiles && (
                 <div
-                  style={{ marginTop: '1.4rem' }}
+                  style={{ marginTop: '0.85rem' }}
                   className="flex flex-col right-0 top-0 mr-8 absolute justify-self-end bg-white px-2 border-gray-500 border-solid border-b-2 shadow-xl rounded-b"
                 >
                   <div className="flex flex-row">
-                    <ProfileSwitch
-                      name={currentProfile.name}
-                      clickHandler={() => router.push('/profile')}
-                    />
+                    <div className="mr-2">
+                      <ProfileSwitch
+                        name={currentProfile.name}
+                        clickHandler={() => router.push('/profile')}
+                      />
+                    </div>
                     <img
                       src="/angle-arrow-up.svg"
                       alt="Switch profile"
@@ -144,7 +146,7 @@ const Index = () => {
                     />
                   </div>
                   {otherProfiles.map((profile, index) => (
-                    <div className="mt-2" key={index}>
+                    <div className="mt-2 -ml-2" key={index}>
                       <ProfileSwitch
                         key={profile.name}
                         id={profile.id}
