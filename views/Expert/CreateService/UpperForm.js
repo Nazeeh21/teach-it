@@ -1,15 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import UploadButton from '../../../components/Upload/UploadButton'
 import ServiceTypeCard from './ServiceTypeCard'
-// import {
-//   setAudioOnly,
-//   setVideoAndAudio,
-//   updateDescription,
-//   updateTitle,
-// } from '../../../store/actions/createServiceAction'
-import { useSelector, useDispatch } from 'react-redux'
 
-const CrossButton = (
+const CrossButton = ({ clickHandler, index }) => (
   <div
     style={{
       border: '3px solid white',
@@ -17,56 +10,63 @@ const CrossButton = (
       left: '80%',
       bottom: '6%',
     }}
-    className='rounded-full w-4/12 bg-red flex text-white'
+    onClick={() => clickHandler(index)}
+    className="cursor-pointer rounded-full w-4/12 bg-red flex text-white"
   >
-    <button className='m-auto'>x</button>
+    <div className="m-auto">x</div>
   </div>
 )
 
-const UploadImageAndVideo = (
+const UploadImageAndVideo = ({ src, cancelClickHandler, index }) => (
   <div
-    style={{ backgroundImage: `url('images&videos/1.png')` }}
-    className='w-9/12 h-full rounded-lg'
+    style={{
+      backgroundImage: `url(${src})`,
+      backgroundRepeat: 'no-repeat',
+      backgroundSize: 'cover',
+      width: 'full',
+      height: 'full',
+    }}
+    className="w-auto max-w-9/12 h-full rounded-lg mr-6"
   >
-    {CrossButton}
+    <CrossButton clickHandler={cancelClickHandler} index={index} />
   </div>
 )
 
-const UpperForm = ({ type, typeChangedHandler, title, description, titleChangedHandler, descriptionChangedHandler }) => {
+const UpperForm = ({
+  type,
+  typeChangedHandler,
+  title,
+  description,
+  titleChangedHandler,
+  descriptionChangedHandler,
+  imageInputChangeHandler,
+  imageDataForPreview,
+  imageCrossHandler,
+}) => {
   const [liveServiceType, setServiceType] = useState(null)
-  // const dispatch = useDispatch()
-  // const title = useSelector((state) => state.createService.title)
-  // const description = useSelector((state) => state.createService.description)
-  // const [title, setTile] = useState('')
-  // const [description, setDescription] = useState('')
-  // useEffect(() =>{
 
-  // }, [liveServiceType])
- 
   return (
-    <div className='w-full font-medium'>
+    <div className="w-full font-medium">
       {type === 'live' && (
         <React.Fragment>
-          <p className='text-lg my-2'>Live Service type</p>
-          <div className='w-full grid grid-cols-2 gap-5 mb-6'>
+          <p className="text-lg my-2">Live Service type</p>
+          <div className="w-full grid grid-cols-2 gap-5 mb-6">
             <ServiceTypeCard
-              label='Video and audio'
-              desc='learners can see and hear you'
+              label="Video and audio"
+              desc="learners can see and hear you"
               active={liveServiceType === 0}
               clickHandler={() => {
                 typeChangedHandler('video')
-                // dispatch(setVideoAndAudio())
                 setServiceType(0)
               }}
               noIcon
             />
             <ServiceTypeCard
-              label='Audio only'
-              desc='learners can only hear your voice'
+              label="Audio only"
+              desc="learners can only hear your voice"
               active={liveServiceType === 1}
               clickHandler={() => {
                 typeChangedHandler('audio')
-                // dispatch(setAudioOnly())
                 setServiceType(1)
               }}
               noIcon
@@ -74,43 +74,44 @@ const UpperForm = ({ type, typeChangedHandler, title, description, titleChangedH
           </div>
         </React.Fragment>
       )}
-      <div className='my-10'>
-        <p className='text-lg my-2'>Title</p>
+      <div className="my-10">
+        <p className="text-lg my-2">Title</p>
         <input
           value={title}
-          className='rounded w-full p-2 text-sm bg-lightGrey'
+          className="rounded w-full p-2 text-sm bg-lightGrey"
           onChange={(e) => {
             titleChangedHandler(e.target.value)
-            // dispatch(updateTitle(e.target.value))
           }}
         />
       </div>
-      <div className='my-10'>
-        <p className='text-lg my-2'>Description</p>
+      <div className="my-10">
+        <p className="text-lg my-2">Description</p>
         <textarea
           value={description}
-          className='rounded w-full p-2 text-sm bg-lightGrey h-32'
+          className="rounded w-full p-2 text-sm bg-lightGrey h-32"
           onChange={(e) => {
             descriptionChangedHandler(e.target.value)
-            // dispatch(updateDescription(e.target.value))
           }}
         />
-        {/* <p className='rounded w-full p-2 text-sm bg-lightGrey'>{loremIpsum}</p> */}
       </div>
-      <div className='my-10'>
-        <p className='text-lg my-2'>Images and videos</p>
-        <p className='w-full text-sm text-darkGrey'>
+      <div className="my-10">
+        <p className="text-lg my-2">Images and videos</p>
+        <p className="w-full text-sm text-darkGrey">
           Upload some images and videos showcasing your skills (max 5)
         </p>
       </div>
-      <div className='p-2 bg-lightGrey rounded grid grid-cols-5 items-center'>
+      <div className="p-2 bg-lightGrey rounded grid grid-cols-5 items-center">
         <div>
-          <UploadButton />
+          <UploadButton imageInputChangeHandler={imageInputChangeHandler} />
         </div>
-        {UploadImageAndVideo}
-        {UploadImageAndVideo}
-        {UploadImageAndVideo}
-        {UploadImageAndVideo}
+        {imageDataForPreview.map((imageData, index) => (
+          <UploadImageAndVideo
+            key={index}
+            src={imageData.forPreview}
+            index={index}
+            cancelClickHandler={imageCrossHandler}
+          />
+        ))}
       </div>
     </div>
   )

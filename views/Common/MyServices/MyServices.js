@@ -4,12 +4,24 @@ import CompactServiceCard from '../../Chat/CompactServiceCard/CompactServiceCard
 import { useRouter } from 'next/router'
 import SearchBar from '../../../components/Inputs/SearchBar'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchServices } from '../../../store/actions/appActions'
+import {
+  fetchNextUserServices,
+  fetchServices,
+  fetchUserServices,
+} from '../../../store/actions/appActions'
+import { ViewMoreButton } from '../../../components/Buttons/Index'
 
 const MyServices = () => {
   const [showSearchbar, toggleShowSearchBar] = useState(false)
   const [query, setQuery] = useState('')
-  const services = useSelector(state => state.app.services)
+  const services = useSelector((state) => state.app.userServices)
+  const nextUserServiceUrl = useSelector(
+    (state) => state.app.nextUserServicesUrl
+  )
+  // const previousUserServiceUrl = useSelector(state => state.app.previousUserServicesUrl)
+  // const initialFetch = useSelector(
+  //   (state) => state.app.initialUserServicesFetched
+  // )
 
   const [activePillLabel, setLabel] = useState('all')
 
@@ -18,43 +30,52 @@ const MyServices = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(fetchServices())
+    // if (!initialFetch) {
+    dispatch(fetchUserServices())
+    // }
   }, [])
+
+  const viewMoreClickHandler = () => {
+    dispatch(fetchNextUserServices(nextUserServiceUrl))
+  }
 
   return (
     <div>
-      <div className='grid grid-cols-2 grid-rows-1'>
-        <p className='text-2xl font-medium'>Active Services</p>
+      <div className="grid grid-cols-2 grid-rows-1">
+        <p className="text-2xl font-medium">Active Services</p>
         {showSearchbar ? (
           <SearchBar value={query} changeHandler={setQuery} />
         ) : (
-            <button
-              onClick={() => toggleShowSearchBar(true)}
-              className='w-5 justify-self-end'
-            >
-              <img src='/search.png' alt='search-img' />
-            </button>
-          )}
+          <button
+            onClick={() => toggleShowSearchBar(true)}
+            className="w-5 justify-self-end"
+          >
+            <img src="/search.png" alt="search-img" />
+          </button>
+        )}
       </div>
       <Pills
         activeLabel={activePillLabel}
         setLabel={setLabel}
-        width='w-10/12 sm:w-10/12 md:w-5/12'
-        color='white'
-        label1='All'
-        label2='Live'
-        label3='Rich'
+        width="w-10/12 sm:w-10/12 md:w-5/12"
+        color="white"
+        label1="All"
+        label2="Live"
+        label3="Rich"
       />
-      {
-        services.filter(service => {
+      {services
+        .filter((service) => {
           if (activePillLabel === 'all') {
             return true
           }
 
           return activePillLabel === service.type
-        }).map(service => (
+        })
+        .map((service) => (
           <CompactServiceCard
-            buttonClickHandler={() => router.push(`/view-service/${service.pk}`)}
+            buttonClickHandler={() =>
+              router.push(`/view-service/${service.pk}`)
+            }
             category={service.category}
             languages={service.languages}
             serviceType={service.type}
@@ -62,8 +83,7 @@ const MyServices = () => {
             cost={service.cost}
             startDate={service.start_at}
           />
-        ))
-      }
+        ))}
       {/* <CompactServiceCard
         buttonClickHandler={handleRedirect}
         butttonText='View'
@@ -74,6 +94,12 @@ const MyServices = () => {
         butttonText='View'
         media={{ text: 'Rich Media', color: 'green', src: 'rich-media.svg' }}
       /> */}
+
+      {nextUserServiceUrl && (
+        <div className="m-auto w-2/12">
+          <ViewMoreButton clickHandler={viewMoreClickHandler} />
+        </div>
+      )}
     </div>
   )
 }

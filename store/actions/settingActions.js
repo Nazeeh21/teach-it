@@ -1,7 +1,7 @@
 import api from '../../api'
 import { SAVE_PROFILE_DATA, UPDATE_PROFILE_DATA } from '../actionTypes'
 
-export const saveProfile = (data) => {
+export const saveProfile = (data, certificateData) => {
   return async (dispatch) => {
     const id = localStorage.getItem('currentProfile')
     try {
@@ -15,6 +15,7 @@ export const saveProfile = (data) => {
           },
         }
       )
+      await uploadCertificates(certificateData, id)
       console.log(res.data)
       dispatch({
         type: SAVE_PROFILE_DATA,
@@ -23,5 +24,40 @@ export const saveProfile = (data) => {
     } catch (error) {
       console.log(error)
     }
+  }
+}
+
+const uploadCertificates = async (certificateData, id, token) => {
+  try {
+    await certificateData.map(
+      async (data) => await uploadCertificate(data.forUpload, id)
+    )
+    return true
+  } catch (e) {
+    console.log(e)
+    return false
+  }
+}
+
+export const uploadCertificate = async (data, id) => {
+  try {
+    const formData = new FormData()
+    formData.append('doc', data)
+
+    console.log('File', data)
+
+    const imgUpload = await api.post(`provider/docs/`, formData, {
+      headers: {
+        Authorization: `Token ${localStorage.getItem('token')}`,
+        'X-Profile-ID': id,
+        'content-type': 'multipart/form-data',
+      },
+    })
+
+    console.log('Uploaded image successfully', imgUpload)
+    return true
+  } catch (e) {
+    console.log('Error while uploading image', e)
+    return false
   }
 }

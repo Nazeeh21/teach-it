@@ -3,7 +3,7 @@ import { dropShadow } from '../../assets/constants'
 
 export const ContainerWithShadow = ({ children, width }) => (
   <div
-    style={{...dropShadow, borderRadius: '4px'}}
+    style={{ ...dropShadow, borderRadius: '4px' }}
     className={`bg-white p-2 m-4 w-${width}`}
   >
     {children}

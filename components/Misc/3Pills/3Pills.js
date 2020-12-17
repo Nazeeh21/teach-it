@@ -19,7 +19,7 @@ const Index = ({
         inactive={activeLabel !== label1.toLowerCase()}
         label={label1}
         color={color}
-        textColor='black'
+        textColor="black"
         clickHandler={() => {
           setLabel(label1.toLowerCase())
         }}
@@ -28,7 +28,7 @@ const Index = ({
         inactive={activeLabel !== label2.toLowerCase()}
         label={label2}
         color={color}
-        textColor='black'
+        textColor="black"
         clickHandler={() => {
           setLabel(label2.toLowerCase())
         }}
@@ -37,7 +37,7 @@ const Index = ({
         inactive={activeLabel !== label3.toLowerCase()}
         label={label3}
         color={color}
-        textColor='black'
+        textColor="black"
         clickHandler={() => {
           setLabel(label3.toLowerCase())
         }}

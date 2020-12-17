@@ -32,3 +32,8 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+# Vscode settings
+/.vscode
+
+debug.log

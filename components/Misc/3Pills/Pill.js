@@ -11,7 +11,7 @@ export const Pill = ({
 
   return (
     <button
-      style={{outline: 'none'}}
+      style={{ outline: 'none', textTransform: 'capitalize' }}
       className={
         inactive
           ? inactiveClass

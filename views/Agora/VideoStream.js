@@ -18,7 +18,7 @@ class VideoStream {
     this.initClient()
     this.updateStreamsInParent = updateStreamsInParent
   }
-  
+
   close = () => {
     this.localStream.close()
   }

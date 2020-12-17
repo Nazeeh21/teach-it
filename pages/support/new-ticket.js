@@ -4,7 +4,7 @@ import NewTicket from '../../views/Support/NewTicket'
 import SupportTickets from '../../views/Support/SupportTickets'
 
 const Support = () => (
-  <LayoutProvider alternate rightContent={<SupportTickets />} >
+  <LayoutProvider alternate rightContent={<SupportTickets />}>
     <NewTicket />
   </LayoutProvider>
 )

@@ -6,7 +6,7 @@ const SearchBar = ({ value, changeHandler, bgColor = 'white' }) => {
   const router = useRouter()
 
   return (
-    <div className='flex'>
+    <div className="flex">
       <input
         onKeyUp={(e) => {
           if (e.key === 'Enter') {
@@ -18,8 +18,8 @@ const SearchBar = ({ value, changeHandler, bgColor = 'white' }) => {
         onChange={(e) => changeHandler(e.target.value)}
         className={`rounded-full bg-${bgColor} pt-2 pb-2 pl-4 pr-10 w-full`}
       />
-      <div onClick={() => router.push('/search')} className='-ml-12'>
-        <Icon src='/search.png' />
+      <div onClick={() => router.push('/search')} className="-ml-12">
+        <Icon src="/search.png" />
       </div>
     </div>
   )

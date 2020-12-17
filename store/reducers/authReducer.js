@@ -1,11 +1,18 @@
-const { VERIFY_OTP, AUTH_START, AUTH_RESET, SAVE_OTP } = require('../actionTypes')
+const {
+  VERIFY_OTP,
+  AUTH_START,
+  AUTH_RESET,
+  SAVE_OTP,
+  SAVE_TOKEN,
+} = require('../actionTypes')
 
 const initialState = {
   authMedium: '',
   // ongoing, failure, success
   status: '',
   data: {},
-  otp: ''
+  otp: '',
+  token: null,
 }
 
 const startAuth = (state, medium, data) => {
@@ -15,18 +22,18 @@ const startAuth = (state, medium, data) => {
     ...state,
     authMedium: medium,
     data,
-    status: 'ongoing'
+    status: 'ongoing',
   }
 }
 
 const reset = () => {
-  return {...initialState}
+  return { ...initialState }
 }
 
 const saveOtp = (state, otp) => {
   return {
     ...state,
-    otp
+    otp,
   }
 }
 
@@ -35,11 +42,18 @@ const verifyOtp = (state, status) => {
 
   return {
     ...state,
-    status
+    status,
   }
 }
 
-const reducer = ( state = initialState, action ) => {
+const saveToken = (state, token) => {
+  return {
+    ...state,
+    token,
+  }
+}
+
+const reducer = (state = initialState, action) => {
   switch (action.type) {
     case AUTH_START:
       return startAuth(state, action.medium, action.data)
@@ -49,8 +63,11 @@ const reducer = ( state = initialState, action ) => {
       return verifyOtp(state, action.status)
     case SAVE_OTP:
       return saveOtp(state, action.otp)
+    case SAVE_TOKEN:
+      localStorage.setItem('token', action.token)
+      return saveToken(state, action.token)
     default:
-     return state
+      return state
   }
 }
 

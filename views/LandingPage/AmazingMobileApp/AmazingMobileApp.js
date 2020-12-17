@@ -1,6 +1,6 @@
 import React from 'react'
 import TextContainer from './TextContainer/TextContainer'
-import {v4 as uuid} from 'uuid'
+import { v4 as uuid } from 'uuid'
 
 const leftTextContainerData = [
   {
@@ -30,31 +30,50 @@ const rightTextContainerData = [
 
 const heading = 'Amazing mobile app for on-the-go learning and teaching'
 const AmazingMobileApp = () => (
-  <div className='xl:text-center bg-white flex flex-col md:flex-row justify-center'>
-    <div className='w-full mx-5 md:mx-4 my-20 md:w-full xl:w-10/12 xl:my-24'>
+  <div className="xl:text-center bg-white flex flex-col md:flex-row justify-center">
+    <div className="w-full mx-5 md:mx-4 my-20 md:w-full xl:w-10/12 xl:my-24">
       <p
         style={{ color: '#1d2d50', lineHeight: '120%' }}
-        className='text-4xl md:text-5xl md:text-center font-bold xl:mx-40'>
+        className="text-4xl md:text-5xl md:text-center font-bold xl:mx-40"
+      >
         {heading}
       </p>
-      <div className='w-full -mx-5 mt-10 md:hidden'>
+      <div className="w-full -mx-5 mt-10 md:hidden">
+        <img
+          className="w-10/12 m-auto rounded-lg shadow-2xl border-solid border-8 border-black"
+          src="/mobile-screen.png"
+          alt="mobile-screen"
+        />
+      </div>
+      <div className="flex flex-col md:flex-row items-center my-20">
+        <div className="w-full md:w-5/12 xl:w-4/12 grid grid-flow-col grid-cols-1 grid-rows-2 gap-10">
+          {leftTextContainerData.map((data, index) => (
+            <TextContainer
+              key={
+                // () => uuid()
+                index
+              }
+              data={data}
+            />
+          ))}
+        </div>
+        <div className="hidden md:w-5/12 xl:w-4/12 xl:mx-12 md:block">
           <img
-            className='w-10/12 m-auto rounded-lg shadow-2xl border-solid border-8 border-black'
-            src='/mobile-screen.png'
-            alt='mobile-screen' />
+            className="rounded-lg shadow-2xl border-solid border-8 border-black"
+            src="/mobile-screen.png"
+            alt="mobile-screen"
+          />
         </div>
-      <div className='flex flex-col md:flex-row items-center my-20'>
-        <div className='w-full md:w-5/12 xl:w-4/12 grid grid-flow-col grid-cols-1 grid-rows-2 gap-10'>
-          {leftTextContainerData.map((data) => (<TextContainer key={() => uuid()} data={data} />))}
-        </div>
-        <div className='hidden md:w-5/12 xl:w-4/12 xl:mx-12 md:block'>
-          <img
-            className='rounded-lg shadow-2xl border-solid border-8 border-black'
-            src='/mobile-screen.png'
-            alt='mobile-screen' />
-        </div>
-        <div className='w-full md:w-5/12 xl:w-4/12 grid grid-flow-col grid-cols-1 grid-rows-2 gap-10'>
-          {rightTextContainerData.map((data) => (<TextContainer key={() => uuid()} data={data} />))}
+        <div className="w-full md:w-5/12 xl:w-4/12 grid grid-flow-col grid-cols-1 grid-rows-2 gap-10">
+          {rightTextContainerData.map((data, index) => (
+            <TextContainer
+              key={
+                // () => uuid()
+                index
+              }
+              data={data}
+            />
+          ))}
         </div>
       </div>
     </div>

@@ -1,5 +1,12 @@
-import api from "../../api"
-import { AUTH_RESET, AUTH_START, SAVE_OTP, VERIFY_OTP } from "../actionTypes"
+import api from '../../api'
+import {
+  AUTH_RESET,
+  AUTH_START,
+  SAVE_TOKEN,
+  SAVE_OTP,
+  VERIFY_OTP,
+} from '../actionTypes'
+import { switchProfile } from './appActions'
 
 export const auth = (data, medium) => {
   return async (dispatch) => {
@@ -11,7 +18,7 @@ export const auth = (data, medium) => {
 
     console.log(res)
 
-    console.log("OTP", res.data.otp)
+    console.log('OTP', res.data.otp)
     dispatch(saveOtp(res.data.otp))
   }
 }
@@ -30,19 +37,28 @@ export const verifyOtp = (input, medium) => {
       const res = await api.post(`auth/${medium}/verify/`, {
         otp: input,
       })
-
-      localStorage.setItem("token", res.data.token)
+      console.log('[Verify Otp]', res.data)
+      // localStorage.setItem('token', res.data.token)
+      dispatch(saveToken(res.data.token))
+      dispatch(switchProfile(res.data['x-profile-id']))
       dispatch({
         type: VERIFY_OTP,
-        status: "success",
+        status: 'success',
       })
     } catch (e) {
       console.log(e)
       dispatch({
         type: VERIFY_OTP,
-        status: "failure",
+        status: 'failure',
       })
     }
+  }
+}
+
+export const saveToken = (token) => {
+  return {
+    type: SAVE_TOKEN,
+    token: token,
   }
 }
 

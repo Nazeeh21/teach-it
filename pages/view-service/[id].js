@@ -42,7 +42,9 @@ const Index = () => {
         />
       }
     >
-      {viewServiceData && milestoneData && <ViewService response={viewServiceData} milestoneData={milestoneData} />}
+      {viewServiceData && milestoneData && (
+        <ViewService response={viewServiceData} milestoneData={milestoneData} />
+      )}
     </LayoutProvider>
   )
 }

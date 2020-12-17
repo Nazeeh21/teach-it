@@ -5,17 +5,16 @@ import { LandingContainer } from '../../../containers'
 import { useRouter } from 'next/router'
 import { useDispatch, useSelector } from 'react-redux'
 import { auth, resetAuth, verifyOtp } from '../../../store/actions/authActions'
-import api from '../../../api'
 
-const Index = ({ }) => {
+const Index = ({}) => {
   const router = useRouter()
   const dispatch = useDispatch()
 
-  const id = useSelector(state => state.auth.data.id)
-  const authStatus = useSelector(state => state.auth.status)
-  const medium = useSelector(state => state.auth.authMedium)
+  const id = useSelector((state) => state.auth.data.id)
+  const authStatus = useSelector((state) => state.auth.status)
+  const medium = useSelector((state) => state.auth.authMedium)
 
-  const [otp, setOtp] = useState([null, null, null, null, null, null])
+  const [otp, setOtp] = useState(['', '', '', '', '', ''])
   const [canContinue, setCanContinue] = useState(false)
   const [isCorrect, setIsCorrect] = useState(true)
   const [showStatus, setShowStatus] = useState(false)
@@ -89,14 +88,19 @@ const Index = ({ }) => {
   }
 
   return (
-    <LandingContainer width='6/12'>
-      <h1 className='text-5xl font-semibold text-center mb-10 mx-auto'>
+    <LandingContainer width="6/12">
+      <h1 className="text-5xl font-semibold text-center mb-10 mx-auto">
         Almost there
       </h1>
-      <h3 className='w-9/12 m-auto'>
+      <h3 className="w-9/12 m-auto">
         Please enter the OTP sent to <br />{' '}
-        <span className='text-accent text-lg'>{id}</span>
-        <span onClick={goBack} className='text-secondary text-xs cursor-pointer'>&nbsp;&nbsp;Not you?</span>
+        <span className="text-accent text-lg">{id}</span>
+        <span
+          onClick={goBack}
+          className="text-secondary text-xs cursor-pointer"
+        >
+          &nbsp;&nbsp;Not you?
+        </span>
       </h3>
       <div>
         <OtpInput
@@ -149,14 +153,19 @@ const Index = ({ }) => {
         />
       </div>
       <PrimaryButton
-        label='Verify OTP'
+        label="Verify OTP"
         disabled={!canContinue}
-        styles='w-8/12 m-auto mt-4'
+        styles="w-8/12 m-auto mt-4"
         clickHandler={handleContinue}
       />
-      <p className='mt-6 m-auto text-darkGrey text-sm'>
+      <p className="mt-6 m-auto text-darkGrey text-sm">
         Didn't get the OTP?{' '}
-        <span onClick={handleTryAgain} className='text-secondary cursor-pointer'>Try again</span>
+        <span
+          onClick={handleTryAgain}
+          className="text-secondary cursor-pointer"
+        >
+          Try again
+        </span>
       </p>
     </LandingContainer>
   )

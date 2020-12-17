@@ -2,19 +2,22 @@ import React from 'react'
 
 const Input = ({
   defaultValue = '',
-  placeholder='',
+  placeholder = '',
   type = 'text',
   value = '',
   changeHandler,
   valid = false,
   touched = false,
   inValidMessage = '',
+  disabled = false,
+  autoComplete = true,
 }) => {
   // console.log('Default value', defaultValue)
 
   return (
     <div>
       <input
+        autoComplete={autoComplete}
         defaultValue={`${defaultValue}`}
         value={value}
         onChange={(e) => changeHandler(e.target.value)}
@@ -23,8 +26,11 @@ const Input = ({
           !valid && touched && 'border-red border-solid border-2'
         } p-4 w-full rounded bg-highlight`}
         placeholder={placeholder}
+        disabled={disabled}
       />
-      {!valid && touched && <p className='text-red text-sm'>{inValidMessage}</p>}
+      {!valid && touched && (
+        <p className="text-red text-sm">{inValidMessage}</p>
+      )}
     </div>
   )
 }

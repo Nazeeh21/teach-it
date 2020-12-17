@@ -8,7 +8,9 @@ export const fetchProfileData = async () => {
         'X-Profile-ID': window.localStorage.getItem('currentProfile'),
       },
     })
-    return res.data.profiles.filter(profile => profile.id == window.localStorage.getItem('currentProfile'))
+    return res.data.profiles.filter(
+      (profile) => profile.id == window.localStorage.getItem('currentProfile')
+    )
   } catch (e) {
     console.log(e)
     return e

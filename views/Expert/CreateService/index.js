@@ -11,13 +11,19 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useRouter } from 'next/router'
 import { EXPERT } from '../../../constants'
 import { PrimaryButton } from '../../../components/Buttons/Index'
-import { createMilestone, createService } from '../../../store/actions/createServiceAction'
+import IsGroupContainer from './LiveServiceFormComponents/isGroup/Index'
+import IsPrivateContainer from './LiveServiceFormComponents/IsPrivate/Index'
+import QuestionFees from './LiveServiceFormComponents/QuestionFees/Index'
+import { createService } from '../../../services/services'
+import { SET_CREATE_SERVICE_ACTIVE_STEP } from '../../../store/actionTypes'
 
 const SectionTitle = ({ children }) => (
-  <h3 className='text-lg text-primary mb-2'>{children}</h3>
+  <h3 className="text-lg text-primary mb-2">{children}</h3>
 )
 
 const Index = () => {
+  const dispatch = useDispatch()
+
   const [type, setType] = useState(null)
   const [liveType, setLiveType] = useState(null)
   const [title, setTitle] = useState('')
@@ -31,15 +37,28 @@ const Index = () => {
   const [activeAgeGroup, setActiveAgeGroup] = useState(null)
   const [startDate, setStartDate] = useState(null)
   const [endDate, setEndDate] = useState(null)
-  const [milestoneData, setMileStoneData] = useState(null)
+  const [milestoneData, setMileStoneData] = useState([])
   const [serviceFreq, setServiceFreq] = useState('per day')
   const [paymentFreq, setPaymentFreq] = useState('per day')
   const [allowRecording, setAllowRecording] = useState('no')
   const [showFullName, setShowFullName] = useState('no')
+  const [isGroup, setIsGroup] = useState('no')
+  const [isPrivate, setIsPrivate] = useState('no')
+  const [questionFee, setQuestionFee] = useState('')
+  const [allowQuestion, setAllowQuestion] = useState('no')
+  const [files, setFiles] = useState([])
 
   const router = useRouter()
   const userType = useSelector((state) => state.app.userType)
-  const dispatch = useDispatch()
+  const profileId = useSelector((state) => state.app.currentProfile)
+  const token = useSelector((state) => state.auth.token)
+
+  if (startDate) {
+    console.log('createService startDate ', startDate)
+  }
+  if (endDate) {
+    console.log('createService endDate ', endDate)
+  }
 
   const verifyUserType = useCallback(() => {
     if (userType === EXPERT) {
@@ -55,50 +74,111 @@ const Index = () => {
     }
   }, [verifyUserType])
 
+  useEffect(() => {
+    if (
+      type &&
+      title &&
+      description &&
+      startTimeHour &&
+      startTimeMin &&
+      startDate &&
+      endDate &&
+      serviceFreq &&
+      fees &&
+      questionFee &&
+      paymentFreq
+    ) {
+      dispatch({ type: SET_CREATE_SERVICE_ACTIVE_STEP, step: 4 })
+    } else if (
+      type &&
+      title &&
+      description &&
+      startTimeHour &&
+      startTimeMin &&
+      startDate &&
+      endDate &&
+      serviceFreq
+    ) {
+      dispatch({ type: SET_CREATE_SERVICE_ACTIVE_STEP, step: 3 })
+    } else if (type && title && description) {
+      dispatch({ type: SET_CREATE_SERVICE_ACTIVE_STEP, step: 2 })
+    }
+  }, [
+    type,
+    title,
+    description,
+    startTimeHour,
+    startTimeMin,
+    startDate,
+    endDate,
+    serviceFreq,
+    fees,
+    questionFee,
+    paymentFreq,
+  ])
+
   const [serviceType, setServiceType] = useState(null)
 
   const activeGroupChangeHandler = (ageGroup) => setActiveAgeGroup(ageGroup)
 
-  const continueClickedHandler = () => {
+  const continueClickedHandler = async () => {
     const formData = {
       title: title,
       description: description,
       category: null,
       languages: ['en'],
       type: type,
-      is_group: false,
-      is_private: false,
+      is_group: `${isGroup === 'yes' ? 'true' : 'false'}`,
+      is_private: `${isPrivate === 'yes' ? 'true' : 'false'}`,
       live_type: liveType,
       cost: fees,
-      session_type: `${serviceFreq === 'per day' ? 'daily' : serviceFreq === 'per week' ? 'weekly' : 'monthly'}`,
-      payment_type: `${paymentFreq === 'per day' ? 'daily' : paymentFreq === 'per week' ? 'weekly' : 'monthly'}`,
-      allow_questions: false,
-      question_fee: '5656',
+      session_type: `${
+        serviceFreq === 'per day'
+          ? 'daily'
+          : serviceFreq === 'per week'
+          ? 'weekly'
+          : 'monthly'
+      }`,
+      payment_type: `${
+        paymentFreq === 'per day'
+          ? 'daily'
+          : paymentFreq === 'per week'
+          ? 'weekly'
+          : 'monthly'
+      }`,
+      allow_questions: `${allowQuestion === 'yes' ? 'true' : 'false'}`,
+      question_fee: `${questionFee}`,
       allow_subscribe: false,
+      duration: `${duration}`,
       allow_recording: `${allowRecording === 'yes' ? 'true' : 'false'}`,
       allow_visible_user_names: `${showFullName === 'yes' ? 'true' : 'false'}`,
-      // start_at: `10/16/2020 ${startTimeHour} ' : ' ${startTimeMin} ' ' ${startTimeStamp}`,
-      // end_at: `12/16/2020 ${startTimeHour} ' : ' ${startTimeMin} ' ' ${startTimeStamp}`,
-      start_at: '2020-10-16T02:08:00Z',
-      end_at: '2020-10-24T02:08:00Z',
-      age_group: `${activeAgeGroup}`
+      start_at: `${startDate !== null && startDate.toISOString()}`,
+      end_at: `${endDate !== null && endDate.toISOString()}`,
+      age_group: `${activeAgeGroup}`,
     }
 
-    dispatch(createService(formData))
-    // dispatch(createMilestone(milestoneData))
+    const success = await createService(
+      formData,
+      milestoneData,
+      files,
+      profileId,
+      token
+    )
+
+    if (success) dispatch({ type: SET_CREATE_SERVICE_ACTIVE_STEP, step: 5 })
   }
 
   return (
-    <div className='w-full'>
-      <h3 className='text-2xl text-primary mb-4'>Create new service</h3>
-      <div className='border-2 border-highlight bg-white rounded-sm p-6'>
-        <Accordion id='details' label='Service details'>
+    <div className="w-full">
+      <h3 className="text-2xl text-primary mb-4">Create new service</h3>
+      <div className="border-2 border-highlight bg-white rounded-sm p-6">
+        <Accordion id="details" label="Service details">
           {/* TODO: Language selection */}
 
           <SectionTitle>Service type</SectionTitle>
-          <div className='w-full grid grid-cols-2 gap-5 mb-6'>
+          <div className="w-full grid grid-cols-2 gap-5 mb-6">
             <ServiceTypeCard
-              label='Live'
+              label="Live"
               active={serviceType === 0}
               clickHandler={() => {
                 setType('live')
@@ -109,7 +189,7 @@ const Index = () => {
               }}
             />
             <ServiceTypeCard
-              label='Rich media'
+              label="Rich media"
               active={serviceType === 1}
               clickHandler={() => {
                 setType('rich')
@@ -128,10 +208,21 @@ const Index = () => {
             description={description}
             descriptionChangedHandler={(value) => setDescription(value)}
             type={serviceType === 0 ? 'live' : 'media'}
+            imageInputChangeHandler={(data) => {
+              const newFiles = [...files]
+              newFiles.push(data)
+              setFiles(newFiles)
+            }}
+            imageDataForPreview={files}
+            imageCrossHandler={(index) => {
+              const newFile = [...files]
+              newFile.splice(index, 1)
+              setFiles(newFile)
+            }}
           />
         </Accordion>
- 
-        <Accordion id='schedule' label='Service schedule'>
+
+        <Accordion id="schedule" label="Service schedule">
           <ScheduleSelector
             startDate={startDate}
             startDateChangeHandler={(value) => setStartDate(value)}
@@ -144,9 +235,9 @@ const Index = () => {
             timeStampChangedHandler={(value) => setStartTimeStamp(value)}
             weekDaysChangedHandler={(value) => setWeekDays(value)}
             duration={duration}
-            durationChangedHandler={value => setDuration(value)}
+            durationChangedHandler={(value) => setDuration(value)}
             type={serviceType}
-            setMilestoneData={data => setMileStoneData(data)}
+            setMilestoneData={(data) => setMileStoneData(data)}
             serviceFreq={serviceFreq}
             setServiceFreq={setServiceFreq}
             paymentFreq={paymentFreq}
@@ -154,20 +245,43 @@ const Index = () => {
           />
         </Accordion>
 
-        <Accordion id='fees' label='Fees'>
-          <FeesSelector fees={fees} feesChangedHandler={value => setFees(value)} />
+        <Accordion id="fees" label="Fees">
+          <FeesSelector
+            fees={fees}
+            feesChangedHandler={(value) => setFees(value)}
+          />
+          <QuestionFees
+            value={questionFee}
+            changeHandler={setQuestionFee}
+            allowQuestions={allowQuestion}
+            allowQuestionChangeHandler={setAllowQuestion}
+          />
         </Accordion>
 
-        <Accordion id='audience' label='Audience'>
-          <AudienceSelector activeAgeGroup={activeAgeGroup} ageGroupChangeHandler={activeGroupChangeHandler} />
+        <Accordion id="audience" label="Audience">
+          <AudienceSelector
+            activeAgeGroup={activeAgeGroup}
+            ageGroupChangeHandler={activeGroupChangeHandler}
+          />
         </Accordion>
 
-        <div className='flex gap-4'>
-          <AllowRecording activeLabel={allowRecording} setLabel={setAllowRecording} />
+        <div className="flex gap-4">
+          <AllowRecording
+            activeLabel={allowRecording}
+            setLabel={setAllowRecording}
+          />
           <ShowFullName activeLabel={showFullName} setLabel={setShowFullName} />
         </div>
-        <div className='w-4/12 mt-10'>
-          <PrimaryButton label='Continue' clickHandler={continueClickedHandler} />
+
+        <div className="flex gap-4 mt-4">
+          <IsGroupContainer activeLabel={isGroup} setLabel={setIsGroup} />
+          <IsPrivateContainer activeLabel={isPrivate} setLabel={setIsPrivate} />
+        </div>
+        <div className="w-4/12 mt-10">
+          <PrimaryButton
+            label="Continue"
+            clickHandler={continueClickedHandler}
+          />
         </div>
       </div>
     </div>

@@ -5,7 +5,7 @@ const initialState = {}
 const saveData = (state, data) => {
   return {
     ...state,
-   data
+    data,
   }
 }
 
@@ -14,8 +14,8 @@ const updateData = (state, field, value) => {
     ...state,
     data: {
       ...state.data,
-      [field]: value
-    }
+      [field]: value,
+    },
   }
 }
 
