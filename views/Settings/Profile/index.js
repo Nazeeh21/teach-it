@@ -51,6 +51,7 @@ const Index = () => {
           : setOneLineBio(res[0].seeker.bio)
         setProfileDescription(res[0].provider.description)
         setAvatarUrl(res[0].avatar_url)
+        setIsAvatarChanged(false)
       })
       .catch((e) => {
         console.log(e)
@@ -171,6 +172,10 @@ const Index = () => {
     setIsAvatarChanged(true)
     setToggleChangePhoto(false)
     // console.log('In saveAvatarHandler ', data)
+  }
+
+  if (!fetchedData) {
+    return <div />
   }
 
   return (

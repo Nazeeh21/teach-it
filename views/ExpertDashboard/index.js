@@ -34,10 +34,12 @@ const Index = () => {
 
   useEffect(() => {
     // if (!initialFetch) {
-    console.log('useEffect in ExpertDashboard')
-    dispatch(fetchProviderService(providerId, token, currentProfileId))
+    if (providerId && token && currentProfileId) {
+      console.log('useEffect in ExpertDashboard')
+      dispatch(fetchProviderService(providerId, token, currentProfileId))
+    }
     // }
-  }, [])
+  }, [providerId, currentProfileId, token])
 
   console.log('profileId', currentProfileId)
 
