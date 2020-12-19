@@ -103,7 +103,7 @@ const Index = () => {
               }
             />
             <SideDrawer open={showSideDrawer} closed={sideDrawerClosedHandler}>
-              <div className="mb-4 w-6/12 mx-auto ">
+              <div className="mb-4 w-full sm:w-6/12 mx-auto ">
                 <div style={{ marginTop: '1vh' }} className="flex flex-col ">
                   {currentProfile && !showAllProfiles && (
                     <div className="flex flex-row w-auto mx-auto p-2 border-2 border-darkGrey rounded">

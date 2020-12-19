@@ -15,7 +15,7 @@ const SideDrawer = ({ open, closed, children }) => {
     <Fragment>
       <BackDrop show={open} clicked={closed} />
       <div className={attachedClasses.join(' ')}>
-        <div className="w-full m-auto sm:w-8/12 md:max-w-6/12">{children}</div>
+        <div className="w-full ">{children}</div>
         {/* <div className={classes.Logo}>
           <img src="/logos/blue.svg" alt="Videowork" />
         </div> */}
