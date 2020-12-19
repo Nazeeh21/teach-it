@@ -7,7 +7,13 @@ import { AgoraCenterSection, CenterSection, ThreeCols } from '..'
 import Messages from '../../views/Expert/Messages'
 import Header from '../../components/Header'
 
-const Index = ({ children, rightContent, alternate = false, forAgora }) => {
+const Index = ({
+  children,
+  rightContent,
+  alternate = false,
+  forAgora,
+  isForChat,
+}) => {
   if (alternate) {
     return (
       <React.Fragment>
@@ -17,7 +23,7 @@ const Index = ({ children, rightContent, alternate = false, forAgora }) => {
             <NavItems />
             <Messages />
           </ThreeCols>
-          <ThreeCols side="center">
+          <ThreeCols isForChat={isForChat} side="center">
             {rightContent ? (
               rightContent
             ) : (
@@ -27,7 +33,9 @@ const Index = ({ children, rightContent, alternate = false, forAgora }) => {
               </React.Fragment>
             )}
           </ThreeCols>
-          <CenterSection alternate>{children}</CenterSection>
+          <CenterSection isForChat={isForChat} alternate>
+            {children}
+          </CenterSection>
         </div>
       </React.Fragment>
     )

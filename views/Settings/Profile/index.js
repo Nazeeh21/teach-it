@@ -200,7 +200,7 @@ const Index = () => {
       <div className="w-full">
         <h3 className="text-2xl mb-4">Profile settings</h3>
         <div className="bg-white w-full rounded-lg p-6">
-          <div className="grid grid-cols-2">
+          <div className="grid grid-flow-row grid-rows-2 sm:grid-flow-row sm:grid-rows-1 sm:grid-cols-2">
             <div className="flex gap-6 items-center">
               <img
                 // src="/stock/girl2.jpg"
@@ -222,14 +222,14 @@ const Index = () => {
               </div>
             </div>
           </div>
-          <div className="w-full bg-highlight p-4 flex gap-4 mt-6 mb-12">
+          <div className="w-full bg-highlight p-4 flex flex-col sm:flex-row gap-4 mt-6 mb-12">
             <SecondaryButton label="Request Verification" />
             <SecondaryButton disabled label="Apply to become a pro" />
           </div>
 
           <Label>Display name</Label>
 
-          <div className="grid grid-cols-2 items-center gap-x-6 gap-y-0 grid-flow-row">
+          <div className="grid grid-rows-2 sm:grid-rows-1 sm:grid-cols-2 items-center gap-x-6 gap-y-0 grid-flow-row">
             <Input
               placeholder={fetchedData && fetchedData[0].name}
               defaultValue={fetchedData && fetchedData[0].name}
@@ -250,21 +250,38 @@ const Index = () => {
             </div>
 
             <Label>Age</Label>
+            <div className="sm:hidden">
+              <Input
+                placeholder={fetchedData && fetchedData[0].age}
+                defaultValue={fetchedData && fetchedData[0].age}
+                valid={isValid.inputData.age.valid}
+                touched={isValid.inputData.age.touched}
+                inValidMessage="Enter a valid age"
+                type="number"
+                value={age}
+                changeHandler={(value) => {
+                  setAge(value)
+                  inputDataChangeHandler(value, 'age', 'number')
+                }}
+              />
+            </div>
             <Label>Website URL</Label>
 
-            <Input
-              placeholder={fetchedData && fetchedData[0].age}
-              defaultValue={fetchedData && fetchedData[0].age}
-              valid={isValid.inputData.age.valid}
-              touched={isValid.inputData.age.touched}
-              inValidMessage="Enter a valid age"
-              type="number"
-              value={age}
-              changeHandler={(value) => {
-                setAge(value)
-                inputDataChangeHandler(value, 'age', 'number')
-              }}
-            />
+            <div className="hidden sm:flex">
+              <Input
+                placeholder={fetchedData && fetchedData[0].age}
+                defaultValue={fetchedData && fetchedData[0].age}
+                valid={isValid.inputData.age.valid}
+                touched={isValid.inputData.age.touched}
+                inValidMessage="Enter a valid age"
+                type="number"
+                value={age}
+                changeHandler={(value) => {
+                  setAge(value)
+                  inputDataChangeHandler(value, 'age', 'number')
+                }}
+              />
+            </div>
             <Input
               valid={isValid.inputData.websiteURL.valid}
               touched={isValid.inputData.websiteURL.touched}
@@ -278,28 +295,56 @@ const Index = () => {
             />
 
             <Label>Country</Label>
+            <div className="w-full sm:hidden">
+              <Dropdown changeHandler={(value) => setCountry(value)} />
+            </div>
             <Label>Language</Label>
 
-            <Dropdown changeHandler={(value) => setCountry(value)} />
+            <div className="hidden sm:flex w-full">
+              <Dropdown changeHandler={(value) => setCountry(value)} />
+            </div>
+
             <Dropdown changeHandler={(value) => setLanguage(value)} />
 
             <Label>Primary email</Label>
+            <div className="sm:hidden w-full">
+              <Input
+                placeholder={fetchedData && fetchedData[0].email}
+                defaultValue={fetchedData && fetchedData[0].email}
+                // valid={isValid.inputData.primaryEmail.valid}
+                // touched={isValid.inputData.primaryEmail.touched}
+                inValidMessage="Enter a valid email"
+                type="email"
+                // value={primaryEmail}
+                // changeHandler={(value) => {
+                //   setPrimaryEmail(value)
+                //   inputDataChangeHandler(value, 'primaryEmail', 'email')
+                // }}
+                disabled={true}
+              />
+              <Clickable onClick={() => toggleEmailModal(true)}>
+                Change email
+              </Clickable>
+            </div>
             <Label>Mobile</Label>
 
-            <Input
-              placeholder={fetchedData && fetchedData[0].email}
-              defaultValue={fetchedData && fetchedData[0].email}
-              // valid={isValid.inputData.primaryEmail.valid}
-              // touched={isValid.inputData.primaryEmail.touched}
-              inValidMessage="Enter a valid email"
-              type="email"
-              // value={primaryEmail}
-              // changeHandler={(value) => {
-              //   setPrimaryEmail(value)
-              //   inputDataChangeHandler(value, 'primaryEmail', 'email')
-              // }}
-              disabled={true}
-            />
+            <div className="hidden sm:flex w-full">
+              <Input
+                placeholder={fetchedData && fetchedData[0].email}
+                defaultValue={fetchedData && fetchedData[0].email}
+                // valid={isValid.inputData.primaryEmail.valid}
+                // touched={isValid.inputData.primaryEmail.touched}
+                inValidMessage="Enter a valid email"
+                type="email"
+                // value={primaryEmail}
+                // changeHandler={(value) => {
+                //   setPrimaryEmail(value)
+                //   inputDataChangeHandler(value, 'primaryEmail', 'email')
+                // }}
+                disabled={true}
+              />
+            </div>
+
             <Input
               placeholder={fetchedData && fetchedData[0].mobile}
               defaultValue={fetchedData && fetchedData[0].mobile}
@@ -316,9 +361,12 @@ const Index = () => {
             />
 
             {/* <div className="flex w-full"> */}
-            <Clickable onClick={() => toggleEmailModal(true)}>
-              Change email
-            </Clickable>
+            <div className="hidden sm:flex">
+              <Clickable onClick={() => toggleEmailModal(true)}>
+                Change email
+              </Clickable>
+            </div>
+
             <Clickable onClick={() => toggleMobileModal(true)}>
               Change mobile
             </Clickable>
@@ -394,7 +442,7 @@ const Index = () => {
             />
           </div>
 
-          <div className="w-1/3 mt-6">
+          <div className="w-full sm:w-1/3 mt-6">
             <PrimaryButton
               label="Save"
               // disabled={!isValid.isFormValid}

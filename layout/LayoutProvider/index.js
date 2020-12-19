@@ -11,6 +11,7 @@ const LayoutProvider = ({
   alternate,
   rightContent,
   forAgora = false,
+  isForChat = false,
 }) => {
   const userType = useSelector((state) => state.app.userType)
   const dispatch = useDispatch()
@@ -28,6 +29,7 @@ const LayoutProvider = ({
         alternate={alternate}
         rightContent={rightContent}
         forAgora={forAgora}
+        isForChat={isForChat}
       >
         {children}
       </LearnerLayout>
@@ -40,6 +42,7 @@ const LayoutProvider = ({
         alternate={alternate}
         rightContent={rightContent}
         forAgora={forAgora}
+        isForChat={isForChat}
       >
         {children}
       </ExpertLayout>

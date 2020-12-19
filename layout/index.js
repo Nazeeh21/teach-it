@@ -6,12 +6,22 @@ const FooterItem = ({ label }) => (
   </a>
 )
 
-export const ThreeCols = ({ children, side }) => {
+export const ThreeCols = ({ children, side, isForChat }) => {
   if (side === 'center') {
+    if (isForChat) {
+      return (
+        <div
+          style={{ overflowY: 'scroll', height: '100vh' }}
+          className={`w-full md:w-4/12 lg:w-3/12 md:flex flex-col pt-4 pl-4 pr-4 mb-6`}
+        >
+          {children}
+        </div>
+      )
+    }
     return (
       <div
         style={{ overflowY: 'scroll', height: '100vh' }}
-        className={'w-3/12 flex flex-col pt-4 pl-4 pr-4 mb-6'}
+        className={`hidden md:w-4/12 lg:w-3/12 md:flex flex-col pt-4 pl-4 pr-4 mb-6`}
       >
         {children}
       </div>
@@ -46,12 +56,18 @@ export const DoubleSection = ({ children }) => {
   )
 }
 
-export const CenterSection = ({ children, alternate = false }) => {
+export const CenterSection = ({
+  children,
+  alternate = false,
+  isForChat = false,
+}) => {
   if (alternate) {
     return (
       <div
         style={{ overflowY: 'scroll', height: '100vh' }}
-        className="w-full xs:w-full sm:w-full md:w-full lg:flex lg:w-6/12 flex flex-col pt-4 pl-2 pr-16 mb-6"
+        className={`${
+          isForChat ? 'hidden' : 'w-full'
+        } md:w-9/12 lg:flex lg:w-6/12 md:flex flex-col pt-4 pl-2 pr-16 mb-6`}
       >
         {children}
       </div>

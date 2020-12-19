@@ -5,7 +5,7 @@ import Contacts from '../../views/Chat/Contacts'
 
 const Index = () => {
   return (
-    <LayoutProvider alternate rightContent={<Contacts />}>
+    <LayoutProvider isForChat={true} alternate rightContent={<Contacts />}>
       <Chat />
     </LayoutProvider>
   )
