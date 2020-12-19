@@ -26,9 +26,11 @@ const CompactServiceCard = ({
 
   return (
     <div className="flex flex-row w-auto p-2 bg-white shadow-md rounded-lg my-3">
-      <div className="p-3 w-2/12 flex flex-col">
+      <div className="p-3 w-4/12 sm:w-2/12 flex flex-col">
         <Image src={imgSrc} alt="John" />
-        <p className="text-3xl font-bold text-accent m-auto">13</p>
+        <p className="hidden sm:flex text-3xl font-bold text-accent m-auto">
+          13
+        </p>
       </div>
 
       <div className="p-1 w-10/12 flex flex-col">
@@ -58,7 +60,7 @@ const CompactServiceCard = ({
             17 weeks
           </p>
         </div>
-        <div className="flex flex-row items-center">
+        <div className="flex flex-col sm:flex-row items-center">
           <div
             style={{ color: `${serviceType === 'rich' ? 'green' : 'red'}` }}
             className="font-medium flex flex-row w-1/2 mt-4"
@@ -72,12 +74,14 @@ const CompactServiceCard = ({
               {serviceType === 'rich' ? 'Rich Media' : serviceType}
             </span>
           </div>
-          <div className="w-4/12 flex items-center">
-            <div className="w-3/12 mx-2">
-              <a style={{ color: '#00bcd4' }} href="/">
-                {hrefText}
-              </a>
-            </div>
+          <div className="w-full sm:w-4/12 flex items-center">
+            {hrefText && hrefText !== '' && (
+              <div className="w-3/12 mx-2">
+                <a style={{ color: '#00bcd4' }} href="/">
+                  {hrefText}
+                </a>
+              </div>
+            )}
             <div className="w-9/12 mx-2">
               <CardButton
                 // clickHandler={() => router.push('/view-service')}

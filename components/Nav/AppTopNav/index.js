@@ -80,8 +80,8 @@ const Index = () => {
               alt="Videowork"
               className="hidden sm:hidden lg:block cursor-pointer justify-self-start"
             />
-            <div className="justify-self-end sm:justify-self-center lg:justify-self-end flex sm:items-center">
-              <div className="hidden sm:flex md:mr-24">
+            <div className="justify-self-end  lg:justify-self-end flex sm:items-center">
+              <div className="hidden lg:flex md:mr-24">
                 <NavSwitch
                   label1="Expert"
                   color1="expert"
@@ -91,7 +91,7 @@ const Index = () => {
               </div>
 
               <div
-                className=" w-full md:mr-24"
+                className=" w-full lg:mr-24"
                 onClick={notificationOpenHandler}
               >
                 <Icon
@@ -103,7 +103,7 @@ const Index = () => {
               {/* <div className='hidden sm:flex'> */}
               <div
                 style={{ marginTop: '0.25rem' }}
-                className="hidden sm:flex flex-col right-0 mr-10 absolute justify-self-end"
+                className="hidden lg:flex flex-col right-0 mr-10 absolute justify-self-end"
               >
                 {currentProfile && !showAllProfiles && (
                   <div className="flex flex-row">
@@ -129,7 +129,7 @@ const Index = () => {
               {otherProfiles && showAllProfiles && (
                 <div
                   style={{ marginTop: '0.85rem' }}
-                  className="hidden sm:flex flex-col right-0 top-0 mr-8 absolute justify-self-end bg-white px-2 border-gray-500 border-solid border-b-2 shadow-xl rounded-b"
+                  className="hidden lg:flex flex-col right-0 top-0 mr-8 absolute justify-self-end bg-white px-2 border-gray-500 border-solid border-b-2 shadow-xl rounded-b"
                 >
                   <div className="flex flex-row">
                     <div className="mr-2">

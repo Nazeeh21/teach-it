@@ -65,13 +65,17 @@ const ChangeAvatarModal = ({
           borderTopRightRadius: '1rem',
           opacity: show ? '1' : '0',
         }}
-        className="absolute bg-white w-8/12 md:w-5/12 lg:w-3/12 xl:w-3/12 h-auto pt-4 pl-6 pr-2 pb-4"
+        className="absolute bg-white w-8/12 md:w-5/12 lg:w-3/12 xl:w-3/12 h-auto pt-4 pl-6 pr-2 pb-4 "
       >
-        <Label>Upload Avatar</Label>
+        <div className="flex justify-center">
+          <Label>Upload Avatar</Label>
+        </div>
         {!file ? (
-          <UploadButton imageInputChangeHandler={imageChangeHandler} />
+          <div className="flex justify-center md:-mr-4">
+            <UploadButton imageInputChangeHandler={imageChangeHandler} />
+          </div>
         ) : (
-          <div>
+          <div className="flex justify-center -mr-4">
             {/* {console.log('Logging uploaded avatar', file.forPreview)} */}
             <UploadImageAndVideo
               src={file.forPreview}
@@ -80,7 +84,7 @@ const ChangeAvatarModal = ({
           </div>
         )}
 
-        <div className="w-10/12 lg:w-6/12 mt-4">
+        <div className="w-10/12 lg:w-6/12 mt-4 mx-auto">
           <SecondaryButton
             disabled={!file}
             label="Save"
