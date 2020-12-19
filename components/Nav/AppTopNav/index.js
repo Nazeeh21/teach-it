@@ -87,9 +87,23 @@ const Index = () => {
           )}
           {/* SideDrawer */}
           <div className="lg:hidden">
-            <Toolbar drawerToggleClicked={sideDrawerToggleHandler} />
+            <Toolbar
+              drawerToggleClicked={sideDrawerToggleHandler}
+              notificationDiv={
+                <div
+                  className=" w-full lg:mr-24 "
+                  onClick={notificationOpenHandler}
+                >
+                  <Icon
+                    src="/misc/notifications.svg"
+                    alt="Notifications"
+                    onClick={notificationOpenHandler}
+                  />
+                </div>
+              }
+            />
             <SideDrawer open={showSideDrawer} closed={sideDrawerClosedHandler}>
-              <div className="mb-4 w-full mx-auto ">
+              <div className="mb-4 w-6/12 mx-auto ">
                 <div style={{ marginTop: '1vh' }} className="flex flex-col ">
                   {currentProfile && !showAllProfiles && (
                     <div className="flex flex-row w-auto mx-auto p-2 border-2 border-darkGrey rounded">
@@ -105,7 +119,7 @@ const Index = () => {
                       <img
                         src="/arrows/down.svg"
                         alt="Switch profile"
-                        className="cursor-pointer"
+                        className="cursor-pointer ml-2"
                         onClick={(e) =>
                           setShowAllProfiles((prevState) => !prevState)
                         }
@@ -115,11 +129,11 @@ const Index = () => {
                 </div>
                 {otherProfiles && showAllProfiles && (
                   <div
-                    style={{ marginTop: '1vh', marginLeft: '15%' }}
-                    className=" flex flex-col bg-white px-2 w-auto border-gray-500 border-solid border-b-2 mx-auto shadow-xl rounded-b"
+                    style={{ marginTop: '1.25vh' }}
+                    className=" flex flex-col bg-white px-2 w-full border-gray-500 border-solid border-b-2 m-auto shadow-xl rounded-b"
                   >
                     <div className="flex flex-row">
-                      <div className="mr-2 w-full">
+                      <div className=" w-full">
                         <ProfileSwitch
                           forSideDrawer="true"
                           profileSrc={currentProfile.avatar_url}
@@ -130,14 +144,14 @@ const Index = () => {
                       <img
                         src="/angle-arrow-up.svg"
                         alt="Switch profile"
-                        className="cursor-pointer w-3"
+                        className="mr-2 cursor-pointer w-3"
                         onClick={(e) =>
                           setShowAllProfiles((prevState) => !prevState)
                         }
                       />
                     </div>
                     {otherProfiles.map((profile, index) => (
-                      <div className="mt-2 w-auto" key={index}>
+                      <div className="mt-2 " key={index}>
                         <ProfileSwitch
                           forSideDrawer="true"
                           key={profile.name}
