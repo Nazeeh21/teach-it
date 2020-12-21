@@ -3,7 +3,7 @@ import api from '../api'
 export const sendInvite = async (name, email, mobile) => {
   try {
     const res = await api.post(
-      '/invites/service/',
+      '/invites/user/',
       {
         fullname: name,
         email: email,

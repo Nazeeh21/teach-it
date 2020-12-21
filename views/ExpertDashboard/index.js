@@ -10,6 +10,7 @@ import {
   fetchProviderService,
   fetchServices,
 } from '../../store/actions/appActions'
+import { fetchTopCategories } from '../../services/fetchCategories'
 
 const Index = () => {
   const router = useRouter()
@@ -21,6 +22,7 @@ const Index = () => {
   const currentProfileId = useSelector((state) => state.app.currentProfile)
   const token = useSelector((state) => state.auth.token)
   const nextUrl = useSelector((state) => state.app.nextProviderServiceUrl)
+  const [topCategories, setTopCategories] = useState([])
   // const previousUrl = useSelector(
   //   (state) => state.app.previousProviderServiceUrl
   // )
@@ -38,6 +40,9 @@ const Index = () => {
       console.log('useEffect in ExpertDashboard')
       dispatch(fetchProviderService(providerId, token, currentProfileId))
     }
+    fetchTopCategories()
+      .then((res) => setTopCategories(res))
+      .catch((e) => console.log(e))
     // }
   }, [providerId, currentProfileId, token])
 
@@ -80,7 +85,16 @@ const Index = () => {
       )}
       <h3 className="text-2xl mb-6">Trending services</h3>
       <div className="grid grid-flow-row grid-cols-2 w-full gap-6 mb-6">
-        <CardFilledWithImage
+        {topCategories.map((category, index) => (
+          <CardFilledWithImage
+            key={index}
+            clickHandler={handleCategoriesRedirect}
+            src={category.avatar}
+            title={category.title}
+            subTitle={`${category.seeker_count} learners`}
+          />
+        ))}
+        {/* <CardFilledWithImage
           clickHandler={handleCategoriesRedirect}
           src="/stock/music.jpg"
           title="Music"
@@ -103,7 +117,7 @@ const Index = () => {
           src="/stock/photography.jpg"
           title="Photography"
           subTitle="137 learners"
-        />
+        /> */}
       </div>
       <div className="m-auto w-2/12">
         <ViewMoreButton clickHandler={() => router.push('/categories')} />

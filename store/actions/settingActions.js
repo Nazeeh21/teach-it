@@ -1,7 +1,30 @@
 import api from '../../api'
 import { SAVE_PROFILE_DATA, UPDATE_PROFILE_DATA } from '../actionTypes'
 
+export const uploadAvatar = async (avatarData) => {
+  try {
+    const formData = new FormData()
+    formData.append('media', avatarData)
+    // console.log('In uploadAvatar loggin avatarData ', avatarData)
+    // console.log('In uploadAvatar loggin formData ', formData)
+
+    const res = await api.post('files/', formData, {
+      headers: {
+        Authorization: `Token ${localStorage.getItem('token')}`,
+        'X-Profile-ID': localStorage.getItem('currentProfile'),
+        'content-type': 'multipart/form-data',
+      },
+    })
+    console.log('Upload Avatar respone', res.data)
+    return res.data
+  } catch (e) {
+    console.log(e)
+  }
+}
+
 export const saveProfile = (data, certificateData) => {
+  // console.log('In saveProfile', data)
+
   return async (dispatch) => {
     const id = localStorage.getItem('currentProfile')
     try {

@@ -7,7 +7,10 @@ import {
 import Input from '../../../components/Inputs/HighlightInput'
 import Dropdown from '../../../components/Inputs/Dropdown'
 import { useDispatch, useSelector } from 'react-redux'
-import { saveProfile } from '../../../store/actions/settingActions'
+import {
+  saveProfile,
+  uploadAvatar,
+} from '../../../store/actions/settingActions'
 import { validate } from '../../../utility/validation'
 import { fetchProfileData } from '../../../services/settings'
 import { Upload, Switch, Label, Clickable } from './Util'
@@ -127,7 +130,19 @@ const Index = () => {
     isFormValid: false,
   })
 
-  const saveButtonClickHandler = () => {
+  const saveButtonClickHandler = async () => {
+    let uploadedAvatarUrl = avatarUrl
+    console.log('Before save clicked logging avatarUrl ', avatarUrl)
+    if (isAvatarChanged) {
+      await uploadAvatar(avatarUrl.forUpload)
+        .then((res) => {
+          // console.log('Logging recieved url ', res.media)
+          setAvatarUrl(res.media)
+          setIsAvatarChanged(false)
+          uploadedAvatarUrl = res.media
+        })
+        .catch((e) => console.log(e))
+    }
     const formData = {
       primary_type: 'seeker',
       name: `${displayName}`,
@@ -137,7 +152,7 @@ const Index = () => {
       // email: `${primaryEmail}`,
       // mobile: `${mobile}`,
       // avatar_url: `${avatarUrl}`,
-      avatar_url: `${isAvatarChanged ? avatarUrl.forPreview : avatarUrl}`,
+      avatar_url: `${uploadedAvatarUrl}`,
       // avatar_url: 'http://localhost:3000/daae4ff1-32fa-4424-a4a9-80bb860225e3'
     }
 
@@ -171,7 +186,7 @@ const Index = () => {
     setAvatarUrl(data)
     setIsAvatarChanged(true)
     setToggleChangePhoto(false)
-    // console.log('In saveAvatarHandler ', data)
+    console.log('In saveAvatarHandler ', data.forUpload)
   }
 
   if (!fetchedData) {
