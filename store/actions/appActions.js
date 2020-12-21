@@ -94,73 +94,53 @@ export const fetchNextProviderService = (
   }
 }
 
-export const fetchServices = () => {
+export const fetchServices = (token, profileId) => {
   return async (dispatch) => {
     try {
-      var flag = 0
+      const res = await api.get('service/', {
+        headers: {
+          Authorization: `Token ${token}`,
+          'X-Profile-ID': profileId,
+        },
+      })
 
-      while (flag === 0) {
-        try {
-          var res = await api.get('service/', {
-            headers: {
-              Authorization: `Token ${localStorage.getItem('token')}`,
-              'X-Profile-ID': localStorage.getItem('currentProfile'),
-            },
-          })
+      console.log('fetchServices', res)
 
-          console.log('Fetch service response', res.data)
+      const { data } = res
 
-          flag = 1
-        } catch (e) {
-          console.log(e)
-        }
-      }
-    } catch (err) {
-      console.log(err)
+      dispatch({
+        type: FETCH_SERVICES,
+        services: data.results,
+        nextURL: data.next,
+      })
+    } catch (e) {
+      console.log('fetchServices', e)
     }
-
-    dispatch({
-      type: FETCH_SERVICES,
-      services: res.data.results,
-      nextURL: res.data.next,
-      // previousURL: res.data.previous,
-      // initialFetch: true,
-    })
   }
 }
 
-export const fetchNextServices = (nextPageUrl = null) => {
+export const fetchNextServices = (nextPageUrl = null, token, profileId) => {
   return async (dispatch) => {
     try {
-      var flag = 0
+      const res = await axios.get(nextPageUrl, {
+        headers: {
+          Authorization: `Token ${token}`,
+          'X-Profile-ID': profileId,
+        },
+      })
 
-      while (flag === 0) {
-        try {
-          var res = await axios.get(nextPageUrl, {
-            headers: {
-              Authorization: `Token ${localStorage.getItem('token')}`,
-              'X-Profile-ID': localStorage.getItem('currentProfile'),
-            },
-          })
+      const { data } = res
 
-          console.log('Fetch next service response', res.data)
+      console.log('fetchNextServices', res)
 
-          flag = 1
-        } catch (e) {
-          console.log(e)
-        }
-      }
-    } catch (err) {
-      console.log(err)
+      dispatch({
+        type: FETCH_NEXT_SERVICES,
+        services: data.results,
+        nextUrl: data.next,
+      })
+    } catch (e) {
+      console.log('fetchNextServices', e)
     }
-
-    dispatch({
-      type: FETCH_NEXT_SERVICES,
-      services: res.data.results,
-      nextURL: res.data.next,
-      // previousURL: res.data.previous,
-      // initialFetch: true,
-    })
   }
 }
 

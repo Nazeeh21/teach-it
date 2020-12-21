@@ -1,35 +1,60 @@
 import api from '../api'
 
-export const fetchAllProfiles = async () => {
+export const fetchAllProfiles = async (logout, token, profileId) => {
   try {
-    var flag = 0
-    const token = localStorage.getItem('token')
-    const currentProfileId = localStorage.getItem('currentProfile')
+    const res = await api.get('user/', {
+      headers: {
+        Authorization: `Token ${token}`,
+        'X-Profile-ID': profileId,
+      },
+    })
 
-    while (flag === 0 && token !== null && currentProfileId !== null) {
-      try {
-        var res = await api.get('user/', {
-          headers: {
-            Authorization: `Token ${localStorage.getItem('token')}`,
-            'X-Profile-ID': localStorage.getItem('currentProfile'),
-          },
-        })
-        // console.log('[FETCH_PROFILES] ', res.data.profiles)
+    const { data } = res
 
-        if (res.status === 200) {
-          flag = 1
-        }
-      } catch (e) {
-        console.log(e)
-      }
-    }
-
-    return res.data.profiles
+    return data.profiles
   } catch (e) {
-    console.log(e)
-    return null
+    console.log('fetchAllProfiles', e)
+    logout()
+    return false
   }
 }
+
+// export const fetchAllProfiles = async (logout, token, profileId) => {
+//   try {
+//     var flag = 0
+//     const token = localStorage.getItem('token')
+//     const currentProfileId = localStorage.getItem('currentProfile')
+
+//     while (flag === 0 && token !== null && currentProfileId !== null) {
+//       try {
+//         var res = await api.get('user/', {
+//           headers: {
+//             Authorization: `Token ${localStorage.getItem('token')}`,
+//             'X-Profile-ID': localStorage.getItem('currentProfile'),
+//           },
+//         })
+//         // console.log('[FETCH_PROFILES] ', res.data.profiles)
+
+//         if (res.data.detail == 'Invalid token.' || res.status === 401) {
+//           flag = 1
+//           return logout()
+//         }
+
+//         if (res.status === 200) {
+//           flag = 1
+//         }
+//       } catch (e) {
+//         console.log(e)
+//         return logout()
+//       }
+//     }
+
+//     return res.data.profiles
+//   } catch (e) {
+//     console.log(e)
+//     return null
+//   }
+// }
 
 export const isProvider = async () => {
   // send get request to '/provider' and check if the current profile object has a field named provider

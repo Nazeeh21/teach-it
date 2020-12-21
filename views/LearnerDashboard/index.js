@@ -14,6 +14,10 @@ const Index = () => {
   const router = useRouter()
   const dispatch = useDispatch()
   const [query, setQuery] = useState('')
+
+  let token = useSelector((state) => state.auth.token)
+  let profileId = useSelector((state) => state.app.currentProfile)
+
   const services = useSelector((state) => state.app.services)
   const nextServicePageUrl = useSelector(
     (state) => state.app.nextServicePageUrl
@@ -30,12 +34,12 @@ const Index = () => {
   useEffect(() => {
     // if (!initialFetch) {
     console.log('useEffect in LEarnerDashboard')
-    dispatch(fetchServices())
+    dispatch(fetchServices(token, profileId))
     // }
-  }, [])
+  }, [dispatch, token, profileId])
 
   const viewMoreClickHandler = () => {
-    dispatch(fetchNextServices(nextServicePageUrl))
+    dispatch(fetchNextServices(nextServicePageUrl, token, profileId))
   }
 
   return (
