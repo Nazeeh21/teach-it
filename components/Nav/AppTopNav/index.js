@@ -28,13 +28,20 @@ const Index = () => {
   const token = useSelector((state) => state.auth.token)
   const currentProfileID = useSelector((state) => state.app.currentProfile)
 
+
+  const logoutHandler = () => {
+    dispatch(logout())
+    router.push('/login')
+  }
+
   const [showSideDrawer, setShowSideDrawer] = useState(false)
 
+
   useEffect(() => {
-    if (token !== null && currentProfileID !== null) {
-      fetchAllProfiles()
+    if (token && currentProfileID) {
+      fetchAllProfiles(logoutHandler, token, currentProfileID)
         .then((res) => {
-          console.log('ALl profiles data : ', res)
+          console.log('All profiles data: ', res)
           const currentProfileData = res.filter(
             (profile) =>
               profile.id == window.localStorage.getItem('currentProfile')
@@ -278,8 +285,7 @@ const Index = () => {
                   ))}
                   <div
                     onClick={() => {
-                      dispatch(logout())
-                      router.push('/login')
+                      logoutHandler()
                     }}
                     className="font-medium text-center my-2 cursor-pointer"
                   >

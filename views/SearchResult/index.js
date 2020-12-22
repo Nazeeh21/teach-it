@@ -13,13 +13,16 @@ const Index = () => {
 
   const dispatch = useDispatch()
 
-  useEffect(() => {
-    dispatch(fetchServices())
-  }, [])
+  let token = useSelector((state) => state.auth.token)
+  let profileId = useSelector((state) => state.app.currentProfile)
 
   const results = useSelector((state) => state.app.searchResults)
   const nextPageUrl = useSelector((state) => state.app.nextSearchResultUrl)
   const payload = useSelector((state) => state.app.payloadForSearch)
+
+  useEffect(() => {
+    dispatch(fetchServices(token, profileId))
+  }, [dispatch, token, profileId])
 
   const viewMoreClickHandler = () => {
     dispatch(fetchNextSearchResults(nextPageUrl, payload))

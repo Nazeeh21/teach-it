@@ -27,12 +27,6 @@ const Index = ({ profileData }) => {
   let token = useSelector((state) => state.auth.token)
   let profileId = useSelector((state) => state.app.currentProfile)
 
-  if (!profileData) {
-    return null
-  }
-
-  const { name, rating, rating_position, seekers_count, pk } = profileData
-
   const router = useRouter()
 
   const messageButtonClickHandler = async () => {
@@ -49,12 +43,25 @@ const Index = ({ profileData }) => {
     }
   }
 
+  if (!profileData) {
+    return null
+  }
+
+  const {
+    name,
+    rating,
+    rating_position,
+    seekers_count,
+    pk,
+    service_count,
+  } = profileData
+
   return (
     <div className="w-full bg-white rounded-lg shadow pl-4 pr-4 pt-3 pb-3 flex flex-col">
-      <Stat number={58} label="Services" />
+      <Stat number={service_count} label="Services" />
       <Stat number={seekers_count} label="Learners" />
       <div className="w-full flex flex-row items-center mt-4">
-        <Rating value={rating_position} />
+        {/* <Rating value={rating_position} /> */}
         <p className="text-sm">{rating} avg rating</p>
       </div>
       <div className="flex flex-row gap-4 mb-4 mt-4">
