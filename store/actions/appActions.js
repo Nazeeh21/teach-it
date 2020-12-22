@@ -107,18 +107,6 @@ export const fetchServices = (token, profileId) => {
         },
       })
 
-      while (flag === 0) {
-        try {
-          var res = await api.get('service/', {
-            params: {
-              status: 'active',
-            },
-            headers: {
-              Authorization: `Token ${localStorage.getItem('token')}`,
-              'X-Profile-ID': localStorage.getItem('currentProfile'),
-            },
-          })
-
       const { data } = res
 
       dispatch({
