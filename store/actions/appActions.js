@@ -31,6 +31,9 @@ export const fetchProviderService = (providerId, token, currentProfileId) => {
       while (!flag) {
         try {
           var res = await api.get(`provider/${providerId}/service/`, {
+            params: {
+              status: 'active',
+            },
             headers: {
               Authorization: `Token ${token}`,
               'X-Profile-ID': currentProfileId,
@@ -104,7 +107,17 @@ export const fetchServices = (token, profileId) => {
         },
       })
 
-      console.log('fetchServices', res)
+      while (flag === 0) {
+        try {
+          var res = await api.get('service/', {
+            params: {
+              status: 'active',
+            },
+            headers: {
+              Authorization: `Token ${localStorage.getItem('token')}`,
+              'X-Profile-ID': localStorage.getItem('currentProfile'),
+            },
+          })
 
       const { data } = res
 
@@ -148,6 +161,9 @@ export const fetchUserServices = () => {
   return async (dispatch) => {
     try {
       var res = await api.get('seeker/service/', {
+        params: {
+          status: 'active',
+        },
         headers: {
           Authorization: `Token ${localStorage.getItem('token')}`,
           'X-Profile-ID': localStorage.getItem('currentProfile'),

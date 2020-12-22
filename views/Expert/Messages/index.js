@@ -38,8 +38,8 @@ const Index = () => {
     >
       <div className="mt-1 pt-2 pb-1 grid grid-rows-1 grid-cols-2">
         <p className="text-xl font-medium pt-1 pb-2 pl-4">Messages</p>
-        <div className="mr-3">
-          <select className="mt-1 pb-1 pt-1 pl-2 pr-4 rounded-lg w-full mr-6">
+        <div className="xl:mr-3">
+          <select className="mt-1 pb-1 pt-1 pl-2 pr-4 rounded-lg w-auto xl:w-full ml-6 xl:ml-0 xl:mr-6">
             <option value="all">All</option>
           </select>
         </div>

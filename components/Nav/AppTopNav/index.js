@@ -12,6 +12,8 @@ import {
   setProviderId,
   switchProfile,
 } from '../../../store/actions/appActions'
+import Toolbar from '../../Navigation/Toolbar/Index'
+import SideDrawer from '../../Navigation/SideDrawer/Index'
 
 const Index = () => {
   const dispatch = useDispatch()
@@ -26,10 +28,14 @@ const Index = () => {
   const token = useSelector((state) => state.auth.token)
   const currentProfileID = useSelector((state) => state.app.currentProfile)
 
+
   const logoutHandler = () => {
     dispatch(logout())
     router.push('/login')
   }
+
+  const [showSideDrawer, setShowSideDrawer] = useState(false)
+
 
   useEffect(() => {
     if (token && currentProfileID) {
@@ -64,6 +70,14 @@ const Index = () => {
 
   const notificationCloseHandler = () => setShowNotifications(false)
 
+  const sideDrawerClosedHandler = () => {
+    setShowSideDrawer(false)
+  }
+
+  const sideDrawerToggleHandler = () => {
+    setShowSideDrawer((prevState) => !prevState)
+  }
+
   if (!token || !currentProfile) {
     return <div className="h-16 bg-white w-full"></div>
   }
@@ -78,6 +92,107 @@ const Index = () => {
               clickHandler={notificationCloseHandler}
             />
           )}
+          {/* SideDrawer */}
+          <div className="lg:hidden">
+            <Toolbar
+              drawerToggleClicked={sideDrawerToggleHandler}
+              notificationDiv={
+                <div
+                  className=" w-full lg:mr-24 "
+                  onClick={notificationOpenHandler}
+                >
+                  <Icon
+                    src="/misc/notifications.svg"
+                    alt="Notifications"
+                    onClick={notificationOpenHandler}
+                  />
+                </div>
+              }
+            />
+            <SideDrawer open={showSideDrawer} closed={sideDrawerClosedHandler}>
+              <div className="mb-4 w-full sm:w-6/12 mx-auto ">
+                <div style={{ marginTop: '1vh' }} className="flex flex-col ">
+                  {currentProfile && !showAllProfiles && (
+                    <div className="flex flex-row w-auto mx-auto p-2 border-2 border-darkGrey rounded">
+                      <div className="mr-2 w-full">
+                        <ProfileSwitch
+                          forSideDrawer="true"
+                          name={currentProfile.name}
+                          profileSrc={currentProfile.avatar_url}
+                          clickHandler={() => router.push('/profile')}
+                        />
+                      </div>
+
+                      <img
+                        src="/arrows/down.svg"
+                        alt="Switch profile"
+                        className="cursor-pointer ml-2"
+                        onClick={(e) =>
+                          setShowAllProfiles((prevState) => !prevState)
+                        }
+                      />
+                    </div>
+                  )}
+                </div>
+                {otherProfiles && showAllProfiles && (
+                  <div
+                    style={{ marginTop: '1.25vh' }}
+                    className=" flex flex-col bg-white px-2 w-full border-gray-500 border-solid border-b-2 m-auto shadow-xl rounded-b"
+                  >
+                    <div className="flex flex-row">
+                      <div className=" w-full">
+                        <ProfileSwitch
+                          forSideDrawer="true"
+                          profileSrc={currentProfile.avatar_url}
+                          name={currentProfile.name}
+                          clickHandler={() => router.push('/profile')}
+                        />
+                      </div>
+                      <img
+                        src="/angle-arrow-up.svg"
+                        alt="Switch profile"
+                        className="mr-2 cursor-pointer w-3"
+                        onClick={(e) =>
+                          setShowAllProfiles((prevState) => !prevState)
+                        }
+                      />
+                    </div>
+                    {otherProfiles.map((profile, index) => (
+                      <div className="mt-2 " key={index}>
+                        <ProfileSwitch
+                          forSideDrawer="true"
+                          key={profile.name}
+                          id={profile.id}
+                          profileSrc={profile.avatar_url}
+                          name={profile.name}
+                          clickHandler={(id) => {
+                            dispatch(switchProfile(id))
+                            setShowAllProfiles((prevState) => !prevState)
+                            // router.push('/dashboard')
+                          }}
+                        />
+                      </div>
+                    ))}
+                    <div
+                      onClick={() => {
+                        dispatch(logout())
+                        router.push('/login')
+                      }}
+                      className="font-medium text-center text-lg my-2 cursor-pointer"
+                    >
+                      Log out
+                    </div>
+                  </div>
+                )}
+              </div>
+              <NavSwitch
+                label1="Expert"
+                color1="expert"
+                label2="Learner"
+                color2="learner"
+              />
+            </SideDrawer>
+          </div>
           <div className="justify-items-center bg-white w-full grid sm:grid-cols-1 lg:grid-cols-2 gap-4 px-2 xs:px-2 sm:px-4 md:px-8 lg:px-12 xl:px-16 py-2 items-center">
             <img
               onClick={() => router.push('/dashboard')}
@@ -85,8 +200,8 @@ const Index = () => {
               alt="Videowork"
               className="hidden sm:hidden lg:block cursor-pointer justify-self-start"
             />
-            <div className="lg:justify-self-end flex items-center">
-              <div className="md:mr-24">
+            <div className="justify-self-end lg:justify-self-end flex sm:items-center">
+              <div className="hidden lg:flex md:mr-24">
                 <NavSwitch
                   label1="Expert"
                   color1="expert"
@@ -96,7 +211,7 @@ const Index = () => {
               </div>
 
               <div
-                className="w-full md:mr-24"
+                className=" w-full lg:mr-24"
                 onClick={notificationOpenHandler}
               >
                 <Icon
@@ -105,15 +220,17 @@ const Index = () => {
                   onClick={notificationOpenHandler}
                 />
               </div>
+              {/* <div> */}
               <div
-                style={{ marginTop: '0.25rem' }}
-                className="flex flex-col right-0 mr-10 absolute justify-self-end"
+                style={{ marginTop: '1.3vh' }}
+                className="hidden lg:flex flex-col right-0 mr-10 absolute justify-self-end"
               >
                 {currentProfile && !showAllProfiles && (
                   <div className="flex flex-row">
                     <div className="mr-2">
                       <ProfileSwitch
                         name={currentProfile.name}
+                        profileSrc={currentProfile.avatar_url}
                         clickHandler={() => router.push('/profile')}
                       />
                     </div>
@@ -131,14 +248,17 @@ const Index = () => {
               </div>
               {otherProfiles && showAllProfiles && (
                 <div
-                  style={{ marginTop: '1.4rem' }}
-                  className="flex flex-col right-0 top-0 mr-8 absolute justify-self-end bg-white px-2 border-gray-500 border-solid border-b-2 shadow-xl rounded-b"
+                  style={{ marginTop: '2.9vh' }}
+                  className="hidden lg:flex flex-col right-0 top-0 mr-8 absolute justify-self-end bg-white px-2 border-gray-500 border-solid border-b-2 shadow-xl rounded-b"
                 >
                   <div className="flex flex-row">
-                    <ProfileSwitch
-                      name={currentProfile.name}
-                      clickHandler={() => router.push('/profile')}
-                    />
+                    <div className="mr-2">
+                      <ProfileSwitch
+                        profileSrc={currentProfile.avatar_url}
+                        name={currentProfile.name}
+                        clickHandler={() => router.push('/profile')}
+                      />
+                    </div>
                     <img
                       src="/angle-arrow-up.svg"
                       alt="Switch profile"
@@ -149,10 +269,11 @@ const Index = () => {
                     />
                   </div>
                   {otherProfiles.map((profile, index) => (
-                    <div className="mt-2" key={index}>
+                    <div className="mt-2 -ml-2" key={index}>
                       <ProfileSwitch
                         key={profile.name}
                         id={profile.id}
+                        profileSrc={profile.avatar_url}
                         name={profile.name}
                         clickHandler={(id) => {
                           dispatch(switchProfile(id))
@@ -173,6 +294,7 @@ const Index = () => {
                 </div>
               )}
             </div>
+            {/* </div> */}
           </div>
           <MobileBottomNav />
         </div>

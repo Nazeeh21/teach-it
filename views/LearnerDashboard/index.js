@@ -9,6 +9,7 @@ import {
   fetchServices,
 } from '../../store/actions/appActions'
 import { useDispatch, useSelector } from 'react-redux'
+import { fetchTopCategories } from '../../services/fetchCategories'
 
 const Index = () => {
   const router = useRouter()
@@ -22,6 +23,7 @@ const Index = () => {
   const nextServicePageUrl = useSelector(
     (state) => state.app.nextServicePageUrl
   )
+  const [topCategories, setTopCategories] = useState([])
   // const previousServicePageUrl = useSelector(
   //   (state) => state.app.previousPageURL
   // )
@@ -34,7 +36,17 @@ const Index = () => {
   useEffect(() => {
     // if (!initialFetch) {
     console.log('useEffect in LEarnerDashboard')
+
     dispatch(fetchServices(token, profileId))
+
+    
+    fetchTopCategories()
+      .then((res) => {
+        console.log('Top 4 categories in LEarner dashboard', res)
+        setTopCategories(res)
+      })
+      .catch((e) => console.log(e))
+
     // }
   }, [dispatch, token, profileId])
 
@@ -72,7 +84,18 @@ const Index = () => {
       )}
       <h3 className="text-2xl mb-6">Trending services</h3>
       <div className="grid grid-flow-row grid-cols-2 w-full gap-6 mb-6">
-        <CardFilledWithImage
+        {/* {console.log(topCategories)} */}
+        {/* {console.log(topCategories)} */}
+        {topCategories.map((category, index) => (
+          <CardFilledWithImage
+            key={index}
+            clickHandler={handleCategoriesRedirect}
+            src={category.avatar}
+            title={category.title}
+            subTitle={`${category.seeker_count} learners`}
+          />
+        ))}
+        {/* <CardFilledWithImage
           clickHandler={handleCategoriesRedirect}
           src="/stock/music.jpg"
           title="Music"
@@ -95,7 +118,7 @@ const Index = () => {
           src="/stock/photography.jpg"
           title="Photography"
           subTitle="137 learners"
-        />
+        /> */}
       </div>
       <div className="m-auto w-2/12">
         <ViewMoreButton clickHandler={() => router.push('/categories')} />

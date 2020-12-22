@@ -28,7 +28,7 @@ const UploadImageAndVideo = ({ src, cancelClickHandler, index }) => {
         width: 'full',
         height: 'full',
       }}
-      className="w-auto max-w-9/12 h-full rounded-lg mr-6"
+      className="w-auto max-w-9/12 h-32 sm:h-24 mb-2 inline-block rounded-lg mr-6"
     >
       <CrossButton clickHandler={cancelClickHandler} index={index} />
     </div>
@@ -54,7 +54,7 @@ export const DisplayCertificates = ({ src }) => {
         // height: 'full',
       }}
       // className="w-auto max-w-9/12 h-full min-h-24 rounded-lg mr-6"
-      className="w-auto max-w-9/12 h-24 mb-2 inline-block rounded-lg mr-6"
+      className="w-auto max-w-9/12 h-32 sm:h-24 mb-2 inline-block rounded-lg mr-6"
     >
       <CrossButton clickHandler={() => {}} />
     </div>
@@ -88,7 +88,7 @@ export const Upload = ({
         <p className="text-xl my-2">{label}</p>
         <p className="w-full text-sm text-darkGrey">{loremIpsum}</p>
       </div>
-      <div className="p-2 bg-lightGrey rounded grid grid-cols-5 items-center">
+      <div className="p-2 bg-lightGrey rounded grid grid-cols-2 sm:grid-cols-5 items-center">
         <div>
           <UploadButton imageInputChangeHandler={imageInputChangeHandler} />
         </div>
