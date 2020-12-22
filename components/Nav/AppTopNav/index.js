@@ -15,6 +15,8 @@ import {
 import Toolbar from '../../Navigation/Toolbar/Index'
 import SideDrawer from '../../Navigation/SideDrawer/Index'
 
+const placeholderAvi = '/avis/ana.png'
+
 const Index = () => {
   const dispatch = useDispatch()
   const router = useRouter()
@@ -28,14 +30,12 @@ const Index = () => {
   const token = useSelector((state) => state.auth.token)
   const currentProfileID = useSelector((state) => state.app.currentProfile)
 
-
   const logoutHandler = () => {
     dispatch(logout())
     router.push('/login')
   }
 
   const [showSideDrawer, setShowSideDrawer] = useState(false)
-
 
   useEffect(() => {
     if (token && currentProfileID) {
@@ -230,7 +230,7 @@ const Index = () => {
                     <div className="mr-2">
                       <ProfileSwitch
                         name={currentProfile.name}
-                        profileSrc={currentProfile.avatar_url}
+                        profileSrc={currentProfile.avatar_url || placeholderAvi}
                         clickHandler={() => router.push('/profile')}
                       />
                     </div>
@@ -254,7 +254,7 @@ const Index = () => {
                   <div className="flex flex-row">
                     <div className="mr-2">
                       <ProfileSwitch
-                        profileSrc={currentProfile.avatar_url}
+                        profileSrc={currentProfile.avatar_url || placeholderAvi}
                         name={currentProfile.name}
                         clickHandler={() => router.push('/profile')}
                       />
@@ -273,7 +273,7 @@ const Index = () => {
                       <ProfileSwitch
                         key={profile.name}
                         id={profile.id}
-                        profileSrc={profile.avatar_url}
+                        profileSrc={profile.avatar_url || placeholderAvi}
                         name={profile.name}
                         clickHandler={(id) => {
                           dispatch(switchProfile(id))

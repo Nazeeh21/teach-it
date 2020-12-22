@@ -158,6 +158,12 @@ const Chat = ({ label = 'Chat', disabled, expertDetails }) => {
               }}
             />
           )}
+          <button
+            onClick={submitHandler}
+            className="m-auto w-12 flex justify-center items-center"
+          >
+            <img src="/send.png" alt="Send message" />
+          </button>
         </div>
       </div>
     </div>
