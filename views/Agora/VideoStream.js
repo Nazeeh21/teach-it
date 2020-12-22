@@ -57,7 +57,7 @@ class VideoStream {
 
   joinChannel = (roomId, userId) => {
     this.client.join(
-      '006a79d3d6b148340be8c8375ea556f824cIAAHPdz2AwADptpLkt3rXzjJhTwO+3OPkRyddEuULMu8ewx+f9gAAAAAEAD26wA6vk/fXwEAAQC6T99f',
+      '006a79d3d6b148340be8c8375ea556f824cIAA0sct3tGrUGINBaRR5YbRdS/iImqAZPmaHWRvf4e+fNwx+f9gAAAAAEAD26wA6LVjjXwEAAQAnWONf',
       roomId,
       userId,
       (uid) => {
