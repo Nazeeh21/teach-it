@@ -16,8 +16,8 @@ const Index = () => {
   const dispatch = useDispatch()
   const [query, setQuery] = useState('')
 
-  let token = useSelector((state) => state.auth.token)
-  let profileId = useSelector((state) => state.app.currentProfile)
+  const token = useSelector((state) => state.auth.token)
+  const profileId = useSelector((state) => state.app.currentProfile)
 
   const services = useSelector((state) => state.app.services)
   const nextServicePageUrl = useSelector(
@@ -34,20 +34,21 @@ const Index = () => {
   }
 
   useEffect(() => {
+    if (token && profileId) {
+      fetchTopCategories(token, profileId)
+        .then((res) => {
+          console.log('Top 4 categories in LEarner dashboard', res)
+          setTopCategories(res)
+        })
+        .catch((e) => console.log(e))
+    }
+  }, [token, profileId])
+
+  useEffect(() => {
     // if (!initialFetch) {
     console.log('useEffect in LEarnerDashboard')
 
     dispatch(fetchServices(token, profileId))
-
-    
-    fetchTopCategories()
-      .then((res) => {
-        console.log('Top 4 categories in LEarner dashboard', res)
-        setTopCategories(res)
-      })
-      .catch((e) => console.log(e))
-
-    // }
   }, [dispatch, token, profileId])
 
   const viewMoreClickHandler = () => {
@@ -85,16 +86,17 @@ const Index = () => {
       <h3 className="text-2xl mb-6">Trending services</h3>
       <div className="grid grid-flow-row grid-cols-2 w-full gap-6 mb-6">
         {/* {console.log(topCategories)} */}
-        {/* {console.log(topCategories)} */}
-        {topCategories.map((category, index) => (
-          <CardFilledWithImage
-            key={index}
-            clickHandler={handleCategoriesRedirect}
-            src={category.avatar}
-            title={category.title}
-            subTitle={`${category.seeker_count} learners`}
-          />
-        ))}
+        {/* {console.log('Logging top categories', topCategories)} */}
+        {topCategories &&
+          topCategories.map((category, index) => (
+            <CardFilledWithImage
+              key={index}
+              clickHandler={handleCategoriesRedirect}
+              src={category.avatar}
+              title={category.title}
+              subTitle={`${category.seeker_count} learners`}
+            />
+          ))}
         {/* <CardFilledWithImage
           clickHandler={handleCategoriesRedirect}
           src="/stock/music.jpg"

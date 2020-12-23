@@ -17,12 +17,12 @@ export const fetchCategories = async () => {
   }
 }
 
-export const fetchTopCategories = async () => {
+export const fetchTopCategories = async (token, currentProfileId) => {
   try {
     const res = await api.get('category/top/', {
       headers: {
-        Authorization: `Token ${localStorage.getItem('token')}`,
-        'X-Profile-ID': localStorage.getItem('currentProfile'),
+        Authorization: `Token ${token}`,
+        'X-Profile-ID': currentProfileId,
       },
     })
     console.log('Fetched Top 4 Categories', res.data)

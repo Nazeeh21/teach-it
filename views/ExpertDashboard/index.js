@@ -36,13 +36,17 @@ const Index = () => {
 
   useEffect(() => {
     // if (!initialFetch) {
+
     if (providerId && token && currentProfileId) {
       console.log('useEffect in ExpertDashboard')
+
+      fetchTopCategories(token, currentProfileId)
+        .then((res) => setTopCategories(res))
+        .catch((e) => console.log(e))
+
       dispatch(fetchProviderService(providerId, token, currentProfileId))
     }
-    fetchTopCategories()
-      .then((res) => setTopCategories(res))
-      .catch((e) => console.log(e))
+
     // }
   }, [providerId, currentProfileId, token])
 
@@ -85,15 +89,16 @@ const Index = () => {
       )}
       <h3 className="text-2xl mb-6">Trending services</h3>
       <div className="grid grid-flow-row grid-cols-2 w-full gap-6 mb-6">
-        {topCategories.map((category, index) => (
-          <CardFilledWithImage
-            key={index}
-            clickHandler={handleCategoriesRedirect}
-            src={category.avatar}
-            title={category.title}
-            subTitle={`${category.seeker_count} learners`}
-          />
-        ))}
+        {topCategories &&
+          topCategories.map((category, index) => (
+            <CardFilledWithImage
+              key={index}
+              clickHandler={handleCategoriesRedirect}
+              src={category.avatar}
+              title={category.title}
+              subTitle={`${category.seeker_count} learners`}
+            />
+          ))}
         {/* <CardFilledWithImage
           clickHandler={handleCategoriesRedirect}
           src="/stock/music.jpg"
