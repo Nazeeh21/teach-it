@@ -5,7 +5,7 @@ import SupportTickets from '../../views/Support/SupportTickets'
 
 const Support = () => (
   <LayoutProvider alternate rightContent={<SupportTickets />}>
-    <NewTicket />
+    {/* <NewTicket /> */}
   </LayoutProvider>
 )
 
