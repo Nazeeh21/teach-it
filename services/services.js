@@ -1,12 +1,16 @@
 import api from '../api'
 
-export const getProviderDetailsFromServiceId = async (serviceId) => {
+export const getProviderDetailsFromServiceId = async (
+  serviceId,
+  token,
+  currentProfileId
+) => {
   try {
     // Fetch service details and extract providerId
     const serviceDetails = await api.get(`service/${serviceId}/`, {
       headers: {
-        Authorization: `Token ${localStorage.getItem('token')}`,
-        'X-Profile-ID': localStorage.getItem('currentProfile'),
+        Authorization: `Token ${token}`,
+        'X-Profile-ID': currentProfileId,
       },
     })
 

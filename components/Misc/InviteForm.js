@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
+import { useSelector } from 'react-redux'
 import { sendInvite } from '../../services/sendInvite'
 import { Label } from '../../views/Settings/Profile/Util'
 import BackDrop from '../Backdrop'
@@ -10,9 +11,11 @@ const InviteForm = ({ show, backdropClickHandler, inviteClicked }) => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [mobile, setMobile] = useState('')
+  const token = useSelector((state) => state.auth.token)
+  const currentProfileId = useSelector((state) => state.app.currentProfile)
 
   const InviteClickHandler = () => {
-    sendInvite(name, email, mobile)
+    sendInvite(name, email, mobile, token, currentProfileId)
       .then((res) => console.log(res))
       .catch((e) => console.log(e))
     inviteClicked()

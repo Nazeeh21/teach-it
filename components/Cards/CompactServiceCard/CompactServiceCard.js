@@ -4,6 +4,7 @@ import loremIpsum from '../../../utility/loremIpsum'
 import { CardButton } from '../../Buttons/Index'
 import QuestionCard from './QuestionCard'
 import ISO6391 from 'iso-639-1'
+import { useSelector } from 'react-redux'
 // import { useRouter } from 'next/router'
 
 const Image = ({ src, alt }) => (
@@ -21,15 +22,16 @@ const CompactServiceCard = ({
   startDate,
 }) => {
   let date = new Date(startDate)
-
+  const token = useSelector((state) => state.auth.token)
+  const currentProfileId = useSelector((state) => state.app.currentProfile)
   // const router = useRouter()
   const [questions, setQuestions] = useState([])
 
   useEffect(() => {
-    fetchQuestions(servicePk)
+    fetchQuestions(servicePk, token, currentProfileId)
       .then((res) => setQuestions(res))
       .catch((e) => console.log(e))
-  }, [servicePk])
+  }, [servicePk, token, currentProfileId])
 
   // console.log('Compact Service Card', questionData)
   return (

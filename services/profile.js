@@ -56,18 +56,18 @@ export const fetchAllProfiles = async (logout, token, profileId) => {
 //   }
 // }
 
-export const isProvider = async () => {
+export const isProvider = async (token, currentProfileId) => {
   // send get request to '/provider' and check if the current profile object has a field named provider
   // if exitsts then return true else return false
   try {
     const res = await api.get('user/', {
       headers: {
-        Authorization: `Token ${localStorage.getItem('token')}`,
-        'X-Profile-ID': localStorage.getItem('currentProfile'),
+        Authorization: `Token ${token}`,
+        'X-Profile-ID': currentProfileId,
       },
     })
     // console.log('isProvider', res.data)
-    const currentProfileId = localStorage.getItem('currentProfile')
+    // const currentProfileId = localStorage.getItem('currentProfile')
     let currentProfileData = res.data.profiles.filter(
       (profile) => profile.id == currentProfileId
     )
@@ -82,16 +82,16 @@ export const isProvider = async () => {
   }
 }
 
-export const isSeeker = async () => {
+export const isSeeker = async (token, currentProfileId) => {
   try {
     const res = await api.get('user/', {
       headers: {
-        Authorization: `Token ${localStorage.getItem('token')}`,
-        'X-Profile-ID': localStorage.getItem('currentProfile'),
+        Authorization: `Token ${token}`,
+        'X-Profile-ID': currentProfileId,
       },
     })
     // console.log('isSeeker', res.data)
-    const currentProfileId = localStorage.getItem('currentProfile')
+    // const currentProfileId = localStorage.getItem('currentProfile')
     let currentProfileData = res.data.profiles.filter(
       (profile) => profile.id == currentProfileId
     )
@@ -106,7 +106,7 @@ export const isSeeker = async () => {
   }
 }
 
-export const registerProvider = async (name) => {
+export const registerProvider = async (name, token, currentProfileId) => {
   try {
     const res = await api.post(
       'provider/',
@@ -117,8 +117,8 @@ export const registerProvider = async (name) => {
       },
       {
         headers: {
-          Authorization: `Token ${localStorage.getItem('token')}`,
-          'X-Profile-ID': localStorage.getItem('currentProfile'),
+          Authorization: `Token ${token}`,
+          'X-Profile-ID': currentProfileId,
         },
       }
     )
@@ -131,7 +131,7 @@ export const registerProvider = async (name) => {
   }
 }
 
-export const registerSeeker = async (name) => {
+export const registerSeeker = async (name, token, currentProfileId) => {
   try {
     const res = await api.post(
       'seeker/',
@@ -140,8 +140,8 @@ export const registerSeeker = async (name) => {
       },
       {
         headers: {
-          Authorization: `Token ${localStorage.getItem('token')}`,
-          'X-Profile-ID': localStorage.getItem('currentProfile'),
+          Authorization: `Token ${token}`,
+          'X-Profile-ID': currentProfileId,
         },
       }
     )

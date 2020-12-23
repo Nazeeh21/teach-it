@@ -18,6 +18,8 @@ const MyServices = () => {
   const nextUserServiceUrl = useSelector(
     (state) => state.app.nextUserServicesUrl
   )
+  const token = useSelector((state) => state.auth.token)
+  const currentProfileId = useSelector((state) => state.app.currentProfile)
   // const previousUserServiceUrl = useSelector(state => state.app.previousUserServicesUrl)
   // const initialFetch = useSelector(
   //   (state) => state.app.initialUserServicesFetched
@@ -30,10 +32,10 @@ const MyServices = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    // if (!initialFetch) {
-    dispatch(fetchUserServices())
-    // }
-  }, [])
+    if (token && currentProfileId) {
+      dispatch(fetchUserServices(token, currentProfileId))
+    }
+  }, [token, currentProfileId])
 
   const viewMoreClickHandler = () => {
     dispatch(fetchNextUserServices(nextUserServiceUrl))

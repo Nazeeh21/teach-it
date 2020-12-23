@@ -4,19 +4,22 @@ import { PrimaryButton } from '../../components/Buttons/Index'
 import Pills3 from '../../components/Misc/3Pills/3Pills'
 import Question from '../Learner/RichMediaService/Question'
 import { useRouter } from 'next/router'
+import { useSelector } from 'react-redux'
 
 const Support = () => {
   const router = useRouter()
 
   const [filter, setFilter] = useState('open')
   const [tickets, setTickets] = useState([])
+  const token = useSelector((state) => state.auth.token)
+  const currentProfileId = useSelector((state) => state.app.currentProfile)
 
   const fetchTickets = async () => {
     try {
       const res = await api.get('support/', {
         headers: {
-          Authorization: `Token ${localStorage.getItem('token')}`,
-          'X-Profile-ID': localStorage.getItem('currentProfile'),
+          Authorization: `Token ${token}`,
+          'X-Profile-ID': currentProfileId,
         },
       })
 
@@ -30,10 +33,12 @@ const Support = () => {
   }
 
   useEffect(() => {
-    fetchTickets()
-      .then((res) => setTickets(res))
-      .catch((e) => console.log(e))
-  }, [])
+    if (token && currentProfileId) {
+      fetchTickets()
+        .then((res) => setTickets(res))
+        .catch((e) => console.log(e))
+    }
+  }, [token, currentProfileId])
 
   return (
     <div className="w-full">

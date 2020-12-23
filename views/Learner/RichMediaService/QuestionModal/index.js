@@ -13,22 +13,24 @@ const ShowQuestions = ({ show, clickHandler, chatId, serviceId }) => {
 
   const [newMessage, setNewMessage] = useState('')
 
+  const currentProfileId = useSelector((state) => state.app.currentProfile)
+  const token = useSelector((state) => state.auth.token)
+
   useEffect(() => {
-    fetchChatMessages(chatId)
+    fetchChatMessages(chatId, token, currentProfileId)
       .then((res) => {
         setMessages(res)
       })
       .catch((e) => console.log(e))
-  }, [chatId, fetch])
+  }, [chatId, fetch, token, currentProfileId])
 
   useEffect(() => {
-    const currentProfile = window.localStorage.getItem('currentProfile')
-    setUserId(currentProfile)
+    setUserId(currentProfileId)
 
-    getProviderDetailsFromServiceId(serviceId)
+    getProviderDetailsFromServiceId(serviceId, token, currentProfileId)
       .then((res) => setProviderDetails(res))
       .catch((e) => console.log(e))
-  }, [serviceId])
+  }, [serviceId, token, currentProfileId])
 
   const handleMessageSend = async () => {
     const success = await sendMessage(newMessage, chatId)

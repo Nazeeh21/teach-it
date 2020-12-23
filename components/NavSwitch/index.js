@@ -13,23 +13,25 @@ import {
 
 const Index = ({ color1, color2, label1, label2, textColor = 'white' }) => {
   const dispatch = useDispatch()
+  const token = useSelector((state) => state.auth.token)
+  const currentProfileId = useSelector((state) => state.app.currentProfile)
 
   const activeId = useSelector((state) => state.app.userType)
 
   useEffect(() => {
     activeId === EXPERT
-      ? isProvider().then((res) => {
+      ? isProvider(token, currentProfileId).then((res) => {
           // console.log('isProvider', res.isProvider)
           if (res.isProvider === false) {
-            registerProvider(res.name)
+            registerProvider(res.name, token, currentProfileId)
               .then((res) => console.log('Registering Provider', res))
               .catch((e) => console.log(e))
           }
         })
-      : isSeeker().then((res) => {
+      : isSeeker(token, currentProfileId).then((res) => {
           // console.log('isSeeker', res.isSeeker)
           if (res.isSeeker === false) {
-            registerSeeker(res.name)
+            registerSeeker(res.name, token, currentProfileId)
               .then((res) => console.log('Registering Seeker', res))
               .catch((e) => console.log(e))
           }

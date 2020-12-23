@@ -1,11 +1,11 @@
 import api from '../api'
 
-export const fetchChatMessages = async (chatId) => {
+export const fetchChatMessages = async (chatId, token, currentProfileId) => {
   try {
     const res = await api.get(`/service/questions/chat/${chatId}/`, {
       headers: {
-        Authorization: `Token ${localStorage.getItem('token')}`,
-        'X-Profile-ID': localStorage.getItem('currentProfile'),
+        Authorization: `Token ${token}`,
+        'X-Profile-ID': currentProfileId,
       },
     })
 

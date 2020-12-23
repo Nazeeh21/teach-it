@@ -1,6 +1,12 @@
 import api from '../api'
 
-export const sendInvite = async (name, email, mobile) => {
+export const sendInvite = async (
+  name,
+  email,
+  mobile,
+  token,
+  currentProfileId
+) => {
   try {
     const res = await api.post(
       '/invites/user/',
@@ -11,8 +17,8 @@ export const sendInvite = async (name, email, mobile) => {
       },
       {
         headers: {
-          Authorization: `Token ${localStorage.getItem('token')}`,
-          'X-Profile-ID': localStorage.getItem('currentProfile'),
+          Authorization: `Token ${token}`,
+          'X-Profile-ID': currentProfileId,
         },
       }
     )

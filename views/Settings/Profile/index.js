@@ -21,6 +21,7 @@ import ChangeAvatarModal from './ChangeAvatarModal/Index'
 
 const Index = () => {
   const dispatch = useDispatch()
+  const token = useSelector((state) => state.auth.token)
   const currentProfileID = useSelector((state) => state.app.currentProfile)
   const userType = useSelector((state) => state.app.userType)
   const [toggleChangePhoto, setToggleChangePhoto] = useState(false)
@@ -40,35 +41,39 @@ const Index = () => {
   const [isAvatarChanged, setIsAvatarChanged] = useState(false)
 
   useEffect(() => {
-    fetchProfileData()
-      .then((res) => {
-        console.log('In Profile.js logging fetched ProfileData', res[0])
-        setFetchedData(res)
-        setDisplayName(res[0].name)
-        setAge(res[0].age)
-        setWebsiteURL(res[0].provider.website)
-        setCountry(res[0].provider.country)
-        setLanguage(res[0].languages[0])
-        userType === 0
-          ? setOneLineBio(res[0].provider.bio)
-          : setOneLineBio(res[0].seeker.bio)
-        setProfileDescription(res[0].provider.description)
-        setAvatarUrl(res[0].avatar_url)
-        setIsAvatarChanged(false)
-      })
-      .catch((e) => {
-        console.log(e)
-      })
-  }, [shouldFetch, currentProfileID])
+    if (currentProfileID && token) {
+      fetchProfileData(token, currentProfileID)
+        .then((res) => {
+          console.log('In Profile.js logging fetched ProfileData', res[0])
+          setFetchedData(res)
+          setDisplayName(res[0].name)
+          setAge(res[0].age)
+          setWebsiteURL(res[0].provider.website)
+          setCountry(res[0].provider.country)
+          setLanguage(res[0].languages[0])
+          userType === 0
+            ? setOneLineBio(res[0].provider.bio)
+            : setOneLineBio(res[0].seeker.bio)
+          setProfileDescription(res[0].provider.description)
+          setAvatarUrl(res[0].avatar_url)
+          setIsAvatarChanged(false)
+        })
+        .catch((e) => {
+          console.log(e)
+        })
+    }
+  }, [shouldFetch, currentProfileID, token])
 
   const [fetchedCertificates, setFetchedCertificates] = useState([])
 
   useEffect(() => {
     console.log('Fetched data', fetchedData)
-    fetchCertificates()
-      .then((res) => setFetchedCertificates(res))
-      .catch((e) => console.log(e))
-  }, [fetchedData])
+    if (token && currentProfileID) {
+      fetchCertificates(token, currentProfileID)
+        .then((res) => setFetchedCertificates(res))
+        .catch((e) => console.log(e))
+    }
+  }, [fetchedData, token, currentProfileID])
 
   // console.log('Fetched Certificates in Profile.js', fetchedCertificates)
   console.log('Fetched profileData in Profile.js', age)
@@ -134,7 +139,7 @@ const Index = () => {
     let uploadedAvatarUrl = avatarUrl
     console.log('Before save clicked logging avatarUrl ', avatarUrl)
     if (isAvatarChanged) {
-      await uploadAvatar(avatarUrl.forUpload)
+      await uploadAvatar(avatarUrl.forUpload, token, currentProfileID)
         .then((res) => {
           // console.log('Logging recieved url ', res.media)
           setAvatarUrl(res.media)
@@ -156,7 +161,7 @@ const Index = () => {
       // avatar_url: 'http://localhost:3000/daae4ff1-32fa-4424-a4a9-80bb860225e3'
     }
 
-    dispatch(saveProfile(formData, certificates))
+    dispatch(saveProfile(formData, certificates, token, currentProfileID))
   }
 
   const inputDataChangeHandler = (value, field, type) => {

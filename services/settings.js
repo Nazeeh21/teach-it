@@ -1,11 +1,11 @@
 import api from '../api'
 
-export const fetchProfileData = async () => {
+export const fetchProfileData = async (token, currentProfileId) => {
   try {
     const res = await api.get('user/', {
       headers: {
-        Authorization: `Token ${localStorage.getItem('token')}`,
-        'X-Profile-ID': window.localStorage.getItem('currentProfile'),
+        Authorization: `Token ${token}`,
+        'X-Profile-ID': currentProfileId,
       },
     })
     return res.data.profiles.filter(

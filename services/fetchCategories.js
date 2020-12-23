@@ -1,11 +1,11 @@
 import api from '../api'
 
-export const fetchCategories = async () => {
+export const fetchCategories = async (token, currentProfileId) => {
   try {
     const res = await api.get('category/', {
       headers: {
-        Authorization: `Token ${localStorage.getItem('token')}`,
-        'X-Profile-ID': localStorage.getItem('currentProfile'),
+        Authorization: `Token ${token}`,
+        'X-Profile-ID': currentProfileId,
       },
     })
 

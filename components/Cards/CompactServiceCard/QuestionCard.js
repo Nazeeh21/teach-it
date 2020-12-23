@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
 import { fetchQuestionCreator } from '../../../services/fetchQuestions'
 import loremIpsum from '../../../utility/loremIpsum'
 import Avatar from '../../Images/Avatar'
@@ -8,14 +9,17 @@ const QuestionCard = (questionData) => {
   const timeCreated = questionData.data.created_at.toString().slice(11, 19)
   const [creatorName, setCreatorName] = useState('')
 
+  const token = useSelector((state) => state.auth.token)
+  const currentProfileId = useSelector((state) => state.app.currentProfile)
+
   useEffect(() => {
-    fetchQuestionCreator(questionData.data.creator)
+    fetchQuestionCreator(questionData.data.creator, token, currentProfileId)
       .then((res) => {
         setCreatorName(res.name)
         console.log('[fetchQuestionCreator]', res)
       })
       .catch((e) => console.log(e))
-  }, [])
+  }, [token, currentProfileId])
 
   return (
     <div className="flex flex-col border-2 border-lightGrey rounded p-2 mb-4">

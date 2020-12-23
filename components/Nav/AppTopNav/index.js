@@ -43,8 +43,7 @@ const Index = () => {
         .then((res) => {
           console.log('All profiles data: ', res)
           const currentProfileData = res.filter(
-            (profile) =>
-              profile.id == window.localStorage.getItem('currentProfile')
+            (profile) => profile.id == currentProfileID
           )
           setCurrentProfile(currentProfileData[0])
           dispatch(
@@ -56,8 +55,7 @@ const Index = () => {
           console.log('Current profile data : ', currentProfileData[0])
 
           const otherProfilesData = res.filter(
-            (profile) =>
-              profile.id != window.localStorage.getItem('currentProfile')
+            (profile) => profile.id != currentProfileID
           )
           setOtherProfiles(otherProfilesData)
           console.log('Other profile data : ', otherProfilesData)

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { CardFilledWithImage as Card } from '../../../components/Cards/Cards'
 import { useRouter } from 'next/router'
 import { fetchCategories } from '../../../services/fetchCategories'
+import { useSelector } from 'react-redux'
 
 // const Card = ({ clickHandler }) => (
 //   <CardFilledWithImage
@@ -14,17 +15,19 @@ import { fetchCategories } from '../../../services/fetchCategories'
 
 const Index = () => {
   const router = useRouter()
+  const token = useSelector((state) => state.auth.token)
+  const currentProfileId = useSelector((state) => state.app.currentProfile)
 
   const [categories, setCategories] = useState(null)
 
   useEffect(() => {
-    fetchCategories()
+    fetchCategories(token, currentProfileId)
       .then((res) => {
         console.log('Categories in Index.js', res)
         setCategories(res)
       })
       .catch((e) => console.log(e))
-  }, [])
+  }, [token, currentProfileId])
 
   const handleRedirect = () => {
     router.push('/search')
@@ -40,14 +43,16 @@ const Index = () => {
       {categories !== null && (
         <div className="w-full grid grid-flow-row grid-cols-2 gap-6">
           {
-            categories.map((category) => (
-              <Card
-                src={category.avatar}
-                title={category.title}
-                subTitle={category.seeker_count}
-                clickHandler={handleRedirect}
-              />
-            ))
+            categories &&
+              categories.map((category, index) => (
+                <Card
+                  key={index}
+                  src={category.avatar}
+                  title={category.title}
+                  subTitle={category.seeker_count}
+                  clickHandler={handleRedirect}
+                />
+              ))
             /* <Card
           title="Yoga"
           subTitle="234 learners"

@@ -1,11 +1,11 @@
 import api from '../api'
 
-export const fetchCertificates = async () => {
+export const fetchCertificates = async (token, currentProfileId) => {
   try {
     const res = await api.get('provider/', {
       headers: {
-        Authorization: `Token ${localStorage.getItem('token')}`,
-        'X-Profile-ID': window.localStorage.getItem('currentProfile'),
+        Authorization: `Token ${token}`,
+        'X-Profile-ID': currentProfileId,
       },
     })
 

@@ -1,7 +1,7 @@
 import api from '../../api'
 import { SAVE_PROFILE_DATA, UPDATE_PROFILE_DATA } from '../actionTypes'
 
-export const uploadAvatar = async (avatarData) => {
+export const uploadAvatar = async (avatarData, token, currentProfileId) => {
   try {
     const formData = new FormData()
     formData.append('media', avatarData)
@@ -10,8 +10,8 @@ export const uploadAvatar = async (avatarData) => {
 
     const res = await api.post('files/', formData, {
       headers: {
-        Authorization: `Token ${localStorage.getItem('token')}`,
-        'X-Profile-ID': localStorage.getItem('currentProfile'),
+        Authorization: `Token ${token}`,
+        'X-Profile-ID': currentProfileId,
         'content-type': 'multipart/form-data',
       },
     })
@@ -22,23 +22,23 @@ export const uploadAvatar = async (avatarData) => {
   }
 }
 
-export const saveProfile = (data, certificateData) => {
+export const saveProfile = (data, certificateData, token, currentProfileId) => {
   // console.log('In saveProfile', data)
 
   return async (dispatch) => {
-    const id = localStorage.getItem('currentProfile')
+    // const id = localStorage.getItem('currentProfile')
     try {
       const res = await api.put(
-        `user/profile/${id}/`,
-        { ...data, id: id },
+        `user/profile/${currentProfileId}/`,
+        { ...data, id: currentProfileId },
         {
           headers: {
-            Authorization: `Token ${localStorage.getItem('token')}`,
-            'X-Profile-ID': id,
+            Authorization: `Token ${token}`,
+            'X-Profile-ID': currentProfileId,
           },
         }
       )
-      await uploadCertificates(certificateData, id)
+      await uploadCertificates(certificateData, currentProfileId, token)
       console.log(res.data)
       dispatch({
         type: SAVE_PROFILE_DATA,
@@ -53,7 +53,7 @@ export const saveProfile = (data, certificateData) => {
 const uploadCertificates = async (certificateData, id, token) => {
   try {
     await certificateData.map(
-      async (data) => await uploadCertificate(data.forUpload, id)
+      async (data) => await uploadCertificate(data.forUpload, id, token)
     )
     return true
   } catch (e) {
@@ -62,7 +62,7 @@ const uploadCertificates = async (certificateData, id, token) => {
   }
 }
 
-export const uploadCertificate = async (data, id) => {
+export const uploadCertificate = async (data, id, token) => {
   try {
     const formData = new FormData()
     formData.append('doc', data)
@@ -71,7 +71,7 @@ export const uploadCertificate = async (data, id) => {
 
     const imgUpload = await api.post(`provider/docs/`, formData, {
       headers: {
-        Authorization: `Token ${localStorage.getItem('token')}`,
+        Authorization: `Token ${token}`,
         'X-Profile-ID': id,
         'content-type': 'multipart/form-data',
       },

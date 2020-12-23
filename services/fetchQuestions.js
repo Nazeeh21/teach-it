@@ -1,12 +1,12 @@
 import React from 'react'
 import api from '../api'
 
-export const fetchQuestions = async (serviceId) => {
+export const fetchQuestions = async (serviceId, token, currentProfileId) => {
   try {
     const res = await api.get(`/service/${serviceId}/questions/`, {
       headers: {
-        Authorization: `Token ${localStorage.getItem('token')}`,
-        'X-Profile-ID': localStorage.getItem('currentProfile'),
+        Authorization: `Token ${token}`,
+        'X-Profile-ID': currentProfileId,
       },
     })
 
@@ -17,12 +17,16 @@ export const fetchQuestions = async (serviceId) => {
   }
 }
 
-export const fetchQuestionCreator = async (createrId) => {
+export const fetchQuestionCreator = async (
+  createrId,
+  token,
+  currentProfileId
+) => {
   try {
     const res = await api.get(`/seeker/${createrId}/`, {
       headers: {
-        Authorization: `Token ${localStorage.getItem('token')}`,
-        'X-Profile-ID': localStorage.getItem('currentProfile'),
+        Authorization: `Token ${token}`,
+        'X-Profile-ID': currentProfileId,
       },
     })
     console.log('fetchQuestionCreator', res.data.name)

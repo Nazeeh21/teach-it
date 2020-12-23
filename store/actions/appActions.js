@@ -145,7 +145,7 @@ export const fetchNextServices = (nextPageUrl = null, token, profileId) => {
   }
 }
 
-export const fetchUserServices = () => {
+export const fetchUserServices = (token, currentProfileId) => {
   return async (dispatch) => {
     try {
       var res = await api.get('seeker/service/', {
@@ -153,8 +153,8 @@ export const fetchUserServices = () => {
           status: 'active',
         },
         headers: {
-          Authorization: `Token ${localStorage.getItem('token')}`,
-          'X-Profile-ID': localStorage.getItem('currentProfile'),
+          Authorization: `Token ${token}`,
+          'X-Profile-ID': currentProfileId,
         },
       })
 
