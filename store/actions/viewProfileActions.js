@@ -1,13 +1,13 @@
 import api from '../../api'
 
-export const viewProfile = (type, id) => {
+export const viewProfile = (type, id, token, currentProfileId) => {
   return async (dispatch) => {
     try {
       if (id) {
         const res = await api.get(`${type}/${id}/`, {
           headers: {
-            Authorization: `Token ${localStorage.getItem('token')}`,
-            'X-Profile-ID': localStorage.getItem('currentProfile'),
+            Authorization: `Token ${token}`,
+            'X-Profile-ID': currentProfileId,
           },
         })
         console.log(res.data)

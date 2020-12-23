@@ -5,9 +5,12 @@ import { PrimaryButton } from '../../../components/Buttons/Index'
 import AskQuestion from './AskQuestion/index'
 import api from '../../../api'
 import QuestionModal from './QuestionModal'
+import { useSelector } from 'react-redux'
 
 const Questions = () => {
   const [activeChatId, setActiveChatId] = useState()
+  const token = useSelector((state) => state.auth.token)
+  const currentProfileId = useSelector((state) => state.app.currentProfile)
 
   const [showAskQuestionModal, toggleAskQuestionModal] = useState(false)
   const [showQuestionModal, toggleQuestionModal] = useState(false)
@@ -31,8 +34,8 @@ const Questions = () => {
     try {
       const res = await api.get('service/1/questions/', {
         headers: {
-          Authorization: `Token ${localStorage.getItem('token')}`,
-          'X-Profile-ID': localStorage.getItem('currentProfile'),
+          Authorization: `Token ${token}`,
+          'X-Profile-ID': currentProfileId,
         },
       })
       console.log('Fetched questions', res.data)

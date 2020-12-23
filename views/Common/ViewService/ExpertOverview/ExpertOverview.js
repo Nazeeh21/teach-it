@@ -7,6 +7,7 @@ import Avatar from '../../../../components/Images/Avatar'
 import Rating from '../../../../components/Rating/Rating'
 import { useRouter } from 'next/router'
 import { fetchProviderData } from '../../../../services/viewService'
+import { useSelector } from 'react-redux'
 
 const Card = ({ count, text }) => (
   <div className="font-medium my-3 grid">
@@ -17,12 +18,16 @@ const Card = ({ count, text }) => (
 
 const ExpertOverview = ({ providerPk }) => {
   const router = useRouter()
+  const token = useSelector((state) => state.auth.token)
+  const currentProfileId = useSelector((state) => state.app.currentProfile)
 
   const [providerData, setProviderData] = useState()
 
   useEffect(() => {
     console.log('Provider pk', providerPk)
-    fetchProviderData(providerPk).then((res) => setProviderData(res))
+    fetchProviderData(providerPk, token, currentProfileId).then((res) =>
+      setProviderData(res)
+    )
   }, [providerPk])
 
   if (!providerData || !providerPk) {

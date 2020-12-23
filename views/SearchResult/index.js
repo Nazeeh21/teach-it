@@ -25,7 +25,7 @@ const Index = () => {
   }, [dispatch, token, profileId])
 
   const viewMoreClickHandler = () => {
-    dispatch(fetchNextSearchResults(nextPageUrl, payload))
+    dispatch(fetchNextSearchResults(nextPageUrl, payload, token))
   }
 
   return (

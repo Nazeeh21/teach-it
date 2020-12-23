@@ -33,7 +33,12 @@ const ShowQuestions = ({ show, clickHandler, chatId, serviceId }) => {
   }, [serviceId, token, currentProfileId])
 
   const handleMessageSend = async () => {
-    const success = await sendMessage(newMessage, chatId)
+    const success = await sendMessage(
+      newMessage,
+      chatId,
+      token,
+      currentProfileId
+    )
 
     if (success) {
       triggerFetch((val) => !val)
