@@ -73,6 +73,8 @@ const Index = () => {
           descriptionText={service.description}
           cost={service.cost}
           startDate={service.start_at}
+          paymentType={service.payment_type}
+          providerPk={service.provider}
         />
       ))}
       {nextServicePageUrl && (

@@ -2,7 +2,7 @@ import React from 'react'
 import CardButton from './CardButton/CardButton'
 import loremIpsum from '../../../utility/loremIpsum'
 import ISO6391 from 'iso-639-1'
-// import { useRouter } from 'next/router'
+import { useRouter } from 'next/router'
 
 const Image = ({ src, alt }) => (
   <img className="w-full rounded-lg h-auto " src={src} alt={alt} />
@@ -20,14 +20,22 @@ const CompactServiceCard = ({
   languages,
   startDate,
   serviceType,
+  paymentType = 'Weekly',
+  providerPk,
 }) => {
-  // const router = useRouter()
+  const router = useRouter()
+
   let date = new Date(startDate)
 
   return (
     <div className="flex flex-row w-auto p-2 bg-white shadow-md rounded-lg my-3">
       <div className="p-3 w-4/12 sm:w-2/12 flex flex-col">
-        <Image src={imgSrc} alt="John" />
+        <div
+          className="cursor-pointer"
+          onClick={() => router.push(`/provider/${providerPk}`)}
+        >
+          <Image src={imgSrc} alt="John" />
+        </div>
         <p className="hidden sm:flex text-3xl font-bold text-accent m-auto">
           13
         </p>
@@ -49,6 +57,7 @@ const CompactServiceCard = ({
               <p style={{ opacity: '80%' }}>
                 Start date: {date.toLocaleDateString()}
               </p>
+              <p style={{ opacity: '80%' }}>Payment type: {paymentType}</p>
             </div>
           </div>
           <p className="text-darkGrey text-xs font-medium w-1/2">
@@ -63,7 +72,7 @@ const CompactServiceCard = ({
         <div className="flex flex-col sm:flex-row items-center">
           <div
             style={{ color: `${serviceType === 'rich' ? 'green' : 'red'}` }}
-            className="font-medium flex flex-row w-1/2 mt-4"
+            className="font-medium flex flex-row w-1/2 mt-2"
           >
             <img
               className="mr-1"

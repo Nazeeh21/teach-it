@@ -84,6 +84,7 @@ const Contacts = () => {
               dispatch(setActiveChatId(null))
             }}
           >
+            <option label="All" value="all" />
             {profiles.map(({ name, id }) => (
               <option label={name} key={id} value={id} />
             ))}

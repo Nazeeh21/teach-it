@@ -441,26 +441,28 @@ const Index = () => {
 
           {/* <Upload key="demoVideos" files={certificates} label="Demo videos" imageInputChangeHandler={data => alert('Input for video clicked')} /> */}
 
-          <div className="mb-4">
-            <Upload
-              key="certificates"
-              files={certificates}
-              label="Certificates"
-              fetchedCertificates={fetchedCertificates}
-              imageInputChangeHandler={(data) => {
-                // alert('Input for certificates clicked')
-                const newCertificates = [...certificates]
-                newCertificates.push(data)
-                setCertificates(newCertificates)
-                // console.log('new Certificates ', certificates)
-              }}
-              cancelClickHandler={(index) => {
-                const newCertificates = [...certificates]
-                newCertificates.splice(index, 1)
-                setCertificates(newCertificates)
-              }}
-            />
-          </div>
+          {userType == 0 && (
+            <div className="mb-4">
+              <Upload
+                key="certificates"
+                files={certificates}
+                label="Certificates"
+                fetchedCertificates={fetchedCertificates}
+                imageInputChangeHandler={(data) => {
+                  // alert('Input for certificates clicked')
+                  const newCertificates = [...certificates]
+                  newCertificates.push(data)
+                  setCertificates(newCertificates)
+                  // console.log('new Certificates ', certificates)
+                }}
+                cancelClickHandler={(index) => {
+                  const newCertificates = [...certificates]
+                  newCertificates.splice(index, 1)
+                  setCertificates(newCertificates)
+                }}
+              />
+            </div>
+          )}
 
           <div className="w-full sm:w-1/3 mt-6">
             <PrimaryButton

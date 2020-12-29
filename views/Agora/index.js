@@ -24,6 +24,7 @@ const Index = (props) => {
   const [isAudio, setIsAudio] = useState(true)
   const [isVideo, setIsVideo] = useState(true)
   const [isSharingScreen, setIsSharingScreen] = useState(false)
+  const [mainStream, setMainStream] = useState('local_stream')
 
   useEffect(() => {
     const videoStream = new VideoStream(userId, updateRemoteStreams)
@@ -44,8 +45,13 @@ const Index = (props) => {
       element: (
         <div
           id="local_stream"
-          style={{ height: '35rem' }}
-          className="w-full rounded"
+          style={{ height: `${mainStream === 'local_stream' && '35rem'}` }}
+          className={`${
+            mainStream !== 'local_stream'
+              ? 'w-2/12 h-48 m-2 inline-block cursor-pointer'
+              : 'w-full cursor-pointer rounded'
+          }`}
+          onClick={() => setMainStream('local_stream')}
         ></div>
       ),
     })
@@ -67,7 +73,12 @@ const Index = (props) => {
           <div
             key={streamId}
             id={`agora_remote ${streamId}`}
-            className="w-2/12 h-48 m-2 inline-block"
+            onClick={() => setMainStream(`agora_remote ${streamId}`)}
+            className={`${
+              mainStream === `agora_remote ${streamId}`
+                ? 'w-full rounded'
+                : 'w-2/12 h-48 m-2 inline-block'
+            }`}
           />
         ),
       })
