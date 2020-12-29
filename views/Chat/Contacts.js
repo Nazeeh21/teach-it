@@ -17,8 +17,8 @@ const Contacts = () => {
   const [query, setQuery] = useState('')
   const [chats, setChats] = useState([])
   const [profiles, setProfiles] = useState([])
-  const [currentProfile, setCurrentProfile] = useState('all')
-  const [allChats, setAllChats] = useState(null)
+  // const [currentProfile, setCurrentProfile] = useState('all')
+  // const [allChats, setAllChats] = useState(null)
 
   let token = useSelector((state) => state.auth.token)
   let profileId = useSelector((state) => state.app.currentProfile)
@@ -40,36 +40,36 @@ const Contacts = () => {
         .catch((e) => console.log('Error in setProfiles', e))
     }
 
-    if (currentProfile !== 'all' && token && profileId) {
-      getChats(token, profileId)
-        .then((res) => {
-          console.log('Inside', res)
-          setChats(res)
-        })
-        .catch((e) => console.log('Error while setting chats', e))
-    }
-  }, [token, profileId, currentProfile])
+    // if (currentProfile !== 'all' && token && profileId) {
+    getChats(token, profileId)
+      .then((res) => {
+        console.log('Inside', res)
+        setChats(res)
+      })
+      .catch((e) => console.log('Error while setting chats', e))
+    // }
+  }, [token, profileId])
 
-  useEffect(() => {
-    if (currentProfile === 'all' && token && profileId) {
-      // const profileIds = []
-      // profiles.map(profile => profileIds.push(profile.id))
-      getAllChats(token, profiles)
-        .then(
-          (res) => {
-            console.log('get all chats from contactjs', res)
-            // if(res.length !== 0) {
-            setAllChats(res)
-          }
-          // }
-        )
-        .catch((e) => console.log('Error while setting chats', e))
-    }
-  }, [token, profileId, currentProfile, profiles])
+  // useEffect(() => {
+  //   if (currentProfile === 'all' && token && profileId) {
+  //     // const profileIds = []
+  //     // profiles.map(profile => profileIds.push(profile.id))
+  //     getAllChats(token, profiles)
+  //       .then(
+  //         (res) => {
+  //           console.log('get all chats from contactjs', res)
+  //           // if(res.length !== 0) {
+  //           setAllChats(res)
+  //         }
+  //         // }
+  //       )
+  //       .catch((e) => console.log('Error while setting chats', e))
+  //   }
+  // }, [token, profileId, currentProfile, profiles])
 
-  useEffect(() => {
-    console.log('logging all chats ', allChats)
-  }, [allChats])
+  // useEffect(() => {
+  //   console.log('logging all chats ', allChats)
+  // }, [allChats])
 
   if (!chats) {
     return null
@@ -105,16 +105,16 @@ const Contacts = () => {
           <select
             style={{ outline: 'none' }}
             className="h-10 w-full text-lg rounded-md border-2 border-lightGrey mb-6"
-            value={currentProfile}
+            value={profileId}
             onChange={(e) => {
-              if (e.target.value !== 'all') {
-                dispatch(switchProfile(e.target.value))
-              }
-              setCurrentProfile(e.target.value)
+              // if (e.target.value !== 'all') {
+              dispatch(switchProfile(e.target.value))
+              // }
+              // setCurrentProfile(e.target.value)
               dispatch(setActiveChatId(null))
             }}
           >
-            <option label="All" value="all" />
+            {/* <option label="All" value="all" /> */}
             {profiles.map(({ name, id }) => (
               <option label={name} key={id} value={id} />
             ))}
@@ -127,7 +127,8 @@ const Contacts = () => {
             </p>
           </div>
         )}
-        {currentProfile !== 'all' &&
+        {
+          // currentProfile !== 'all' &&
           chats.map((chat, index) => {
             const { sender_avatar_url, sender_name, id, last_msg } = chat
             const time = new Date()
@@ -144,8 +145,9 @@ const Contacts = () => {
                 current={currentContact === id}
               />
             )
-          })}
-        {currentProfile === 'all' &&
+          })
+        }
+        {/* {currentProfile === 'all' &&
           allChats !== null &&
           allChats.forEach((array) => {
             console.log('logging array', array)
@@ -168,7 +170,7 @@ const Contacts = () => {
                 />
               )
             })
-          })}
+          })} */}
       </div>
     </div>
   )
