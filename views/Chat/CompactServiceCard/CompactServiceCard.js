@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import CardButton from './CardButton/CardButton'
 import loremIpsum from '../../../utility/loremIpsum'
 import ISO6391 from 'iso-639-1'
 import { useRouter } from 'next/router'
+import { useSelector } from 'react-redux'
+import { fetchProviderProfile } from '../../../services/provider'
+import Rating from '../../../components/Rating/Rating'
 
 const Image = ({ src, alt }) => (
   <img className="w-full rounded-lg h-auto " src={src} alt={alt} />
@@ -23,19 +26,24 @@ const CompactServiceCard = ({
   paymentType = 'Weekly',
   providerPk,
 }) => {
+  const [providerData, setProviderData] = useState(null)
   const router = useRouter()
-
+  const token = useSelector((state) => state.auth.token)
+  const profileId = useSelector((state) => state.app.currentProfile)
   let date = new Date(startDate)
+  useEffect(() => {
+    fetchProviderProfile(token, providerPk, profileId)
+      .then((res) => setProviderData(res))
+      .catch((e) => console.log(e))
+  }, [token, profileId, providerPk])
 
+  if (!providerData) {
+    return null
+  }
   return (
     <div className="flex flex-row w-auto p-2 bg-white shadow-md rounded-lg my-3">
       <div className="p-3 w-4/12 sm:w-2/12 flex flex-col">
-        <div
-          className="cursor-pointer"
-          onClick={() => router.push(`/provider/${providerPk}`)}
-        >
-          <Image src={imgSrc} alt="John" />
-        </div>
+        <Image src={imgSrc} alt="John" />
         <p className="hidden sm:flex text-3xl font-bold text-accent m-auto">
           13
         </p>
@@ -68,6 +76,22 @@ const CompactServiceCard = ({
             <br></br>
             17 weeks
           </p>
+        </div>
+        <div className="flex items-center mt-2">
+          <img
+            // src={providerData.pic === '' ? imgSrc : providerData.pic}
+            src={imgSrc}
+            alt="Switch profile"
+            className="w-8 mr-2 max-w-3/12 h-auto min-h-8 rounded-full"
+          />
+          <div>
+            <div className="text-sm">{providerData.name}</div>
+            <Rating value={providerData.rating} size={14} />
+          </div>
+          <div className="ml-12">
+            Pro
+            {/* {providerData.is_pro && Pro} */}
+          </div>
         </div>
         <div className="flex flex-col sm:flex-row items-center">
           <div
