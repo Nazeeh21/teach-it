@@ -59,6 +59,20 @@ const Support = () => {
         {/* <Question question={loremIpsum.substring(100)} />
         <Question question={loremIpsum.substring(100)} />
         <Question question={loremIpsum.substring(100)} /> */}
+        {tickets.filter((ticket) => ticket.status.toLowerCase() === filter)
+          .length === 0 && (
+          <div className="my-8">
+            <p className="text-center text-darkGrey">
+              You dont't have any {filter} tickets.
+            </p>
+            <p
+              onClick={() => router.push('/support/new-ticket')}
+              className="text-secondary hover:underline cursor-pointer text-center m-auto"
+            >
+              Click here to create a new ticket.
+            </p>
+          </div>
+        )}
         {tickets
           .filter((ticket) => ticket.status.toLowerCase() === filter)
           .map((ticket) => (

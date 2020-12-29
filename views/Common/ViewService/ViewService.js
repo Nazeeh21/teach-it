@@ -14,7 +14,7 @@ const ViewService = ({ response, milestoneData }) => {
     <div className="bg-lightGrey text-primary">
       <div
         style={{
-          backgroundImage: `url(${response.media[0]})`,
+          backgroundImage: `url(${response.media[0] || '/guitar.png'})`,
           height: '18rem',
         }}
         className="grid grid-cols-1 grid-rows-2 p-5 text-right"

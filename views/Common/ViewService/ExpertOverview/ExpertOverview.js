@@ -7,6 +7,9 @@ import Avatar from '../../../../components/Images/Avatar'
 import Rating from '../../../../components/Rating/Rating'
 import { useRouter } from 'next/router'
 import { fetchProviderData } from '../../../../services/viewService'
+import { createChat } from '../../../../services/chat'
+import { setActiveChatId } from '../../../../store/actions/chatActions'
+import { useDispatch, useSelector } from 'react-redux'
 
 const Card = ({ count, text }) => (
   <div className="font-medium my-3 grid">
@@ -16,7 +19,12 @@ const Card = ({ count, text }) => (
 )
 
 const ExpertOverview = ({ providerPk }) => {
+  const dispatch = useDispatch()
+
   const router = useRouter()
+
+  let token = useSelector((state) => state.auth.token)
+  let profileId = useSelector((state) => state.app.currentProfile)
 
   const [providerData, setProviderData] = useState()
 
@@ -27,6 +35,20 @@ const ExpertOverview = ({ providerPk }) => {
 
   if (!providerData || !providerPk) {
     return null
+  }
+
+  const messageButtonClickHandler = async () => {
+    // Create chat
+    const chatId = await createChat(token, profileId, providerPk)
+
+    if (!chatId) {
+      return alert('Error while trying to create chat. Try again.')
+    } else {
+      // Set active chat Id
+      dispatch(setActiveChatId(chatId))
+      // Redirect to /messages
+      router.push('/messages')
+    }
   }
 
   return (
@@ -60,7 +82,7 @@ const ExpertOverview = ({ providerPk }) => {
         </div>
         <div className="flex flex-col gap-4">
           <SecondaryButton
-            clickHandler={() => router.push('/messages')}
+            clickHandler={messageButtonClickHandler}
             label="Send message"
             color="primary"
           />

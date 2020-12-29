@@ -65,6 +65,19 @@ const MyServices = () => {
         label2="Live"
         label3="Rich"
       />
+      {services.length === 0 && (
+        <div className="my-8">
+          <p className="text-center text-darkGrey">
+            You don't have any active services.
+          </p>
+          {/* <p
+            onClick={() => router.push('/create-service')}
+            className="text-secondary hover:underline cursor-pointer text-center m-auto"
+          >
+            Create one now!
+          </p> */}
+        </div>
+      )}
       {services
         .filter((service) => {
           if (activePillLabel === 'all') {

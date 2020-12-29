@@ -89,6 +89,13 @@ const Contacts = () => {
             ))}
           </select>
         </div>
+        {chats.length === 0 && (
+          <div className="text-darkGrey p-2 text-sm">
+            <p className="m-auto text-center">
+              You haven't created any chats yet.
+            </p>
+          </div>
+        )}
         {chats.map((chat, index) => {
           const { sender_avatar_url, sender_name, id, last_msg } = chat
 

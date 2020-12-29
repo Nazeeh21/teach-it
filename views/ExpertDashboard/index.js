@@ -66,7 +66,19 @@ const Index = () => {
           <SearchBar value={query} changeHandler={(val) => setQuery(val)} />
         </div>
       </div>
-
+      {services.length === 0 && (
+        <div className="my-8">
+          <p className="text-center text-darkGrey">
+            You haven't created any services yet.
+          </p>
+          <p
+            onClick={() => router.push('/create-service')}
+            className="text-secondary hover:underline cursor-pointer text-center m-auto"
+          >
+            Create one now!
+          </p>
+        </div>
+      )}
       {services.map((service) => (
         <CompactServiceCard
           buttonClickHandler={() => router.push(`/view-service/${service.pk}`)}
@@ -88,7 +100,7 @@ const Index = () => {
         </div>
       )}
       <h3 className="text-2xl mb-6">Trending services</h3>
-      <div className="grid grid-flow-row grid-cols-2 w-full gap-6 mb-6">
+      <div className="grid grid-flow-row grid-cols-2 w-full gap-6">
         {topCategories &&
           topCategories.map((category, index) => (
             <CardFilledWithImage
@@ -99,32 +111,8 @@ const Index = () => {
               subTitle={`${category.seeker_count} learners`}
             />
           ))}
-        {/* <CardFilledWithImage
-          clickHandler={handleCategoriesRedirect}
-          src="/stock/music.jpg"
-          title="Music"
-          subTitle="234 learners"
-        />
-        <CardFilledWithImage
-          clickHandler={handleCategoriesRedirect}
-          src="/stock/dance.jpg"
-          title="Dance"
-          subTitle="658 learners"
-        />
-        <CardFilledWithImage
-          clickHandler={handleCategoriesRedirect}
-          src="/yoga.jpg"
-          title="Yoga"
-          subTitle="461 learners"
-        />
-        <CardFilledWithImage
-          clickHandler={handleCategoriesRedirect}
-          src="/stock/photography.jpg"
-          title="Photography"
-          subTitle="137 learners"
-        /> */}
       </div>
-      <div className="m-auto w-2/12">
+      <div className="mx-auto my-4 w-2/12">
         <ViewMoreButton clickHandler={() => router.push('/categories')} />
       </div>
     </React.Fragment>

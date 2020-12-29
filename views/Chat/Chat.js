@@ -33,7 +33,11 @@ const Chat = ({ label = 'Chat', disabled, expertDetails }) => {
 
   useEffect(() => {
     getChatData(token, profileId, chatId)
-      .then((res) => setMessages(res.reverse()))
+      .then((res) => {
+        if (res) {
+          setMessages(res.reverse())
+        }
+      })
       .catch((e) => console.log('Error while setting chat data', e))
   }, [chatId, fetch, token, profileId])
 
