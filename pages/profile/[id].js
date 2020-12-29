@@ -16,6 +16,8 @@ const Index = () => {
   const [profileData, setProfileData] = useState()
 
   useEffect(() => {
+    console.log('PROFILE [ID]', id)
+
     getProviderProfile(id, profileId, token)
       .then((data) => setProfileData(data))
       .catch((e) => console.log('Error while setting profile data', e))

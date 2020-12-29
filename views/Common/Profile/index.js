@@ -4,7 +4,13 @@ import loremIpsum from '../../../utility/loremIpsum'
 
 const Index = ({ profileData }) => {
   if (!profileData) {
+    console.log('No profile data')
+
     return null
+  }
+
+  if (profileData) {
+    console.log('Profile data valid')
   }
 
   return (

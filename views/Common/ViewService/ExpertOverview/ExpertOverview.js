@@ -51,15 +51,25 @@ const ExpertOverview = ({ providerPk }) => {
     }
   }
 
+  const {
+    name,
+    pic,
+    is_verified,
+    rating_position,
+    review_count,
+    seeker_count,
+    service_count,
+  } = providerData
+
   return (
     <div className="text-primary">
       <PrimaryButton label="Subscribe" />
       <div className="bg-white w-full rounded-md my-5 p-3">
-        <p className="text-2xl font-bold">{providerData.name}</p>
+        <p className="text-2xl font-bold">{name}</p>
         <div className="flex">
           <div className="w-6/12 p-2">
             <Avatar
-              src="/stock/girl2.jpg"
+              src={pic || '/avis/ana.png'}
               alt="profile"
               purpose="isForProfile"
             />
@@ -67,16 +77,16 @@ const ExpertOverview = ({ providerPk }) => {
           <div className="text-center m-2 w-6/12">
             <p
               className={`text-center text-${
-                providerData.is_verified ? 'green' : 'red'
+                is_verified ? 'green' : 'red'
               } text-md`}
             >
-              {providerData.is_verified ? 'Verified' : 'Unverified'}
+              {is_verified ? 'Verified' : 'Unverified'}
             </p>
-            <Card count="58" text="Services" />
-            <Card count="425" text="Learners" />
+            <Card count={service_count} text="Services" />
+            <Card count={seeker_count || 0} text="Learners" />
             <Card
-              count={<Rating size="15" value={providerData.rating_position} />}
-              text={`${providerData.review_count} total reviews`}
+              count={<Rating size="15" value={rating_position} />}
+              text={`${review_count} total reviews`}
             />
           </div>
         </div>
@@ -87,7 +97,7 @@ const ExpertOverview = ({ providerPk }) => {
             color="primary"
           />
           <SecondaryButton
-            clickHandler={() => router.push('/profile')}
+            clickHandler={() => router.push(`/profile/${providerPk}`)}
             label="View profile & reviews"
           />
         </div>
