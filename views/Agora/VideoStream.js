@@ -41,13 +41,13 @@ class VideoStream {
     this.subscribeToClient()
   }
 
-  initLocalStream = (id, roomId, userId, onInit) => {
+  initLocalStream = (id, roomId, userId, onInit, dynamicToken) => {
     this.localStream.init(
       () => {
         console.log('getUserMedia successfully')
         onInit()
         this.localStream.play(id)
-        this.joinChannel(roomId, userId)
+        this.joinChannel(roomId, userId, dynamicToken)
       },
       (err) => {
         console.log('getUserMedia failed', err)
@@ -55,9 +55,10 @@ class VideoStream {
     )
   }
 
-  joinChannel = (roomId, userId) => {
+  joinChannel = (roomId, userId, dynamicToken) => {
     this.client.join(
-      '006a79d3d6b148340be8c8375ea556f824cIAAjDAVUriRRs1DwsS3HUdCAJzuV0xMutRrvSFjUGNQV3Ax+f9gAAAAAEADkOavBiOvqXwEAAQCH6+pf',
+      // '006a79d3d6b148340be8c8375ea556f824cIAAjDAVUriRRs1DwsS3HUdCAJzuV0xMutRrvSFjUGNQV3Ax+f9gAAAAAEADkOavBiOvqXwEAAQCH6+pf',
+      dynamicToken,
       roomId,
       userId,
       (uid) => {

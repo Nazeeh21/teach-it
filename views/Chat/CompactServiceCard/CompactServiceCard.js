@@ -79,8 +79,8 @@ const CompactServiceCard = ({
         </div>
         <div className="flex items-center mt-2">
           <img
-            // src={providerData.pic === '' ? imgSrc : providerData.pic}
-            src={imgSrc}
+            src={providerData.pic === '' ? imgSrc : providerData.pic}
+            // src={imgSrc}
             alt="Switch profile"
             className="w-8 mr-2 max-w-3/12 h-auto min-h-8 rounded-full"
           />

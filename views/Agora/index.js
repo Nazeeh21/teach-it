@@ -3,6 +3,7 @@ import VideoChat from '../../components/VideoCall/VideoChat/VideoChat'
 import VideoStream from './VideoStream'
 import styled from 'styled-components'
 import { useRouter } from 'next/router'
+import { getDynamicToken } from '../../services/agora'
 // import './Toggle.css'
 
 const roomId = 'test'
@@ -25,6 +26,15 @@ const Index = (props) => {
   const [isVideo, setIsVideo] = useState(true)
   const [isSharingScreen, setIsSharingScreen] = useState(false)
   const [mainStream, setMainStream] = useState('local_stream')
+  const [dyanmicToken, setDynamicToken] = useState('')
+
+  useEffect(() => {
+    if (videoStream) {
+      getDynamicToken(roomId, userId)
+        .then((token) => setDynamicToken(token))
+        .catch((e) => console.log(e))
+    }
+  }, [videoStream, roomId, userId])
 
   useEffect(() => {
     const videoStream = new VideoStream(userId, updateRemoteStreams)
@@ -32,13 +42,19 @@ const Index = (props) => {
   }, [])
 
   useEffect(() => {
-    if (videoStream) {
+    if (videoStream && dyanmicToken) {
       startRoom()
     }
   }, [startRoom, videoStream])
 
   const startRoom = () => {
-    videoStream.initLocalStream('local_stream', roomId, userId, () => {})
+    videoStream.initLocalStream(
+      'local_stream',
+      roomId,
+      userId,
+      () => {},
+      dyanmicToken
+    )
     const vidStreams = []
     vidStreams.push({
       stream: videoStream.localStream,
