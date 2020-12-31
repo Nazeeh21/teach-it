@@ -3,7 +3,7 @@ import { ChatWindowContact } from '../../components/Chat/ChatWindowContact'
 import SearchBar from '../../components/Inputs/SearchBar'
 // import ChooseService from './ChooseService/ChooseService'
 import { useDispatch, useSelector } from 'react-redux'
-import { getChats } from '../../services/chat'
+import { getAllChats, getChats } from '../../services/chat'
 import { setActiveChatId } from '../../store/actions/chatActions'
 import { fetchOtherProfiles } from '../../services/profile'
 import { switchProfile } from '../../store/actions/appActions'
@@ -17,6 +17,8 @@ const Contacts = () => {
   const [query, setQuery] = useState('')
   const [chats, setChats] = useState([])
   const [profiles, setProfiles] = useState([])
+  // const [currentProfile, setCurrentProfile] = useState('all')
+  // const [allChats, setAllChats] = useState(null)
 
   let token = useSelector((state) => state.auth.token)
   let profileId = useSelector((state) => state.app.currentProfile)
@@ -32,17 +34,42 @@ const Contacts = () => {
   }
 
   useEffect(() => {
-    fetchOtherProfiles(token, profileId)
-      .then((res) => setProfiles(res.profiles))
-      .catch((e) => console.log('Error in setProfiles', e))
+    if (token && profileId) {
+      fetchOtherProfiles(token, profileId)
+        .then((res) => setProfiles(res.profiles))
+        .catch((e) => console.log('Error in setProfiles', e))
+    }
 
+    // if (currentProfile !== 'all' && token && profileId) {
     getChats(token, profileId)
       .then((res) => {
         console.log('Inside', res)
         setChats(res)
       })
       .catch((e) => console.log('Error while setting chats', e))
+    // }
   }, [token, profileId])
+
+  // useEffect(() => {
+  //   if (currentProfile === 'all' && token && profileId) {
+  //     // const profileIds = []
+  //     // profiles.map(profile => profileIds.push(profile.id))
+  //     getAllChats(token, profiles)
+  //       .then(
+  //         (res) => {
+  //           console.log('get all chats from contactjs', res)
+  //           // if(res.length !== 0) {
+  //           setAllChats(res)
+  //         }
+  //         // }
+  //       )
+  //       .catch((e) => console.log('Error while setting chats', e))
+  //   }
+  // }, [token, profileId, currentProfile, profiles])
+
+  // useEffect(() => {
+  //   console.log('logging all chats ', allChats)
+  // }, [allChats])
 
   if (!chats) {
     return null
@@ -80,11 +107,14 @@ const Contacts = () => {
             className="h-10 w-full text-lg rounded-md border-2 border-lightGrey mb-6"
             value={profileId}
             onChange={(e) => {
+              // if (e.target.value !== 'all') {
               dispatch(switchProfile(e.target.value))
+              // }
+              // setCurrentProfile(e.target.value)
               dispatch(setActiveChatId(null))
             }}
           >
-            <option label="All" value="all" />
+            {/* <option label="All" value="all" /> */}
             {profiles.map(({ name, id }) => (
               <option label={name} key={id} value={id} />
             ))}
@@ -97,22 +127,50 @@ const Contacts = () => {
             </p>
           </div>
         )}
-        {chats.map((chat, index) => {
-          const { sender_avatar_url, sender_name, id, last_msg } = chat
-
-          return (
-            <ChatWindowContact
-              key={index}
-              clickHandler={() => chatWindowContactClickHandler(id)}
-              src={sender_avatar_url || placeholderAvi}
-              name={sender_name}
-              text={last_msg && last_msg.message}
-              active={false}
-              time={last_msg && last_msg.created_at}
-              current={currentContact === id}
-            />
-          )
-        })}
+        {
+          // currentProfile !== 'all' &&
+          chats.map((chat, index) => {
+            const { sender_avatar_url, sender_name, id, last_msg } = chat
+            const time = new Date()
+            return (
+              <ChatWindowContact
+                key={index}
+                clickHandler={() => chatWindowContactClickHandler(id)}
+                src={sender_avatar_url || placeholderAvi}
+                name={sender_name}
+                text={last_msg && last_msg.message}
+                active={false}
+                time={time}
+                // time={last_msg && last_msg.created_at}
+                current={currentContact === id}
+              />
+            )
+          })
+        }
+        {/* {currentProfile === 'all' &&
+          allChats !== null &&
+          allChats.forEach((array) => {
+            console.log('logging array', array)
+            array.map((chat, index) => {
+              console.log('logging subarray', chat)
+              const { sender_avatar_url, sender_name, id, last_msg } = chat
+              const time = new Date()
+              return (
+                <ChatWindowContact
+                  key={index}
+                  clickHandler={() => chatWindowContactClickHandler(id)}
+                  clickHandler={() => chatWindowContactClickHandler(id)}
+                  src={sender_avatar_url || placeholderAvi}
+                  name={sender_name}
+                  text={last_msg && last_msg.message}
+                  active={false}
+                  time={time}
+                  // time={last_msg && last_msg.created_at}
+                  current={currentContact === id}
+                />
+              )
+            })
+          })} */}
       </div>
     </div>
   )

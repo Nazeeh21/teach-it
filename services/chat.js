@@ -19,6 +19,19 @@ export const getChats = async (token, profileId) => {
   }
 }
 
+export const getAllChats = async (token, profiles) => {
+  const allChats = []
+  try {
+    profiles.map(async (profile) => {
+      const res = await getChats(token, profile.id)
+      allChats.push(res)
+    })
+    return allChats
+  } catch (e) {
+    console.log(e)
+  }
+}
+
 export const getChatData = async (token, profileId, chatId) => {
   if (!chatId) {
     return null
