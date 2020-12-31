@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "agora-access-token": "^2.0.4",
     "agora-rtc-sdk": "^3.2.1",
     "axios": "^0.20.0",
     "iso-639-1": "^2.1.4",
