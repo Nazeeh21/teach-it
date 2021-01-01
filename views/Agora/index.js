@@ -39,6 +39,16 @@ const Index = (props) => {
   const [isAudio, setIsAudio] = useState(true)
   const [isVideo, setIsVideo] = useState(true)
   const [isSharingScreen, setIsSharingScreen] = useState(false)
+  const [mainStream, setMainStream] = useState('local_stream')
+  const [dyanmicToken, setDynamicToken] = useState('')
+
+  useEffect(() => {
+    if (videoStream) {
+      getDynamicToken(roomId, userId)
+        .then((token) => setDynamicToken(token))
+        .catch((e) => console.log(e))
+    }
+  }, [videoStream, roomId, userId])
 
   useEffect(() => {
     const videoStream = new VideoStream(userId, updateRemoteStreams)
@@ -46,7 +56,7 @@ const Index = (props) => {
   }, [])
 
   useEffect(() => {
-    if (videoStream) {
+    if (videoStream && dyanmicToken) {
       startRoom()
     }
   }, [startRoom, videoStream])
@@ -84,8 +94,13 @@ const Index = (props) => {
       element: (
         <div
           id="local_stream"
-          style={{ height: '35rem' }}
-          className="w-full rounded"
+          style={{ height: `${mainStream === 'local_stream' && '35rem'}` }}
+          className={`${
+            mainStream !== 'local_stream'
+              ? 'w-2/12 h-48 m-2 inline-block cursor-pointer'
+              : 'w-full cursor-pointer rounded'
+          }`}
+          onClick={() => setMainStream('local_stream')}
         ></div>
       ),
     })
@@ -107,7 +122,12 @@ const Index = (props) => {
           <div
             key={streamId}
             id={`agora_remote ${streamId}`}
-            className="w-2/12 h-48 m-2 inline-block"
+            onClick={() => setMainStream(`agora_remote ${streamId}`)}
+            className={`${
+              mainStream === `agora_remote ${streamId}`
+                ? 'w-full rounded'
+                : 'w-2/12 h-48 m-2 inline-block'
+            }`}
           />
         ),
       })
@@ -154,33 +174,41 @@ const Index = (props) => {
 
   return (
     <div className="rounded-md">
-      <div className="rounded-md absolute z-10 text-white py-4 px-2 ">
-        <div className="flex items-center">
-          <div className="w-8 mr-4 cursor-pointer">
-            <img src="/hamBurger.png" alt="Hamburger" />
+      <div className="rounded-md absolute z-10 text-white py-4 px-2 w-full">
+        <div className="grid grid-cols-2 items-center w-full">
+          <div className="flex items-center">
+            <div className="w-8 mr-4 cursor-pointer">
+              <img src="/hamBurger.png" alt="Hamburger" />
+            </div>
+            <div>
+              <p className="font-bold">Quaterly Review</p>
+              <p className="text-xs">1 of the 9 in the call</p>
+            </div>
           </div>
-          <div>
-            <p className="font-bold">Quaterly Review</p>
-            <p className="text-xs">1 of the 9 in the call</p>
-          </div>
-          <div style={{ marginLeft: '53rem' }} className="flex">
+          <div
+            // style={{ marginLeft: '53rem' }}
+            className="flex lg:justify-self-center lg:-ml-20 md:justify-self-end md:mr-16 lg:mr-0"
+          >
             <div className="w-8 cursor-pointer">
               <img src="/setting.png" alt="Setting" />
             </div>
-            <div className="w-8 ml-8 cursor-pointer">
+            <div className="w-8 justify-items-end ml-8 cursor-pointer">
               <img src="/add-user.png" alt="Add user" />
             </div>
           </div>
         </div>
-        <div className="text-white flex-col w-full text-center mt-64">
-          <div className="font-semibold">
+        <div
+          style={{ marginTop: '24rem' }}
+          className="text-white flex-col w-full text-center items-center "
+        >
+          {/* <div className='font-semibold'>
             You are the only person in the call
-          </div>
-          <div className="text-xs font-medium">We have notified the group</div>
-          <div className="bg-expert py-2 rounded-full w-2/12 m-auto mt-4">
+          </div> */}
+          {/* <div className='text-xs font-medium'>We have notified the group</div> */}
+          {/* <div className='bg-expert py-2 rounded-full w-2/12 m-auto mt-4'>
             Ring the group
-          </div>
-          <div className="flex items-center justify-center mt-4">
+          </div> */}
+          <div className="flex items-center justify-center lg:-ml-64 lg:mr-20 w-auto m-auto mt-4">
             <div
               className={`w-12 cursor-pointer border-2 rounded-full p-2 h-auto ${
                 !isAudio && 'bg-red'

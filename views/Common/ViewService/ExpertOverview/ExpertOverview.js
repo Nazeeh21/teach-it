@@ -7,7 +7,9 @@ import Avatar from '../../../../components/Images/Avatar'
 import Rating from '../../../../components/Rating/Rating'
 import { useRouter } from 'next/router'
 import { fetchProviderData } from '../../../../services/viewService'
-import { useSelector } from 'react-redux'
+import { createChat } from '../../../../services/chat'
+import { setActiveChatId } from '../../../../store/actions/chatActions'
+import { useDispatch, useSelector } from 'react-redux'
 
 const Card = ({ count, text }) => (
   <div className="font-medium my-3 grid">
@@ -17,9 +19,14 @@ const Card = ({ count, text }) => (
 )
 
 const ExpertOverview = ({ providerPk }) => {
+  const dispatch = useDispatch()
+
   const router = useRouter()
   const token = useSelector((state) => state.auth.token)
   const currentProfileId = useSelector((state) => state.app.currentProfile)
+
+  let token = useSelector((state) => state.auth.token)
+  let profileId = useSelector((state) => state.app.currentProfile)
 
   const [providerData, setProviderData] = useState()
 
@@ -34,15 +41,39 @@ const ExpertOverview = ({ providerPk }) => {
     return null
   }
 
+  const messageButtonClickHandler = async () => {
+    // Create chat
+    const chatId = await createChat(token, profileId, providerPk)
+
+    if (!chatId) {
+      return alert('Error while trying to create chat. Try again.')
+    } else {
+      // Set active chat Id
+      dispatch(setActiveChatId(chatId))
+      // Redirect to /messages
+      router.push('/messages')
+    }
+  }
+
+  const {
+    name,
+    pic,
+    is_verified,
+    rating_position,
+    review_count,
+    seeker_count,
+    service_count,
+  } = providerData
+
   return (
     <div className="text-primary">
       <PrimaryButton label="Subscribe" />
       <div className="bg-white w-full rounded-md my-5 p-3">
-        <p className="text-2xl font-bold">{providerData.name}</p>
+        <p className="text-2xl font-bold">{name}</p>
         <div className="flex">
           <div className="w-6/12 p-2">
             <Avatar
-              src="/stock/girl2.jpg"
+              src={pic || '/avis/ana.png'}
               alt="profile"
               purpose="isForProfile"
             />
@@ -50,27 +81,27 @@ const ExpertOverview = ({ providerPk }) => {
           <div className="text-center m-2 w-6/12">
             <p
               className={`text-center text-${
-                providerData.is_verified ? 'green' : 'red'
+                is_verified ? 'green' : 'red'
               } text-md`}
             >
-              {providerData.is_verified ? 'Verified' : 'Unverified'}
+              {is_verified ? 'Verified' : 'Unverified'}
             </p>
-            <Card count="58" text="Services" />
-            <Card count="425" text="Learners" />
+            <Card count={service_count} text="Services" />
+            <Card count={seeker_count || 0} text="Learners" />
             <Card
-              count={<Rating size="15" value={providerData.rating_position} />}
-              text={`${providerData.review_count} total reviews`}
+              count={<Rating size="15" value={rating_position} />}
+              text={`${review_count} total reviews`}
             />
           </div>
         </div>
         <div className="flex flex-col gap-4">
           <SecondaryButton
-            clickHandler={() => router.push('/messages')}
+            clickHandler={messageButtonClickHandler}
             label="Send message"
             color="primary"
           />
           <SecondaryButton
-            clickHandler={() => router.push('/profile')}
+            clickHandler={() => router.push(`/profile/${providerPk}`)}
             label="View profile & reviews"
           />
         </div>

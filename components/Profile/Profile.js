@@ -71,6 +71,13 @@ const Profile = ({ profileData }) => {
       <h3 className="text-darkGrey text-xl mt-6 font-semibold">
         Certifications
       </h3>
+      {docs.length === 0 && (
+        <div className="my-2 w-full">
+          <p className="text-darkGrey">
+            This user hasn't uploaded any certifications.
+          </p>
+        </div>
+      )}
       <div className="grid grid-flow-row gap-2 grid-cols-5 w-full mt-3 items-center">
         {docs.map((doc, idx) => (
           <Image src={doc} key={idx} />
@@ -78,7 +85,7 @@ const Profile = ({ profileData }) => {
       </div>
 
       {/* Demo videos */}
-      <h3 className="text-darkGrey text-xl mt-6 font-semibold">Demo Videos</h3>
+      {/* <h3 className="text-darkGrey text-xl mt-6 font-semibold">Demo Videos</h3>
       <div className="grid grid-flow-row gap-2 grid-cols-5 w-full mt-3 items-center">
         <Image
           src="/
@@ -92,7 +99,7 @@ certificates/2.png"
           src="/
 certificates/3.png"
         />
-      </div>
+      </div> */}
     </>
   )
 }
