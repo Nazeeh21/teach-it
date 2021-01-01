@@ -40,11 +40,13 @@ const Index = (props) => {
   const [isVideo, setIsVideo] = useState(true)
   const [isSharingScreen, setIsSharingScreen] = useState(false)
   const [mainStream, setMainStream] = useState('local_stream')
+  const [finalMainStream, setFinalMainStream] = useState([])
+  const [finalRemoteStreams, setFinalRemoteStreams] = useState([])
 
   useEffect(() => {
     const videoStream = new VideoStream(userId, updateRemoteStreams)
     setVideoStream(videoStream)
-  }, [])
+  }, [mainStream])
 
   useEffect(() => {
     if (videoStream) {
@@ -85,12 +87,9 @@ const Index = (props) => {
       element: (
         <div
           id="local_stream"
-          style={{ height: `${mainStream === 'local_stream' && '35rem'}` }}
-          className={`${
-            mainStream !== 'local_stream'
-              ? 'w-2/12 h-48 m-2 inline-block cursor-pointer'
-              : 'w-full cursor-pointer rounded'
-          }`}
+          // style={{ height: `${mainStream === 'local_stream' && '35rem'}` }}
+          // style={{ height: '35rem' }}
+          className={'w-full h-full cursor-pointer rounded'}
           // onClick={() => setMainStream('local_stream')}
         ></div>
       ),
@@ -113,12 +112,16 @@ const Index = (props) => {
           <div
             key={streamId}
             id={`agora_remote ${streamId}`}
+            // style={{ height: 'auto' }}
             // onClick={() => setMainStream(`agora_remote ${streamId}`)}
-            className={`${
-              mainStream === `agora_remote ${streamId}`
-                ? 'w-full rounded cursor-pointer'
-                : 'w-2/12 h-48 m-2 inline-block cursor-pointer'
-            }`}
+            className={
+              'w-full h-full cursor-pointer'
+              //   `${
+              //   mainStream === `agora_remote ${streamId}`
+              //     ? 'w-full rounded cursor-pointer'
+              //     : 'w-2/12 h-48 m-2 inline-block cursor-pointer'
+              // }`
+            }
           />
         ),
       })
@@ -162,6 +165,26 @@ const Index = (props) => {
     //   isSharingScreen: !isSharingScreen,
     // });
   }
+
+  useEffect(() => {
+    const newStream = [...presentVideoStreams]
+    // newStream.map(stream => {
+    //   if(stream.element.props.id === mainStream) {
+    //     setFinalMainStream(stream)
+    //   }
+    // })
+    setFinalMainStream(
+      newStream.filter((stream) => stream.element.props.id === mainStream)
+    )
+    setFinalRemoteStreams(
+      newStream.filter((stream) => stream.element.props.id !== mainStream)
+    )
+  }, [mainStream, presentVideoStreams])
+
+  // useEffect(() => {
+  //   console.log('Main stream', finalMainStream)
+  //   console.log('Remote Stream', finalRemoteStreams)
+  // }, [finalMainStream, finalRemoteStreams])
 
   return (
     <div className="rounded-md">
@@ -249,9 +272,58 @@ const Index = (props) => {
       </div>
 
       <div className="z-0 h-auto w-full rounded-md">
-        {presentVideoStreams.map((stream, index) => {
-          return stream.element
+        {/* {presentVideoStreams.filter(stream => stream.element.props.id === mainStream).map((stream, index) => {
+          console.log('Logging stream element', stream.element.props.id)
+          return <div>{stream.element}</div>
         })}
+         {presentVideoStreams.filter(stream => stream.element.props.id !== mainStream).map((stream, index) => {
+          console.log('Logging stream element', stream.element.props.id)
+          return <div className='w-2/12 h-32 m-2 inline-block '>{stream.element}</div>
+        })} */}
+
+        {/* {presentVideoStreams.map((stream, index) => {
+          const currentVideoElementId = stream.element.props.id
+          if(currentVideoElementId === mainStream) {
+            return <div onClick={() => setMainStream(currentVideoElementId)} style={{height: '35rem'}}>{stream.element}</div>
+          } else {
+            return <div className='w-2/12 h-32 m-2 inline-block' onClick={() => setMainStream(currentVideoElementId)}>{stream.element}</div>
+          }
+        })} */}
+
+        {/* {finalMainStream && console.log('Final main stream', finalMainStream)} */}
+        {/* {console.log('Final remote stream', finalRemoteStreams)} */}
+        {/* {finalMainStream && <div style={{height: '35rem'}}>{finalMainStream.element}</div>} */}
+        {finalMainStream.map((stream) => {
+          return <div style={{ height: '35rem' }}>{stream.element}</div>
+        })}
+        {finalRemoteStreams.map((stream, index) => {
+          return (
+            <div
+              className="w-2/12 h-32 m-2 inline-block"
+              onClick={() => setMainStream(stream.element.props.id)}
+            >
+              {stream.element}
+            </div>
+          )
+        })}
+
+        {/* {presentVideoStreams.map((stream) => {
+          const currentStreamId = stream.element.props.id
+          console.log('Logging streams', stream.element)
+          return (
+            <div
+              style={{
+                height: `${mainStream === currentStreamId ? '35rem' : '9rem'}`,
+              }}
+              className={`${
+                mainStream !== currentStreamId && 'w-2/12 inline-block cursor-pointer'
+              }`}
+              onClick={() => setMainStream(currentStreamId)}
+            >
+              {stream.element}
+            </div>
+          )
+        })} */}
       </div>
       <div>
         <VideoChat />
