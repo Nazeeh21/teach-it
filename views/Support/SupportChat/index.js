@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
 import Message from '../../../components/Chat/Message'
 import { sendMessage } from '../../../services/support'
 
@@ -12,6 +13,8 @@ const Option = () => (
 
 const MessageWrapper = ({ isFromSelf = false, time, text, status }) => {
   const date = new Date(time)
+  const token = useSelector((state) => state.auth.token)
+  const currentProfileId = useSelector((state) => state.app.currentProfile)
 
   if (!isFromSelf) {
     return (
@@ -55,7 +58,7 @@ const NewTicket = ({ messages, chatId, handleUpdate }) => {
   }
 
   const handleMessageSend = () => {
-    sendMessage(input, chatId).then((res) => {
+    sendMessage(input, chatId, token, currentProfileId).then((res) => {
       if (res) {
         setInput('')
         handleUpdate()

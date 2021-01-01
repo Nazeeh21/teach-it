@@ -18,7 +18,12 @@ export const fetchChatMessages = async (chatId, token, currentProfileId) => {
   }
 }
 
-export const sendMessage = async (messageText, chatId) => {
+export const sendMessage = async (
+  messageText,
+  chatId,
+  token,
+  currentProfileId
+) => {
   try {
     const res = await api.post(
       `/service/questions/chat/${chatId}/`,
@@ -27,8 +32,8 @@ export const sendMessage = async (messageText, chatId) => {
       },
       {
         headers: {
-          Authorization: `Token ${localStorage.getItem('token')}`,
-          'X-Profile-ID': localStorage.getItem('currentProfile'),
+          Authorization: `Token ${token}`,
+          'X-Profile-ID': currentProfileId,
         },
       }
     )

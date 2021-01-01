@@ -8,21 +8,19 @@ export const fetchProfileData = async (token, currentProfileId) => {
         'X-Profile-ID': currentProfileId,
       },
     })
-    return res.data.profiles.filter(
-      (profile) => profile.id == window.localStorage.getItem('currentProfile')
-    )
+    return res.data.profiles.filter((profile) => profile.id == currentProfileId)
   } catch (e) {
     console.log(e)
     return e
   }
 }
 
-export const fetchMilestone = async (id) => {
+export const fetchMilestone = async (id, token, currentProfileId) => {
   try {
     const res = await api.get(`service/${id}/milestone/`, {
       headers: {
-        Authorization: `Token ${localStorage.getItem('token')}`,
-        'X-Profile-ID': window.localStorage.getItem('currentProfile'),
+        Authorization: `Token ${token}`,
+        'X-Profile-ID': currentProfileId,
       },
     })
     console.log('fetchMilstone ', res.data)

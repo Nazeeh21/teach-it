@@ -9,6 +9,8 @@ import { fetchSearchResults } from '../../../store/actions/appActions'
 const Index = () => {
   const dispatch = useDispatch()
 
+  const token = useSelector((state) => state.auth.token)
+
   const [activeTypeLabel, setTypeLabel] = useState('live')
   const [activeTimingLabel, setTimingLabel] = useState('anytime')
   const [maxCost, setMaxCost] = useState('')
@@ -25,17 +27,20 @@ const Index = () => {
     console.log('Sending the request')
     // const convertedDate = new Date(date)
     dispatch(
-      fetchSearchResults({
-        type: activeTypeLabel,
-        max_cost: maxCost,
-        // rating: minRating,
-        provider_type: expertType,
-        language,
-        min_duration: duration,
-        max_duration: duration,
-        provider_location: expertLocation,
-        // starts_after: convertedDate,
-      })
+      fetchSearchResults(
+        {
+          type: activeTypeLabel,
+          max_cost: maxCost,
+          // rating: minRating,
+          provider_type: expertType,
+          language,
+          min_duration: duration,
+          max_duration: duration,
+          provider_location: expertLocation,
+          // starts_after: convertedDate,
+        },
+        token
+      )
     )
   }, [
     activeTypeLabel,

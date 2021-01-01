@@ -4,9 +4,13 @@ import { PrimaryButton } from '../../../../components/Buttons/Index'
 import Avatar from '../../../../components/Images/Avatar'
 import loremIpsum from '../../../../utility/loremIpsum'
 import api from '../../../../api'
+import { useSelector } from 'react-redux'
 
 const AskQuestion = ({ show, clickHandler }) => {
   const [question, setQuestion] = useState('')
+
+  const token = useSelector((state) => state.auth.token)
+  const currentProfileId = useSelector((state) => state.app.currentProfile)
 
   const sendQuestion = async () => {
     try {
@@ -18,8 +22,8 @@ const AskQuestion = ({ show, clickHandler }) => {
         },
         {
           headers: {
-            Authorization: `Token ${localStorage.getItem('token')}`,
-            'X-Profile-ID': localStorage.getItem('currentProfile'),
+            Authorization: `Token ${token}`,
+            'X-Profile-ID': currentProfileId,
           },
         }
       )

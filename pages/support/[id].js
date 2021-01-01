@@ -5,15 +5,18 @@ import SupportChat from '../../views/Support/SupportChat'
 
 import { useRouter } from 'next/router'
 import { fetchTicketMessages } from '../../services/support'
+import { useSelector } from 'react-redux'
 
 const Index = () => {
   const router = useRouter()
   const id = router.query.id
+  const token = useSelector((state) => state.auth.token)
+  const currentProfileId = useSelector((state) => state.app.currentProfile)
 
   const [messages, setMessages] = useState([])
 
   const fetchMessages = useCallback(() => {
-    fetchTicketMessages(id)
+    fetchTicketMessages(id, token, currentProfileId)
       .then((data) => setMessages(data.results))
       .catch((e) => console.log(e))
   }, [id])

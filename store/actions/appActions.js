@@ -173,13 +173,13 @@ export const fetchUserServices = (token, currentProfileId) => {
   }
 }
 
-export const fetchNextUserServices = (nextPageUrl) => {
+export const fetchNextUserServices = (nextPageUrl, token, currentProfileId) => {
   return async (dispatch) => {
     try {
       var res = await axios.get(nextPageUrl, {
         headers: {
-          Authorization: `Token ${localStorage.getItem('token')}`,
-          'X-Profile-ID': localStorage.getItem('currentProfile'),
+          Authorization: `Token ${token}`,
+          'X-Profile-ID': currentProfileId,
         },
       })
 
@@ -198,14 +198,14 @@ export const fetchNextUserServices = (nextPageUrl) => {
   }
 }
 
-export const fetchViewService = (id) => {
+export const fetchViewService = (id, token, currentProfileId) => {
   return async (dispatch) => {
     try {
       if (id) {
         const res = await api.get(`/service/${id}/`, {
           headers: {
-            Authorization: `Token ${localStorage.getItem('token')}`,
-            'X-Profile-ID': localStorage.getItem('currentProfile'),
+            Authorization: `Token ${token}`,
+            'X-Profile-ID': currentProfileId,
           },
         })
         console.log('Fetch View Service response', res.data)
@@ -220,12 +220,12 @@ export const fetchViewService = (id) => {
   }
 }
 
-export const fetchProfiles = () => {
+export const fetchProfiles = (token) => {
   return async (dispatch) => {
     try {
       const res = await api.get('/user/', {
         headers: {
-          Authorization: `Token ${localStorage.getItem('token')}`,
+          Authorization: `Token ${token}`,
         },
       })
       // console.log('Profiles', res.data)
@@ -257,7 +257,7 @@ export const logout = () => {
   }
 }
 
-export const fetchSearchResults = (payload) => {
+export const fetchSearchResults = (payload, token) => {
   // console.log('Recieved payload', payload)
 
   return async (dispatch) => {
@@ -267,7 +267,7 @@ export const fetchSearchResults = (payload) => {
           ...payload,
         },
         headers: {
-          Authorization: `Token ${localStorage.getItem('token')}`,
+          Authorization: `Token ${token}`,
         },
       })
 
@@ -285,7 +285,7 @@ export const fetchSearchResults = (payload) => {
   }
 }
 
-export const fetchNextSearchResults = (nextUrl, payload) => {
+export const fetchNextSearchResults = (nextUrl, payload, token) => {
   // console.log('Recieved payload', payload)
 
   return async (dispatch) => {
@@ -295,7 +295,7 @@ export const fetchNextSearchResults = (nextUrl, payload) => {
           ...payload,
         },
         headers: {
-          Authorization: `Token ${localStorage.getItem('token')}`,
+          Authorization: `Token ${token}`,
         },
       })
 

@@ -1,11 +1,11 @@
 import api from '../api'
 
-export const fetchTicketMessages = async (chatId) => {
+export const fetchTicketMessages = async (chatId, token, currentProfileId) => {
   try {
     const res = await api.get(`/support/chat/${chatId}/`, {
       headers: {
-        Authorization: `Token ${localStorage.getItem('token')}`,
-        'X-Profile-ID': localStorage.getItem('currentProfile'),
+        Authorization: `Token ${token}`,
+        'X-Profile-ID': currentProfileId,
       },
     })
 
@@ -18,7 +18,12 @@ export const fetchTicketMessages = async (chatId) => {
   }
 }
 
-export const sendMessage = async (messageText, chatId) => {
+export const sendMessage = async (
+  messageText,
+  chatId,
+  token,
+  currentProfileId
+) => {
   try {
     const res = await api.post(
       `/support/chat/${chatId}/`,
@@ -27,8 +32,8 @@ export const sendMessage = async (messageText, chatId) => {
       },
       {
         headers: {
-          Authorization: `Token ${localStorage.getItem('token')}`,
-          'X-Profile-ID': localStorage.getItem('currentProfile'),
+          Authorization: `Token ${token}`,
+          'X-Profile-ID': currentProfileId,
         },
       }
     )

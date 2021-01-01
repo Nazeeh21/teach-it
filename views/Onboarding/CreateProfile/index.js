@@ -7,13 +7,17 @@ import {
 import { LandingContainer } from '../../../containers'
 import { useRouter } from 'next/router'
 import Form from './Form'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { continueHandler } from '../../../store/actions/profileActions'
 import { v4 as uuid } from 'uuid'
 
 const Index = () => {
   const router = useRouter()
   const dispatch = useDispatch()
+
+  const token = useSelector((state) => state.auth.token)
+  const currentProfileId = useSelector((state) => state.app.currentProfile)
+
   const [arr, setArr] = useState([0])
   const [formData, setFormData] = useState([
     {
@@ -28,7 +32,7 @@ const Index = () => {
     //   return null
     // }
 
-    dispatch(continueHandler(formData))
+    dispatch(continueHandler(formData, token, currentProfileId))
 
     // TODO: Error handling
 

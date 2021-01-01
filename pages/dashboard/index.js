@@ -28,7 +28,7 @@ const Index = () => {
     }
 
     if (token) {
-      dispatch(fetchProfiles())
+      dispatch(fetchProfiles(token))
       dispatch(saveToken(token))
     }
   }, [])
