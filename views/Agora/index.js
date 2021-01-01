@@ -3,7 +3,21 @@ import VideoChat from '../../components/VideoCall/VideoChat/VideoChat'
 import VideoStream from './VideoStream'
 import styled from 'styled-components'
 import { useRouter } from 'next/router'
+import {
+  RtcTokenBuilder,
+  RtmTokenBuilder,
+  RtcRole,
+  RtmRole,
+} from 'agora-access-token'
+
 // import './Toggle.css'
+
+const APP_ID = 'a79d3d6b148340be8c8375ea556f824c'
+const APP_CERTIFICATE = '0b129377515e43889543cec7fec454ff'
+
+const currentTimestamp = Math.floor(Date.now() / 1000)
+const expirationTimeInSeconds = 3600
+const privilegeExpiredTs = currentTimestamp + expirationTimeInSeconds
 
 const roomId = 'test'
 const userId = Math.random().toString(36).substring(7)
@@ -11,12 +25,10 @@ const Div = styled.div`
   width: 48px;
   height: 42px;
   border-bottom: 2px solid white;
-  -webkit-transform:
-      translateY(-20px)
-      translateX(5px)
-      rotate(45deg); 
+  -webkit-transform: translateY(-20px) translateX(5px) rotate(45deg);
   position: absolute;
-  `
+`
+
 const Index = (props) => {
   const router = useRouter()
   const [videoStream, setVideoStream] = useState()
@@ -39,16 +51,41 @@ const Index = (props) => {
     }
   }, [startRoom, videoStream])
 
-  const startRoom = () => {
-    videoStream.initLocalStream('local_stream', roomId, userId, () => {})
+  const getDynamicToken = async (roomId, userId) => {
+    try {
+      const token = await RtcTokenBuilder.buildTokenWithUid(
+        APP_ID,
+        APP_CERTIFICATE,
+        roomId,
+        userId,
+        RtcRole.PUBLISHER,
+        privilegeExpiredTs
+      )
+
+      return token
+    } catch (error) {
+      console.log('getDynamicToken', error)
+      return null
+    }
+  }
+
+  const startRoom = async () => {
+    const dynamicToken = await getDynamicToken(roomId, userId)
+    videoStream.initLocalStream(
+      'local_stream',
+      roomId,
+      userId,
+      () => {},
+      dynamicToken
+    )
     const vidStreams = []
     vidStreams.push({
       stream: videoStream.localStream,
       element: (
         <div
-          id='local_stream'
+          id="local_stream"
           style={{ height: '35rem' }}
-          className='w-full rounded'
+          className="w-full rounded"
         ></div>
       ),
     })
@@ -70,7 +107,7 @@ const Index = (props) => {
           <div
             key={streamId}
             id={`agora_remote ${streamId}`}
-            className='w-2/12 h-48 m-2 inline-block'
+            className="w-2/12 h-48 m-2 inline-block"
           />
         ),
       })
@@ -79,7 +116,7 @@ const Index = (props) => {
   }, [remoteStreams])
 
   const leaveMeeting = () => {
-    videoStream.leaveMeeting();
+    videoStream.leaveMeeting()
     // this.props.leaveMeeting();
     router.push('/')
   }
@@ -115,75 +152,84 @@ const Index = (props) => {
     // });
   }
 
-  
-
   return (
-    <div className='rounded-md'>
-      <div className='rounded-md absolute z-10 text-white py-4 px-2 '>
-        <div className='flex items-center'>
-          <div className='w-8 mr-4 cursor-pointer'>
-            <img src='/hamBurger.png' alt='Hamburger' />
+    <div className="rounded-md">
+      <div className="rounded-md absolute z-10 text-white py-4 px-2 ">
+        <div className="flex items-center">
+          <div className="w-8 mr-4 cursor-pointer">
+            <img src="/hamBurger.png" alt="Hamburger" />
           </div>
           <div>
-            <p className='font-bold'>Quaterly Review</p>
-            <p className='text-xs'>1 of the 9 in the call</p>
+            <p className="font-bold">Quaterly Review</p>
+            <p className="text-xs">1 of the 9 in the call</p>
           </div>
-          <div style={{ marginLeft: '53rem' }} className='flex'>
-            <div className='w-8 cursor-pointer'>
-              <img src='/setting.png' alt='Setting' />
+          <div style={{ marginLeft: '53rem' }} className="flex">
+            <div className="w-8 cursor-pointer">
+              <img src="/setting.png" alt="Setting" />
             </div>
-            <div className='w-8 ml-8 cursor-pointer'>
-              <img src='/add-user.png' alt='Add user' />
+            <div className="w-8 ml-8 cursor-pointer">
+              <img src="/add-user.png" alt="Add user" />
             </div>
           </div>
         </div>
-        <div className='text-white flex-col w-full text-center mt-64'>
-          <div className='font-semibold'>
+        <div className="text-white flex-col w-full text-center mt-64">
+          <div className="font-semibold">
             You are the only person in the call
           </div>
-          <div className='text-xs font-medium'>We have notified the group</div>
-          <div className='bg-expert py-2 rounded-full w-2/12 m-auto mt-4'>
+          <div className="text-xs font-medium">We have notified the group</div>
+          <div className="bg-expert py-2 rounded-full w-2/12 m-auto mt-4">
             Ring the group
           </div>
-          <div className='flex items-center justify-center mt-4'>
+          <div className="flex items-center justify-center mt-4">
             <div
-              className={`w-12 cursor-pointer border-2 rounded-full p-2 h-auto ${!isAudio && 'bg-red'}`}
+              className={`w-12 cursor-pointer border-2 rounded-full p-2 h-auto ${
+                !isAudio && 'bg-red'
+              }`}
               onClick={toggleMic}
             >
               {!isAudio && <Div />}
-              <img style={{ margin: 'auto' }} src='mic.png' alt='Mic' />
+              <img style={{ margin: 'auto' }} src="mic.png" alt="Mic" />
               {/* <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" style={{width: '100%', height: '100%'}} */}
             </div>
             <div
-              className={`w-12 cursor-pointer border-2 rounded-full p-2 h-auto mx-4 ${!isVideo && 'bg-red'}`}
+              className={`w-12 cursor-pointer border-2 rounded-full p-2 h-auto mx-4 ${
+                !isVideo && 'bg-red'
+              }`}
               onClick={toggleVideo}
             >
-               {!isVideo && <Div />}
+              {!isVideo && <Div />}
               <img
                 style={{ margin: 'auto' }}
-                src='video-camera.png'
-                alt='Video Camera'
+                src="video-camera.png"
+                alt="Video Camera"
               />
             </div>
             <div
-              className={`w-12 cursor-pointer border-2 rounded-full p-2 h-auto mr-4 ${!isSharingScreen && 'bg-red'}`}
+              className={`w-12 cursor-pointer border-2 rounded-full p-2 h-auto mr-4 ${
+                !isSharingScreen && 'bg-red'
+              }`}
               onClick={toggleShareScreen}
             >
-               {isSharingScreen && <Div />}
+              {isSharingScreen && <Div />}
               <img
                 style={{ margin: 'auto' }}
-                src={`${isSharingScreen ? 'stop-sharing.png' : 'share-screen.png'}`}
-                alt='Video Camera'
+                src={`${
+                  isSharingScreen ? 'stop-sharing.png' : 'share-screen.png'
+                }`}
+                alt="Video Camera"
               />
             </div>
-            <div className='w-12 cursor-pointer border-2 border-learner rounded-full p-2 h-auto' onClick={leaveMeeting}>
-              <img src='endCall.png' alt='End call' />
+            <div
+              className="w-12 cursor-pointer border-2 border-learner rounded-full p-2 h-auto"
+              onClick={leaveMeeting}
+            >
+              <img src="endCall.png" alt="End call" />
             </div>
           </div>
         </div>
       </div>
 
-      <div className='z-0 h-auto w-full rounded-md'>
+      <div className="z-0 h-auto w-full rounded-md">
         {presentVideoStreams.map((stream, index) => {
           return stream.element
         })}
@@ -191,25 +237,25 @@ const Index = (props) => {
       <div>
         <VideoChat />
         <div
-          className='bg-accentedWhite rounded-bl-md rounded-br-md flex justify-center w-6/12'
-          id='typebox'
+          className="bg-accentedWhite rounded-bl-md rounded-br-md flex justify-center w-6/12"
+          id="typebox"
         >
           <button
-            className='m-auto w-8 flex justify-center items-center'
+            className="m-auto w-8 flex justify-center items-center"
             onClick={() => {}}
           >
-            <img src='/drawer.svg' alt='drawer' />
+            <img src="/drawer.svg" alt="drawer" />
           </button>
-          <button className='m-auto w-8 flex justify-center items-center'>
-            <img src='/camera.svg' alt='camera' />
+          <button className="m-auto w-8 flex justify-center items-center">
+            <img src="/camera.svg" alt="camera" />
           </button>
-          <button className='m-auto w-8 flex justify-center items-center'>
-            <img src='/gallery.svg' alt='gallery' />
+          <button className="m-auto w-8 flex justify-center items-center">
+            <img src="/gallery.svg" alt="gallery" />
           </button>
           <input
             style={{ outline: 'none' }}
-            className='border-highlight border-2 w-8/12 h-10 mx-2 my-2 rounded px-2 py-4'
-            type='text'
+            className="border-highlight border-2 w-8/12 h-10 mx-2 my-2 rounded px-2 py-4"
+            type="text"
             onChange={(e) => e.target.value}
             // disabled={disabled}
           />
