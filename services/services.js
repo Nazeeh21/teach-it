@@ -21,8 +21,8 @@ export const getProviderDetailsFromServiceId = async (
     // Get provider details
     const providerDetails = await api.get(`provider/${providerId}/`, {
       headers: {
-        Authorization: `Token ${localStorage.getItem('token')}`,
-        'X-Profile-ID': localStorage.getItem('currentProfile'),
+        Authorization: `Token ${token}`,
+        'X-Profile-ID': currentProfileId,
       },
     })
 

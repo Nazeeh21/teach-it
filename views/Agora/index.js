@@ -3,8 +3,21 @@ import VideoChat from '../../components/VideoCall/VideoChat/VideoChat'
 import VideoStream from './VideoStream'
 import styled from 'styled-components'
 import { useRouter } from 'next/router'
-import { getDynamicToken } from '../../services/agora'
+import {
+  RtcTokenBuilder,
+  RtmTokenBuilder,
+  RtcRole,
+  RtmRole,
+} from 'agora-access-token'
+
 // import './Toggle.css'
+
+const APP_ID = 'a79d3d6b148340be8c8375ea556f824c'
+const APP_CERTIFICATE = '0b129377515e43889543cec7fec454ff'
+
+const currentTimestamp = Math.floor(Date.now() / 1000)
+const expirationTimeInSeconds = 3600
+const privilegeExpiredTs = currentTimestamp + expirationTimeInSeconds
 
 const roomId = 'test'
 const userId = Math.random().toString(36).substring(7)
@@ -15,6 +28,7 @@ const Div = styled.div`
   -webkit-transform: translateY(-20px) translateX(5px) rotate(45deg);
   position: absolute;
 `
+
 const Index = (props) => {
   const router = useRouter()
   const [videoStream, setVideoStream] = useState()
@@ -47,13 +61,32 @@ const Index = (props) => {
     }
   }, [startRoom, videoStream])
 
-  const startRoom = () => {
+  const getDynamicToken = async (roomId, userId) => {
+    try {
+      const token = await RtcTokenBuilder.buildTokenWithUid(
+        APP_ID,
+        APP_CERTIFICATE,
+        roomId,
+        userId,
+        RtcRole.PUBLISHER,
+        privilegeExpiredTs
+      )
+
+      return token
+    } catch (error) {
+      console.log('getDynamicToken', error)
+      return null
+    }
+  }
+
+  const startRoom = async () => {
+    const dynamicToken = await getDynamicToken(roomId, userId)
     videoStream.initLocalStream(
       'local_stream',
       roomId,
       userId,
       () => {},
-      dyanmicToken
+      dynamicToken
     )
     const vidStreams = []
     vidStreams.push({

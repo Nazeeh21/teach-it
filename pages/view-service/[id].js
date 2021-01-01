@@ -14,6 +14,8 @@ const Index = () => {
   const id = router.query.id
   const viewServiceData = useSelector((state) => state.app.viewServiceData)
   const [milestoneData, setMilestoneData] = useState(null)
+  const token = useSelector((state) => state.auth.token)
+  const currentProfileId = useSelector((state) => state.app.currentProfile)
   // console.log('Outside', id)
 
   useEffect(() => {
@@ -21,8 +23,8 @@ const Index = () => {
 
     // console.log(router.query.id)
     console.log('ID', id)
-    dispatch(fetchViewService(id))
-    fetchMilestone(id)
+    dispatch(fetchViewService(id, token, currentProfileId))
+    fetchMilestone(id, token, currentProfileId)
       .then((res) => {
         // console.log(res)
         setMilestoneData(res)

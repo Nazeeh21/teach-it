@@ -1,11 +1,15 @@
 import api from '../api'
 
-export const fetchProviderData = async (providerPk) => {
+export const fetchProviderData = async (
+  providerPk,
+  token,
+  currentProfileId
+) => {
   try {
     const res = await api.get(`provider/${providerPk}/`, {
       headers: {
-        Authorization: `Token ${localStorage.getItem('token')}`,
-        'X-Profile-ID': localStorage.getItem('currentProfile'),
+        Authorization: `Token ${token}`,
+        'X-Profile-ID': currentProfileId,
       },
     })
 

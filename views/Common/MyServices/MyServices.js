@@ -38,7 +38,7 @@ const MyServices = () => {
   }, [token, currentProfileId])
 
   const viewMoreClickHandler = () => {
-    dispatch(fetchNextUserServices(nextUserServiceUrl))
+    dispatch(fetchNextUserServices(nextUserServiceUrl, token, currentProfileId))
   }
 
   return (

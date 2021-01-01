@@ -1,7 +1,7 @@
 import { SAVEDATA } from '../actionTypes'
 import api from '../../api'
 
-export const continueHandler = (formData) => {
+export const continueHandler = (formData, token, currentProfileId) => {
   return (dispatch) => {
     console.log(formData)
     // dispatch(saveData(formData[0]))
@@ -24,8 +24,8 @@ export const continueHandler = (formData) => {
           },
           {
             headers: {
-              Authorization: `Token ${localStorage.getItem('token')}`,
-              'X-Profile-ID': localStorage.getItem('currentProfile'),
+              Authorization: `Token ${token}`,
+              'X-Profile-ID': currentProfileId,
             },
           }
         )

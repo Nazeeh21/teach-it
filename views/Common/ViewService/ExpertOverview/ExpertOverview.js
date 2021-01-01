@@ -22,6 +22,8 @@ const ExpertOverview = ({ providerPk }) => {
   const dispatch = useDispatch()
 
   const router = useRouter()
+  const token = useSelector((state) => state.auth.token)
+  const currentProfileId = useSelector((state) => state.app.currentProfile)
 
   let token = useSelector((state) => state.auth.token)
   let profileId = useSelector((state) => state.app.currentProfile)
@@ -30,7 +32,9 @@ const ExpertOverview = ({ providerPk }) => {
 
   useEffect(() => {
     console.log('Provider pk', providerPk)
-    fetchProviderData(providerPk).then((res) => setProviderData(res))
+    fetchProviderData(providerPk, token, currentProfileId).then((res) =>
+      setProviderData(res)
+    )
   }, [providerPk])
 
   if (!providerData || !providerPk) {
