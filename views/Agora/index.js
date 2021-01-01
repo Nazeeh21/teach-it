@@ -4,10 +4,11 @@ import VideoStream from './VideoStream'
 import styled from 'styled-components'
 import { useRouter } from 'next/router'
 import { getDynamicToken } from '../../services/agora'
+import { v4 as uuid } from 'uuid'
 // import './Toggle.css'
 
 const roomId = 'test'
-const userId = Math.random().toString(36).substring(7)
+const userId = Math.floor(Math.random() * 1000 + 1)
 const Div = styled.div`
   width: 48px;
   height: 42px;
@@ -29,9 +30,12 @@ const Index = (props) => {
   const [dyanmicToken, setDynamicToken] = useState('')
 
   useEffect(() => {
-    if (videoStream) {
+    if (videoStream && roomId && userId) {
       getDynamicToken(roomId, userId)
-        .then((token) => setDynamicToken(token))
+        .then((token) => {
+          console.log('Loggin token from Agora.js', token)
+          setDynamicToken(token)
+        })
         .catch((e) => console.log(e))
     }
   }, [videoStream, roomId, userId])
@@ -130,7 +134,13 @@ const Index = (props) => {
     } else {
       newStream = new VideoStream(userId, updateRemoteStreams)
     }
-    newStream.initLocalStream('local_stream', roomId, userId, () => {})
+    newStream.initLocalStream(
+      'local_stream',
+      roomId,
+      userId,
+      () => {},
+      dyanmicToken
+    )
     setVideoStream(newStream)
     setIsSharingScreen((prevState) => !prevState)
     // this.setState({

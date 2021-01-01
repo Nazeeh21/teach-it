@@ -56,6 +56,7 @@ class VideoStream {
   }
 
   joinChannel = (roomId, userId, dynamicToken) => {
+    console.log('LOging dynamic token', dynamicToken)
     this.client.join(
       // '006a79d3d6b148340be8c8375ea556f824cIAAjDAVUriRRs1DwsS3HUdCAJzuV0xMutRrvSFjUGNQV3Ax+f9gAAAAAEADkOavBiOvqXwEAAQCH6+pf',
       dynamicToken,

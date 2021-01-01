@@ -15,6 +15,7 @@ const privilegeExpiredTs = currentTimestamp + expirationTimeInSeconds
 
 export const getDynamicToken = async (roomId, userId) => {
   try {
+    console.log('userId', userId, roomId)
     const token = RtcTokenBuilder.buildTokenWithUid(
       APP_ID,
       APP_CERTIFICATE,
@@ -23,6 +24,8 @@ export const getDynamicToken = async (roomId, userId) => {
       RtcRole.PUBLISHER,
       privilegeExpiredTs
     )
+
+    console.log('Token With Integer Number ' + userId + ' = ' + token)
 
     return token
   } catch (error) {
