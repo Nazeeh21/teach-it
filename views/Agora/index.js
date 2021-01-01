@@ -91,7 +91,7 @@ const Index = (props) => {
               ? 'w-2/12 h-48 m-2 inline-block cursor-pointer'
               : 'w-full cursor-pointer rounded'
           }`}
-          onClick={() => setMainStream('local_stream')}
+          // onClick={() => setMainStream('local_stream')}
         ></div>
       ),
     })
@@ -113,7 +113,7 @@ const Index = (props) => {
           <div
             key={streamId}
             id={`agora_remote ${streamId}`}
-            onClick={() => setMainStream(`agora_remote ${streamId}`)}
+            // onClick={() => setMainStream(`agora_remote ${streamId}`)}
             className={`${
               mainStream === `agora_remote ${streamId}`
                 ? 'w-full rounded cursor-pointer'
