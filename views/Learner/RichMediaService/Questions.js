@@ -47,7 +47,7 @@ const Questions = () => {
 
   useEffect(() => {
     getQuestions()
-  }, [getQuestions])
+  }, [getQuestions, token, currentProfileId])
 
   return (
     <div className="w-full">

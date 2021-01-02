@@ -22,7 +22,7 @@ const Index = ({ color1, color2, label1, label2, textColor = 'white' }) => {
     activeId === EXPERT
       ? isProvider(token, currentProfileId).then((res) => {
           // console.log('isProvider', res.isProvider)
-          if (res.isProvider === false) {
+          if (res && res.isProvider === false) {
             registerProvider(res.name, token, currentProfileId)
               .then((res) => console.log('Registering Provider', res))
               .catch((e) => console.log(e))
@@ -30,13 +30,13 @@ const Index = ({ color1, color2, label1, label2, textColor = 'white' }) => {
         })
       : isSeeker(token, currentProfileId).then((res) => {
           // console.log('isSeeker', res.isSeeker)
-          if (res.isSeeker === false) {
+          if (res && res.isSeeker === false) {
             registerSeeker(res.name, token, currentProfileId)
               .then((res) => console.log('Registering Seeker', res))
               .catch((e) => console.log(e))
           }
         })
-  }, [activeId])
+  }, [activeId, token, currentProfileId])
 
   const setActiveId = (index) => {
     dispatch(changeUserType(index))

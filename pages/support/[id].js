@@ -23,7 +23,7 @@ const Index = () => {
 
   useEffect(() => {
     fetchMessages()
-  }, [fetchMessages])
+  }, [fetchMessages, token, currentProfileId])
 
   useEffect(() => {
     if (messages) {
