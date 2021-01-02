@@ -12,7 +12,7 @@ const Image = ({ src, alt }) => (
 )
 
 const CompactServiceCard = ({
-  imgSrc = 'stock/girl2.jpg',
+  imgSrc = '/guitar.png',
   descriptionText = loremIpsum,
   hrefText = '',
   butttonText = 'View',

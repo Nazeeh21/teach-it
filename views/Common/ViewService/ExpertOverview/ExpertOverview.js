@@ -22,7 +22,7 @@ const ExpertOverview = ({ providerPk }) => {
   const dispatch = useDispatch()
 
   const router = useRouter()
-  const token = useSelector((state) => state.auth.token)
+  // const token = useSelector((state) => state.auth.token)
   const currentProfileId = useSelector((state) => state.app.currentProfile)
 
   let token = useSelector((state) => state.auth.token)

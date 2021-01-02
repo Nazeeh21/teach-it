@@ -228,8 +228,11 @@ export const fetchProfiles = (token) => {
           Authorization: `Token ${token}`,
         },
       })
+
+      const currentProfileId = localStorage.getItem('currentProfile')
+
       // console.log('Profiles', res.data)
-      if (res.data.profiles.length > 0) {
+      if (res.data.profiles.length > 0 && !currentProfileId) {
         // console.log(res.data.profiles[0].id)
         dispatch({
           type: SET_CURRENT_PROFILE,

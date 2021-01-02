@@ -16,21 +16,17 @@ const Index = () => {
   const [milestoneData, setMilestoneData] = useState(null)
   const token = useSelector((state) => state.auth.token)
   const currentProfileId = useSelector((state) => state.app.currentProfile)
-  // console.log('Outside', id)
 
   useEffect(() => {
-    // const id = router.query.id
-
-    // console.log(router.query.id)
-    console.log('ID', id)
-    dispatch(fetchViewService(id, token, currentProfileId))
-    fetchMilestone(id, token, currentProfileId)
-      .then((res) => {
-        // console.log(res)
-        setMilestoneData(res)
-      })
-      .catch((e) => console.log(e))
-  }, [id])
+    if (token && currentProfileId) {
+      dispatch(fetchViewService(id, token, currentProfileId))
+      fetchMilestone(id, token, currentProfileId)
+        .then((res) => {
+          setMilestoneData(res)
+        })
+        .catch((e) => console.log(e))
+    }
+  }, [id, token, currentProfileId])
 
   if (!id) {
     return null
