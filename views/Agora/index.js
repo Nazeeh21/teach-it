@@ -168,18 +168,24 @@ const Index = (props) => {
 
   useEffect(() => {
     const newStream = [...presentVideoStreams]
+    console.log('Main STream id', mainStream)
     // newStream.map(stream => {
     //   if(stream.element.props.id === mainStream) {
     //     setFinalMainStream(stream)
     //   }
     // })
+
+    newStream.map((stream) => console.log(stream.element.props.id))
+
     setFinalMainStream(
       newStream.filter((stream) => stream.element.props.id === mainStream)
     )
     setFinalRemoteStreams(
       newStream.filter((stream) => stream.element.props.id !== mainStream)
     )
-  }, [mainStream, presentVideoStreams])
+    console.log('Main stream', finalMainStream)
+    console.log('Remote Stream', finalRemoteStreams)
+  }, [mainStream, presentVideoStreams, finalMainStream, finalRemoteStreams])
 
   // useEffect(() => {
   //   console.log('Main stream', finalMainStream)
