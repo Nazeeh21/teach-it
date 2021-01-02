@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { fetchTopCategories } from '../../services/fetchCategories'
 
 const Index = () => {
+  // Test
   const router = useRouter()
   const dispatch = useDispatch()
   const [query, setQuery] = useState('')
