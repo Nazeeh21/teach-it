@@ -127,7 +127,7 @@ const Index = (props) => {
       })
     })
     setPresentVideoStreams(streams)
-  }, [remoteStreams])
+  }, [remoteStreams, mainStream])
 
   const leaveMeeting = () => {
     videoStream.leaveMeeting()
@@ -168,29 +168,32 @@ const Index = (props) => {
 
   useEffect(() => {
     const newStream = [...presentVideoStreams]
-    console.log('Main STream id', mainStream)
+
+    console.log('presentVideoStreams', presentVideoStreams)
+
+    console.log('Main Stream id', mainStream)
     // newStream.map(stream => {
     //   if(stream.element.props.id === mainStream) {
     //     setFinalMainStream(stream)
     //   }
     // })
 
-    newStream.map((stream) => console.log(stream.element.props.id))
+    // newStream.map((stream) => console.log('Stream ID', stream.element.props.id))
 
     setFinalMainStream(
-      newStream.filter((stream) => stream.element.props.id === mainStream)
+      newStream.filter((stream) => stream.element.props.id == mainStream)
     )
     setFinalRemoteStreams(
       newStream.filter((stream) => stream.element.props.id !== mainStream)
     )
-    console.log('Main stream', finalMainStream)
-    console.log('Remote Stream', finalRemoteStreams)
+    // console.log('Main stream', finalMainStream)
+    // console.log('Remote Stream', finalRemoteStreams)
   }, [mainStream, presentVideoStreams, finalMainStream, finalRemoteStreams])
 
-  // useEffect(() => {
-  //   console.log('Main stream', finalMainStream)
-  //   console.log('Remote Stream', finalRemoteStreams)
-  // }, [finalMainStream, finalRemoteStreams])
+  useEffect(() => {
+    console.log('Main stream', finalMainStream)
+    console.log('Remote Stream', finalRemoteStreams)
+  }, [finalMainStream, finalRemoteStreams])
 
   return (
     <div className="rounded-md">
@@ -299,7 +302,7 @@ const Index = (props) => {
         {/* {finalMainStream && console.log('Final main stream', finalMainStream)} */}
         {/* {console.log('Final remote stream', finalRemoteStreams)} */}
         {/* {finalMainStream && <div style={{height: '35rem'}}>{finalMainStream.element}</div>} */}
-        {finalMainStream.map((stream) => {
+        {/* {finalMainStream.map((stream) => {
           return <div style={{ height: '35rem' }}>{stream.element}</div>
         })}
         {finalRemoteStreams.map((stream, index) => {
@@ -311,9 +314,9 @@ const Index = (props) => {
               {stream.element}
             </div>
           )
-        })}
+        })} */}
 
-        {/* {presentVideoStreams.map((stream) => {
+        {presentVideoStreams.map((stream) => {
           const currentStreamId = stream.element.props.id
           console.log('Logging streams', stream.element)
           return (
@@ -322,14 +325,15 @@ const Index = (props) => {
                 height: `${mainStream === currentStreamId ? '35rem' : '9rem'}`,
               }}
               className={`${
-                mainStream !== currentStreamId && 'w-2/12 inline-block cursor-pointer'
+                mainStream !== currentStreamId &&
+                'w-2/12 inline-block cursor-pointer'
               }`}
               onClick={() => setMainStream(currentStreamId)}
             >
               {stream.element}
             </div>
           )
-        })} */}
+        })}
       </div>
       <div>
         <VideoChat />
