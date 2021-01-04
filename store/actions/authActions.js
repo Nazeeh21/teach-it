@@ -31,12 +31,21 @@ export const startAuth = (data, medium) => {
   }
 }
 
-export const verifyOtp = (input, medium) => {
+export const verifyOtp = (input, medium, setIsNew) => {
   return async (dispatch) => {
     try {
       const res = await api.post(`auth/${medium}/verify/`, {
         otp: input,
       })
+
+      const { created } = res.data
+
+      if (created) {
+        setIsNew(true)
+      } else {
+        setIsNew(false)
+      }
+
       console.log('[Verify Otp]', res.data)
       // localStorage.setItem('token', res.data.token)
       dispatch(saveToken(res.data.token))

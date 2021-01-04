@@ -81,7 +81,7 @@ const CompactServiceCard = ({
           <img
             src={providerData.pic === '' ? imgSrc : providerData.pic}
             // src={imgSrc}
-            alt="Switch profile"
+            // alt="Switch profile"
             className="w-8 mr-2 max-w-3/12 h-auto min-h-8 rounded-full"
           />
           <div>

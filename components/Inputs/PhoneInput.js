@@ -40,10 +40,10 @@ const PhoneInput = ({ changeHandler, isValid, setIsValid }) => {
           value={countryCode}
           onChange={(e) => setCountry(e.target.value)}
         >
-          <option value="+91">+91</option>
-          <option value="+92">+92</option>
-          <option value="+93">+93</option>
-          <option value="+94">+94</option>
+          <option value="+91">🇮🇳 +91</option>
+          <option value="+92">🇮🇳 +92</option>
+          <option value="+93">🇮🇳 +93</option>
+          <option value="+94">🇮🇳 +94</option>
         </select>
       </div>
       <div className="w-9/12">

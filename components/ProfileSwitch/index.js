@@ -20,7 +20,7 @@ const Index = ({
       >
         <img
           src={profileSrc}
-          alt="Switch profile"
+          // alt="Switch profile"
           className="w-8 max-w-3/12 h-auto min-h-8 cursor-pointer rounded-full"
         />
         <p
