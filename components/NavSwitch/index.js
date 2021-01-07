@@ -10,9 +10,11 @@ import {
   registerProvider,
   registerSeeker,
 } from '../../services/profile'
+import { useRouter } from 'next/router'
 
 const Index = ({ color1, color2, label1, label2, textColor = 'white' }) => {
   const dispatch = useDispatch()
+  const router = useRouter()
   const token = useSelector((state) => state.auth.token)
   const currentProfileId = useSelector((state) => state.app.currentProfile)
 
@@ -21,11 +23,12 @@ const Index = ({ color1, color2, label1, label2, textColor = 'white' }) => {
   useEffect(() => {
     activeId === EXPERT
       ? isProvider(token, currentProfileId).then((res) => {
-          // console.log('isProvider', res.isProvider)
+          console.log('isProvider', res.isProvider)
           if (res && res.isProvider === false) {
-            registerProvider(res.name, token, currentProfileId)
-              .then((res) => console.log('Registering Provider', res))
-              .catch((e) => console.log(e))
+            router.push('/register-provider')
+            //   registerProvider(res.name, token, currentProfileId)
+            //     .then((res) => console.log('Registering Provider', res))
+            //     .catch((e) => console.log(e))
           }
         })
       : isSeeker(token, currentProfileId).then((res) => {

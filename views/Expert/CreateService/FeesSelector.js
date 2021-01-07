@@ -1,11 +1,15 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 // import { setFees } from '../../../store/actions/createServiceAction'
 
 const FeesSelector = ({ fees, feesChangedHandler }) => {
   // const dispatch = useDispatch()
   // const fees = useSelector(state => state.createService.fees)
+  const [moneyProviderGet, setMoneyProviderGet] = useState(0)
 
+  useEffect(() => {
+    setMoneyProviderGet((+fees * 0.35).toFixed(2))
+  }, [fees])
   return (
     <div className="w-full">
       <p className="mt-2 text-lg">How much will you charge for this service?</p>
@@ -27,13 +31,15 @@ const FeesSelector = ({ fees, feesChangedHandler }) => {
           {/* <p className='rounded bg-lightGrey w-6/12 p-2'>₹6000</p> */}
           <p className="w-8/12 p-2">per week</p>
         </div>
-        <div className="flex justify-self-end w-7/12 ">
+        <div className="flex justify-self-end w-8/12 ">
           <p className="w-7/12 p-2 ">You will get</p>
-          <input
+          <div
             style={{ background: '#fafcc2' }}
-            className="text-lg rounded w-5/12 p-2"
-            placeholder="3900"
-          ></input>
+            className="text-lg rounded w-8/12 p-2"
+            // placeholder="3900"
+          >
+            {moneyProviderGet}
+          </div>
         </div>
       </div>
     </div>

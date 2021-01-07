@@ -18,6 +18,7 @@ import EmailModal from './EmailModal'
 import MobileModal from './MobileModal'
 import { fetchCertificates } from '../../../services/profileSettings'
 import ChangeAvatarModal from './ChangeAvatarModal/Index'
+import { EXPERT } from '../../../constants'
 
 const Index = () => {
   const dispatch = useDispatch()
@@ -235,12 +236,14 @@ const Index = () => {
                 Change photo
               </div>
             </div>
-            <div className="grid grid-cols-2 bg-highlight p-6 items-center">
-              <p className="text-lg">Available for work</p>
-              <div className="justify-self-end">
-                <Toggle />
+            {userType === EXPERT && (
+              <div className="grid grid-cols-2 bg-highlight p-6 items-center">
+                <p className="text-lg">Available for work</p>
+                <div className="justify-self-end">
+                  <Toggle />
+                </div>
               </div>
-            </div>
+            )}
           </div>
           <div className="w-full bg-highlight p-4 flex flex-col sm:flex-row gap-4 mt-6 mb-12">
             <SecondaryButton label="Request Verification" />
@@ -268,26 +271,9 @@ const Index = () => {
                 <Toggle />
               </div>
             </div>
-
             <Label>Age</Label>
-            <div className="sm:hidden">
-              <Input
-                placeholder={fetchedData && fetchedData[0].age}
-                defaultValue={fetchedData && fetchedData[0].age}
-                valid={isValid.inputData.age.valid}
-                touched={isValid.inputData.age.touched}
-                inValidMessage="Enter a valid age"
-                type="number"
-                value={age}
-                changeHandler={(value) => {
-                  setAge(value)
-                  inputDataChangeHandler(value, 'age', 'number')
-                }}
-              />
-            </div>
-            <Label>Website URL</Label>
 
-            <div className="hidden sm:flex">
+            <div className={`sm:hidden `}>
               <Input
                 placeholder={fetchedData && fetchedData[0].age}
                 defaultValue={fetchedData && fetchedData[0].age}
@@ -302,17 +288,37 @@ const Index = () => {
                 }}
               />
             </div>
-            <Input
-              valid={isValid.inputData.websiteURL.valid}
-              touched={isValid.inputData.websiteURL.touched}
-              inValidMessage="Enter a valid URL"
-              type="url"
-              value={websiteURL}
-              changeHandler={(value) => {
-                setWebsiteURL(value)
-                inputDataChangeHandler(value, 'websiteURL', 'url')
-              }}
-            />
+            {userType === EXPERT && <Label>Website URL</Label>}
+
+            <div className={`hidden sm:flex ${userType !== EXPERT && 'mt-4'}`}>
+              <Input
+                placeholder={fetchedData && fetchedData[0].age}
+                defaultValue={fetchedData && fetchedData[0].age}
+                valid={isValid.inputData.age.valid}
+                touched={isValid.inputData.age.touched}
+                inValidMessage="Enter a valid age"
+                type="number"
+                value={age}
+                changeHandler={(value) => {
+                  setAge(value)
+                  inputDataChangeHandler(value, 'age', 'number')
+                }}
+              />
+            </div>
+
+            {userType === EXPERT && (
+              <Input
+                valid={isValid.inputData.websiteURL.valid}
+                touched={isValid.inputData.websiteURL.touched}
+                inValidMessage="Enter a valid URL"
+                type="url"
+                value={websiteURL}
+                changeHandler={(value) => {
+                  setWebsiteURL(value)
+                  inputDataChangeHandler(value, 'websiteURL', 'url')
+                }}
+              />
+            )}
 
             <Label>Country</Label>
             <div className="w-full sm:hidden">

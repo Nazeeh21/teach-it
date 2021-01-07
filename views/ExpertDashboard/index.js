@@ -11,6 +11,8 @@ import {
   fetchServices,
 } from '../../store/actions/appActions'
 import { fetchTopCategories } from '../../services/fetchCategories'
+import { EXPERT } from '../../constants'
+import { isProvider } from '../../services/profile'
 
 const Index = () => {
   const router = useRouter()
@@ -23,12 +25,24 @@ const Index = () => {
   const token = useSelector((state) => state.auth.token)
   const nextUrl = useSelector((state) => state.app.nextProviderServiceUrl)
   const [topCategories, setTopCategories] = useState([])
+  const userType = useSelector((state) => state.app.userType)
   // const previousUrl = useSelector(
   //   (state) => state.app.previousProviderServiceUrl
   // )
   // const initialFetch = useSelector(
   //   (state) => state.app.intialProviderServiceFetched
   // )
+
+  useEffect(() => {
+    if (userType === EXPERT) {
+      isProvider(token, currentProfileId).then((res) => {
+        // console.log('isProvider', res.isProvider)
+        if (res && res.isProvider === false) {
+          router.push('/register-provider')
+        }
+      })
+    }
+  }, [userType])
 
   const handleCategoriesRedirect = () => {
     router.push('/search')

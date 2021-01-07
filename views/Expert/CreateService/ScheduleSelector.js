@@ -7,6 +7,7 @@ import DaySelector from './LiveServiceFormComponents/DaySelector/DaySelector'
 import TimeSelector from './LiveServiceFormComponents/TimeSelector/TimeSelector'
 import DurationSelector from './LiveServiceFormComponents/DurationSelector/DurationSelector'
 import CustomizeAndMilestoneContainer from './LiveServiceFormComponents/CustomizeAndMilestoneContainer'
+import LanguagesSelector from './LiveServiceFormComponents/LanguagesSelector'
 
 const ScheduleSelector = ({
   type,
@@ -27,6 +28,7 @@ const ScheduleSelector = ({
   setServiceFreq,
   paymentFreq,
   setPaymentFreq,
+  onLanguagesChanged,
 }) => {
   // const [activePillLabel, setLabel] = useState('per day')
 
@@ -34,12 +36,19 @@ const ScheduleSelector = ({
     return (
       <React.Fragment>
         <ServiceFreeqSel activeLabel={serviceFreq} setLabel={setServiceFreq} />
-        <div className="mt-6">
-          <DaySelector
-            changedHandler={(value) => {
-              weekDaysChangedHandler(value)
-            }}
-          />
+        <div className="mt-6 grid grid-cols-2">
+          <div className="w-10/12">
+            <DaySelector
+              changedHandler={(value) => {
+                weekDaysChangedHandler(value)
+              }}
+            />
+          </div>
+          <div className="w-10/12">
+            <LanguagesSelector
+              onLanguageChanged={(value) => onLanguagesChanged(value)}
+            />
+          </div>
         </div>
         <div className="mt-6">
           {/* <DatePicker /> */}

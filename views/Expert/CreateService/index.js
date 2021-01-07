@@ -47,6 +47,7 @@ const Index = () => {
   const [questionFee, setQuestionFee] = useState('')
   const [allowQuestion, setAllowQuestion] = useState('no')
   const [files, setFiles] = useState([])
+  const [languages, setLanguages] = useState([])
 
   const router = useRouter()
   const userType = useSelector((state) => state.app.userType)
@@ -126,7 +127,7 @@ const Index = () => {
       title: title,
       description: description,
       category: null,
-      languages: ['en'],
+      languages: [languages],
       type: type,
       is_group: `${isGroup === 'yes' ? 'true' : 'false'}`,
       is_private: `${isPrivate === 'yes' ? 'true' : 'false'}`,
@@ -242,6 +243,7 @@ const Index = () => {
             setServiceFreq={setServiceFreq}
             paymentFreq={paymentFreq}
             setPaymentFreq={setPaymentFreq}
+            onLanguagesChanged={(value) => setLanguages(value)}
           />
         </Accordion>
 

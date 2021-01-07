@@ -40,13 +40,12 @@ const Index = (props) => {
   const [isVideo, setIsVideo] = useState(true)
   const [isSharingScreen, setIsSharingScreen] = useState(false)
   const [mainStream, setMainStream] = useState('local_stream')
-  const [finalMainStream, setFinalMainStream] = useState([])
-  const [finalRemoteStreams, setFinalRemoteStreams] = useState([])
+  const [isMainLocal, setIsMainLocal] = useState(true)
 
   useEffect(() => {
     const videoStream = new VideoStream(userId, updateRemoteStreams)
     setVideoStream(videoStream)
-  }, [mainStream])
+  }, [])
 
   useEffect(() => {
     if (videoStream) {
@@ -87,19 +86,26 @@ const Index = (props) => {
       element: (
         <div
           id="local_stream"
-          // style={{ height: `${mainStream === 'local_stream' && '35rem'}` }}
-          // style={{ height: '35rem' }}
-          className={'w-full h-full cursor-pointer rounded'}
-          // onClick={() => setMainStream('local_stream')}
+          style={{ height: `${mainStream === 'local_stream' && '35rem'}` }}
+          className="w-full h-full cursor-pointer rounded"
         ></div>
       ),
     })
+
     setPresentVideoStreams(vidStreams)
   }
 
   const updateRemoteStreams = (remoteStreams) => {
     setRemoteStreams(remoteStreams)
   }
+
+  useEffect(() => {
+    if (mainStream === 'local_stream') {
+      setIsMainLocal(true)
+    } else {
+      setIsMainLocal(false)
+    }
+  }, [mainStream])
 
   useEffect(() => {
     const streams = [...presentVideoStreams]
@@ -112,26 +118,16 @@ const Index = (props) => {
           <div
             key={streamId}
             id={`agora_remote ${streamId}`}
-            // style={{ height: 'auto' }}
-            // onClick={() => setMainStream(`agora_remote ${streamId}`)}
-            className={
-              'w-full h-full cursor-pointer'
-              //   `${
-              //   mainStream === `agora_remote ${streamId}`
-              //     ? 'w-full rounded cursor-pointer'
-              //     : 'w-2/12 h-48 m-2 inline-block cursor-pointer'
-              // }`
-            }
+            className="w-full h-full cursor-pointer rounded"
           />
         ),
       })
     })
     setPresentVideoStreams(streams)
-  }, [remoteStreams, mainStream])
+  }, [remoteStreams])
 
   const leaveMeeting = () => {
     videoStream.leaveMeeting()
-    // this.props.leaveMeeting();
     router.push('/')
   }
 
@@ -146,8 +142,6 @@ const Index = (props) => {
   }
 
   const toggleShareScreen = () => {
-    // const { videoStream, isSharingScreen, roomId } = this.state;
-    // const { user } = props
     videoStream.close()
     videoStream.stop()
     videoStream.leaveMeeting()
@@ -159,42 +153,31 @@ const Index = (props) => {
     }
     newStream.initLocalStream('local_stream', roomId, userId, () => {})
     setVideoStream(newStream)
-    setIsSharingScreen((prevState) => !prevState)
-    // this.setState({
-    //   videoStream: newStream,
-    //   isSharingScreen: !isSharingScreen,
-    // });
   }
 
-  useEffect(() => {
-    const newStream = [...presentVideoStreams]
+  // const streams = [...presentVideoStreams];
+  // streams.forEach((stream, id) => {
+  //   if(stream.element.props.id === mainStream) {
+  //     streams.splice(id, 1)
+  //     streams.unshift(stream)
+  //   }
+  // })
+  //   setPresentVideoStreams(streams)
+  // useEffect(() => {
 
-    console.log('presentVideoStreams', presentVideoStreams)
+  // }, [presentVideoStreams])
 
-    console.log('Main Stream id', mainStream)
-    // newStream.map(stream => {
-    //   if(stream.element.props.id === mainStream) {
-    //     setFinalMainStream(stream)
-    //   }
-    // })
-
-    // newStream.map((stream) => console.log('Stream ID', stream.element.props.id))
-
-    setFinalMainStream(
-      newStream.filter((stream) => stream.element.props.id == mainStream)
-    )
-    setFinalRemoteStreams(
-      newStream.filter((stream) => stream.element.props.id !== mainStream)
-    )
-    // console.log('Main stream', finalMainStream)
-    // console.log('Remote Stream', finalRemoteStreams)
-  }, [mainStream, presentVideoStreams, finalMainStream, finalRemoteStreams])
+  // presentVideoStreams.forEach((stream, id) => {
+  //   if(stream.element.props.id === mainStream) {
+  //     presentVideoStreams.splice(id, 1)
+  //     presentVideoStreams.unshift(stream)
+  //   }
+  // })
 
   useEffect(() => {
-    console.log('Main stream', finalMainStream)
-    console.log('Remote Stream', finalRemoteStreams)
-  }, [finalMainStream, finalRemoteStreams])
-
+    console.log('present Video Streams')
+    console.log(presentVideoStreams)
+  }, [presentVideoStreams])
   return (
     <div className="rounded-md">
       <div className="rounded-md absolute z-10 text-white py-4 px-2 w-full">
@@ -224,13 +207,6 @@ const Index = (props) => {
           style={{ marginTop: '24rem' }}
           className="text-white flex-col w-full text-center items-center "
         >
-          {/* <div className='font-semibold'>
-            You are the only person in the call
-          </div> */}
-          {/* <div className='text-xs font-medium'>We have notified the group</div> */}
-          {/* <div className='bg-expert py-2 rounded-full w-2/12 m-auto mt-4'>
-            Ring the group
-          </div> */}
           <div className="flex items-center justify-center lg:-ml-64 lg:mr-20 w-auto m-auto mt-4">
             <div
               className={`w-12 cursor-pointer border-2 rounded-full p-2 h-auto ${
@@ -281,42 +257,10 @@ const Index = (props) => {
       </div>
 
       <div className="z-0 h-auto w-full rounded-md">
-        {/* {presentVideoStreams.filter(stream => stream.element.props.id === mainStream).map((stream, index) => {
-          console.log('Logging stream element', stream.element.props.id)
-          return <div>{stream.element}</div>
-        })}
-         {presentVideoStreams.filter(stream => stream.element.props.id !== mainStream).map((stream, index) => {
-          console.log('Logging stream element', stream.element.props.id)
-          return <div className='w-2/12 h-32 m-2 inline-block '>{stream.element}</div>
-        })} */}
-
         {/* {presentVideoStreams.map((stream, index) => {
-          const currentVideoElementId = stream.element.props.id
-          if(currentVideoElementId === mainStream) {
-            return <div onClick={() => setMainStream(currentVideoElementId)} style={{height: '35rem'}}>{stream.element}</div>
-          } else {
-            return <div className='w-2/12 h-32 m-2 inline-block' onClick={() => setMainStream(currentVideoElementId)}>{stream.element}</div>
-          }
+          return stream.element
         })} */}
-
-        {/* {finalMainStream && console.log('Final main stream', finalMainStream)} */}
-        {/* {console.log('Final remote stream', finalRemoteStreams)} */}
-        {/* {finalMainStream && <div style={{height: '35rem'}}>{finalMainStream.element}</div>} */}
-        {/* {finalMainStream.map((stream) => {
-          return <div style={{ height: '35rem' }}>{stream.element}</div>
-        })}
-        {finalRemoteStreams.map((stream, index) => {
-          return (
-            <div
-              className="w-2/12 h-32 m-2 inline-block"
-              onClick={() => setMainStream(stream.element.props.id)}
-            >
-              {stream.element}
-            </div>
-          )
-        })} */}
-
-        {presentVideoStreams.map((stream) => {
+        {/* {presentVideoStreams.filter(stream => stream.element.props.id === mainStream).map((stream) => {
           const currentStreamId = stream.element.props.id
           console.log('Logging streams', stream.element)
           return (
@@ -333,7 +277,50 @@ const Index = (props) => {
               {stream.element}
             </div>
           )
-        })}
+        })} */}
+        {isMainLocal &&
+          presentVideoStreams.map((stream) => {
+            const currentStreamId = stream.element.props.id
+            console.log('Logging streams', stream.element)
+            return (
+              <div
+                style={{
+                  height: `${
+                    mainStream === currentStreamId ? '35rem' : '9rem'
+                  }`,
+                }}
+                className={`${
+                  mainStream !== currentStreamId &&
+                  'w-2/12 inline-block cursor-pointer'
+                }`}
+                onClick={() => setMainStream(currentStreamId)}
+              >
+                {stream.element}
+              </div>
+            )
+          })}
+
+        {!isMainLocal &&
+          presentVideoStreams.reverse().map((stream) => {
+            const currentStreamId = stream.element.props.id
+            console.log('Logging streams', stream.element)
+            return (
+              <div
+                style={{
+                  height: `${
+                    mainStream === currentStreamId ? '35rem' : '9rem'
+                  }`,
+                }}
+                className={`${
+                  mainStream !== currentStreamId &&
+                  'w-2/12 inline-block cursor-pointer'
+                }`}
+                onClick={() => setMainStream(currentStreamId)}
+              >
+                {stream.element}
+              </div>
+            )
+          })}
       </div>
       <div>
         <VideoChat />
