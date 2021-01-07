@@ -18,13 +18,14 @@ const Index = ({}) => {
   const [canContinue, setCanContinue] = useState(false)
   const [isCorrect, setIsCorrect] = useState(true)
   const [showStatus, setShowStatus] = useState(false)
+  const [isNew, setIsNew] = useState(false)
 
   const verifyOtpValue = useCallback(() => {
     const extractedOtp = `${otp[0]}${otp[1]}${otp[2]}${otp[3]}${otp[4]}${otp[5]}`
 
     if (extractedOtp.length === 6) {
       console.log('Calling verifyOtp action')
-      dispatch(verifyOtp(extractedOtp, medium))
+      dispatch(verifyOtp(extractedOtp, medium, setIsNew))
     }
 
     console.log('Status', authStatus)
@@ -68,7 +69,12 @@ const Index = ({}) => {
     // const eit = api.post('/auth/mobile/')
     if (authStatus === 'success') {
       setIsCorrect(true)
-      router.push('/create-profile')
+
+      if (isNew) {
+        router.push('/create-profile')
+      } else {
+        router.push('/dashboard')
+      }
     }
 
     if (authStatus === 'failure') {

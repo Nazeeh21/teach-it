@@ -7,7 +7,7 @@ const LiveAndRichMedia = () => (
       <div className="mb-6 md:w-6/12 md:m-3 xl:w-4/12 lg:m-3 lg:p-8  bg-white ">
         <Card
           key="live"
-          src="/live-logo.png"
+          src="/Live-logo.png"
           alt="live-logo"
           heading={{ text: 'Live', color: 'red' }}
           description="Get paid by doing live broadcast or the two-way communication session with your learners or fans paying you on a per-session payment model."

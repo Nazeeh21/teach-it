@@ -123,7 +123,7 @@ const Index = () => {
 
                       <img
                         src="/arrows/down.svg"
-                        alt="Switch profile"
+                        // alt="Switch profile"
                         className="cursor-pointer ml-2"
                         onClick={(e) =>
                           setShowAllProfiles((prevState) => !prevState)
@@ -148,7 +148,7 @@ const Index = () => {
                       </div>
                       <img
                         src="/angle-arrow-up.svg"
-                        alt="Switch profile"
+                        // alt="Switch profile"
                         className="mr-2 cursor-pointer w-3"
                         onClick={(e) =>
                           setShowAllProfiles((prevState) => !prevState)
@@ -235,7 +235,7 @@ const Index = () => {
 
                     <img
                       src="/arrows/down.svg"
-                      alt="Switch profile"
+                      // alt="Switch profile"
                       className="cursor-pointer"
                       onClick={(e) =>
                         setShowAllProfiles((prevState) => !prevState)
@@ -259,7 +259,7 @@ const Index = () => {
                     </div>
                     <img
                       src="/angle-arrow-up.svg"
-                      alt="Switch profile"
+                      // alt="Switch profile"
                       className="cursor-pointer w-3"
                       onClick={(e) =>
                         setShowAllProfiles((prevState) => !prevState)

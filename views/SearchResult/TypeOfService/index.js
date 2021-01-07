@@ -52,6 +52,7 @@ const Index = () => {
     duration,
     expertLocation,
     date,
+    token,
   ])
 
   return (

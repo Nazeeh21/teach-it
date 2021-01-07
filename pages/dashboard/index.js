@@ -31,7 +31,7 @@ const Index = () => {
       dispatch(fetchProfiles(token))
       dispatch(saveToken(token))
     }
-  }, [])
+  }, [token])
 
   if (token == null) {
     return null
