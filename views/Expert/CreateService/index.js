@@ -194,6 +194,7 @@ const Index = () => {
             />
             <ServiceTypeCard
               label="Rich media"
+              iconSrc="/rich.svg"
               active={serviceType === 1}
               clickHandler={() => {
                 setType('rich')
@@ -206,6 +207,7 @@ const Index = () => {
             />
           </div>
           <UpperForm
+            liveType={liveType}
             title={title}
             titleChangedHandler={(value) => setTitle(value)}
             typeChangedHandler={(type) => setLiveType(type)}

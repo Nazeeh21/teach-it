@@ -14,7 +14,7 @@ const Index = ({ label, children, id }) => {
       >
         <h3 className="uppercase font-semibold">{label}</h3>
         <img
-          src={`angle-arrow-${open ? 'up' : 'down'}.svg`}
+          src={`/angle-arrow-${open ? 'up' : 'down'}.svg`}
           className="h-auto w-2 justify-self-end"
           alt={open ? 'Collapse' : 'Open'}
         />

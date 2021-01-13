@@ -4,7 +4,7 @@ import loremIpsum from '../../../utility/loremIpsum'
 
 const ServiceTypeCard = ({
   noIcon,
-  iconSrc = 'live.svg',
+  iconSrc = '/live.svg',
   label,
   desc = loremIpsum,
   active,

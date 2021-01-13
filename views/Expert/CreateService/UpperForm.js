@@ -33,6 +33,8 @@ const UploadImageAndVideo = ({ src, cancelClickHandler, index }) => (
 )
 
 const UpperForm = ({
+  uploadedMedia,
+  liveType,
   type,
   typeChangedHandler,
   title,
@@ -54,7 +56,8 @@ const UpperForm = ({
             <ServiceTypeCard
               label="Video and audio"
               desc="learners can see and hear you"
-              active={liveServiceType === 0}
+              // active={liveServiceType === 0}
+              active={liveType == 'video'}
               clickHandler={() => {
                 typeChangedHandler('video')
                 setServiceType(0)
@@ -64,7 +67,8 @@ const UpperForm = ({
             <ServiceTypeCard
               label="Audio only"
               desc="learners can only hear your voice"
-              active={liveServiceType === 1}
+              // active={liveServiceType === 1}
+              active={liveType == 'audio'}
               clickHandler={() => {
                 typeChangedHandler('audio')
                 setServiceType(1)
@@ -104,6 +108,16 @@ const UpperForm = ({
         <div>
           <UploadButton imageInputChangeHandler={imageInputChangeHandler} />
         </div>
+        {uploadedMedia &&
+          uploadedMedia.length !== 0 &&
+          uploadedMedia.map((media, index) => (
+            <UploadImageAndVideo
+              key={index}
+              src={media}
+              index={index}
+              cancelClickHandler={() => {}}
+            />
+          ))}
         {imageDataForPreview.map((imageData, index) => (
           <UploadImageAndVideo
             key={index}
