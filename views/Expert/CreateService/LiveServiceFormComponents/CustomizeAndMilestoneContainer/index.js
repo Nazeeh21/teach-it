@@ -58,10 +58,23 @@ const Index = ({ mileStoneData, setMileStoneData }) => {
   // }
 
   const toggleMileStone = () => {
+    const previouslyActive = activeMileStone
     setActiveMilestone((prevState) => !prevState)
     const newData = []
+    const newFormData = [
+      {
+        sessions_number: '',
+        description: '',
+        // title: '',
+      },
+    ]
+    setFormData(newFormData)
     const newArr = [0]
-    setMileStoneData(newData)
+    if (!previouslyActive) {
+      setMileStoneData(newFormData[0])
+    } else {
+      setMileStoneData(newData)
+    }
     setArr(newArr)
   }
   const toggleCustomize = () => {
@@ -117,6 +130,7 @@ const Index = ({ mileStoneData, setMileStoneData }) => {
                 <div className="bg-lightGrey rounded-lg w-full p-4 mt-4">
                   <p className="text-lg">Sessions</p>
                   <input
+                    value={formData[index].sessions_number}
                     className="p-2 text-lg mt-2 w-16"
                     placeholder="4"
                     onChange={(e) =>
@@ -125,6 +139,7 @@ const Index = ({ mileStoneData, setMileStoneData }) => {
                   />
                   <p className="text-lg mt-4">Description</p>
                   <textarea
+                    value={formData[0].description}
                     className="p-2 text-sm mt-2 w-full text-black"
                     rows="4"
                     placeholder={loremIpsum}
