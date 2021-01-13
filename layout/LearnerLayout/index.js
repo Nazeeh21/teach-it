@@ -7,6 +7,7 @@ import Messages from '../../views/Expert/Messages'
 import { useState } from 'react'
 import InviteForm from '../../components/Misc/InviteForm'
 import Header from '../../components/Header'
+import { useRouter } from 'next/router'
 
 const Index = ({
   children,
@@ -16,9 +17,11 @@ const Index = ({
   isForChat,
 }) => {
   const [showInvite, setShowInvite] = useState(false)
+  const router = useRouter()
 
   const InviteButtonCLickHanlder = () => {
-    setShowInvite(true)
+    // setShowInvite(true)
+    router.push('/invite/provider')
   }
 
   const backdropClickHandler = () => {
@@ -28,6 +31,13 @@ const Index = ({
   if (alternate) {
     return (
       <React.Fragment>
+        {showInvite && (
+          <InviteForm
+            show={showInvite}
+            backdropClickHandler={backdropClickHandler}
+            inviteClicked={InviteButtonCLickHanlder}
+          />
+        )}
         <AppTopNav />
         <div className="h-auto bg-lightGrey w-full flex flex-row">
           <ThreeCols side="left">
@@ -39,7 +49,7 @@ const Index = ({
               rightContent
             ) : (
               <React.Fragment>
-                <InviteCard />
+                <InviteCard clickHandler={InviteButtonCLickHanlder} />
               </React.Fragment>
             )}
           </ThreeCols>

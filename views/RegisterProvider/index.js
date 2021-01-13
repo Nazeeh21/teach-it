@@ -11,9 +11,16 @@ import ProviderForm from './ProviderForm'
 const Index = () => {
   const dispatch = useDispatch()
   const router = useRouter()
+  const history = useHistory()
   const [name, setName] = useState('')
   const token = useSelector((state) => state.auth.token)
   const currentProfileId = useSelector((state) => state.app.currentProfile)
+  const userType = useSelector((state) => state.app.userType)
+
+  if (userType === 1) {
+    router.push('/dashboard')
+    return null
+  }
 
   const registerClickHandler = () => {
     registerProvider(name, token, currentProfileId)

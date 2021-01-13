@@ -41,7 +41,7 @@ const WebsiteUrl = () => {
         onChange={(e) => inputChangeHandler(e.target.value)}
       />
       {touched && !isValid && (
-        <p className="text-red text-sm ml-1">Please enter a valid URl</p>
+        <p className="text-red text-sm ml-1">Please enter a valid URL</p>
       )}
     </div>
   )

@@ -23,7 +23,7 @@ const Index = ({ color1, color2, label1, label2, textColor = 'white' }) => {
   useEffect(() => {
     activeId === EXPERT
       ? isProvider(token, currentProfileId).then((res) => {
-          console.log('isProvider', res.isProvider)
+          // console.log('isProvider', res.isProvider)
           if (res && res.isProvider === false) {
             router.push('/register-provider')
             //   registerProvider(res.name, token, currentProfileId)

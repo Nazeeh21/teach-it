@@ -166,7 +166,10 @@ const Index = () => {
       token
     )
 
-    if (success) dispatch({ type: SET_CREATE_SERVICE_ACTIVE_STEP, step: 5 })
+    if (success) {
+      dispatch({ type: SET_CREATE_SERVICE_ACTIVE_STEP, step: 5 })
+      router.push('/invite')
+    }
   }
 
   return (

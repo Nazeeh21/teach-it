@@ -131,7 +131,7 @@ const Index = () => {
                     </div>
                   )}
                 </div>
-                {otherProfiles && showAllProfiles && (
+                {showAllProfiles && (
                   <div
                     style={{ marginTop: '1.25vh' }}
                     className=" flex flex-col bg-white px-2 w-full border-gray-500 border-solid border-b-2 m-auto shadow-xl rounded-b"
@@ -154,22 +154,23 @@ const Index = () => {
                         }
                       />
                     </div>
-                    {otherProfiles.map((profile, index) => (
-                      <div className="mt-2 " key={index}>
-                        <ProfileSwitch
-                          forSideDrawer="true"
-                          key={profile.name}
-                          id={profile.id}
-                          profileSrc={profile.avatar_url}
-                          name={profile.name}
-                          clickHandler={(id) => {
-                            dispatch(switchProfile(id))
-                            setShowAllProfiles((prevState) => !prevState)
-                            // router.push('/dashboard')
-                          }}
-                        />
-                      </div>
-                    ))}
+                    {otherProfiles &&
+                      otherProfiles.map((profile, index) => (
+                        <div className="mt-2 " key={index}>
+                          <ProfileSwitch
+                            forSideDrawer="true"
+                            key={profile.name}
+                            id={profile.id}
+                            profileSrc={profile.avatar_url}
+                            name={profile.name}
+                            clickHandler={(id) => {
+                              dispatch(switchProfile(id))
+                              setShowAllProfiles((prevState) => !prevState)
+                              // router.push('/dashboard')
+                            }}
+                          />
+                        </div>
+                      ))}
                     <div
                       onClick={() => {
                         dispatch(logout())
@@ -243,7 +244,7 @@ const Index = () => {
                   </div>
                 )}
               </div>
-              {otherProfiles && showAllProfiles && (
+              {showAllProfiles && (
                 <div
                   style={{ marginTop: '2.9vh' }}
                   className="hidden lg:flex flex-col right-0 top-0 mr-8 absolute justify-self-end bg-white px-2 border-gray-500 border-solid border-b-2 shadow-xl rounded-b"
@@ -265,21 +266,22 @@ const Index = () => {
                       }
                     />
                   </div>
-                  {otherProfiles.map((profile, index) => (
-                    <div className="mt-2 -ml-2" key={index}>
-                      <ProfileSwitch
-                        key={profile.name}
-                        id={profile.id}
-                        profileSrc={profile.avatar_url || placeholderAvi}
-                        name={profile.name}
-                        clickHandler={(id) => {
-                          dispatch(switchProfile(id))
-                          setShowAllProfiles((prevState) => !prevState)
-                          // router.push('/dashboard')
-                        }}
-                      />
-                    </div>
-                  ))}
+                  {otherProfiles &&
+                    otherProfiles.map((profile, index) => (
+                      <div className="mt-2 -ml-2" key={index}>
+                        <ProfileSwitch
+                          key={profile.name}
+                          id={profile.id}
+                          profileSrc={profile.avatar_url || placeholderAvi}
+                          name={profile.name}
+                          clickHandler={(id) => {
+                            dispatch(switchProfile(id))
+                            setShowAllProfiles((prevState) => !prevState)
+                            // router.push('/dashboard')
+                          }}
+                        />
+                      </div>
+                    ))}
                   <div
                     onClick={() => {
                       logoutHandler()

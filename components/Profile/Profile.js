@@ -77,7 +77,7 @@ const Profile = ({ profileData }) => {
           <h3 className="text-darkGrey text-xl mt-6 font-semibold">
             Certifications
           </h3>
-          {provider.docs.length === 0 && (
+          {provider && provider.docs.length === 0 && (
             <div className="my-2 w-full">
               <p className="text-darkGrey">
                 This user hasn't uploaded any certifications.
@@ -85,9 +85,8 @@ const Profile = ({ profileData }) => {
             </div>
           )}
           <div className="grid grid-flow-row gap-2 grid-cols-5 w-full mt-3 items-center">
-            {provider.docs.map((doc, idx) => (
-              <Image src={doc} key={idx} />
-            ))}
+            {provider &&
+              provider.docs.map((doc, idx) => <Image src={doc} key={idx} />)}
           </div>
         </div>
       )}

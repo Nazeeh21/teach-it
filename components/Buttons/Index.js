@@ -155,11 +155,16 @@ export const Pill = ({
   )
 }
 
-export const ViewMoreButton = ({ label = 'View all', clickHandler }) => (
-  <button
-    className="w-full text-secondary text-sm pt-2 pb-2 pl-4 pr-4 rounded-md bg-lightGrey mb-6"
+export const ViewMoreButton = ({
+  label = 'View all',
+  clickHandler,
+  paddingLeft = 'pl-4',
+  paddingRight = 'pr-4',
+}) => (
+  <div
+    className={`w-full cursor-pointer text-secondary text-sm pt-2 pb-2 ${paddingLeft} ${paddingRight} rounded-md bg-lightGrey mb-6`}
     onClick={clickHandler}
   >
     {label}
-  </button>
+  </div>
 )
