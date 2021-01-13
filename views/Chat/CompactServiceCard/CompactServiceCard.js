@@ -15,7 +15,7 @@ const CompactServiceCard = ({
   imgSrc = '/guitar.png',
   descriptionText = loremIpsum,
   hrefText = '',
-  butttonText = 'View',
+  buttonText = 'View',
   buttonDisabled = false,
   buttonClickHandler,
   category,
@@ -119,7 +119,7 @@ const CompactServiceCard = ({
               <CardButton
                 // clickHandler={() => router.push('/view-service')}
                 clickHandler={buttonClickHandler}
-                label={butttonText}
+                label={buttonText}
                 disabled={buttonDisabled}
               />
             </div>
