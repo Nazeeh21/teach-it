@@ -19,6 +19,26 @@ export const fetchAllProfiles = async (logout, token, profileId) => {
   }
 }
 
+export const fetchCurrentProfile = async (token, profileId) => {
+  try {
+    const res = await api.get('user/', {
+      headers: {
+        Authorization: `Token ${token}`,
+        'X-Profile-ID': profileId,
+      },
+    })
+
+    const { data } = res
+    console.log('Logging current profile', data.profiles)
+
+    return data.profiles.filter((profile) => profile.id == profileId)
+  } catch (e) {
+    console.log('fetchCurrentProfile', e)
+    logout()
+    return false
+  }
+}
+
 // export const fetchAllProfiles = async (logout, token, profileId) => {
 //   try {
 //     var flag = 0

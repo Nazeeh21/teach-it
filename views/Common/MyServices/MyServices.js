@@ -41,6 +41,8 @@ const MyServices = () => {
     dispatch(fetchNextUserServices(nextUserServiceUrl, token, currentProfileId))
   }
 
+  useEffect(() => console.log('logging userServices', services), [services])
+
   return (
     <div>
       <div className="grid grid-cols-2 grid-rows-1">
@@ -80,25 +82,32 @@ const MyServices = () => {
       )}
       {services
         .filter((service) => {
+          console.log('Current service', service)
           if (activePillLabel === 'all') {
             return true
           }
 
           return activePillLabel === service.type
         })
-        .map((service) => (
-          <CompactServiceCard
-            buttonClickHandler={() =>
-              router.push(`/view-service/${service.pk}`)
-            }
-            category={service.category}
-            languages={service.languages}
-            serviceType={service.type}
-            descriptionText={service.description}
-            cost={service.cost}
-            startDate={service.start_at}
-          />
-        ))}
+        .map((service, index) => {
+          console.log('current service in Compact service card', service)
+          return (
+            <CompactServiceCard
+              key={index}
+              buttonClickHandler={() =>
+                router.push(`/view-service/${service.pk}`)
+              }
+              category={service.category}
+              languages={service.languages}
+              serviceType={service.type}
+              descriptionText={service.description}
+              cost={service.cost}
+              startDate={service.start_at}
+              paymentType={service.payment_type}
+              providerPk={service.provider}
+            />
+          )
+        })}
       {/* <CompactServiceCard
         buttonClickHandler={handleRedirect}
         butttonText='View'

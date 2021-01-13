@@ -24,6 +24,7 @@ export const changeUserType = (newType) => {
 }
 
 export const fetchProviderService = (providerId, token, currentProfileId) => {
+  console.log('In fetchProviderService')
   return async (dispatch) => {
     try {
       var flag = false
@@ -149,9 +150,9 @@ export const fetchUserServices = (token, currentProfileId) => {
   return async (dispatch) => {
     try {
       var res = await api.get('seeker/service/', {
-        params: {
-          status: 'active',
-        },
+        // params: {
+        //   status: 'active',
+        // },
         headers: {
           Authorization: `Token ${token}`,
           'X-Profile-ID': currentProfileId,
@@ -316,8 +317,9 @@ export const fetchNextSearchResults = (nextUrl, payload, token) => {
 }
 
 export const setProviderId = (id) => {
+  console.log('logging id from setProviderId', id)
   return {
     type: SET_PROVIDER_ID,
-    id,
+    id: id,
   }
 }

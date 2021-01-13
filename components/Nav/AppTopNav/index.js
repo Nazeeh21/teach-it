@@ -46,12 +46,11 @@ const Index = () => {
             (profile) => profile.id == currentProfileID
           )
           setCurrentProfile(currentProfileData[0])
-          dispatch(
-            setProviderId(
-              currentProfileData[0]['provider'] &&
-                currentProfileData[0]['provider'].id
-            )
+          console.log(
+            'logging currentProfile providerPk',
+            currentProfileData[0].provider.pk
           )
+          dispatch(setProviderId(currentProfileData[0].provider.pk))
           console.log('Current profile data : ', currentProfileData[0])
 
           const otherProfilesData = res.filter(

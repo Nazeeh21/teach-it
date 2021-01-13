@@ -63,6 +63,16 @@ const Index = () => {
     setFormData(newFormData)
   }
 
+  const crossButtonClickHandler = (index) => {
+    const newFormData = [...formData]
+    const newArr = [...arr]
+
+    newFormData.splice(index, 1)
+    newArr.splice(index, 1)
+    setFormData(newFormData)
+    setArr(newArr)
+  }
+
   return (
     <LandingContainer width="6/12">
       <h1 className="text-5xl font-semibold text-center mb-10 mx-auto">
@@ -73,17 +83,23 @@ const Index = () => {
           arr.length === 1 ? 1 : 2
         } grid-flow-row gap-1 justify-center items-center`}
       >
-        {arr.map((val, index) => (
-          <Form
-            key={index}
-            name={formData[index]['name']}
-            email={formData[index]['email']}
-            age={formData[index]['age']}
-            setName={(val) => handleChange(index, 'name', val)}
-            setEmail={(val) => handleChange(index, 'email', val)}
-            setAge={(val) => handleChange(index, 'age', val)}
-          />
-        ))}
+        {arr.map((val, index) => {
+          return (
+            <div>
+              <Form
+                key={index}
+                index={index}
+                name={formData[index]['name']}
+                email={formData[index]['email']}
+                age={formData[index]['age']}
+                setName={(val) => handleChange(index, 'name', val)}
+                setEmail={(val) => handleChange(index, 'email', val)}
+                setAge={(val) => handleChange(index, 'age', val)}
+                crossButtonClickHandler={crossButtonClickHandler}
+              />
+            </div>
+          )
+        })}
       </div>
       <div className="grid gap-4 grid-cols-1 items-center sm:w-12/12 md:w-10/12 lg:w-9/12 xl:w-8/12 w-12/12 m-auto">
         <SecondaryButton

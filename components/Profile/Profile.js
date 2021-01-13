@@ -2,6 +2,7 @@ import React from 'react'
 import Avatar from '../Images/Avatar'
 import loremIpsum from '../../utility/loremIpsum'
 import ISO6391 from 'iso-639-1'
+import { useSelector } from 'react-redux'
 
 const Image = ({ src }) => (
   <div className="w-full rounded-lg">
@@ -16,15 +17,18 @@ const VidThumbnail = ({ thumbSrc }) => (
 )
 
 const Profile = ({ profileData }) => {
+  const userType = useSelector((state) => state.app.userType)
+
+  console.log('Logging profileData', profileData)
   const {
     country,
     languages,
     name,
     online,
-    docs,
+    provider,
     bio,
     description,
-    pic,
+    avatar_url,
   } = profileData
 
   return (
@@ -43,7 +47,7 @@ const Profile = ({ profileData }) => {
 
           <Avatar
             purpose="isForProfile"
-            src={pic || '/avis/ana.png'}
+            src={avatar_url || '/avis/ana.png'}
             alt={name}
           />
 
@@ -68,21 +72,25 @@ const Profile = ({ profileData }) => {
         </div>
       </div>
       {/* Certifications */}
-      <h3 className="text-darkGrey text-xl mt-6 font-semibold">
-        Certifications
-      </h3>
-      {docs.length === 0 && (
-        <div className="my-2 w-full">
-          <p className="text-darkGrey">
-            This user hasn't uploaded any certifications.
-          </p>
+      {userType === 0 && (
+        <div>
+          <h3 className="text-darkGrey text-xl mt-6 font-semibold">
+            Certifications
+          </h3>
+          {provider.docs.length === 0 && (
+            <div className="my-2 w-full">
+              <p className="text-darkGrey">
+                This user hasn't uploaded any certifications.
+              </p>
+            </div>
+          )}
+          <div className="grid grid-flow-row gap-2 grid-cols-5 w-full mt-3 items-center">
+            {provider.docs.map((doc, idx) => (
+              <Image src={doc} key={idx} />
+            ))}
+          </div>
         </div>
       )}
-      <div className="grid grid-flow-row gap-2 grid-cols-5 w-full mt-3 items-center">
-        {docs.map((doc, idx) => (
-          <Image src={doc} key={idx} />
-        ))}
-      </div>
 
       {/* Demo videos */}
       {/* <h3 className="text-darkGrey text-xl mt-6 font-semibold">Demo Videos</h3>

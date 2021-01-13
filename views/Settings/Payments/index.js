@@ -39,6 +39,7 @@ const ProfileSetting = () => (
           </div>
         </div>
       </div>
+
       <div className="w-full bg-lightGrey mt-4 pb-4">
         <User src="/stock/girl2.jpg" name="Arun P" text="₹ 3500" />
         <GreyLine />
@@ -56,6 +57,9 @@ const ProfileSetting = () => (
         <div className="md:ml-1 md:w-6/12">
           <WebsiteUrl />
         </div>
+      </div>
+      <div className="w-10/12 md:w-4/12 mb-6 mt-20">
+        <PrimaryButton label="Add bank Account" />
       </div>
       <div className="mt-20">
         <div className="w-10/12 md:w-4/12 mb-6">
