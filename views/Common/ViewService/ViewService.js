@@ -1,12 +1,28 @@
-import React from 'react'
+import { useRouter } from 'next/router'
+import React, { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
 import { PrimaryButton } from '../../../components/Buttons/Index'
+import ReviewForm from '../../../components/Misc/ReviewForm'
 import Rating from '../../../components/Rating/Rating'
 import Milestone from './Milestone/Milestone'
 
 const ViewService = ({ response, milestoneData }) => {
+  const [showReviewForm, setShowReviewForm] = useState(false)
+
+  const [primaryButtonLabel, setPrimaryButtonLabel] = useState('Subscribe')
+  const userServices = useSelector((state) => state.app.userServices)
+  const router = useRouter()
   if (!response || !milestoneData) {
     return null
   }
+
+  useEffect(() => {
+    userServices.filter((service) => service.pk === router.query.id)
+    console.log(router.query.id)
+    if (userServices.length !== 0) {
+      setPrimaryButtonLabel('Give Reviews')
+    }
+  }, [userServices, router.query.id])
 
   const {
     start_at,
@@ -25,8 +41,22 @@ const ViewService = ({ response, milestoneData }) => {
 
   console.log('ViewService')
   console.log(milestoneData)
+
+  const primaryButtonClickedHandler = () => {
+    if (userServices.length !== 0) {
+      setShowReviewForm(true)
+    }
+  }
   return (
     <div className="bg-lightGrey text-primary">
+      {showReviewForm && (
+        <ReviewForm
+          show={showReviewForm}
+          servicePk={router.query.id}
+          backdropClickHandler={() => setShowReviewForm(false)}
+          buttonClicked={() => setShowReviewForm(false)}
+        />
+      )}
       <div
         style={{
           backgroundImage: `url(${media[0] || '/guitar.png'})`,
@@ -107,7 +137,10 @@ const ViewService = ({ response, milestoneData }) => {
             <Milestone /> */}
           </div>
           <div className="w-6/12">
-            <PrimaryButton label="Subscribe" />
+            <PrimaryButton
+              label={primaryButtonLabel}
+              clickHandler={primaryButtonClickedHandler}
+            />
           </div>
         </div>
       </div>

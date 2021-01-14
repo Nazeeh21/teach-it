@@ -23,7 +23,9 @@ const Index = () => {
     }
   }, [token, currentProfileId])
   return (
-    <LayoutProvider rightContent={<ProfileOverview />}>
+    <LayoutProvider
+      rightContent={<ProfileOverview profileData={currentProfileData} />}
+    >
       <div>
         {currentProfileData && <Profile profileData={currentProfileData} />}
         <CurrentProfileServices />

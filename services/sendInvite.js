@@ -1,5 +1,33 @@
 import api from '../api'
 
+export const sendReview = async (
+  servicePk,
+  rating,
+  comment,
+  token,
+  currentProfileId
+) => {
+  try {
+    const res = await api.post(
+      `/service/${servicePk}/review/`,
+      {
+        rating,
+        comment,
+      },
+      {
+        headers: {
+          Authorization: `Token ${token}`,
+          'X-Profile-ID': currentProfileId,
+        },
+      }
+    )
+    console.log('Send Review response', res.data)
+    return res.data
+  } catch (e) {
+    console.log('Error in sendReview', e)
+  }
+}
+
 export const sendInvite = async (
   name,
   email,

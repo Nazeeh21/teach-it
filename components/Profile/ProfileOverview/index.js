@@ -24,6 +24,7 @@ const OutlineBtn = ({ label, color }) => (
 const Index = ({ profileData }) => {
   const dispatch = useDispatch()
 
+  console.log('Logging profileData from ProfileOverview', profileData)
   let token = useSelector((state) => state.auth.token)
   let profileId = useSelector((state) => state.app.currentProfile)
 
