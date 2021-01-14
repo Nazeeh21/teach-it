@@ -49,7 +49,7 @@ const Phone = () => {
       <div className="mt-8 text-gray-500 text-md">Enter phone number</div>
       <div className="mt-2">
         <input
-          type="number"
+          type="tel"
           value={phoneNumber}
           onChange={(e) => setPhoneNumber(e.target.value)}
           className="bg-highlight w-full pl-1 py-1 rounded-sm outline-none border-gray-500 border-b-2 border-t-0 border-l-0 border-r-0"

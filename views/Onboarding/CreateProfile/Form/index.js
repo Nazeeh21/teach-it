@@ -35,7 +35,9 @@ const Form = ({
     <form className="bg-highlight rounded-lg pl-4 pr-4 pt-8 pb-4 mb-6 sm:w-12/12 md:w-10/12 lg:w-9/12 xl:w-8/12 w-12/12 m-auto">
       <div className="grid grid-cols-1 justify-items-end">
         <div className="w-8 mr-4">
-          <CrossButton index={index} clickHandler={crossButtonClickHandler} />
+          {index !== 0 && (
+            <CrossButton index={index} clickHandler={crossButtonClickHandler} />
+          )}
         </div>
       </div>
       <TextInput

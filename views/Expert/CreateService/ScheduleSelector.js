@@ -104,6 +104,8 @@ const ScheduleSelector = ({
           </div> */}
           <div className="w-full">
             <DurationSelector
+              startDate={startDate}
+              endDate={endDate}
               duration={duration}
               onDurationChanged={(value) => {
                 durationChangedHandler(value)

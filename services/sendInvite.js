@@ -30,3 +30,79 @@ export const sendInvite = async (
     return false
   }
 }
+
+export const sendBasicProviderInvite = async (
+  fullname,
+  email,
+  mobile,
+  message,
+  category,
+  token,
+  currentProfileId
+) => {
+  try {
+    const res = await api.post(
+      '/invites/basic/',
+      {
+        fullname,
+        email,
+        mobile,
+        message,
+        category,
+      },
+      {
+        headers: {
+          Authorization: `Token ${token}`,
+          'X-Profile-ID': currentProfileId,
+        },
+      }
+    )
+    console.log('Basic Invite sent success', res.data)
+    return res.data
+  } catch (e) {
+    console.log('Error in sending basic provider invite', e)
+  }
+}
+
+export const sendAdvanceProviderInvite = async (
+  fullname,
+  email,
+  mobile,
+  message,
+  category,
+  title,
+  fee,
+  date,
+  time,
+  description,
+  token,
+  currentProfileId
+) => {
+  try {
+    const res = await api.post(
+      '/invites/advance/',
+      {
+        fullname,
+        email,
+        mobile,
+        message,
+        category,
+        title,
+        fee,
+        date,
+        time,
+        description,
+      },
+      {
+        headers: {
+          Authorization: `Token ${token}`,
+          'X-Profile-ID': currentProfileId,
+        },
+      }
+    )
+    console.log('Advanced Invite sent success', res.data)
+    return res.data
+  } catch (e) {
+    console.log('Error in sending basic provider invite', e)
+  }
+}

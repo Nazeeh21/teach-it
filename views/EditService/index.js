@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import Accordion from '../../components/Accordion'
 import { PrimaryButton } from '../../components/Buttons/Index'
 import { EXPERT } from '../../constants'
+import { updateService } from '../../services/services'
 import { fetchMilestone } from '../../services/settings'
 import { fetchViewService } from '../../store/actions/appActions'
 import { SET_CREATE_SERVICE_ACTIVE_STEP } from '../../store/actionTypes'
@@ -83,7 +84,7 @@ const EditService = () => {
     if (serviceData) {
       setTitle(serviceData.title)
       setDescription(serviceData.description)
-      setLanguages(serviceData.languages)
+      setLanguages(serviceData.languages[0])
       serviceData.type === 'live' ? setServiceType(0) : setServiceType(1)
       setType(serviceData.type)
       serviceData.is_group ? setIsGroup('yes') : setIsGroup('no')
@@ -116,6 +117,10 @@ const EditService = () => {
 
       setActiveAgeGroup(serviceData.age_group)
       setUploadedMedia(serviceData.media)
+      let startDate = new Date(serviceData.start_at)
+      let endDate = new Date(serviceData.end_at)
+      setStartDate(startDate)
+      setEndDate(endDate)
     }
   }, [serviceData])
 
@@ -220,7 +225,8 @@ const EditService = () => {
       age_group: `${activeAgeGroup}`,
     }
 
-    const success = await createService(
+    const success = await updateService(
+      id,
       formData,
       milestoneData,
       files,
@@ -351,7 +357,7 @@ const EditService = () => {
         </div>
         <div className="w-4/12 mt-10">
           <PrimaryButton
-            disabled={true}
+            // disabled={true}
             label="Continue"
             clickHandler={continueClickedHandler}
           />

@@ -1,9 +1,21 @@
 import React, { useState } from 'react'
 
-const DurationSelector = ({ duration, onDurationChanged }) => {
+const DurationSelector = ({
+  duration,
+  onDurationChanged,
+  startDate,
+  endDate,
+}) => {
   const [hour, setHour] = useState(0)
   const [minute, setMinute] = useState(0)
   const [second, setSecond] = useState(0)
+
+  // let timeInterval = null
+  // if(startDate && endDate) {
+  //   timeInterval = `${startDate.toISOString()}/${endDate.toISOString()}`
+  //   const range = moment.rangeFromISOString(startDate.toISOString(), endDate.toISOString())
+  //   console.log("Range", range.toString())
+  // }
 
   const durationChangeHandler = () => {
     setTimeout(() => {

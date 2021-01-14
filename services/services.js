@@ -122,3 +122,37 @@ export const uploadImage = async (servicePk, data, profileId, token) => {
     return false
   }
 }
+
+export const updateService = async (
+  servicePk,
+  createServiceData,
+  createMilestoneData,
+  imageData,
+  profileId,
+  token
+) => {
+  try {
+    const serviceData = await api.put(
+      `service/${servicePk}/`,
+      createServiceData,
+      {
+        headers: {
+          Authorization: `Token ${token}`,
+          'X-Profile-ID': profileId,
+        },
+      }
+    )
+    console.log(serviceData)
+    // await createMilestone(
+    //   serviceData.data.pk,
+    //   createMilestoneData,
+    //   profileId,
+    //   token
+    // )
+    // await uploadImages(serviceData.data.pk, imageData, profileId, token)
+    return true
+  } catch (e) {
+    console.log(e)
+    return false
+  }
+}
