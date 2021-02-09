@@ -5,6 +5,7 @@ import { PrimaryButton } from '../../../components/Buttons/Index'
 import ReviewForm from '../../../components/Misc/ReviewForm'
 import Rating from '../../../components/Rating/Rating'
 import Milestone from './Milestone/Milestone'
+import ISO6391 from 'iso-639-1'
 
 const ViewService = ({ response, milestoneData }) => {
   const [showReviewForm, setShowReviewForm] = useState(false)
