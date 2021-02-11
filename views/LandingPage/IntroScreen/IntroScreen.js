@@ -64,13 +64,25 @@ const IntroScreen = () => {
         </div>
       </div>
       <div className="hidden md:w-7/12 md:p-10 lg:mt-6 xl:m-12 md:flex">
-        <div className="md:w-7/12 h-auto rounded-lg">
+        <div
+          style={{ height: 'fit-content', borderRadius: '1.5rem' }}
+          className="md:w-7/12 rounded-2xl border-primary border-8"
+        >
           <IntroVideo />
         </div>
         {/* <img className='w-7/12 h-auto rounded-lg' src='/mobile-call.jpg' alt='mobile-call' /> */}
         <div className=" md:w-5/12 md:m-5 xl:m-8 lg:mt-40 md:inline-block align-middle text-darkGrey text-xl font-medium">
           <span className="text-learner block text-5xl">"</span>I learned to
           cook asian food from a chef in Japan.
+          <div
+            style={{
+              height: '5px',
+              width: '16rem',
+              backgroundColor: '#E63F77',
+              marginTop: '2rem',
+            }}
+            className="md:-ml-5"
+          />
           <div className="md:mt-4 text-black text-right">Kimberley S., USA</div>
         </div>
       </div>

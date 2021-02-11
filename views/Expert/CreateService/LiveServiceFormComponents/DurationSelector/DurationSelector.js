@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import timediff from 'timediff'
 
 const DurationSelector = ({
   duration,
@@ -6,70 +7,42 @@ const DurationSelector = ({
   startDate,
   endDate,
 }) => {
-  const [hour, setHour] = useState(0)
-  const [minute, setMinute] = useState(0)
-  const [second, setSecond] = useState(0)
+  console.log('startDate', startDate)
+  console.log('endDate', endDate)
+  const [hours, setHours] = useState(null)
+  const [minutes, setMinutes] = useState(null)
+  const [seconds, setSeconds] = useState(null)
 
-  // let timeInterval = null
-  // if(startDate && endDate) {
-  //   timeInterval = `${startDate.toISOString()}/${endDate.toISOString()}`
-  //   const range = moment.rangeFromISOString(startDate.toISOString(), endDate.toISOString())
-  //   console.log("Range", range.toString())
-  // }
-
-  const durationChangeHandler = () => {
-    setTimeout(() => {
+  useEffect(() => {
+    if (startDate && startDate !== '' && endDate && endDate !== '') {
+      const newTimeDiff = timediff(startDate, endDate, 'Hms')
+      setHours(newTimeDiff.hours)
+      setMinutes(newTimeDiff.minutes)
+      setSeconds(newTimeDiff.milliseconds)
+      console.log('timeDiff', newTimeDiff)
       const mergedValue =
-        hour.toString() + ':' + minute.toString() + ':' + second.toString()
+        newTimeDiff.hours.toString() +
+        ':' +
+        newTimeDiff.minutes.toString() +
+        ':' +
+        newTimeDiff.milliseconds.toString()
       onDurationChanged(mergedValue)
-    }, 1000)
-    // const mergedValue =
-    //   hour.toString() + ':' + minute.toString() + ':' + second.toString()
-    // onDurationChanged(mergedValue)
-  }
+    }
+  }, [startDate, endDate])
+
   return (
     <div className="w-full text-lg font-medium">
       <p className="mb-2">Duration</p>
       <div className="flex justify-between">
-        <input
-          type="number"
-          value={hour}
-          min="1"
-          step="1"
-          max="23"
-          placeholder="hour"
-          className="py-1 pl-2 w-16 bg-lightGrey rounded-sm"
-          onChange={(e) => {
-            setHour(e.target.value)
-            durationChangeHandler()
-          }}
-        />
-        <input
-          type="number"
-          value={minute}
-          min="0"
-          max="59"
-          step="1"
-          placeholder="min"
-          className="py-1 pl-2 w-16 bg-lightGrey rounded-sm"
-          onChange={(e) => {
-            setMinute(e.target.value)
-            durationChangeHandler()
-          }}
-        />
-        <input
-          type="second"
-          value={second}
-          min="0"
-          max="59"
-          step="1"
-          placeholder="hour"
-          className="py-1 pl-2 w-16 bg-lightGrey rounded-sm"
-          onChange={(e) => {
-            setSecond(e.target.value)
-            durationChangeHandler(e.target.value)
-          }}
-        />
+        <div className="py-1 pl-2 w-16 h-8 bg-lightGrey rounded-sm">
+          {hours && hours}
+        </div>
+        <div className="py-1 pl-2 w-16 bg-lightGrey rounded-sm">
+          {minutes && minutes}
+        </div>
+        <div className="py-1 pl-2 w-16 bg-lightGrey rounded-sm">
+          {seconds && seconds}
+        </div>
         <p className="text-md ml-3">hours</p>
       </div>
     </div>

@@ -41,7 +41,7 @@ const ViewService = ({ response, milestoneData }) => {
   const endTime = new Date(end_at)
 
   console.log('ViewService')
-  console.log(milestoneData)
+  console.log('Milestone data in viewService', milestoneData)
 
   const primaryButtonClickedHandler = () => {
     if (userServices.length !== 0) {
@@ -126,6 +126,11 @@ const ViewService = ({ response, milestoneData }) => {
             </div>
           </div>
           <div className="my-20">
+            {milestoneData.length === 0 && (
+              <div className="m-auto text-lg text-gray-600 font-medium">
+                There are no Milestones for this service.
+              </div>
+            )}
             {milestoneData.map((milestone) => (
               <Milestone
                 title={milestone.title}

@@ -36,7 +36,7 @@ const ScheduleSelector = ({
   if (type === 0) {
     return (
       <React.Fragment>
-        <ServiceFreeqSel activeLabel={serviceFreq} setLabel={setServiceFreq} />
+        {/* <ServiceFreeqSel activeLabel={serviceFreq} setLabel={setServiceFreq} /> */}
         <div className="mt-6 grid grid-rows-2 md:grid-rows-1 md:grid-cols-2">
           <div className="w-10/12">
             <DaySelector
@@ -46,9 +46,7 @@ const ScheduleSelector = ({
             />
           </div>
           <div className="w-10/12">
-            <LanguagesSelector
-              onLanguageChanged={(value) => onLanguagesChanged(value)}
-            />
+            <LanguagesSelector onLanguageChanged={onLanguagesChanged} />
           </div>
         </div>
         <div className="mt-6">

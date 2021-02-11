@@ -16,6 +16,7 @@ import IsPrivateContainer from './LiveServiceFormComponents/IsPrivate/Index'
 import QuestionFees from './LiveServiceFormComponents/QuestionFees/Index'
 import { createService } from '../../../services/services'
 import { SET_CREATE_SERVICE_ACTIVE_STEP } from '../../../store/actionTypes'
+import ServiceFreeqSel from './LiveServiceFormComponents/ServiceFreeqSelector/ServiceFreeqSel'
 
 const SectionTitle = ({ children }) => (
   <h3 className="text-lg text-primary mb-2">{children}</h3>
@@ -248,11 +249,15 @@ const Index = () => {
             setServiceFreq={setServiceFreq}
             paymentFreq={paymentFreq}
             setPaymentFreq={setPaymentFreq}
-            onLanguagesChanged={(value) => setLanguages(value)}
+            onLanguagesChanged={setLanguages}
           />
         </Accordion>
 
         <Accordion id="fees" label="Fees">
+          <ServiceFreeqSel
+            activeLabel={serviceFreq}
+            setLabel={setServiceFreq}
+          />
           <FeesSelector
             fees={fees}
             feesChangedHandler={(value) => setFees(value)}
