@@ -5,8 +5,9 @@ const ServiceFreeqSel = ({ activeLabel, setLabel }) => {
   return (
     <React.Fragment>
       <div className="w-full">
-        <p className="my-2 text-lg font-medium">Service frequency</p>
+        {/* <p className="my-2 text-lg font-medium">Service frequency</p> */}
 
+        <p className="my-2 text-lg font-medium">Payment frequency</p>
         <Pills
           activeLabel={activeLabel}
           setLabel={setLabel}
