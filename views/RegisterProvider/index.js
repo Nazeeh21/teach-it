@@ -17,8 +17,7 @@ const Index = () => {
   const userType = useSelector((state) => state.app.userType)
 
   if (userType === 1) {
-    router.push('/dashboard')
-    return null
+    return <div>You cant Register for Expert as a Learner.</div>
   }
 
   const registerClickHandler = () => {

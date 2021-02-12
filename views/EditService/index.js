@@ -27,6 +27,7 @@ const EditService = () => {
   const router = useRouter()
   const id = router.query.id
   const serviceData = useSelector((state) => state.app.viewServiceData)
+  const userType = useSelector((state) => state.app.userType)
   // console.log('Query', id)
   const dispatch = useDispatch()
 
@@ -54,7 +55,7 @@ const EditService = () => {
   const [allowQuestion, setAllowQuestion] = useState('no')
   const [files, setFiles] = useState([])
   const [languages, setLanguages] = useState([])
-  const userType = useSelector((state) => state.app.userType)
+  // const userType = useSelector((state) => state.app.userType)
   // const profileId = useSelector((state) => state.app.currentProfile)
   const currentProfileId = useSelector((state) => state.app.currentProfile)
   const token = useSelector((state) => state.auth.token)

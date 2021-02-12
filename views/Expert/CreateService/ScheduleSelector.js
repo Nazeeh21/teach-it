@@ -96,8 +96,9 @@ const ScheduleSelector = ({
                   }
                   placeholder="YYYY-MM-DD"
                   size="medium"
-                  type="datetime-local"
+                  // type="datetime-local"
                   defaultValue="2021-02-1T10:30"
+                  defaultValue={startDate}
                   className={classes.textField}
                   InputLabelProps={{
                     shrink: true,
@@ -129,6 +130,7 @@ const ScheduleSelector = ({
                   size="medium"
                   type="datetime-local"
                   defaultValue="2021-02-12T10:30"
+                  // defaultValue={endDate}
                   className={classes.textField}
                   InputLabelProps={{
                     shrink: true,
@@ -199,10 +201,28 @@ const ScheduleSelector = ({
                 value={startDate}
                 handleDayChange={startDateChangeHandler}
               /> */}
-              <DateTimePicker
+              {/* <DateTimePicker
                 className="w-10/12 bg-lightGrey border-0 h-10"
                 value={startDate}
                 onChange={startDateChangeHandler}
+              /> */}
+              <TextField
+                id="datetime-local"
+                color="primary"
+                // classes={}
+                // label=""
+                onChange={(event) =>
+                  startDateChangeHandler(new Date(event.target.value))
+                }
+                placeholder="YYYY-MM-DD"
+                size="medium"
+                type="datetime-local"
+                defaultValue="2021-02-1T10:30"
+                // defaultValue={startDate}
+                className={classes.textField}
+                InputLabelProps={{
+                  shrink: true,
+                }}
               />
             </div>
           </div>
@@ -213,10 +233,27 @@ const ScheduleSelector = ({
                 value={endDate}
                 handleDayChange={endDateChangeHandler}
               /> */}
-              <DateTimePicker
+              {/* <DateTimePicker
                 className="w-10/12 bg-lightGrey border-0 h-10"
                 value={endDate}
                 onChange={endDateChangeHandler}
+              /> */}
+              <TextField
+                id="datetime-local"
+                color="primary"
+                // label=""
+                onChange={(event) =>
+                  endDateChangeHandler(new Date(event.target.value))
+                }
+                placeholder="YYYY-MM-DD"
+                size="medium"
+                type="datetime-local"
+                defaultValue="2021-02-12T10:30"
+                // defaultValue={endDate}
+                className={classes.textField}
+                InputLabelProps={{
+                  shrink: true,
+                }}
               />
             </div>
           </div>

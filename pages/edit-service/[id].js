@@ -8,13 +8,17 @@ const Index = () => {
   const userType = useSelector((state) => state.app.userType)
   const router = useRouter()
 
-  if (userType === 1) {
-    router.push('/dashboard')
-    return null
-  }
+  // if (userType === 1) {
+  //   router.push('/dashboard')
+  //   return null
+  // }
   return (
     <LayoutProvider>
-      <EditService />
+      {userType === 1 ? (
+        <div>You cant edit Service as a Seeker.</div>
+      ) : (
+        <EditService />
+      )}
     </LayoutProvider>
   )
 }
