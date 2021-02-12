@@ -97,7 +97,7 @@ const ScheduleSelector = ({
                   placeholder="YYYY-MM-DD"
                   size="medium"
                   type="datetime-local"
-                  defaultValue="2017-05-24T10:30"
+                  defaultValue="2021-02-1T10:30"
                   className={classes.textField}
                   InputLabelProps={{
                     shrink: true,
@@ -128,7 +128,7 @@ const ScheduleSelector = ({
                   placeholder="YYYY-MM-DD"
                   size="medium"
                   type="datetime-local"
-                  defaultValue="2017-05-24T10:30"
+                  defaultValue="2021-02-12T10:30"
                   className={classes.textField}
                   InputLabelProps={{
                     shrink: true,
