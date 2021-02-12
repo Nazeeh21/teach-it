@@ -255,8 +255,9 @@ const Index = () => {
 
         <Accordion id="fees" label="Fees">
           <ServiceFreeqSel
-            activeLabel={serviceFreq}
-            setLabel={setServiceFreq}
+            heading="Payment Freequency"
+            activeLabel={paymentFreq}
+            setLabel={setPaymentFreq}
           />
           <FeesSelector
             fees={fees}

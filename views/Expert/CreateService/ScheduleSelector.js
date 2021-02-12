@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 // import DatePicker from '../../../components/DateAndTimePicker/DatePicker/DatePicker'
-import DateTimePicker from 'react-datetime-picker'
+// import DateTimePicker from 'react-datetime-picker'
 import Pills from '../../../components/Misc/3Pills/3Pills'
 import ServiceFreeqSel from './LiveServiceFormComponents/ServiceFreeqSelector/ServiceFreeqSel'
 import DaySelector from './LiveServiceFormComponents/DaySelector/DaySelector'
@@ -9,6 +9,22 @@ import TimeSelector from './LiveServiceFormComponents/TimeSelector/TimeSelector'
 import DurationSelector from './LiveServiceFormComponents/DurationSelector/DurationSelector'
 import CustomizeAndMilestoneContainer from './LiveServiceFormComponents/CustomizeAndMilestoneContainer'
 import LanguagesSelector from './LiveServiceFormComponents/LanguagesSelector'
+import { makeStyles } from '@material-ui/core/styles'
+import TextField from '@material-ui/core/TextField'
+
+const useStyles = makeStyles((theme) => ({
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  textField: {
+    backgroundColor: '#f3f4f8',
+    padding: '0.5rem',
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    width: 200,
+  },
+}))
 
 const ScheduleSelector = ({
   type,
@@ -32,11 +48,16 @@ const ScheduleSelector = ({
   onLanguagesChanged,
 }) => {
   // const [activePillLabel, setLabel] = useState('per day')
+  const classes = useStyles()
 
   if (type === 0) {
     return (
       <React.Fragment>
-        {/* <ServiceFreeqSel activeLabel={serviceFreq} setLabel={setServiceFreq} /> */}
+        <ServiceFreeqSel
+          activeLabel={serviceFreq}
+          setLabel={setServiceFreq}
+          heading="Service Freequency"
+        />
         <div className="mt-6 grid grid-rows-2 md:grid-rows-1 md:grid-cols-2">
           <div className="w-10/12">
             <DaySelector
@@ -60,10 +81,27 @@ const ScheduleSelector = ({
 
                   handleDayChange={startDateChangeHandler}
                 /> */}
-                <DateTimePicker
+                {/* <DateTimePicker
                   className="w-10/12 bg-lightGrey border-0 h-10"
                   value={startDate}
                   onChange={startDateChangeHandler}
+                /> */}
+                <TextField
+                  id="datetime-local"
+                  color="primary"
+                  // classes={}
+                  // label=""
+                  onChange={(event) =>
+                    startDateChangeHandler(new Date(event.target.value))
+                  }
+                  placeholder="YYYY-MM-DD"
+                  size="medium"
+                  type="datetime-local"
+                  defaultValue="2017-05-24T10:30"
+                  className={classes.textField}
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
                 />
               </div>
             </div>
@@ -75,10 +113,26 @@ const ScheduleSelector = ({
 
                   handleDayChange={endDateChangeHandler}
                 /> */}
-                <DateTimePicker
+                {/* <DateTimePicker
                   className="w-10/12 bg-lightGrey border-0 h-10"
                   value={endDate}
                   onChange={endDateChangeHandler}
+                /> */}
+                <TextField
+                  id="datetime-local"
+                  color="primary"
+                  // label=""
+                  onChange={(event) =>
+                    endDateChangeHandler(new Date(event.target.value))
+                  }
+                  placeholder="YYYY-MM-DD"
+                  size="medium"
+                  type="datetime-local"
+                  defaultValue="2017-05-24T10:30"
+                  className={classes.textField}
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
                 />
               </div>
             </div>

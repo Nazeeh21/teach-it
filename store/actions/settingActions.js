@@ -40,6 +40,7 @@ export const saveProfile = (data, certificateData, token, currentProfileId) => {
       )
       await uploadCertificates(certificateData, currentProfileId, token)
       console.log(res.data)
+      alert('Profile updated successfully!')
       dispatch({
         type: SAVE_PROFILE_DATA,
         data: res.data,
