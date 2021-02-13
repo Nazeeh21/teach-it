@@ -27,7 +27,7 @@ const IntroScreen = () => {
               style={{ lineHeight: '10%' }}
               className="text-learner block text-5xl"
             >
-              "
+              &#8220
             </span>
             I learned to cook asian food from a chef in Japan.
             <div className="lg:mt-4 text-black text-right">
@@ -63,15 +63,15 @@ const IntroScreen = () => {
           127 new users this week
         </div>
       </div>
-      <div className="hidden md:w-7/12 md:p-10 lg:mt-6 xl:m-12 md:flex">
+      <div className="hidden md:mt-8 md:w-7/12 md:p-10 lg:p-4 lg:mt-8 xl:mt-6 xl:m-12 md:flex">
         <div
           style={{ height: 'fit-content', borderRadius: '1.5rem' }}
-          className="md:w-7/12 rounded-2xl border-primary border-8"
+          className="md:w-8/12 rounded-2xl border-primary border-8"
         >
           <IntroVideo />
         </div>
         {/* <img className='w-7/12 h-auto rounded-lg' src='/mobile-call.jpg' alt='mobile-call' /> */}
-        <div className=" md:w-5/12 md:m-5 xl:m-8 lg:mt-40 md:inline-block align-middle text-darkGrey text-xl font-medium">
+        <div className="md:w-4/12 md:ml-4 xl:m-8 lg:mt-40 md:inline-block align-middle text-darkGrey text-xl font-medium">
           <span className="text-learner block text-5xl">"</span>I learned to
           cook asian food from a chef in Japan.
           <div
@@ -80,10 +80,13 @@ const IntroScreen = () => {
               width: '16rem',
               backgroundColor: '#E63F77',
               marginTop: '2rem',
+              marginLeft: '-4rem',
             }}
-            className="md:-ml-5"
+            className="md:-ml-5 absolute"
           />
-          <div className="md:mt-4 text-black text-right">Kimberley S., USA</div>
+          <div className="md:mt-10 text-black text-right">
+            Kimberley S., USA
+          </div>
         </div>
       </div>
     </div>

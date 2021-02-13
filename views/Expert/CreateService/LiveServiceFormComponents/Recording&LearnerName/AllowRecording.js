@@ -3,7 +3,7 @@ import Pills from '../../../../../components/Misc/3Pills/2Pills'
 
 const AllowRecording = ({ activeLabel, setLabel }) => (
   <div className="w-full text-lg font-medium">
-    <p>Allow recording</p>
+    <p className="mb-4">Allow recording</p>
     <Pills
       activeLabel={activeLabel}
       setLabel={setLabel}

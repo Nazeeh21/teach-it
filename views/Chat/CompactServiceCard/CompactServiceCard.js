@@ -7,8 +7,8 @@ import { useSelector } from 'react-redux'
 import { fetchProviderProfile } from '../../../services/provider'
 import Rating from '../../../components/Rating/Rating'
 
-const Image = ({ src, alt }) => (
-  <img className="w-full rounded-lg h-auto " src={src} alt={alt} />
+const Image = ({ src, alt, width = 'w-full' }) => (
+  <img className={`${width} rounded-lg h-20`} src={src} alt={alt} />
 )
 
 const CompactServiceCard = ({
@@ -18,7 +18,7 @@ const CompactServiceCard = ({
   buttonText = 'View',
   buttonDisabled = false,
   buttonClickHandler,
-  category,
+  category = 'Music',
   cost,
   languages,
   startDate,
@@ -41,12 +41,12 @@ const CompactServiceCard = ({
     return null
   }
   return (
-    <div className="flex flex-row w-auto p-2 bg-white shadow-md rounded-lg my-3">
-      <div className="p-3 w-4/12 sm:w-2/12 flex flex-col">
+    <div className="flex flex-row justify-between w-auto p-2 bg-white shadow-md rounded-lg my-3">
+      <div className="p-3 w-6/12 md:w-2/12 sm:w-2/12">
         <Image src={imgSrc} alt="John" />
-        <p className="hidden sm:flex text-3xl font-bold text-accent m-auto">
+        {/* <p className="hidden sm:flex text-3xl font-bold text-accent m-auto">
           13
-        </p>
+        </p> */}
       </div>
 
       <div className="p-1 w-10/12 flex flex-col">
@@ -56,8 +56,10 @@ const CompactServiceCard = ({
             : descriptionText}
         </p>
         <div className="flex flex-row mt-6">
-          <div className="w-1/2 text-sm">
-            {category}
+          <div className="w-6/12 text-sm">
+            <div className="text-black text-lg">
+              {category ? category : 'Music'}
+            </div>
             <div style={{ lineHeight: '130%' }} className="text-darkGrey">
               <p>{cost}/week</p>
               <p>5:30 pm</p>
@@ -65,10 +67,10 @@ const CompactServiceCard = ({
               <p style={{ opacity: '80%' }}>
                 Start date: {date.toLocaleDateString()}
               </p>
-              <p style={{ opacity: '80%' }}>Payment type: {paymentType}</p>
+              <p style={{ opacity: '80%' }}>Payments: {paymentType}</p>
             </div>
           </div>
-          <p className="text-darkGrey text-xs font-medium w-1/2">
+          <p className="text-darkGrey text-xs mt-2 font-medium w-6/12">
             {languages &&
               languages.map((lang, idx) => (
                 <span key={idx}>{ISO6391.getName(lang)}</span>
@@ -77,21 +79,28 @@ const CompactServiceCard = ({
             17 weeks
           </p>
         </div>
-        <div className="flex items-center mt-2">
-          <img
-            src={providerData.pic === '' ? imgSrc : providerData.pic}
-            // src={imgSrc}
-            // alt="Switch profile"
-            className="w-8 mr-2 max-w-3/12 h-auto min-h-8 rounded-full"
-          />
-          <div>
-            <div className="text-sm">{providerData.name}</div>
-            <Rating value={providerData.rating} size={14} />
+        <div className="flex items-center mt-2 -mb-1">
+          <div className="flex mr-20 items-center">
+            <img
+              src={
+                !providerData.pic
+                  ? 'http://35.193.240.111/docs/e2da0eb2-e656-4265-bb53-5d3a38d0944d/tree_planet_stars_galaxy_art_117068_1920x1080.jpg'
+                  : providerData.pic
+              }
+              alt="Profile-img"
+              className="w-8 mr-2 max-w-5/12 h-auto min-h-8 rounded-full"
+            />
+            <div>
+              <div className="text-sm">{providerData.name}</div>
+              <Rating value={providerData.rating} size={14} />
+            </div>
           </div>
-          <div className="ml-12">
-            Pro
-            {/* {providerData.is_pro && Pro} */}
-          </div>
+          {!providerData.is_pro && (
+            <div className="flex gap-2">
+              Pro
+              <img src="/pro.svg" alt="pro" />
+            </div>
+          )}
         </div>
         <div className="flex flex-col sm:flex-row items-center">
           <div
@@ -104,7 +113,7 @@ const CompactServiceCard = ({
               alt={serviceType}
             />
             <span style={{ textTransform: 'capitalize' }}>
-              {serviceType === 'rich' ? 'Rich Media' : serviceType}
+              {serviceType === 'rich' ? 'Rich Media' : 'Live Media'}
             </span>
           </div>
           <div className="w-full sm:w-4/12 flex items-center">

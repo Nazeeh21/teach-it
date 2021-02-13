@@ -76,7 +76,7 @@ export const CenterSection = ({
 
   return (
     <div
-      style={{ overflowY: 'scroll', height: '100vh' }}
+      style={{ overflowY: 'scroll', height: '100vh', scrollbarWidth: 'none' }}
       className="w-full xs:w-full sm:w-full md:w-full lg:flex lg:w-6/12 flex flex-col pt-4 pl-4 pr-4 mb-6"
     >
       {children}

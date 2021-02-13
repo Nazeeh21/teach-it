@@ -1,6 +1,5 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 // import DatePicker from '../../../components/DateAndTimePicker/DatePicker/DatePicker'
-// import DateTimePicker from 'react-datetime-picker'
 import Pills from '../../../components/Misc/3Pills/3Pills'
 import ServiceFreeqSel from './LiveServiceFormComponents/ServiceFreeqSelector/ServiceFreeqSel'
 import DaySelector from './LiveServiceFormComponents/DaySelector/DaySelector'
@@ -11,18 +10,21 @@ import CustomizeAndMilestoneContainer from './LiveServiceFormComponents/Customiz
 import LanguagesSelector from './LiveServiceFormComponents/LanguagesSelector'
 import { makeStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
+import { formatDate } from './LiveServiceFormComponents/ServiceFunction'
 
 const useStyles = makeStyles((theme) => ({
   container: {
     display: 'flex',
     flexWrap: 'wrap',
+    width: '100%',
+    marginLeft: '-0.5rem',
   },
   textField: {
     backgroundColor: '#f3f4f8',
     padding: '0.5rem',
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
-    width: 200,
+    width: '100%',
   },
 }))
 
@@ -50,15 +52,52 @@ const ScheduleSelector = ({
   // const [activePillLabel, setLabel] = useState('per day')
   const classes = useStyles()
 
+  const [startDateLocal, setStartDateLocal] = useState(null)
+  const [endDateLocal, setEndDateLocal] = useState(null)
+
+  const [startTime, setStartTime] = useState(null)
+
+  // const startDateChanged = (date) => {
+  //   if (startTime) {
+  //     console.log('StartTime', startTime)
+  //     startDateChangeHandler(formatDate(date) + 'T' + startTime)
+  //   } else {
+  //     startDateChangeHandler(formatDate(date) + 'T' + '07:00:00Z')
+  //   }
+  // }
+
+  // const endDateChanged = (date) => {
+  //   endDateChangeHandler(formatDate(date) + 'T' + '05:30:00Z')
+  // }
+
+  useEffect(() => {
+    if (startDateLocal) {
+      if (startTime) {
+        console.log('StartTime', startTime)
+        startDateChangeHandler(formatDate(startDateLocal) + 'T' + startTime)
+      } else {
+        startDateChangeHandler(formatDate(startDateLocal) + 'T' + '07:00:00Z')
+      }
+    }
+  }, [startTime, startDateLocal])
+
+  useEffect(() => {
+    if (endDateLocal) {
+      endDateChangeHandler(formatDate(endDateLocal) + 'T' + '05:30:00Z')
+    }
+  }, [endDateLocal])
+
   if (type === 0) {
     return (
       <React.Fragment>
-        <ServiceFreeqSel
-          activeLabel={serviceFreq}
-          setLabel={setServiceFreq}
-          heading="Service Freequency"
-        />
-        <div className="mt-6 grid grid-rows-2 md:grid-rows-1 md:grid-cols-2">
+        <div className="mt-8">
+          <ServiceFreeqSel
+            activeLabel={serviceFreq}
+            setLabel={setServiceFreq}
+            heading="Service Freequency"
+          />
+        </div>
+        <div className="mt-8 grid grid-rows-2 md:grid-rows-1 md:grid-cols-2">
           <div className="w-10/12">
             <DaySelector
               changedHandler={(value) => {
@@ -76,61 +115,32 @@ const ScheduleSelector = ({
             <div className="w-full">
               <p className="mb-2">Start date</p>
               <div className="w-full">
-                {/* <DatePicker
-                  // value={startDate}
-
-                  handleDayChange={startDateChangeHandler}
-                /> */}
-                {/* <DateTimePicker
-                  className="w-10/12 bg-lightGrey border-0 h-10"
-                  value={startDate}
-                  onChange={startDateChangeHandler}
-                /> */}
-                <TextField
-                  id="datetime-local"
-                  color="primary"
-                  // classes={}
-                  // label=""
-                  onChange={(event) =>
-                    startDateChangeHandler(new Date(event.target.value))
-                  }
-                  placeholder="YYYY-MM-DD"
-                  size="medium"
-                  // type="datetime-local"
-                  defaultValue="2021-02-1T10:30"
-                  defaultValue={startDate}
-                  className={classes.textField}
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
-                />
+                <form className={classes.container} noValidate>
+                  <TextField
+                    id="date"
+                    type="date"
+                    defaultValue="2021-02-24"
+                    onChange={(event) =>
+                      setStartDateLocal(new Date(event.target.value))
+                    }
+                    className={classes.textField}
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                  />
+                </form>
               </div>
             </div>
             <div className="w-full">
               <p className="mb-2">End date</p>
               <div className="w-full">
-                {/* <DatePicker
-                  // value={endDate}
-
-                  handleDayChange={endDateChangeHandler}
-                /> */}
-                {/* <DateTimePicker
-                  className="w-10/12 bg-lightGrey border-0 h-10"
-                  value={endDate}
-                  onChange={endDateChangeHandler}
-                /> */}
                 <TextField
-                  id="datetime-local"
-                  color="primary"
-                  // label=""
+                  id="date"
+                  type="date"
+                  defaultValue="2021-02-24"
                   onChange={(event) =>
-                    endDateChangeHandler(new Date(event.target.value))
+                    setEndDateLocal(new Date(event.target.value))
                   }
-                  placeholder="YYYY-MM-DD"
-                  size="medium"
-                  type="datetime-local"
-                  defaultValue="2021-02-12T10:30"
-                  // defaultValue={endDate}
                   className={classes.textField}
                   InputLabelProps={{
                     shrink: true,
@@ -141,21 +151,24 @@ const ScheduleSelector = ({
           </div>
         </div>
         <div className="w-full grid grid-rows-2 md:grid-rows-1 md:grid-cols-2 gap-4 mt-6">
-          {/* <div className="w-full">
-            <TimeSelector
-              hourValue={hour}
-              minValue={min}
-              timeStampChanged={(value) => {
-                timeStampChangedHandler(value)
-              }}
-              hourChanged={(value) => {
-                hourChangedHandler(value)
-              }}
-              minChanged={(value) => {
-                minChangedHandler(value)
-              }}
-            />
-          </div> */}
+          <div className="w-full text-lg font-medium">
+            <p className="mb-2">Start time</p>
+            <form className={classes.container} noValidate>
+              <TextField
+                id="time"
+                onChange={(e) => setStartTime(e.target.value)}
+                type="time"
+                defaultValue="07:30"
+                className={classes.textField}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                inputProps={{
+                  step: 300, // 5 min
+                }}
+              />
+            </form>
+          </div>
           <div className="w-full">
             <DurationSelector
               startDate={startDate}
@@ -196,66 +209,11 @@ const ScheduleSelector = ({
         <div className="mt-6 w-full grid grid-rows-2 md:grid-rows-1 md:grid-cols-2 gap-4 text-lg font-medium">
           <div className="w-full">
             <p className="mb-2">Start date</p>
-            <div className="w-full">
-              {/* <DatePicker
-                value={startDate}
-                handleDayChange={startDateChangeHandler}
-              /> */}
-              {/* <DateTimePicker
-                className="w-10/12 bg-lightGrey border-0 h-10"
-                value={startDate}
-                onChange={startDateChangeHandler}
-              /> */}
-              <TextField
-                id="datetime-local"
-                color="primary"
-                // classes={}
-                // label=""
-                onChange={(event) =>
-                  startDateChangeHandler(new Date(event.target.value))
-                }
-                placeholder="YYYY-MM-DD"
-                size="medium"
-                type="datetime-local"
-                defaultValue="2021-02-1T10:30"
-                // defaultValue={startDate}
-                className={classes.textField}
-                InputLabelProps={{
-                  shrink: true,
-                }}
-              />
-            </div>
+            <div className="w-full"></div>
           </div>
           <div className="w-full">
             <p className="mb-2">End date</p>
-            <div className="w-full">
-              {/* <DatePicker
-                value={endDate}
-                handleDayChange={endDateChangeHandler}
-              /> */}
-              {/* <DateTimePicker
-                className="w-10/12 bg-lightGrey border-0 h-10"
-                value={endDate}
-                onChange={endDateChangeHandler}
-              /> */}
-              <TextField
-                id="datetime-local"
-                color="primary"
-                // label=""
-                onChange={(event) =>
-                  endDateChangeHandler(new Date(event.target.value))
-                }
-                placeholder="YYYY-MM-DD"
-                size="medium"
-                type="datetime-local"
-                defaultValue="2021-02-12T10:30"
-                // defaultValue={endDate}
-                className={classes.textField}
-                InputLabelProps={{
-                  shrink: true,
-                }}
-              />
-            </div>
+            <div className="w-full"></div>
           </div>
         </div>
         {/* <div className='my-4 flex'>

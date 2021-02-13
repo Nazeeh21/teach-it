@@ -10,7 +10,7 @@ export const fetchAllProfiles = async (logout, token, profileId) => {
     })
 
     const { data } = res
-
+    console.log('fetchAllProfiles', data)
     return data.profiles
   } catch (e) {
     console.log('fetchAllProfiles', e)

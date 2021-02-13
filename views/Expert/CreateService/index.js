@@ -154,8 +154,10 @@ const Index = () => {
       duration: `${duration}`,
       allow_recording: `${allowRecording === 'yes' ? 'true' : 'false'}`,
       allow_visible_user_names: `${showFullName === 'yes' ? 'true' : 'false'}`,
-      start_at: `${startDate !== null && startDate.toISOString()}`,
-      end_at: `${endDate !== null && endDate.toISOString()}`,
+      // start_at: `${startDate !== null && startDate.toISOString()}`,
+      // end_at: `${endDate !== null && endDate.toISOString()}`,
+      start_at: `${startDate !== null && startDate}`,
+      end_at: `${endDate !== null && endDate}`,
       age_group: `${activeAgeGroup}`,
     }
 
@@ -229,54 +231,66 @@ const Index = () => {
           />
         </Accordion>
 
-        <Accordion id="schedule" label="Service schedule">
-          <ScheduleSelector
-            startDate={startDate}
-            startDateChangeHandler={(value) => setStartDate(value)}
-            endDate={endDate}
-            endDateChangeHandler={(value) => setEndDate(value)}
-            hour={startTimeHour}
-            min={startTimeMin}
-            hourChangedHandler={(value) => setStartTimeHour(value)}
-            minChangedHandler={(value) => setStartTimeMin(value)}
-            timeStampChangedHandler={(value) => setStartTimeStamp(value)}
-            weekDaysChangedHandler={(value) => setWeekDays(value)}
-            duration={duration}
-            durationChangedHandler={(value) => setDuration(value)}
-            type={serviceType}
-            setMilestoneData={(data) => setMileStoneData(data)}
-            serviceFreq={serviceFreq}
-            setServiceFreq={setServiceFreq}
-            paymentFreq={paymentFreq}
-            setPaymentFreq={setPaymentFreq}
-            onLanguagesChanged={setLanguages}
-          />
-        </Accordion>
+        <div className="mt-16">
+          <Accordion id="schedule" label="Service schedule">
+            <ScheduleSelector
+              startDate={startDate}
+              startDateChangeHandler={(value) => setStartDate(value)}
+              endDate={endDate}
+              endDateChangeHandler={(value) => setEndDate(value)}
+              hour={startTimeHour}
+              min={startTimeMin}
+              hourChangedHandler={(value) => setStartTimeHour(value)}
+              minChangedHandler={(value) => setStartTimeMin(value)}
+              timeStampChangedHandler={(value) => setStartTimeStamp(value)}
+              weekDaysChangedHandler={(value) => setWeekDays(value)}
+              duration={duration}
+              durationChangedHandler={(value) => setDuration(value)}
+              type={serviceType}
+              setMilestoneData={(data) => setMileStoneData(data)}
+              serviceFreq={serviceFreq}
+              setServiceFreq={setServiceFreq}
+              paymentFreq={paymentFreq}
+              setPaymentFreq={setPaymentFreq}
+              onLanguagesChanged={setLanguages}
+            />
+          </Accordion>
+        </div>
 
-        <Accordion id="fees" label="Fees">
-          <ServiceFreeqSel
-            heading="Payment Freequency"
-            activeLabel={paymentFreq}
-            setLabel={setPaymentFreq}
-          />
-          <FeesSelector
-            fees={fees}
-            feesChangedHandler={(value) => setFees(value)}
-          />
-          <QuestionFees
-            value={questionFee}
-            changeHandler={setQuestionFee}
-            allowQuestions={allowQuestion}
-            allowQuestionChangeHandler={setAllowQuestion}
-          />
-        </Accordion>
+        <div className="mt-10">
+          <Accordion id="fees" label="Fees">
+            <div className="mt-6">
+              <ServiceFreeqSel
+                heading="Payment Freequency"
+                activeLabel={paymentFreq}
+                setLabel={setPaymentFreq}
+              />
+            </div>
+            <div className="mt-6">
+              <FeesSelector
+                fees={fees}
+                feesChangedHandler={(value) => setFees(value)}
+              />
+            </div>
+            <div className="mt-6">
+              <QuestionFees
+                value={questionFee}
+                changeHandler={setQuestionFee}
+                allowQuestions={allowQuestion}
+                allowQuestionChangeHandler={setAllowQuestion}
+              />
+            </div>
+          </Accordion>
+        </div>
 
-        <Accordion id="audience" label="Audience">
-          <AudienceSelector
-            activeAgeGroup={activeAgeGroup}
-            ageGroupChangeHandler={activeGroupChangeHandler}
-          />
-        </Accordion>
+        <div className="mt-8">
+          <Accordion id="audience" label="Audience">
+            <AudienceSelector
+              activeAgeGroup={activeAgeGroup}
+              ageGroupChangeHandler={activeGroupChangeHandler}
+            />
+          </Accordion>
+        </div>
 
         <div className="flex gap-4">
           <AllowRecording

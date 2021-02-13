@@ -82,20 +82,23 @@ const Index = () => {
       </div>
       {services.length === 0 && (
         <div className="my-8">
-          <p className="text-center text-darkGrey">
-            You haven't created any services yet.
-          </p>
-          <p
-            onClick={() => router.push('/create-service')}
-            className="text-secondary hover:underline cursor-pointer text-center m-auto"
-          >
-            Create one now!
-          </p>
+          <div className="w-full p-2 pt-10 h-32 bg-white shadow-md rounded-lg mb-6">
+            <p className="text-center text-darkGrey">
+              You haven't created any services yet.
+            </p>
+            <p
+              onClick={() => router.push('/create-service')}
+              className="text-secondary hover:underline cursor-pointer text-center m-auto"
+            >
+              Create one now!
+            </p>
+          </div>
         </div>
       )}
       {services.map((service) => (
         <CompactServiceCard
           buttonClickHandler={() => router.push(`/view-service/${service.pk}`)}
+          serviceType={service.type}
           key={service.pk}
           category={service.category}
           languages={service.languages}

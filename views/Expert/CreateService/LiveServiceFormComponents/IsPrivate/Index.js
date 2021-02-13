@@ -3,7 +3,7 @@ import Pills2 from '../../../../../components/Misc/3Pills/2Pills'
 
 const IsPrivateContainer = ({ activeLabel, setLabel }) => (
   <div className="w-full text-lg font-medium">
-    <p>Is Private</p>
+    <p className="mb-4">Is Private</p>
     <Pills2
       activeLabel={activeLabel}
       setLabel={setLabel}

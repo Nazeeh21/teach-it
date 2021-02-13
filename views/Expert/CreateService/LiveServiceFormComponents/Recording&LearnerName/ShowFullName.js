@@ -3,7 +3,7 @@ import Pills from '../../../../../components/Misc/3Pills/2Pills'
 
 const ShowFullName = ({ activeLabel, setLabel }) => (
   <div className="w-full text-lg font-medium">
-    <p>Show full name of learners</p>
+    <p className="mb-4">Show full name of learners</p>
     <Pills
       activeLabel={activeLabel}
       setLabel={setLabel}

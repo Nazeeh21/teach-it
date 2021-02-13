@@ -4,12 +4,32 @@ import TimeSelector from '../TimeSelector/TimeSelector'
 import DurationSelector from '../DurationSelector/DurationSelector'
 import loremIpsum from '../../../../../utility/loremIpsum'
 import { SecondaryButton } from '../../../../../components/Buttons/Index'
-import { v4 as uuid } from 'uuid'
+import { makeStyles } from '@material-ui/core/styles'
+import TextField from '@material-ui/core/TextField'
+
+const useStyles = makeStyles((theme) => ({
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    width: '100%',
+    marginLeft: '-0.5rem',
+  },
+  textField: {
+    backgroundColor: '#f3f4f8',
+    padding: '0.5rem',
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    width: '100%',
+  },
+}))
 
 const Index = ({ mileStoneData, setMileStoneData }) => {
   const [arr, setArr] = useState([0])
   const [activeMileStone, setActiveMilestone] = useState(false)
   const [activeCustomize, setActiveCustomize] = useState(false)
+  const classes = useStyles()
+  const [startTimeLocal, setStartTimeLocal] = useState(null)
+  const [endTimeLocal, setendTimeLocal] = useState(null)
 
   const [formData, setFormData] = useState([
     {
@@ -47,7 +67,7 @@ const Index = ({ mileStoneData, setMileStoneData }) => {
     const newFormData = [...formData]
     newFormData[index].description = value
     setFormData(newFormData)
-    setMileStoneData(formData)
+    setMileStoneData(newFormData)
   }
 
   // const disableMilestone = () => {
@@ -60,6 +80,7 @@ const Index = ({ mileStoneData, setMileStoneData }) => {
   const toggleMileStone = () => {
     const previouslyActive = activeMileStone
     setActiveMilestone((prevState) => !prevState)
+
     const newData = []
     const newFormData = [
       {
@@ -92,7 +113,23 @@ const Index = ({ mileStoneData, setMileStoneData }) => {
             <p className="mt-4 font-semibold text-sm text-darkGrey">MONDAY</p>
             <div className="flex mt-4">
               <div className="w-6/12">
-                <TimeSelector />
+                {/* <TimeSelector /> */}
+                <p className="mb-2 font-medium">Start Time</p>
+                <form className={classes.container} noValidate>
+                  <TextField
+                    id="time"
+                    onChange={(e) => setStartTimeLocal(e.target.value)}
+                    type="time"
+                    defaultValue="07:30"
+                    className={classes.textField}
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                    inputProps={{
+                      step: 300, // 5 min
+                    }}
+                  />
+                </form>
               </div>
               <div className="w-6/12 ml-4">
                 <DurationSelector />
@@ -101,7 +138,23 @@ const Index = ({ mileStoneData, setMileStoneData }) => {
             <p className="mt-6 font-semibold text-sm text-darkGrey">THURSDAY</p>
             <div className="flex mt-4">
               <div className="w-6/12">
-                <TimeSelector />
+                {/* <TimeSelector /> */}
+                <p className="mb-2 font-medium">End Time</p>
+                <form className={classes.container} noValidate>
+                  <TextField
+                    id="time"
+                    onChange={(e) => setendTimeLocal(e.target.value)}
+                    type="time"
+                    defaultValue="07:30"
+                    className={classes.textField}
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                    inputProps={{
+                      step: 300, // 5 min
+                    }}
+                  />
+                </form>
               </div>
               <div className="w-6/12 ml-4">
                 <DurationSelector />
@@ -139,7 +192,7 @@ const Index = ({ mileStoneData, setMileStoneData }) => {
                   />
                   <p className="text-lg mt-4">Description</p>
                   <textarea
-                    value={formData[0].description}
+                    value={formData[index].description}
                     className="p-2 text-sm mt-2 w-full text-black"
                     rows="4"
                     placeholder={loremIpsum}

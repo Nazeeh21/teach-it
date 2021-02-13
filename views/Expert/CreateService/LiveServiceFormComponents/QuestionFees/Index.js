@@ -15,18 +15,20 @@ const QuestionFees = ({
           setLabel={allowQuestionChangeHandler}
         />
       </div>
-      <div className="w-6/12 flex items-center justify-center">
-        <input
-          value={value}
-          min="0"
-          type="number"
-          className="rounded bg-lightGrey w-3/12 p-2"
-          onChange={(e) => {
-            changeHandler(e.target.value)
-          }}
-        />
-        <div className="text-sm font-medium ml-2">Question Fees</div>
-      </div>
+      {allowQuestions === 'yes' && (
+        <div className="w-6/12 mt-10 flex items-center justify-center">
+          <input
+            value={value}
+            min="0"
+            type="number"
+            className="rounded bg-lightGrey w-3/12 p-2"
+            onChange={(e) => {
+              changeHandler(e.target.value)
+            }}
+          />
+          <div className="text-sm font-medium ml-2">Question Fees</div>
+        </div>
+      )}
     </div>
   )
 }

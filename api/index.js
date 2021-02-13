@@ -1,5 +1,5 @@
 import axios from 'axios'
 
 export default axios.create({
-  baseURL: 'https://videowork.ocg.technology/api/v1/',
+  baseURL: 'http://35.193.240.111/api/v1/',
 })

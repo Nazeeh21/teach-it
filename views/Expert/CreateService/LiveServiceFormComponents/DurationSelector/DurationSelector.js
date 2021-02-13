@@ -33,16 +33,16 @@ const DurationSelector = ({
   return (
     <div className="w-full text-lg font-medium">
       <p className="mb-2">Duration</p>
-      <div className="flex justify-between">
-        <div className="py-1 pl-2 w-16 h-8 bg-lightGrey rounded-sm">
+      <div className="flex items-center ">
+        <div className="py-2 pl-2 w-16 h-12 mr-2 bg-lightGrey rounded-sm">
           {hours && hours}
         </div>
-        <div className="py-1 pl-2 w-16 bg-lightGrey rounded-sm">
+        {/* <div className="py-2 pl-2 w-16 h-12 mr-2 bg-lightGrey rounded-sm">
           {minutes && minutes}
         </div>
-        <div className="py-1 pl-2 w-16 bg-lightGrey rounded-sm">
+        <div className="py-2 pl-2 w-16 h-12 bg-lightGrey rounded-sm">
           {seconds && seconds}
-        </div>
+        </div> */}
         <p className="text-md ml-3">hours</p>
       </div>
     </div>

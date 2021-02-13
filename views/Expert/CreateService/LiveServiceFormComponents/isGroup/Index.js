@@ -3,7 +3,7 @@ import Pills2 from '../../../../../components/Misc/3Pills/2Pills'
 
 const IsGroupContainer = ({ activeLabel, setLabel }) => (
   <div className="w-full text-lg font-medium">
-    <p>Is Group</p>
+    <p className="mb-4">Is Group</p>
     <Pills2
       activeLabel={activeLabel}
       setLabel={setLabel}

@@ -14,10 +14,11 @@ const Image = ({ src, alt }) => (
 const CompactServiceCard = ({
   descriptionText = loremIpsum,
   imgSrc = 'stock/girl2.jpg',
-  category,
+  category = 'Music',
   languages,
   paymentType,
   buttonClickHandler,
+  serviceType,
   servicePk,
   startDate,
 }) => {
@@ -37,7 +38,7 @@ const CompactServiceCard = ({
   return (
     <div className="flex flex-row w-full p-2 bg-white shadow-md rounded-lg mb-6">
       <div className="p-3 w-2/12 flex flex-col">
-        <Image src={imgSrc} alt="Nazeeh" />
+        <Image src={imgSrc} alt="service-image" />
         {/* <p className='text-3xl font-bold text-accent m-auto'>13</p> */}
       </div>
 
@@ -48,15 +49,15 @@ const CompactServiceCard = ({
             : descriptionText}
         </p>
         <div className="flex flex-row mt-6">
-          <p className="w-1/2">{category}</p>
-          <p className="text-darkGrey w-1/2">
+          <p className="w-1/2 font-medium">{category ? category : 'Music'}</p>
+          <p className="text-darkGrey text-sm w-1/2">
             {languages.map((lang, idx) => (
               <span key={idx}>{ISO6391.getName(lang)}</span>
             ))}
           </p>
         </div>
         <div className="grid grid-cols-2 items-center">
-          <div className="flex flex-col w-1/2 mt-4">
+          <div className="flex flex-col w-8/12 mt-2">
             <p className="text-darkGrey">Date: {date.toLocaleDateString()}</p>
             <p
               style={{ textTransform: 'capitalize' }}
@@ -64,8 +65,21 @@ const CompactServiceCard = ({
             >
               Payments: {paymentType}
             </p>
+            <div
+              style={{ color: `${serviceType === 'rich' ? 'green' : 'red'}` }}
+              className="font-medium flex flex-row w-11/12 mt-2"
+            >
+              <img
+                className="mr-1"
+                src={`${serviceType}.svg`}
+                alt={serviceType}
+              />
+              <span style={{ textTransform: 'capitalize' }}>
+                {serviceType === 'rich' ? 'Rich Media' : 'Live Media'}
+              </span>
+            </div>
           </div>
-          <div className="mr-10 sm:w-4/12 md:w-2/12 lg:w-3/12 justify-self-end md:mr-40 lg:mr-12 xl:mr-24">
+          <div className="mr-8 sm:w-4/12 md:w-5/12 lg:w-4/12 justify-self-end md:mr-40 lg:mr-12 xl:mr-24">
             <CardButton clickHandler={buttonClickHandler} label="View" />
           </div>
         </div>

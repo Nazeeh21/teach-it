@@ -8,7 +8,7 @@ export const fetchProviderProfile = async (token, pk, profileId) => {
         'X-Profile-ID': profileId,
       },
     })
-    console.log(res)
+    console.log('Fetch provider Profile', res)
     return res.data
   } catch (e) {
     console.log(e)

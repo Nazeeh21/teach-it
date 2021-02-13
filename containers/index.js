@@ -3,7 +3,7 @@ import { dropShadow } from '../assets/constants'
 
 export const LandingContainer = ({ children, width = '8/12' }) => (
   <div
-    className={`xs:w-full sm:w-full md:w-full lg:w-10/12 xl:w-${width} bg-white px-6 py-10 shadow-lg rounded-lg my-10 mx-auto text-center`}
+    className={`xs:w-full sm:w-full md:w-full lg:w-8/12 xl:w-${width} bg-white px-6 py-10 shadow-lg rounded-lg my-10 mx-auto text-center`}
   >
     {children}
   </div>
