@@ -4,10 +4,17 @@ import Card from './Card/Card'
 const LiveAndRichMedia = () => (
   <div className="mt-16 px-3 md:px-5 lg:mt-32">
     <div className="flex justify-center flex-col md:flex-row">
-      <div className="mb-6 md:w-6/12 md:m-3 xl:w-4/12 lg:m-3 lg:p-8  bg-white ">
+      <div
+        style={{
+          borderTopRightRadius: '1rem',
+          borderBottomLeftRadius: '1rem',
+          borderBottomRightRadius: '1rem',
+        }}
+        className="mb-6 md:w-6/12 md:m-3 xl:w-4/12 lg:m-3 lg:p-8 bg-white "
+      >
         <Card
           key="live"
-          src="/Live-logo.png"
+          src="/live-logo.svg"
           alt="live-logo"
           heading={{ text: 'Live', color: 'red' }}
           description="Get paid by doing live broadcast or the two-way communication session with your learners or fans paying you on a per-session payment model."
@@ -18,10 +25,18 @@ const LiveAndRichMedia = () => (
           ]}
         />
       </div>
-      <div className="md:w-6/12 md:m-3 xl:w-4/12 xl:m-3 xl:p-8  bg-white ">
+      {/* <div className="md:w-6/12 md:m-3 xl:w-4/12 xl:m-3 xl:p-8  bg-white "> */}
+      <div
+        style={{
+          borderTopRightRadius: '1rem',
+          borderBottomLeftRadius: '1rem',
+          borderBottomRightRadius: '1rem',
+        }}
+        className="mb-6 md:w-6/12 md:m-3 xl:w-4/12 lg:m-3 lg:p-8  bg-white "
+      >
         <Card
           key="rich"
-          src="/rich-media.png"
+          src="/rich-logo.svg"
           alt="rich-media"
           heading={{ text: 'Rich Media', color: 'green' }}
           description="Get paid for the content you create (any form of rich media), its your wish how often and when you want to share the content. Your learners or fans pay you on a monthly subscription model. Create rich media content subscription  service."

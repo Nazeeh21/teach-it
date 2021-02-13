@@ -97,8 +97,7 @@ const CompactServiceCard = ({
           </div>
           {!providerData.is_pro && (
             <div className="flex gap-2">
-              Pro
-              <img src="/pro.svg" alt="pro" />
+              <img src="/pro.svg" alt="pro" /> Pro
             </div>
           )}
         </div>

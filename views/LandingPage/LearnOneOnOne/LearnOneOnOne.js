@@ -14,24 +14,34 @@ const LearnOneOnOne = () => {
 
   return (
     <div className="mt-20 bg-white">
-      <div className="pt-16 px-5 xl:m-24 xl:pt-32 xl:px-0 flex justify-center ">
-        <div className="md:w-5/12 md:m-10">
+      <div className="pt-16 px-5 xl:m-24 xl:mx-20 xl:pt-32 xl:px-0 flex justify-center ">
+        <div className="md:w-4/12 md:m-10">
           <div
             style={{ color: '#1d2d50' }}
             className="text-4xl lg:mt-8 xl:text-5xl xl:mt-12 font-bold"
           >
             {heading}
           </div>
-          <div className="text-xl text-darkGrey my-8">{subHeading1}</div>
-          <div className="text-xl text-darkGrey my-8">{subHeading2}</div>
+          <div
+            style={{ color: '#8A8EA0' }}
+            className="text-xl opacity-75 text-darkGrey my-8"
+          >
+            {subHeading1}
+          </div>
+          <div
+            style={{ color: '#8A8EA0' }}
+            className="text-xl opacity-75 text-darkGrey my-8"
+          >
+            {subHeading2}
+          </div>
           <button
             onClick={() => router.push('/login')}
-            className="w-7/12 mt-3 mb-16 bg-secondary p-3 md:w-7/12 xl:w-5/12 xl:mt-8 xl:mb-8 rounded-md text-white text-xl font-medium"
+            className="w-7/12 mt-3 mb-16 bg-secondary p-3 md:w-8/12 lg:w-7/12 xl:w-5/12 xl:mt-8 xl:mb-8 rounded-md text-white text-xl font-medium"
           >
             Get Started
           </button>
         </div>
-        <div className="hidden md:w-7/12 md:block">
+        <div className="hidden md:mt-32 lg:mt-0 md:w-8/12 md:block">
           <div className="flex items-center">
             <div className="w-4/12 text-right	">
               <img

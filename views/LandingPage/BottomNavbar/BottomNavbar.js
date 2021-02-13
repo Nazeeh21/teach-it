@@ -22,15 +22,18 @@ const BottomNavbar = () => (
         <a className="mt-5" href="/">
           About us
         </a>
-        <div className="mt-5">
-          <a href="/">Win a Macbook!</a> {New}
+        <div className="mt-5 items-center flex">
+          <a href="/" className="mr-2">
+            Win a Macbook!
+          </a>{' '}
+          {New}
         </div>
         <a className="mt-5" href="/">
           Contact us
         </a>
       </div>
       <div className="w-full ml-5 md:w-3/12 md:ml-10 flex flex-col text-lg lg:ml-16 xl:ml-32">
-        <p className="font-semibold mt-8 text-xl md:mb-8 md:mt-0">Legal</p>
+        <p className="font-semibold mt-8 text-2xl md:mb-8 md:mt-0">Legal</p>
         <a className="mt-5" href="/">
           Privacy Policy
         </a>
@@ -42,7 +45,7 @@ const BottomNavbar = () => (
         </a>
       </div>
       <div className="w-full ml-5 md:w-6/12 md:mr-8 flex flex-col text-lg xl:ml-48 xl:mr-10">
-        <p className="font-semibold mt-8 text-xl md:mb-8 md:mt-0">Updates</p>
+        <p className="font-semibold mt-8 text-2xl md:mb-8 md:mt-0">Updates</p>
         <p className="mt-5">
           Sign up for our FREE newsletter and get daily updates on services,
           offers & promotions.

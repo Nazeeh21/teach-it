@@ -17,7 +17,7 @@ const leftTextContainerData = [
 
 const rightTextContainerData = [
   {
-    title: 'Learn live video, podcasts & rich media services',
+    title: 'Run live video, podcasts & rich media services',
     subTitle:
       'Now you can run all your services, including podcasts, with just your phone. You can also stay connected and sen your rich media services to your learners on the go.',
   },
@@ -48,31 +48,20 @@ const AmazingMobileApp = () => (
       <div className="flex flex-col md:flex-row items-center my-20">
         <div className="w-full md:w-5/12 xl:w-4/12 grid grid-flow-col grid-cols-1 grid-rows-2 gap-10">
           {leftTextContainerData.map((data, index) => (
-            <TextContainer
-              key={
-                // () => uuid()
-                index
-              }
-              data={data}
-            />
+            <TextContainer key={index} data={data} />
           ))}
         </div>
         <div className="hidden md:w-5/12 xl:w-4/12 xl:mx-12 md:block">
           <img
-            className="rounded-lg shadow-2xl border-solid border-8 border-black"
+            style={{ borderRadius: '1.5rem' }}
+            className=" shadow-2xl border-solid border-8 border-black"
             src="/mobile-screen.png"
             alt="mobile-screen"
           />
         </div>
-        <div className="w-full md:w-5/12 xl:w-4/12 grid grid-flow-col grid-cols-1 grid-rows-2 gap-10">
+        <div className="w-full xl:mt-2 md:w-5/12 xl:w-4/12 grid grid-flow-col grid-cols-1 grid-rows-2 gap-10">
           {rightTextContainerData.map((data, index) => (
-            <TextContainer
-              key={
-                // () => uuid()
-                index
-              }
-              data={data}
-            />
+            <TextContainer key={index} data={data} />
           ))}
         </div>
       </div>

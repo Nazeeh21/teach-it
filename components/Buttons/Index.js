@@ -39,7 +39,7 @@ export const SecondaryButton = ({
       className={
         disabled
           ? disabledClass
-          : `border-${color} border-2 text-${color} text-innerTitle rounded-md w-full p-3`
+          : `border-${color} border-2 text-${color} font-semibold text-innerTitle h-12 rounded-md w-full px-3`
       }
       onClick={(e) => clickHandler(e.target.value)}
       disabled={disabled}

@@ -7,7 +7,7 @@ const cardData = [
     name: 'learner',
     description: `We have hundereds of experts ready to teach you all the skills you're looking to learn.`,
     buttonText: 'learn',
-    buttonColor: 'learner',
+    buttonColor: '#EE3060',
   },
   {
     name: 'expert',
@@ -20,13 +20,7 @@ const JoiningCards = () => (
   <div className="my-10 md:my-20 xl:my-32">
     <div className="flex flex-col md:flex-row justify-center">
       {cardData.map((data, index) => (
-        <div
-          key={
-            // () => uuid()
-            index
-          }
-          className="w-11/12 md:w-6/12 xl:w-4/12 m-6"
-        >
+        <div key={index} className="w-11/12 md:w-6/12 xl:w-4/12 m-6">
           <Card data={data} />
         </div>
       ))}

@@ -9,8 +9,8 @@ const TextContainer = ({ data }) => (
       {data.title}
     </p>
     <p
-      style={{ lineHeight: '110%' }}
-      className="my-4 text-darkGrey text-left text-xl font-medium"
+      style={{ lineHeight: '110%', color: '#8A8EA0' }}
+      className="my-4 opacity-75 text-darkGrey text-left text-xl font-medium"
     >
       {data.subTitle}
     </p>

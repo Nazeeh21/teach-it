@@ -1,13 +1,23 @@
 import React from 'react'
 import Rating from '../../../../components/Rating/Rating'
 
-const LearningCard = ({ imgSrc, label, provider, numSeekers }) => (
+const LearningCard = ({
+  imgSrc = '/learn-guitar.svg',
+  label,
+  provider,
+  numSeekers,
+}) => (
   <div
-    style={{ color: '#303C45' }}
-    className="w-screen md:w-full lg:w-full bg-white rounded-lg font-semibold px-8 pb-6"
+    style={{ color: '#303C45', zIndex: '100' }}
+    className="w-screen md:w-full lg:w-full pt-16 bg-white rounded-lg font-semibold px-8 pb-6"
   >
-    <div style={{ zIndex: '500', position: 'relative', bottom: '3rem' }}>
-      <img className="m-auto" src={imgSrc} alt={provider} />
+    <div style={{ marginTop: '-5rem' }}>
+      <img
+        style={{ margin: 'auto' }}
+        className=""
+        src={imgSrc}
+        alt={provider}
+      />
     </div>
     <p className=" lg:m-auto text-3xl">{label}</p>
     <div className="flex justify-center items-center mt-4">

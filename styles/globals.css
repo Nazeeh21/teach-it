@@ -9,6 +9,11 @@ body {
     Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
+.video-react-video {
+  border-radius: 1rem;
+  /* height: 28rem; */
+}
+
 body::-webkit-scrollbar {
   width: 0 !important;
 }

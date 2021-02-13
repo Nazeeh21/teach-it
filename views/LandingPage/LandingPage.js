@@ -16,7 +16,7 @@ import WinMacbook from './WinMacbook/WinMacbook'
 
 const LandingPage = () => {
   return (
-    <div className="bg-lightGrey">
+    <div className="bg-lightGrey tracking-wide">
       <div className="bg-white">
         <LandingPageNavbar />
       </div>

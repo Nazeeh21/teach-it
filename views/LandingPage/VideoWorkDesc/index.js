@@ -1,14 +1,17 @@
 import React from 'react'
 
 const Container = ({ heading, subHeading }) => (
-  <div>
-    <p className="text-xl mt-4">{heading}</p>
-    <p className="text-md mt-5">{subHeading}</p>
+  <div className="font-medium">
+    <p className="text-xl  mt-4">{heading}</p>
+    <p className="text-md  mt-5">{subHeading}</p>
   </div>
 )
 
 const Index = () => (
-  <div className="w-full pl-2 border-2 border-solid bg-lightGrey border-gray-300 text-darkGrey grid md:grid-flow-rows md:grid-cols-2 md:rid-rows-2 gap-6 pt-6 pb-10 md:pl-10 md:pr-6 xl:pr-0 xl:pl-32">
+  <div
+    style={{ color: '#8A8EA0' }}
+    className="w-full opacity-75 pl-2 border-2 border-solid bg-lightGrey border-gray-300 text-darkGrey grid md:grid-flow-rows md:grid-cols-2 md:rid-rows-2 gap-6 pt-6 pb-10 md:pl-10 md:pr-6 lg:pl-24 xl:pr-0 xl:pl-40"
+  >
     <Container
       heading="What is Videowork?"
       subHeading="Video work is an easy way of sharing knowledge. With the videowork app,

@@ -12,10 +12,10 @@ const FounderIntro = () => (
         alt="founder-img"
       />
       <div className="m-auto">
-        <p className="text-xl pt-5 text-darkGrey lg:text-2xl font-medium">
+        <p className="text-xl pt-5 text-darkGrey lg:text-2xl font-semibold">
           Andesh Bhatti
         </p>
-        <p className="text-lg text-darkGrey md:text-xl lg:text-2xl ">
+        <p className="text-lg text-darkGrey font-medium -mt-1 md:text-xl lg:text-2xl ">
           Founder, Videowork
         </p>
       </div>

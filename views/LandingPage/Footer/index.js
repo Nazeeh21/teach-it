@@ -2,25 +2,25 @@ import React from 'react'
 
 const Index = () => (
   <div className="w-full bg-lightGrey pt-8 pb-8">
-    <div className="flex justify-center">
-      <a className="mx-2 mt-6" href="/">
+    <div className="flex items-center justify-center mt-6 gap-8">
+      <a className="" href="/">
         <img
-          src="/
-socials/twitter.svg"
+          style={{ width: '1.55rem' }}
+          src="/socials/twitter.svg"
           alt="twitter"
         />
       </a>
-      <a className="mx-2 mt-6" href="/">
+      <a className="" href="/">
         <img
-          src="/
-socials/facebook.svg"
+          style={{ width: '1.55rem' }}
+          src="/socials/facebook.svg"
           alt="facebook"
         />
       </a>
-      <a className="mx-2 mt-6" href="/">
+      <a className="" href="/">
         <img
-          src="/
-socials/youtube.svg"
+          style={{ width: '1.55rem' }}
+          src="/socials/youtube.svg"
           alt="youtube"
         />
       </a>

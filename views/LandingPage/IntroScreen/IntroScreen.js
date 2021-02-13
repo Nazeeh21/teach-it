@@ -27,7 +27,7 @@ const IntroScreen = () => {
               style={{ lineHeight: '10%' }}
               className="text-learner block text-5xl"
             >
-              &#8220
+              "
             </span>
             I learned to cook asian food from a chef in Japan.
             <div className="lg:mt-4 text-black text-right">
@@ -35,10 +35,12 @@ const IntroScreen = () => {
             </div>
           </div>
         </div>
-        <div className="text-center text-lg md:text-left lg:text-xl text-darkGrey">
+        <div
+          style={{ color: '#4A6A78' }}
+          className="text-center opacity-75 text-lg md:text-left lg:text-xl text-darkGrey"
+        >
           <div className="mt-6 md:mt-8 font-medium md:mb-8">
-            Learn from subject experts around the world, no matter where you
-            are.
+            Learn from experts around the world, no matter where you are.
           </div>
           <div className="mt-6 md:mt-8 font-medium md:mb-8">
             A safe, trusted and easy to use environment eliminating payment
@@ -47,8 +49,9 @@ const IntroScreen = () => {
         </div>
         <div className="flex justify-center md:justify-start">
           <button
+            style={{ backgroundColor: '#EE3060' }}
             onClick={() => router.push('/login')}
-            className="justify-self-center mt-6 lg:mt-1 p-3 xl:w-5/12 text-xl font-medium bg-learner text-white text-subHeading rounded-md"
+            className="justify-self-center mt-6 lg:mt-4 p-3 xl:w-5/12 text-xl font-medium bg-learner text-white text-subHeading rounded-md"
           >
             Start learning
           </button>

@@ -18,10 +18,14 @@ const Cards = ({ data }) => {
       >
         {`Join as a ${data.name}`}
       </p>
-      <div className="text-darkGrey h-auto md:h-20 lg:h-auto my-8 text-xl font-medium">
+      <div
+        style={{ color: '#8A8EA0' }}
+        className="opacity-75 text-darkGrey h-auto md:h-20 lg:h-auto my-8 text-xl font-medium"
+      >
         {data.description}
       </div>
       <button
+        style={{ backgroundColor: `${data.buttonColor}` }}
         onClick={() => router.push('/login')}
         className={`bg-${data.buttonColor} p-3 xl:w-7/12 my-10 rounded-md text-white text-xl font-medium`}
       >

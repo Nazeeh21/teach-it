@@ -15,7 +15,7 @@ const textContainerData = [
     imgBg: '#d9ecf2',
   },
   {
-    src: 'time.png',
+    src: 'kids.svg',
     alt: 'clock-img',
     title: 'Safe for kids',
     subTitle:
@@ -23,7 +23,7 @@ const textContainerData = [
     imgBg: '#cffffe',
   },
   {
-    src: 'calendar.png',
+    src: 'global.svg',
     alt: 'calendar-img',
     title: 'Truly global',
     subTitle:
@@ -31,7 +31,7 @@ const textContainerData = [
     imgBg: '#ffb0b0',
   },
   {
-    src: 'time.png',
+    src: 'availability.svg',
     alt: 'availability-img',
     title: 'As per your availability',
     subTitle:
@@ -61,13 +61,7 @@ const WhatMakesVideoWork = () => {
       </div>
       <div className="w-full mt-5 md:w-6/12 m:mt-0 xl:w-6/12 grid-rows-4 grid lg:mt-0 md:grid-rows-2 md:grid-cols-2 ">
         {textContainerData.map((data, index) => (
-          <TextContainer
-            key={
-              // () => uuid()
-              index
-            }
-            data={data}
-          />
+          <TextContainer key={index} data={data} />
         ))}
       </div>
       <button

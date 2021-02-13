@@ -34,7 +34,7 @@ const WinMacbook = () => (
         <p className="text-4xl text-white lg:text-5xl font-medium my-8">
           Win a brand new Macbook!
         </p>
-        <button className="bg-primary text-white text-2xl rounded-full m-auto md:m-3 md:mb-4 xl:m-2 my-3 py-4 px-10 flex items-center">
+        <button className="bg-primary text-white text-2xl rounded-full m-auto md:m-3 md:mb-4 xl:m-2 xl:-mt-4 my-3 py-4 px-10 flex items-center">
           Find out how
           <span className="mx-2">
             <span className="arrow right" />
